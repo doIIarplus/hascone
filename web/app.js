@@ -10,6 +10,7 @@ import {mountPotentialWeights} from './potential_weights.js';
 import {api} from './api.js';
 import {escapeHtml as esc,toast} from './ui.js';
 import {mountScouter} from './pages/scouter.js';
+import {mountHexa} from './pages/hexa.js';
 import {openGuide,openEquipmentGuide} from './guide.js';
 import {mountEnhancement,flameIcon} from './enhancement.js';
 import {potentialMarkup} from './components/potential.js';
@@ -37,6 +38,12 @@ async function render(){
  localStorage.setItem('hascone.scouter.character',selected);
  if(page==='home'){const host=document.createElement('div');view.replaceChildren(host);await mountHome(host,id=>navigate('equipment',id));return;}
  if(page==='scouter'){dispose=await mountScouter(view);return;}
+ if(page==='hexa'){
+  const host=document.createElement('div');view.replaceChildren(host);
+  const cleanup=await mountHexa(host,selected);
+  if(epoch!==renderEpoch)cleanup();else dispose=cleanup;
+  return;
+ }
  const profile=await api.get('/api/characters/'+selected);
  if(epoch!==renderEpoch)return;
  const slots=all.layout.slots;if(!slots[slot])slot=Object.keys(slots)[0];
@@ -94,6 +101,7 @@ document.addEventListener('pointerdown',e=>{if(!settingsMenu.contains(e.target))
 document.addEventListener('keydown',e=>{if(e.key==='Escape')settingsMenu.open=false;});
 document.querySelectorAll('[data-native]').forEach(b=>{b.disabled=!window.chrome?.webview;b.onclick=()=>{settingsMenu.open=false;window.chrome.webview.postMessage(b.dataset.native);};});
 window.addEventListener('open-scouter',()=>navigate('scouter').catch(toast));
+window.addEventListener('open-hexa',()=>navigate('hexa').catch(toast));
 document.querySelector('#add-character').onclick=()=>document.querySelector('#add-dialog').showModal();
 document.querySelector('#add-cancel').onclick=()=>document.querySelector('#add-dialog').close();
 document.querySelector('#add-form').onsubmit=async e=>{e.preventDefault();const b=document.querySelector('#add-submit');b.disabled=true;document.querySelector('#add-error').textContent='Looking up character…';try{const p=await api.post('/api/characters',{name:document.querySelector('#new-name').value});page='equipment';selected=p.id;localStorage.setItem('hascone.character',selected);document.querySelector('#add-dialog').close();await render();await openEquipmentGuide(selected,render);}catch(e){document.querySelector('#add-error').textContent=e.message;}finally{b.disabled=false;}};

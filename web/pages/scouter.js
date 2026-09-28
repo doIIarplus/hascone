@@ -3,7 +3,6 @@ import {revealSection} from '../sections.js';
 import {renderEfficiencies} from './scouter-efficiencies.js';
 import { api } from '../api.js';
 import { escapeHtml as esc, toast } from '../ui.js';
-import { coreName, levelChange, orderContext, completionChange } from './scouter-hexa.js';
 import { efficiencySummary } from './scouter-efficiency.js';
 import { createSuggestions } from './scouter-suggestions.js';
 import { createSimulator } from './scouter-simulator.js';
@@ -150,27 +149,16 @@ export async function mountScouter(view) {
     q('#sc-eff-preset')?.addEventListener('click',exportPreset);
     q('#sc-eff-results')?.addEventListener('click',()=>showTab('results'));
     if (!result) { q('#sc-output').innerHTML = '<div class="card empty">Scan your character, review the inputs, then calculate your HEXA score and upgrade order.</div>'; return; }
-    const d = result.damage?.calculatedData || {}, order = result.order;
+    const d = result.damage?.calculatedData || {};
     const stale = dirty || result.fingerprint !== profile.fingerprint;
     q('#sc-output').innerHTML = `${stale?'<p class="sc-warning">Saved result · inputs have changed. Calculate again to refresh.</p>':''}
       <div class="sc-score-grid">${[['HEXA score · 380 DEF',d.boss380_hexaStat],['HEXA score · 300 DEF',d.boss300_hexaStat],['Stat score · 380 DEF',d.boss380_stat]].map(([l,v])=>`<div class="card sc-score"><span>${esc(l)}</span><strong>${fmt(v)}</strong></div>`).join('')}</div>
       ${efficiencySummary(d.specEfficiency)}
       ${renderBossPanels(result.boss_cuts,bossFilter)}
       <details class="card sc-group"><summary>Stat efficiencies</summary><div class="sc-eff">${Object.entries(EFF).filter(([k])=>d.specEfficiency?.[k]!==undefined).map(([k,l])=>`<div><span>${esc(l)}</span><strong>${Number(d.specEfficiency[k]*100).toLocaleString(undefined,{maximumFractionDigits:3})}% FD</strong></div>`).join('')}</div></details>
-      <div class="card"><div class="card-head">HEXA upgrade order</div><p class="sub">After making an upgrade in game, mark it completed to save the new level. Calculate again to refresh the order.</p>${result.order_error?`<p class="sc-warning">${esc(result.order_error)}</p>`:''}<div class="sub sc-note">${esc(orderContext(order))}</div>
-      <div class="sc-order">${(order?.class_hexa||[]).map((r,i)=>{
-        const core = profile.class_info.cores[r[9]], icon = core?.url?.split('/').pop();
-        const completion=completionChange(r,currentValues(),profile.class_info.cores);
-        return `<div class="sc-order-row"><span class="sc-rank">${i+1}</span>${icon?`<img width="32" height="32" data-icon="${esc(icon)}" alt="">`:'<span></span>'}<span title="${esc(coreName(core,r[9]))}">${esc(coreName(core,r[9]))}<small>${fmt(Number(r[3]))} Sol Erda · ${fmt(Number(r[4]))} fragments</small><small title="Normalized final-damage percentage per 30 fragments, as returned by MapleScouter. Higher is better.">Efficiency ${fmt(Number(r[7]))}% / 30 fragments</small></span><span class="sc-hexa-step"><strong>${esc(levelChange(r))}</strong>${completion?`<button class="btn" data-hexa-complete="${i}" ${stale||pending?'disabled':''}>Mark completed</button>`:''}</span></div>`;
-      }).join('')||'<p class="empty">No further upgrades returned.</p>'}</div></div>
+      <button class="btn" id="sc-open-hexa">View HEXA upgrade order</button>
       <button class="btn btn-ghost btn-sm" id="sc-export">Export saved inputs & result</button>`;
-    q('#sc-output').querySelectorAll('[data-hexa-complete]').forEach(button=>button.onclick=()=>action(async()=>{
-      if(dirty||result.fingerprint!==profile.fingerprint)throw new Error('Calculate again before marking another upgrade completed.');
-      const change=completionChange(order.class_hexa[Number(button.dataset.hexaComplete)],currentValues(),profile.class_info.cores);
-      if(!change)throw new Error('This upgrade no longer matches your saved level.');
-      draft[change.path]=String(change.value);markEdited();await save();
-      toast(change.stat?'Saved. Rescan character stats, then Calculate to refresh.':'Level saved. Calculate to refresh the upgrade order.');
-    }));
+    q('#sc-open-hexa').onclick=()=>window.dispatchEvent(new CustomEvent('open-hexa'));
     q('#sc-quick-fd-run').onclick=()=>{const input=q('#sc-quick-fd-value');if(!input.checkValidity()){input.reportValidity();return;}showTab('simulator');simulator.compareFD(input.value||'0');};
     if(q('#sc-boss-filter')) q('#sc-boss-filter').onchange = e => { bossFilter=e.target.value; renderResults();q('#sc-boss-filter')?.focus({preventScroll:true}); };
     q('#sc-export').onclick = async () => {

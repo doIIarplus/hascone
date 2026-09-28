@@ -15,4 +15,6 @@ Data sources retained in the individual catalog files:
 
 Equipment reader templates were captured from GMS. Per-character flame weights can use MapleScouter stat efficiencies.
 
+HEXA Stat I, II, and III icons (`src/scouter/data/icons/hexa-stat-*.png`) were cropped from the user's GMS HEXA Matrix window on 2026-09-28. MapleStory game artwork belongs to Nexon.
+
 MapleScouter manual preset v1 interoperability: https://maplescouter.com/en/input (public preset importer and template reviewed 2026-09-27). tests/fixtures/scouter_preset_template.json is its public template, retained only for schema compatibility tests.
