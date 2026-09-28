@@ -30,6 +30,7 @@ export function mountRoster(onSelect){
   setTimeout(poll,1000);
  }
  poll();
+ document.addEventListener('pointerdown',e=>{if(panel.open&&!panel.contains(e.target))panel.open=false;});
  document.addEventListener('keydown',e=>{if(e.key==='Escape')panel.open=false;});
  return {update(rows,id){characters=rows;selected=id;draw();}};
 }

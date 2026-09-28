@@ -37,6 +37,58 @@ body {
   background: var(--text-dim);
 }
 
+/* ---- Toggle switches ---- */
+input[type="checkbox"][role="switch"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-full);
+  background: var(--surface-3);
+  cursor: pointer;
+  transition: background .16s ease, border-color .16s ease;
+}
+input[type="checkbox"][role="switch"]::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: transform .16s ease, background .16s ease;
+}
+input[type="checkbox"][role="switch"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+input[type="checkbox"][role="switch"]:checked::before {
+  transform: translateX(14px);
+  background: var(--accent-contrast);
+}
+input[type="checkbox"][role="switch"]:hover:not(:disabled) { border-color: var(--accent); }
+input[type="checkbox"][role="switch"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+input[type="checkbox"][role="switch"]:disabled { opacity: .4; cursor: not-allowed; }
+.weight-toggle { display: flex; align-items: center; gap: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  input[type="checkbox"][role="switch"], input[type="checkbox"][role="switch"]::before { transition: none; }
+}
+@media (forced-colors: active) {
+  input[type="checkbox"][role="switch"] { forced-color-adjust: none; background: Canvas; border-color: ButtonText; }
+  input[type="checkbox"][role="switch"]::before { background: ButtonText; }
+  input[type="checkbox"][role="switch"]:checked { background: Highlight; border-color: Highlight; }
+  input[type="checkbox"][role="switch"]:checked::before { background: HighlightText; }
+  input[type="checkbox"][role="switch"]:focus-visible { outline-color: Highlight; }
+}
+
 /* ---- Cards ---- */
 .card {
   background: var(--surface);
@@ -347,7 +399,7 @@ body {
 .scouter .sc-toggle { display:flex; flex-direction:row; align-items:center; gap:10px; border:1px solid var(--border); border-radius:var(--r-md); padding:11px; background:var(--bg-elev); cursor:pointer; font-size:11px; min-height:56px; }
 .sc-toggle:hover { background:var(--hover); }
 .sc-toggle.is-on { border-color:var(--accent); background:var(--accent-dim); }
-.sc-toggle .sc-checkbox { width:15px; height:15px; accent-color:var(--accent); flex-shrink:0; }
+.sc-toggle .sc-checkbox { accent-color:var(--accent); flex-shrink:0; }
 .sc-toggle img { flex-shrink:0; object-fit:contain; image-rendering:pixelated; }
 .sc-toggle small { display:block; margin-top:3px; }
 .scouter .sc-score { background:linear-gradient(135deg,var(--surface),var(--bg-elev)); border-top:2px solid #a689e0; }
@@ -498,9 +550,11 @@ body {
 .sc-site-tile.is-on { border-color:color-mix(in srgb,var(--accent) 65%,var(--border)); background:color-mix(in srgb,var(--accent) 10%,var(--bg-elev)); }
 .sc-site-tile img { width:32px; height:32px; object-fit:contain; image-rendering:pixelated; }
 .sc-site-form .sc-site-tile > .input { padding:2px; width:40px; min-height:23px; height:23px; font-size:11px; text-align:center; }
-.sc-site-form .sc-site-tile > .sc-checkbox { height:15px; margin:4px 0; }
+.sc-site-form .sc-site-tile > .sc-checkbox { margin:4px 0; }
 .sc-site-form .sc-site-tile-image { display:flex; position:relative; cursor:pointer; padding:0; }
 .sc-site-tile-image input { position:absolute; bottom:-2px; right:-4px; width:13px; height:13px; margin:0!important; }
+.sc-site-tile-image:has(input[role="switch"]) { flex-direction:column; align-items:center; gap:4px; }
+.sc-site-tile-image input[role="switch"] { position:relative; bottom:auto; right:auto; }
 .sc-site-bottom { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }
 .sc-site-bottom > div { display:flex; flex-direction:column; gap:22px; }
 .sc-site-ability { display:flex; flex-direction:column; gap:10px; }

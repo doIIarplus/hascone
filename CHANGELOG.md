@@ -2,6 +2,13 @@
 
 Notable feature-level changes to Hascone.
 
+## 1.1.1 - Toggle switches
+
+- Checkbox settings now use teal toggle switches, including Scouter weights, item enhancement modes, Star Force options, and buffs.
+- Switches retain keyboard operation, saved states, and disabled states, with visible focus indicators and support for reduced motion and high-contrast display settings.
+- Compact Scouter buff controls place switches below their icons.
+- The expanded character roster collapses when clicking outside it.
+
 ## 1.1.0 - Background scanning and character navigation
 
 - Character-info captures now process in the background alongside equipment captures, allowing users to continue scanning other characters. Scan indicators show elapsed time, queued reads, and failures; OCR times out instead of waiting indefinitely.
