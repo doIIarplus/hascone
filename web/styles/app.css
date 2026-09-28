@@ -424,7 +424,12 @@ input[type="checkbox"][role="switch"]:disabled { opacity: .4; cursor: not-allowe
 .sc-inputs #sc-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:14px; }
 .sc-inputs #sc-fields > .sc-group { margin:0; }
 .sc-inputs #sc-fields > .sc-group:first-child { grid-column:1/-1; }
-.sc-results #sc-history { max-width:360px; margin-bottom:16px; }
+.sc-snapshot-toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:16px; }
+.sc-snapshot-toolbar #sc-history { flex:0 1 360px; width:360px; max-width:100%; margin:0; }
+.sc-snapshot-toolbar #sc-name-form { display:flex; align-items:center; gap:8px; flex:0 1 360px; min-width:0; margin:0; }
+.sc-snapshot-toolbar #sc-name-form[hidden] { display:none; }
+.sc-snapshot-toolbar #sc-snapshot-name { flex:1; min-width:0; width:100%; }
+.sc-snapshot-toolbar button { white-space:nowrap; }
 .sc-boss-section { overflow:hidden; margin-bottom:16px; }
 .sc-boss-banner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; padding:18px 20px; background:linear-gradient(110deg,var(--surface-2),var(--surface)); border-bottom:1px solid var(--border); }
 .sc-destiny-banner { background:linear-gradient(110deg,#4b39764a,#3e37501a); }
