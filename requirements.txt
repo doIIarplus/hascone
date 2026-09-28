@@ -1,0 +1,10 @@
+Flask==3.1.2
+numpy==2.3.5
+opencv-contrib-python==4.10.0.84
+opencv-python==4.10.0.84
+Pillow>=11,<13
+requests>=2.32,<3
+paddleocr==3.7.0
+paddlepaddle==3.3.1
+pywin32>=310; sys_platform == 'win32'
+windows-capture>=1.5,<3; sys_platform == 'win32'

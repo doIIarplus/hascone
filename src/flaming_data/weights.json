@@ -1,0 +1,10 @@
+{
+  "defaults": {
+    "primary": 1,
+    "secondary": 0.125,
+    "attack": 4,
+    "all_stat": 10,
+    "damage_boss": 12
+  },
+  "overrides": {}
+}

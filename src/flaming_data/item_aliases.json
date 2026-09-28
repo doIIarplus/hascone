@@ -1,0 +1,1420 @@
+{
+  "version": 1,
+  "basis": "Explicit SEA/GMS name pairs from live scans, catalog comparison, and user-supplied mappings; no fuzzy or global name replacement.",
+  "aliases": {
+    "Condensed Strength Crystalline": [
+      "Condensed Power Crystal"
+    ],
+    "Pink Holy Grail": [
+      "Pink Holy Cup"
+    ],
+    "Highness Ranger Beret": [
+      "Royal Ranger Beret"
+    ],
+    "Eagle Eye Ranger Hood": [
+      "Eagle Eye Ranger Cowl"
+    ],
+    "Trickster Ranger Pants": [
+      "Trixter Ranger Pants"
+    ],
+    "Arcaneshade Dual Bowgun": [
+      "Arcane Umbra Dual Bowguns"
+    ],
+    "Arcaneshade Archer Cape": [
+      "Arcane Umbra Archer Cape"
+    ],
+    "Arcaneshade Archer Mitts": [
+      "Arcane Umbra Archer Gloves"
+    ],
+    "Arcaneshade Archer Shoes": [
+      "Arcane Umbra Archer Shoes"
+    ],
+    "Fantasy Belt": [
+      "Dreamy Belt"
+    ],
+    "Arcaneshade Knight Hat": [
+      "Arcane Umbra Knight Hat"
+    ],
+    "Arcaneshade Knight Suit": [
+      "Arcane Umbra Knight Suit"
+    ],
+    "Arcaneshade Knight Shoes": [
+      "Arcane Umbra Knight Shoes"
+    ],
+    "Arcaneshade Knight Mitts": [
+      "Arcane Umbra Knight Gloves"
+    ],
+    "Arcaneshade Knight Cape": [
+      "Arcane Umbra Knight Cape"
+    ],
+    "Arcaneshade Mage Hat": [
+      "Arcane Umbra Mage Hat"
+    ],
+    "Arcaneshade Mage Suit": [
+      "Arcane Umbra Mage Suit"
+    ],
+    "Arcaneshade Mage Shoes": [
+      "Arcane Umbra Mage Shoes"
+    ],
+    "Arcaneshade Mage Mitts": [
+      "Arcane Umbra Mage Gloves"
+    ],
+    "Arcaneshade Mage Cape": [
+      "Arcane Umbra Mage Cape"
+    ],
+    "Arcaneshade Archer Hat": [
+      "Arcane Umbra Archer Hat"
+    ],
+    "Arcaneshade Archer Suit": [
+      "Arcane Umbra Archer Suit"
+    ],
+    "Arcaneshade Bandit Hat": [
+      "Arcane Umbra Thief Hat"
+    ],
+    "Arcaneshade Bandit Suit": [
+      "Arcane Umbra Thief Suit"
+    ],
+    "Arcaneshade Bandit Shoes": [
+      "Arcane Umbra Thief Shoes"
+    ],
+    "Arcaneshade Bandit Mitts": [
+      "Arcane Umbra Thief Gloves"
+    ],
+    "Arcaneshade Bandit Cape": [
+      "Arcane Umbra Thief Cape"
+    ],
+    "Arcaneshade Pirate Hat": [
+      "Arcane Umbra Pirate Hat"
+    ],
+    "Arcaneshade Pirate Suit": [
+      "Arcane Umbra Pirate Suit"
+    ],
+    "Arcaneshade Pirate Shoes": [
+      "Arcane Umbra Pirate Shoes"
+    ],
+    "Arcaneshade Pirate Mitts": [
+      "Arcane Umbra Pirate Gloves"
+    ],
+    "Arcaneshade Pirate Cape": [
+      "Arcane Umbra Pirate Cape"
+    ],
+    "Absolabs Bastion Helm": [
+      "AbsoLab Knight Helm"
+    ],
+    "Absolabs Bastion Hauberk": [
+      "AbsoLab Knight Suit"
+    ],
+    "Absolabs Bastion Greaves": [
+      "AbsoLab Knight Shoes"
+    ],
+    "Absolabs Bastion Gauntlets": [
+      "AbsoLab Knight Gloves"
+    ],
+    "Absolabs Bastion Cloak": [
+      "AbsoLab Knight Cape"
+    ],
+    "Absolabs Cabalist Crown": [
+      "AbsoLab Mage Crown"
+    ],
+    "Absolabs Cabalist Gown": [
+      "AbsoLab Mage Suit"
+    ],
+    "Absolabs Cabalist Shoes": [
+      "AbsoLab Mage Shoes"
+    ],
+    "Absolabs Cabalist Gloves": [
+      "AbsoLab Mage Gloves"
+    ],
+    "Absolabs Cabalist Cloak": [
+      "AbsoLab Mage Cape"
+    ],
+    "Absolabs Trueshot Hood": [
+      "AbsoLab Archer Hood"
+    ],
+    "Absolabs Trueshot Coat": [
+      "AbsoLab Archer Suit"
+    ],
+    "Absolabs Trueshot Boots": [
+      "AbsoLab Archer Shoes"
+    ],
+    "Absolabs Trueshot Gloves": [
+      "AbsoLab Archer Gloves"
+    ],
+    "Absolabs Trueshot Cloak": [
+      "AbsoLab Archer Cape"
+    ],
+    "Absolabs Shadow Beret": [
+      "AbsoLab Bandit Cap"
+    ],
+    "Absolabs Shadow Suit": [
+      "AbsoLab Bandit Suit"
+    ],
+    "Absolabs Shadow Boots": [
+      "AbsoLab Bandit Shoes"
+    ],
+    "Absolabs Shadow Vambracers": [
+      "AbsoLab Bandit Gloves"
+    ],
+    "Absolabs Shadow Cloak": [
+      "AbsoLab Bandit Cape"
+    ],
+    "Absolabs Brigadier Fedora": [
+      "AbsoLab Pirate Fedora"
+    ],
+    "Absolabs Brigadier Cuirass": [
+      "AbsoLab Pirate Suit"
+    ],
+    "Absolabs Brigadier Sabatons": [
+      "AbsoLab Pirate Shoes"
+    ],
+    "Absolabs Brigadier Clench": [
+      "AbsoLab Pirate Gloves"
+    ],
+    "Absolabs Brigadier Cloak": [
+      "AbsoLab Pirate Cape"
+    ],
+    "Highness Warrior Helm": [
+      "Royal Warrior Helm"
+    ],
+    "Trickster Warrior Pants": [
+      "Trixter Warrior Pants"
+    ],
+    "Highness Dunwitch Hat": [
+      "Royal Dunwitch Hat"
+    ],
+    "Trickster Dunwitch Pants": [
+      "Trixter Dunwitch Pants"
+    ],
+    "Highness Assassin Bonnet": [
+      "Royal Assassin Hood"
+    ],
+    "Trickster Assassin Pants": [
+      "Trixter Assassin Pants"
+    ],
+    "Loose Control Machine Mark": [
+      "Berserked"
+    ],
+    "Source of Pain": [
+      "Source of Suffering"
+    ],
+    "Magical Eye Patch": [
+      "Magic Eyepatch"
+    ],
+    "Commander Force Earrings": [
+      "Commanding Force Earring"
+    ],
+    "Penombre Mark": [
+      "Twilight Mark"
+    ],
+    "Cursed Red Magic Book": [
+      "Cursed Red Spellbook"
+    ],
+    "Cursed Blue Magic Book": [
+      "Cursed Blue Spellbook"
+    ],
+    "Cursed Green Magic Book": [
+      "Cursed Green Spellbook"
+    ],
+    "Cursed Yellow Magic Book": [
+      "Cursed Yellow Spellbook"
+    ],
+    "Arcaneshade Saber": [
+      "Arcane Umbra Saber"
+    ],
+    "Arcaneshade Two-handed Sword": [
+      "Arcane Umbra Two-handed Sword"
+    ],
+    "Arcaneshade Axe": [
+      "Arcane Umbra Axe"
+    ],
+    "Arcaneshade Two-handed Axe": [
+      "Arcane Umbra Two-handed Axe"
+    ],
+    "Arcaneshade Hammer": [
+      "Arcane Umbra Hammer"
+    ],
+    "Arcaneshade Two-handed Hammer": [
+      "Arcane Umbra Two-handed Hammer"
+    ],
+    "Arcaneshade Spear": [
+      "Arcane Umbra Spear"
+    ],
+    "Arcaneshade Pole Arm": [
+      "Arcane Umbra Polearm"
+    ],
+    "Arcaneshade Desperado": [
+      "Arcane Umbra Desperado"
+    ],
+    "Arcaneshade Elaha": [
+      "Arcane Umbra Ellaha"
+    ],
+    "Arcaneshade Katana": [
+      "Arcane Umbra Katana"
+    ],
+    "Arcaneshade Tuner": [
+      "Arcane Umbra Bladecaster"
+    ],
+    "Absolabs Durandal": [
+      "AbsoLab Saber"
+    ],
+    "Absolabs Balmung": [
+      "AbsoLab Broad Saber"
+    ],
+    "Absolabs Rampage": [
+      "AbsoLab Axe"
+    ],
+    "Absolabs Onslaught": [
+      "AbsoLab Broad Axe"
+    ],
+    "Absolabs Gavel": [
+      "AbsoLab Bit Hammer"
+    ],
+    "Absolabs Truncheon": [
+      "AbsoLab Broad Hammer"
+    ],
+    "Absolabs Assagai": [
+      "AbsoLab Piercing Spear"
+    ],
+    "Absolabs Lochaber": [
+      "AbsoLab Hellslayer"
+    ],
+    "Absolabs Blood Seeker": [
+      "AbsoLab Desperado"
+    ],
+    "Absolabs Kusanagi": [
+      "AbsoLab Pile God"
+    ],
+    "Absolabs Kogarasumaru": [
+      "AbsoLab Katana"
+    ],
+    "Absolabs Tuner": [
+      "AbsoLab Bladecaster"
+    ],
+    "Fafnir Mystletainn": [
+      "Fafnir Mistilteinn"
+    ],
+    "Fafnir Penitencia": [
+      "Fafnir Penitent Tears"
+    ],
+    "Fafnir Goldien Hammer": [
+      "Fafnir Guardian Hammer"
+    ],
+    "Fafnir Lightninger": [
+      "Fafnir Lightning Striker"
+    ],
+    "Fafnir Brionarc": [
+      "Fafnir Brionak"
+    ],
+    "Fafnir Gigastein": [
+      "Fafnir Big Mountain"
+    ],
+    "Fafnir Tuner": [
+      "Fafnir Mercy"
+    ],
+    "Arcaneshade Staff": [
+      "Arcane Umbra Staff"
+    ],
+    "Arcaneshade Wand": [
+      "Arcane Umbra Wand"
+    ],
+    "Arcaneshade Shining Rod": [
+      "Arcane Umbra Shining Rod"
+    ],
+    "Arcaneshade Psy-limiter": [
+      "Arcane Umbra Psy-limiter"
+    ],
+    "Arcaneshade Magic Gauntlet": [
+      "Arcane Umbra Lucent Gauntlet"
+    ],
+    "Arcaneshade Yin-Yang Fan": [
+      "Arcane Umbra Spirit Walker Fan"
+    ],
+    "Absolabs Sage Staff": [
+      "AbsoLab Spellsong Staff"
+    ],
+    "Absolabs Force Wand": [
+      "AbsoLab Spellsong Wand"
+    ],
+    "Absolabs Aether Rod": [
+      "AbsoLab Shining Rod"
+    ],
+    "Absolabs Psy-limiter": [
+      "AbsoLab Psy-limiter"
+    ],
+    "Absolabs Magic Gauntlet": [
+      "AbsoLab Lucent Gauntlet"
+    ],
+    "Absolabs Yin-Yang Fan": [
+      "AbsoLab Spirit Walker Fan"
+    ],
+    "Fafnir Magic Gauntlet": [
+      "Fafnir Lucent Gauntlet"
+    ],
+    "Fafnir Yin-Yang Fan": [
+      "Fafnir Spirit Walker Fan"
+    ],
+    "Arcaneshade Ancient Bow": [
+      "Arcane Umbra Ancient Bow"
+    ],
+    "Arcaneshade Bow": [
+      "Arcane Umbra Bow"
+    ],
+    "Arcaneshade Crossbow": [
+      "Arcane Umbra Crossbow"
+    ],
+    "Arcaneshade Breath Shooter": [
+      "Arcane Umbra Whispershot"
+    ],
+    "Absolabs Ancient Bow": [
+      "AbsoLab Ancient Bow"
+    ],
+    "Absolabs Ichaival": [
+      "AbsoLab Sureshot Bow"
+    ],
+    "Absolabs Twin Astras": [
+      "AbsoLab Dual Bowguns"
+    ],
+    "Absolabs Astra Wing": [
+      "AbsoLab Crossbow"
+    ],
+    "Absolabs Breath Shooter": [
+      "AbsoLab Whispershot"
+    ],
+    "Fafnir Dual Wind Wing": [
+      "Fafnir Dual Windwing"
+    ],
+    "Fafnir Wind Wing Shooter": [
+      "Fafnir Windwing Shooter"
+    ],
+    "Fafnir Night Chaser": [
+      "Fafnir Nightchaser"
+    ],
+    "Arcaneshade Dagger": [
+      "Arcane Umbra Dagger"
+    ],
+    "Arcaneshade Cane": [
+      "Arcane Umbra Cane"
+    ],
+    "Arcaneshade Guards": [
+      "Arcane Umbra Guards"
+    ],
+    "Arcaneshade Energy Sword": [
+      "Arcane Umbra Energy Chain"
+    ],
+    "Arcaneshade Energy Chain": [
+      "Arcane Umbra Chain"
+    ],
+    "Arcaneshade Transcendence Buchae": [
+      "Arcane Umbra Super Ritual Fan"
+    ],
+    "Arcaneshade Chakram": [
+      "Arcane Umbra Chakram"
+    ],
+    "Absolabs Shredder": [
+      "AbsoLab Blade Lord"
+    ],
+    "Absolabs Sceptre": [
+      "AbsoLab Forked Cane"
+    ],
+    "Absolabs Tarantula": [
+      "AbsoLab Revenge Guard"
+    ],
+    "Absolabs Electro Saber": [
+      "AbsoLab Whip Blade"
+    ],
+    "Absolabs Energy Chain": [
+      "AbsoLab Chain"
+    ],
+    "Absolabs Monster Buchae": [
+      "AbsoLab Monster Ritual Fan"
+    ],
+    "Absolabs Chakram": [
+      "AbsoLab Chakram"
+    ],
+    "Fafnir Clair Ciel": [
+      "Fafnir Ciel Claire"
+    ],
+    "Fafnir Energy Chain": [
+      "Fafnir Chain"
+    ],
+    "Fafnir Dragon Buchae": [
+      "Fafnir Dragon Ritual Fan"
+    ],
+    "Arcaneshade Baghnakhs": [
+      "Arcane Umbra Knuckle"
+    ],
+    "Arcaneshade Pistol": [
+      "Arcane Umbra Pistol"
+    ],
+    "Arcaneshade Siege Gun": [
+      "Arcane Umbra Siege Gun"
+    ],
+    "Arcaneshade Soul Shooter": [
+      "Arcane Umbra Soul Shooter"
+    ],
+    "Absolabs Ashen Fist": [
+      "AbsoLab Blast Knuckle"
+    ],
+    "Absolabs Elite Magnum": [
+      "AbsoLab Point Gun"
+    ],
+    "Absolabs Blast Cannon": [
+      "AbsoLab Blast Cannon"
+    ],
+    "Absolabs Draconic Arm": [
+      "AbsoLab Soul Shooter"
+    ],
+    "Absolabs Memorial Staff": [
+      "AbsoLab Memorial Staff"
+    ],
+    "Arcaneshade Memorial Staff": [
+      "Arcane Umbra Memorial Staff"
+    ],
+    "Absolabs Celestial Light": [
+      "AbsoLab Celestial Light"
+    ],
+    "Arcaneshade Celestial Light": [
+      "Arcane Umbra Celestial Light"
+    ],
+    "Absolabs Martial Brace": [
+      "AbsoLab Martial Brace"
+    ],
+    "Arcaneshade Martial Brace": [
+      "Arcane Umbra Martial Brace"
+    ],
+    "Fafnir Longsword": [
+      "Fafnir Soaring Sword"
+    ],
+    "Absolabs Longsword": [
+      "AbsoLab Furious Sword"
+    ],
+    "Arcaneshade Longsword": [
+      "Arcane Umbra Illusory Sword"
+    ],
+    "Aqua Letter Eye Decoration": [
+      "Aquatic Letter Eye Accessory"
+    ],
+    "Genesis Yin-Yang Fan": [
+      "Genesis Spirit Walker Fan"
+    ],
+    "Eternal Warrior Shoes": [
+      "Eternal Knight Shoes"
+    ],
+    "Eternal Warrior Gloves": [
+      "Eternal Knight Gloves"
+    ],
+    "Eternal Warrior Cape": [
+      "Eternal Knight Cape"
+    ],
+    "Genesis Sabre": [
+      "Genesis Saber"
+    ],
+    "Genesis Pole Arm": [
+      "Genesis Polearm"
+    ],
+    "Genesis Elaha": [
+      "Genesis Ellaha"
+    ],
+    "Genesis Tuner": [
+      "Genesis Bladecaster"
+    ],
+    "Genesis Longsword": [
+      "Genesis Sword"
+    ],
+    "Genesis ESP Limiter": [
+      "Genesis Psy-limiter"
+    ],
+    "Genesis Magic Guantlet": [
+      "Genesis Lucent Gauntlet"
+    ],
+    "Genesis Dual Bowgun": [
+      "Genesis Dual Bowguns"
+    ],
+    "Genesis Breath Shooter": [
+      "Genesis Whispershot"
+    ],
+    "Genesis Buchae": [
+      "Genesis Ritual Fan"
+    ]
+  },
+  "evidence": {
+    "Arcaneshade Knight Hat": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Knight Suit": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Knight Shoes": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Knight Mitts": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Knight Cape": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Mage Hat": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Mage Suit": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Mage Shoes": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Mage Mitts": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Mage Cape": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Archer Hat": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Archer Suit": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Archer Shoes": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Archer Mitts": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Archer Cape": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Bandit Hat": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Bandit Suit": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Bandit Shoes": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Bandit Mitts": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Bandit Cape": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Pirate Hat": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Pirate Suit": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Pirate Shoes": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Pirate Mitts": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Pirate Cape": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Bastion Helm": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Bastion Hauberk": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Bastion Greaves": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Bastion Gauntlets": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Bastion Cloak": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Cabalist Crown": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Cabalist Gown": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Cabalist Shoes": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Cabalist Gloves": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Cabalist Cloak": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Trueshot Hood": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Trueshot Coat": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Trueshot Boots": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Trueshot Gloves": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Trueshot Cloak": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Shadow Beret": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Shadow Suit": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Shadow Boots": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Shadow Vambracers": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Shadow Cloak": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Brigadier Fedora": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Brigadier Cuirass": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Brigadier Sabatons": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Brigadier Clench": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Brigadier Cloak": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Highness Warrior Helm": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Trickster Warrior Pants": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Warrior)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Highness Dunwitch Hat": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Trickster Dunwitch Pants": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Magician)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Highness Ranger Beret": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Eagle Eye Ranger Hood": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Trickster Ranger Pants": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Bowman)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Highness Assassin Bonnet": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Trickster Assassin Pants": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Thief)",
+      "basis": "Matched set, job, slot and level against wiki equipment table",
+      "checked_at": "2026-09-11"
+    },
+    "Fantasy Belt": {
+      "url": "https://maplestorywiki.net/w/Dreamy_Belt",
+      "basis": "Explicit GMS/MSEA Server Naming Difference table",
+      "checked_at": "2026-09-11"
+    },
+    "Loose Control Machine Mark": {
+      "url": "https://maplestorywiki.net/w/Berserked",
+      "basis": "Explicit GMS/MSEA Server Naming Difference table",
+      "checked_at": "2026-09-11"
+    },
+    "Source of Pain": {
+      "url": "https://maplestorywiki.net/w/Source_of_Suffering",
+      "basis": "Explicit GMS/MSEA Server Naming Difference table",
+      "checked_at": "2026-09-11"
+    },
+    "Magical Eye Patch": {
+      "url": "https://maplestorywiki.net/w/Magic_Eyepatch",
+      "basis": "Explicit GMS/MSEA Server Naming Difference table",
+      "checked_at": "2026-09-11"
+    },
+    "Commander Force Earrings": {
+      "url": "https://maplestorywiki.net/w/Commanding_Force_Earring",
+      "basis": "Explicit GMS/MSEA Server Naming Difference table",
+      "checked_at": "2026-09-11"
+    },
+    "Penombre Mark": {
+      "url": "https://maplestorywiki.net/w/Twilight_Mark",
+      "basis": "Explicit GMS/MSEA Server Naming Difference table",
+      "checked_at": "2026-09-11"
+    },
+    "Cursed Red Magic Book": {
+      "url": "https://maplestorywiki.net/w/Cursed_Red_Spellbook",
+      "basis": "Explicit GMS/MSEA Server Naming Difference table",
+      "checked_at": "2026-09-11"
+    },
+    "Cursed Blue Magic Book": {
+      "url": "https://maplestorywiki.net/w/Cursed_Blue_Spellbook",
+      "basis": "Explicit GMS/MSEA Server Naming Difference table",
+      "checked_at": "2026-09-11"
+    },
+    "Cursed Green Magic Book": {
+      "url": "https://maplestorywiki.net/w/Cursed_Green_Spellbook",
+      "basis": "Explicit GMS/MSEA Server Naming Difference table",
+      "checked_at": "2026-09-11"
+    },
+    "Cursed Yellow Magic Book": {
+      "url": "https://maplestorywiki.net/w/Cursed_Yellow_Spellbook",
+      "basis": "Explicit GMS/MSEA Server Naming Difference table",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Saber": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Two-handed Sword": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Axe": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Two-handed Axe": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Hammer": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Two-handed Hammer": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Spear": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Pole Arm": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Desperado": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Elaha": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Katana": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Tuner": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Durandal": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Balmung": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Rampage": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Onslaught": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Gavel": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Truncheon": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Assagai": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Lochaber": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Blood Seeker": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Kusanagi": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Kogarasumaru": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Tuner": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Mystletainn": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Penitencia": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Goldien Hammer": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Lightninger": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Brionarc": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Gigastein": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Tuner": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Staff": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Wand": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Shining Rod": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Psy-limiter": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Magic Gauntlet": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Yin-Yang Fan": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Sage Staff": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Force Wand": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Aether Rod": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Psy-limiter": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Magic Gauntlet": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Yin-Yang Fan": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Magic Gauntlet": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Yin-Yang Fan": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Ancient Bow": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Bow": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Dual Bowgun": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Crossbow": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Breath Shooter": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Ancient Bow": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Ichaival": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Twin Astras": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Astra Wing": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Breath Shooter": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Dual Wind Wing": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Wind Wing Shooter": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Night Chaser": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Bowman)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Dagger": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Cane": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Guards": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Energy Sword": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Energy Chain": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Transcendence Buchae": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Chakram": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Shredder": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Sceptre": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Tarantula": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Electro Saber": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Energy Chain": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Monster Buchae": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Chakram": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Clair Ciel": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Energy Chain": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Dragon Buchae": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Thief)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Baghnakhs": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Pistol": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Siege Gun": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Soul Shooter": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Ashen Fist": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Elite Magnum": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Blast Cannon": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Draconic Arm": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Memorial Staff": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Memorial Staff": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Celestial Light": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Celestial Light": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Magician)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Martial Brace": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Martial Brace": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Pirate)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Fafnir Longsword": {
+      "url": "https://maplestorywiki.net/w/Root_Abyss_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Absolabs Longsword": {
+      "url": "https://maplestorywiki.net/w/AbsoLab_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Arcaneshade Longsword": {
+      "url": "https://maplestorywiki.net/w/Arcane_Umbra_Set_(Warrior)",
+      "basis": "Matched weapon type and job within the same equipment set; explicit regional weapon terminology",
+      "checked_at": "2026-09-11"
+    },
+    "Aqua Letter Eye Decoration": {
+      "url": "https://maplestorywiki.net/w/Aquatic_Letter_Eye_Accessory",
+      "basis": "GMS name confirmed by live Kanna scan and wiki; matching equipment type, level and base attack metadata."
+    },
+    "Genesis Yin-Yang Fan": {
+      "url": "https://maplestorywiki.net/w/Genesis_Spirit_Walker_Fan",
+      "basis": "GMS name confirmed by live Kanna scan and wiki; matching equipment type, level and base attack metadata."
+    },
+    "Eternal Warrior Shoes": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Warrior)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Eternal Warrior Gloves": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Warrior)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Eternal Warrior Cape": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Warrior)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Genesis Sabre": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Warrior)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Genesis Pole Arm": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Warrior)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Genesis Elaha": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Warrior)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Genesis Tuner": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Warrior)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Genesis Longsword": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Warrior)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Genesis ESP Limiter": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Magician)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Genesis Magic Guantlet": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Magician)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Genesis Dual Bowgun": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Bowman)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Genesis Breath Shooter": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Bowman)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    },
+    "Genesis Buchae": {
+      "url": "https://maplestorywiki.net/w/Eternal_Set_(Thief)",
+      "basis": "Matched equipment type, class and level in the GMS Eternal set table; Genesis base ATT/MATT agrees with the source record.",
+      "checked_at": "2026-09-20"
+    }
+  }
+}

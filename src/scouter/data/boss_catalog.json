@@ -1,0 +1,3350 @@
+{
+  "region": "gms",
+  "server": "reboot",
+  "inspected": "2026-09-14",
+  "bosses": [
+    {
+      "boss": "유피테르",
+      "name": "jupiter",
+      "difficulty": "Hard",
+      "level": 295,
+      "authenticForce": 810,
+      "guard": 380,
+      "partyBossCut": 125600,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "label": "유피테르",
+      "metadata": {
+        "bossLevel": 295,
+        "bossEasy": 0.6211884132633945,
+        "bossGuard": 380,
+        "bossAuthenticForce": 810,
+        "bossPartyCut": 111700,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 295
+    },
+    {
+      "boss": "카링",
+      "name": "kaling",
+      "difficulty": "Extreme",
+      "level": 285,
+      "authenticForce": 480,
+      "guard": 380,
+      "partyBossCut": 108350,
+      "partyLimit": 6,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "카링",
+      "metadata": {
+        "bossLevel": 285,
+        "bossEasy": 0.9978417870710661,
+        "bossGuard": 380,
+        "bossAuthenticForce": 480,
+        "bossPartyCut": 108350,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 275
+    },
+    {
+      "boss": "대적자",
+      "name": "adversary",
+      "difficulty": "Extreme",
+      "level": 290,
+      "authenticForce": 460,
+      "guard": 380,
+      "partyBossCut": 113000,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-28",
+      "renewalDetail": "재조정",
+      "label": "최초의 대적자",
+      "metadata": {
+        "bossLevel": 290,
+        "bossCut": 108100,
+        "bossEasy": 0.2881753663003663,
+        "bossGuard": 380,
+        "bossAuthenticForce": 460,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 270
+    },
+    {
+      "boss": "칼로스",
+      "name": "kalos",
+      "difficulty": "Extreme",
+      "level": 285,
+      "authenticForce": 440,
+      "guard": 380,
+      "partyBossCut": 82750,
+      "partyLimit": 6,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "감시자 칼로스",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 90900,
+        "bossEasy": 0.22694444444444445,
+        "bossGuard": 380,
+        "bossAuthenticForce": 440,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 265
+    },
+    {
+      "boss": "발드릭스",
+      "name": "bardrix",
+      "difficulty": "Destiny",
+      "level": 290,
+      "authenticForce": 700,
+      "guard": 380,
+      "bossCut": 132800,
+      "partyLimit": 1,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "발드릭스",
+      "metadata": {
+        "bossLevel": 290,
+        "bossCut": 129900,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 700,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 290
+    },
+    {
+      "boss": "발드릭스",
+      "name": "bardrix",
+      "difficulty": "Hard",
+      "level": 290,
+      "authenticForce": 700,
+      "guard": 380,
+      "bossCut": 132800,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "발드릭스",
+      "metadata": {
+        "bossLevel": 290,
+        "bossCut": 129900,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 700,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 290
+    },
+    {
+      "boss": "흉성",
+      "name": "maleficStar",
+      "difficulty": "Hard",
+      "level": 280,
+      "authenticForce": 550,
+      "guard": 380,
+      "bossCut": 120500,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "흉성",
+      "metadata": {
+        "bossLevel": 280,
+        "bossCut": 117500,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 550,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "림보",
+      "name": "limbo",
+      "difficulty": "Destiny",
+      "level": 285,
+      "authenticForce": 500,
+      "guard": 380,
+      "bossCut": 121400,
+      "partyLimit": 1,
+      "easyRate": 0.969,
+      "label": "림보",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 118900,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 500,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 285
+    },
+    {
+      "boss": "림보",
+      "name": "limbo",
+      "difficulty": "Hard",
+      "level": 285,
+      "authenticForce": 500,
+      "guard": 380,
+      "bossCut": 121400,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "label": "림보",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 118900,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 500,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 285
+    },
+    {
+      "boss": "유피테르",
+      "name": "jupiter",
+      "difficulty": "Normal",
+      "level": 295,
+      "authenticForce": 810,
+      "guard": 380,
+      "bossCut": 112800,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "유피테르",
+      "metadata": {
+        "bossLevel": 295,
+        "bossCut": 111700,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 810,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 295
+    },
+    {
+      "boss": "대적자",
+      "name": "adversary",
+      "difficulty": "Destiny",
+      "level": 285,
+      "authenticForce": 340,
+      "guard": 380,
+      "bossCut": 110200,
+      "partyLimit": 1,
+      "easyRate": 0.7752,
+      "label": "최초의 대적자",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 108100,
+        "bossEasy": 0.76,
+        "bossGuard": 380,
+        "bossAuthenticForce": 340,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 270
+    },
+    {
+      "boss": "세렌",
+      "name": "seren",
+      "difficulty": "Extreme",
+      "level": 280,
+      "authenticForce": 200,
+      "guard": 380,
+      "bossCut": 112000,
+      "partyLimit": 6,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-28",
+      "renewalDetail": "재조정",
+      "label": "선택받은 세렌",
+      "metadata": {
+        "bossLevel": 280,
+        "bossCut": 105700,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 200,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 260
+    },
+    {
+      "boss": "대적자",
+      "name": "adversary",
+      "difficulty": "Hard",
+      "level": 285,
+      "authenticForce": 340,
+      "guard": 380,
+      "bossCut": 110200,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "label": "최초의 대적자",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 108100,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 340,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 270
+    },
+    {
+      "boss": "카링",
+      "name": "kaling",
+      "difficulty": "Hard",
+      "level": 285,
+      "authenticForce": 350,
+      "guard": 380,
+      "bossCut": 109300,
+      "partyLimit": 6,
+      "easyRate": 0.969,
+      "label": "카링",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 105800,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 350,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 275
+    },
+    {
+      "boss": "발드릭스",
+      "name": "bardrix",
+      "difficulty": "Normal",
+      "level": 290,
+      "authenticForce": 700,
+      "guard": 380,
+      "bossCut": 108400,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "발드릭스",
+      "metadata": {
+        "bossLevel": 290,
+        "bossCut": 129900,
+        "bossEasy": 2.1324112191250864,
+        "bossGuard": 380,
+        "bossAuthenticForce": 700,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 290
+    },
+    {
+      "boss": "검은 마법사",
+      "name": "blackMage",
+      "difficulty": "Extreme",
+      "level": 280,
+      "arcaneForce": 1320,
+      "guard": 300,
+      "bossCut": 101300,
+      "partyLimit": 6,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "검은 마법사",
+      "metadata": {
+        "bossLevel": 280,
+        "bossCut": 94500,
+        "bossEasy": 0.95,
+        "bossGuard": 300,
+        "bossArcaneForce": 1320,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "카링",
+      "name": "kaling",
+      "difficulty": "Destiny",
+      "level": 285,
+      "authenticForce": 350,
+      "guard": 380,
+      "bossCut": 109300,
+      "partyLimit": 1,
+      "easyRate": 1.1627999999999998,
+      "label": "카링",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 105800,
+        "bossEasy": 1.14,
+        "bossGuard": 380,
+        "bossAuthenticForce": 350,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 275
+    },
+    {
+      "boss": "림보",
+      "name": "limbo",
+      "difficulty": "Normal",
+      "level": 285,
+      "authenticForce": 500,
+      "guard": 380,
+      "bossCut": 99300,
+      "partyLimit": 3,
+      "easyRate": 0.9228571428571428,
+      "label": "림보",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 118900,
+        "bossEasy": 1.8890409456118664,
+        "bossGuard": 380,
+        "bossAuthenticForce": 500,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 285
+    },
+    {
+      "boss": "칼로스",
+      "name": "kalos",
+      "difficulty": "Destiny",
+      "level": 285,
+      "authenticForce": 330,
+      "guard": 380,
+      "bossCut": 95100,
+      "partyLimit": 1,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "감시자 칼로스",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 90900,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 330,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 265
+    },
+    {
+      "boss": "칼로스",
+      "name": "kalos",
+      "difficulty": "Chaos",
+      "level": 285,
+      "authenticForce": 330,
+      "guard": 380,
+      "bossCut": 95100,
+      "partyLimit": 6,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "감시자 칼로스",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 90900,
+        "bossEasy": 0.95,
+        "bossGuard": 380,
+        "bossAuthenticForce": 330,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 265
+    },
+    {
+      "boss": "세렌",
+      "name": "seren",
+      "difficulty": "Destiny",
+      "level": 275,
+      "authenticForce": 200,
+      "guard": 380,
+      "bossCut": 40600,
+      "partyLimit": 1,
+      "easyRate": 0.1938,
+      "challenger": 0.97,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "선택받은 세렌",
+      "metadata": {
+        "bossLevel": 275,
+        "bossCut": 105700,
+        "bossEasy": 2.4048764911816405,
+        "bossGuard": 380,
+        "bossChallenge": 0.97,
+        "bossAuthenticForce": 200,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 260
+    },
+    {
+      "boss": "카링",
+      "name": "kaling",
+      "difficulty": "Normal",
+      "level": 285,
+      "authenticForce": 330,
+      "guard": 380,
+      "bossCut": 73300,
+      "partyLimit": 6,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "카링",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 105800,
+        "bossEasy": 2.7877201738381996,
+        "bossGuard": 380,
+        "bossAuthenticForce": 330,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 275
+    },
+    {
+      "boss": "흉성",
+      "name": "maleficStar",
+      "difficulty": "Normal",
+      "level": 280,
+      "authenticForce": 400,
+      "guard": 380,
+      "bossCut": 72300,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "흉성",
+      "metadata": {
+        "bossLevel": 280,
+        "bossCut": 117500,
+        "bossEasy": 4.297226209857768,
+        "bossGuard": 380,
+        "bossAuthenticForce": 400,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "스우",
+      "name": "lotus",
+      "difficulty": "Extreme",
+      "level": 285,
+      "guard": 380,
+      "bossCut": 66800,
+      "partyLimit": 2,
+      "easyRate": 0.969,
+      "renewalDate": "2026-06-06",
+      "renewalDetail": "6% 하향",
+      "label": "스우",
+      "metadata": {
+        "bossLevel": 285,
+        "bossCut": 64500,
+        "bossEasy": 0.9704301075268816,
+        "bossGuard": 380,
+        "bossPartyLimit": 2
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "칼로스",
+      "name": "kalos",
+      "difficulty": "Champion",
+      "level": 280,
+      "authenticForce": 300,
+      "guard": 380,
+      "bossCut": 49800,
+      "partyLimit": 1,
+      "easyRate": 0.6682758620689655,
+      "challenger": 0.97,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "감시자 칼로스",
+      "metadata": {
+        "bossLevel": 280,
+        "bossCut": 90900,
+        "bossEasy": 3.1766295474321242,
+        "bossGuard": 380,
+        "bossChallenge": 0.97,
+        "bossAuthenticForce": 300,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 265
+    },
+    {
+      "boss": "대적자",
+      "name": "adversary",
+      "difficulty": "Normal",
+      "level": 280,
+      "authenticForce": 320,
+      "guard": 380,
+      "bossCut": 55550,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "label": "최초의 대적자",
+      "metadata": {
+        "bossLevel": 280,
+        "bossCut": 108100,
+        "bossEasy": 6.114009582055534,
+        "bossGuard": 380,
+        "bossAuthenticForce": 320,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 270
+    },
+    {
+      "boss": "칼로스",
+      "name": "kalos",
+      "difficulty": "Normal",
+      "level": 280,
+      "authenticForce": 300,
+      "guard": 380,
+      "bossCut": 49800,
+      "partyLimit": 6,
+      "easyRate": 0.969,
+      "challenger": 0.97,
+      "newbieCut": 200.62,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "감시자 칼로스",
+      "metadata": {
+        "bossLevel": 280,
+        "bossCut": 90900,
+        "bossEasy": 4.538042210617321,
+        "bossGuard": 380,
+        "bossChallenge": 0.97,
+        "bossAuthenticForce": 300,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 265
+    },
+    {
+      "boss": "세렌",
+      "name": "seren",
+      "difficulty": "Champion",
+      "level": 275,
+      "authenticForce": 200,
+      "guard": 380,
+      "bossCut": 44300,
+      "partyLimit": 1,
+      "easyRate": 0.969,
+      "challenger": 0.97,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "선택받은 세렌",
+      "metadata": {
+        "bossLevel": 275,
+        "bossCut": 105700,
+        "bossEasy": 8.41706771913574,
+        "bossGuard": 380,
+        "bossChallenge": 0.97,
+        "bossAuthenticForce": 200,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 260
+    },
+    {
+      "boss": "카링",
+      "name": "kaling",
+      "difficulty": "Easy",
+      "level": 275,
+      "authenticForce": 230,
+      "guard": 380,
+      "bossCut": 42000,
+      "partyLimit": 6,
+      "easyRate": 0.969,
+      "challenger": 0.97,
+      "newbieCut": 252,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "카링",
+      "metadata": {
+        "bossLevel": 275,
+        "bossCut": 105800,
+        "bossEasy": 10.810543864615774,
+        "bossGuard": 380,
+        "bossChallenge": 0.97,
+        "bossAuthenticForce": 230,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 275
+    },
+    {
+      "boss": "세렌",
+      "name": "seren",
+      "difficulty": "Hard",
+      "level": 275,
+      "authenticForce": 200,
+      "guard": 380,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 0.969,
+      "challenger": 0.97,
+      "newbieCut": 233.72,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "선택받은 세렌",
+      "metadata": {
+        "bossLevel": 275,
+        "bossCut": 105700,
+        "bossEasy": 12.024382455908201,
+        "bossGuard": 380,
+        "bossChallenge": 0.97,
+        "bossAuthenticForce": 200,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 260
+    },
+    {
+      "boss": "대적자",
+      "name": "adversary",
+      "difficulty": "Easy",
+      "level": 270,
+      "authenticForce": 220,
+      "guard": 380,
+      "bossCut": 35250,
+      "partyLimit": 3,
+      "easyRate": 0.969,
+      "label": "최초의 대적자",
+      "metadata": {
+        "bossLevel": 270,
+        "bossCut": 108100,
+        "bossEasy": 17.611309480434308,
+        "bossGuard": 380,
+        "bossAuthenticForce": 220,
+        "bossPartyLimit": 3
+      },
+      "entry_level": 270
+    },
+    {
+      "boss": "칼로스",
+      "name": "kalos",
+      "difficulty": "Easy",
+      "level": 270,
+      "authenticForce": 200,
+      "guard": 380,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 1.9047619047619049,
+      "challenger": 0.97,
+      "newbieCut": 200.62,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "감시자 칼로스",
+      "metadata": {
+        "bossLevel": 270,
+        "bossCut": 90900,
+        "bossEasy": 13.228148215097784,
+        "bossGuard": 380,
+        "bossChallenge": 0.97,
+        "bossAuthenticForce": 200,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 265
+    },
+    {
+      "boss": "검은 마법사",
+      "name": "blackMage",
+      "difficulty": "Hard",
+      "level": 275,
+      "arcaneForce": 1320,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 1.0659,
+      "challenger": 0.95,
+      "newbieCut": 180,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "검은 마법사",
+      "metadata": {
+        "bossLevel": 275,
+        "bossCut": 40600,
+        "bossEasy": 2.545164534839632,
+        "bossGuard": 300,
+        "bossChallenge": 0.92,
+        "bossArcaneForce": 1320,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "검은 마법사",
+      "name": "blackMage",
+      "difficulty": "Champion",
+      "level": 275,
+      "arcaneForce": 1320,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 1,
+      "easyRate": 1.332375,
+      "challenger": 0.95,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "검은 마법사",
+      "metadata": {
+        "bossLevel": 275,
+        "bossCut": 40600,
+        "bossEasy": 1.908873401129724,
+        "bossGuard": 300,
+        "bossChallenge": 0.92,
+        "bossArcaneForce": 1320,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "세렌",
+      "name": "seren",
+      "difficulty": "Normal",
+      "level": 270,
+      "authenticForce": 200,
+      "guard": 380,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 2.36436,
+      "challenger": 0.97,
+      "newbieCut": 233.72,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "선택받은 세렌",
+      "metadata": {
+        "bossLevel": 270,
+        "bossCut": 105700,
+        "bossEasy": 27.764644554762043,
+        "bossGuard": 380,
+        "bossChallenge": 0.97,
+        "bossAuthenticForce": 200,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 260
+    },
+    {
+      "boss": "진 힐라",
+      "name": "verusHilla",
+      "difficulty": "Champion",
+      "level": 250,
+      "arcaneForce": 900,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 1,
+      "easyRate": 3.040655172413793,
+      "challenger": 0.97,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "진 힐라",
+      "metadata": {
+        "bossLevel": 250,
+        "bossCut": 40600,
+        "bossEasy": 3.1410633968729913,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossArcaneForce": 900,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "진 힐라",
+      "name": "verusHilla",
+      "difficulty": "Hard",
+      "level": 250,
+      "arcaneForce": 900,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 4.40895,
+      "challenger": 0.97,
+      "newbieCut": 236.41,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "진 힐라",
+      "metadata": {
+        "bossLevel": 250,
+        "bossCut": 40600,
+        "bossEasy": 4.487233424104273,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossArcaneForce": 900,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "듄켈",
+      "name": "darknell",
+      "difficulty": "Hard",
+      "level": 265,
+      "arcaneForce": 850,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 5.048489999999999,
+      "challenger": 0.97,
+      "newbieCut": 216.16,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "친위대장 듄켈",
+      "metadata": {
+        "bossLevel": 265,
+        "bossCut": 40600,
+        "bossEasy": 5.130649740631866,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossArcaneForce": 850,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "더스크",
+      "name": "gloom",
+      "difficulty": "Chaos",
+      "level": 255,
+      "arcaneForce": 730,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 5.24229,
+      "newbieCut": 177.63,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "거대 괴수 더스크",
+      "metadata": {
+        "bossLevel": 255,
+        "bossCut": 40600,
+        "bossEasy": 5.406297958849231,
+        "bossGuard": 300,
+        "bossArcaneForce": 730,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "가엔슬",
+      "name": "slime",
+      "difficulty": "Chaos",
+      "level": 250,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 4.389991304347826,
+      "newbieCut": 200.49,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "가디언 엔젤 슬라임",
+      "metadata": {
+        "bossLevel": 250,
+        "bossCut": 40600,
+        "bossEasy": 4.4679381059882015,
+        "bossGuard": 300,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "윌",
+      "name": "will",
+      "difficulty": "Hard",
+      "level": 250,
+      "arcaneForce": 760,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 6.17253,
+      "challenger": 0.97,
+      "newbieCut": 241.85,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "윌",
+      "metadata": {
+        "bossLevel": 250,
+        "bossCut": 40600,
+        "bossEasy": 6.422561818941498,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossArcaneForce": 760,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "루시드",
+      "name": "lucid",
+      "difficulty": "Hard",
+      "level": 230,
+      "arcaneForce": 360,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 2.9069999999999996,
+      "newbieCut": 120,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "루시드",
+      "metadata": {
+        "bossLevel": 230,
+        "bossCut": 40600,
+        "bossEasy": 2.942934782608695,
+        "bossGuard": 300,
+        "bossArcaneForce": 360,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "진 힐라",
+      "name": "verusHilla",
+      "difficulty": "Normal",
+      "level": 250,
+      "arcaneForce": 820,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 8.8179,
+      "challenger": 0.97,
+      "newbieCut": 236.41,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "진 힐라",
+      "metadata": {
+        "bossLevel": 250,
+        "bossCut": 40600,
+        "bossEasy": 8.974466848208547,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossArcaneForce": 820,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "스우",
+      "name": "lotus",
+      "difficulty": "Champion",
+      "level": 210,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 1,
+      "easyRate": 11.140158620689656,
+      "challenger": 0.97,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "스우",
+      "metadata": {
+        "bossLevel": 210,
+        "bossCut": 40600,
+        "bossEasy": 11.541677078127602,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossPartyLimit": 1
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "데미안",
+      "name": "damien",
+      "difficulty": "Hard",
+      "level": 210,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 12.1125,
+      "challenger": 0.97,
+      "newbieCut": 183.81,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "데미안",
+      "metadata": {
+        "bossLevel": 210,
+        "bossCut": 40600,
+        "bossEasy": 12.345560796244213,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "스우",
+      "name": "lotus",
+      "difficulty": "Hard",
+      "level": 210,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 16.15323,
+      "challenger": 0.97,
+      "newbieCut": 180.35,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "스우",
+      "metadata": {
+        "bossLevel": 210,
+        "bossCut": 40600,
+        "bossEasy": 16.48811011161086,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "듄켈",
+      "name": "darknell",
+      "difficulty": "Normal",
+      "level": 265,
+      "arcaneForce": 850,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 31.805487,
+      "challenger": 0.97,
+      "newbieCut": 216.16,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "친위대장 듄켈",
+      "metadata": {
+        "bossLevel": 265,
+        "bossCut": 40600,
+        "bossEasy": 32.32309336598076,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossArcaneForce": 850,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "더스크",
+      "name": "gloom",
+      "difficulty": "Normal",
+      "level": 255,
+      "arcaneForce": 730,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 26.21145,
+      "newbieCut": 177.63,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "거대 괴수 더스크",
+      "metadata": {
+        "bossLevel": 255,
+        "bossCut": 40600,
+        "bossEasy": 27.031489794246152,
+        "bossGuard": 300,
+        "bossArcaneForce": 730,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "루시드",
+      "name": "lucid",
+      "difficulty": "Normal",
+      "level": 230,
+      "arcaneForce": 360,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 33.023035500000006,
+      "challenger": 0.97,
+      "newbieCut": 170,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "루시드",
+      "metadata": {
+        "bossLevel": 230,
+        "bossCut": 40600,
+        "bossEasy": 33.658443132448376,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossArcaneForce": 360,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "윌",
+      "name": "will",
+      "difficulty": "Normal",
+      "level": 250,
+      "arcaneForce": 760,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 30.862650000000002,
+      "challenger": 0.97,
+      "newbieCut": 241.85,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "윌",
+      "metadata": {
+        "bossLevel": 250,
+        "bossCut": 40600,
+        "bossEasy": 32.11280909470749,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossArcaneForce": 760,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "윌",
+      "name": "will",
+      "difficulty": "Easy",
+      "level": 235,
+      "arcaneForce": 560,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 46.293974999999996,
+      "challenger": 0.97,
+      "newbieCut": 241.85,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "윌",
+      "metadata": {
+        "bossLevel": 235,
+        "bossCut": 40600,
+        "bossEasy": 48.16921364206122,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossArcaneForce": 560,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "루시드",
+      "name": "lucid",
+      "difficulty": "Easy",
+      "level": 230,
+      "arcaneForce": 360,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 56.94158924999999,
+      "challenger": 0.97,
+      "newbieCut": 170,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "루시드",
+      "metadata": {
+        "bossLevel": 230,
+        "bossCut": 40600,
+        "bossEasy": 58.03722203679182,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossArcaneForce": 360,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "가엔슬",
+      "name": "slime",
+      "difficulty": "Normal",
+      "level": 220,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 79.01984347826087,
+      "newbieCut": 200.49,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "가디언 엔젤 슬라임",
+      "metadata": {
+        "bossLevel": 220,
+        "bossCut": 40600,
+        "bossEasy": 80.42288590778763,
+        "bossGuard": 300,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "스우",
+      "name": "lotus",
+      "difficulty": "Normal",
+      "level": 210,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 344.67083121019107,
+      "challenger": 0.97,
+      "newbieCut": 180.35,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "스우",
+      "metadata": {
+        "bossLevel": 210,
+        "bossCut": 40600,
+        "bossEasy": 351.816362254117,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    },
+    {
+      "boss": "데미안",
+      "name": "damien",
+      "difficulty": "Normal",
+      "level": 210,
+      "guard": 300,
+      "bossCut": 40600,
+      "partyLimit": 6,
+      "easyRate": 363.375,
+      "challenger": 0.97,
+      "newbieCut": 183.81,
+      "renewalDate": "2026-05-27",
+      "renewalDetail": "전 보스 상향조정 최소5%",
+      "label": "데미안",
+      "metadata": {
+        "bossLevel": 210,
+        "bossCut": 40600,
+        "bossEasy": 370.36682388732635,
+        "bossGuard": 300,
+        "bossChallenge": 0.97,
+        "bossPartyLimit": 6
+      },
+      "entry_level": 200
+    }
+  ],
+  "labels": {
+    "솔플 여유컷": "Easy",
+    "솔플 가능": "Possible",
+    "솔플 최소컷": "Solo Min",
+    "파티격 가능": "Party-able",
+    "파티 최소컷": "Party Min",
+    "불가능": "Impossible",
+    "입장 불가능": "Can't Enter",
+    "2인 최소컷": "2p Min Cut",
+    "3인 최소컷": "3p Min Cut",
+    "4인 최소컷": "4p Min Cut",
+    "6인 최소컷": "6p Min Cut",
+    "[파티]": "[Party]"
+  },
+  "level_multipliers": {
+    "0": 110,
+    "1": 112,
+    "2": 114,
+    "3": 116,
+    "4": 118,
+    "5": 120,
+    "-1": 105.3,
+    "-2": 100.7,
+    "-3": 96.2,
+    "-4": 91.8,
+    "-5": 87.5,
+    "-6": 85,
+    "-7": 82.5,
+    "-8": 80,
+    "-9": 77.5,
+    "-10": 75,
+    "-11": 72.5,
+    "-12": 70,
+    "-13": 67.5,
+    "-14": 65,
+    "-15": 62.5,
+    "-16": 60,
+    "-17": 57.5,
+    "-18": 55,
+    "-19": 52.5,
+    "-20": 50,
+    "-21": 47.5,
+    "-22": 45,
+    "-23": 42.5,
+    "-24": 40,
+    "-25": 37.5,
+    "-26": 35,
+    "-27": 32.5,
+    "-28": 30,
+    "-29": 27.5,
+    "-30": 25,
+    "-31": 22.5,
+    "-32": 20,
+    "-33": 17.5,
+    "-34": 15,
+    "-35": 12.5,
+    "-36": 10,
+    "-37": 7.5,
+    "-38": 5,
+    "-39": 2.5,
+    "-40": 0
+  },
+  "arcane_cap": 1750,
+  "archers": [
+    "보우마스터",
+    "신궁",
+    "패스파인더",
+    "윈드브레이커",
+    "와일드헌터"
+  ],
+  "special_critical": [
+    "보우마스터",
+    "신궁",
+    "패스파인더",
+    "윈드브레이커",
+    "와일드헌터",
+    "메르세데스",
+    "카인"
+  ],
+  "buff_specs": {
+    "before": {
+      "나이트로드": {
+        "spec": [
+          70,
+          0,
+          0,
+          30,
+          0,
+          0,
+          131,
+          0,
+          0,
+          31,
+          48.35,
+          31,
+          85,
+          33
+        ]
+      },
+      "나이트워커": {
+        "spec": [
+          80,
+          0,
+          0,
+          0,
+          0,
+          0,
+          72,
+          10,
+          30,
+          0,
+          54.56,
+          16,
+          50,
+          39
+        ]
+      },
+      "다크나이트": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          101,
+          0,
+          5,
+          16,
+          164.384,
+          38.59,
+          66,
+          46
+        ]
+      },
+      "데몬슬레이어": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          51,
+          0,
+          45,
+          0,
+          45.2,
+          31,
+          50,
+          20
+        ]
+      },
+      "데몬어벤져": {
+        "spec": [
+          1000,
+          40,
+          0,
+          0,
+          0,
+          0,
+          91,
+          0,
+          31,
+          0,
+          19,
+          31,
+          50,
+          16
+        ]
+      },
+      "듀얼블레이드": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          92,
+          0,
+          20,
+          5,
+          41.264,
+          0,
+          53,
+          29
+        ]
+      },
+      "라라": {
+        "spec": [
+          40,
+          0,
+          0,
+          0,
+          0,
+          0,
+          138,
+          0,
+          20,
+          10,
+          89.8,
+          41,
+          56,
+          29
+        ]
+      },
+      "레테": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          101,
+          0,
+          10,
+          0,
+          162.65954,
+          42.04,
+          55,
+          23
+        ]
+      },
+      "렌": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          172,
+          0,
+          15,
+          0,
+          70.640855,
+          42,
+          60,
+          19
+        ]
+      },
+      "루미너스": {
+        "spec": [
+          80,
+          0,
+          0,
+          0,
+          0,
+          0,
+          111,
+          0,
+          15,
+          15,
+          88.94,
+          41,
+          50,
+          26
+        ]
+      },
+      "메르세데스": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          172,
+          31,
+          40,
+          20,
+          50.0642,
+          26,
+          70,
+          34
+        ]
+      },
+      "메카닉": {
+        "spec": [
+          30,
+          0,
+          0,
+          30,
+          0,
+          0,
+          76,
+          0,
+          56,
+          0,
+          42,
+          30,
+          80,
+          16
+        ]
+      },
+      "미하일": {
+        "spec": [
+          110,
+          0,
+          0,
+          30,
+          0,
+          0,
+          112,
+          10,
+          5,
+          0,
+          87.5,
+          42,
+          70,
+          40
+        ]
+      },
+      "바이퍼": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          92,
+          15,
+          0,
+          20,
+          36.73,
+          44,
+          130,
+          38
+        ]
+      },
+      "배틀메이지": {
+        "spec": [
+          40,
+          0,
+          0,
+          0,
+          0,
+          0,
+          81,
+          17,
+          41,
+          5,
+          58.6,
+          31,
+          71,
+          49
+        ]
+      },
+      "보우마스터": {
+        "spec": [
+          132,
+          0,
+          0,
+          30,
+          0,
+          0,
+          153,
+          25,
+          0,
+          0,
+          61.226,
+          57.25,
+          71,
+          32
+        ]
+      },
+      "블래스터": {
+        "spec": [
+          30,
+          0,
+          0,
+          30,
+          0,
+          0,
+          70,
+          15,
+          15,
+          11,
+          89.2,
+          38,
+          75,
+          23
+        ]
+      },
+      "비숍": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          144,
+          0,
+          0,
+          10,
+          203.1743,
+          36.8,
+          85,
+          24
+        ]
+      },
+      "섀도어": {
+        "spec": [
+          80,
+          0,
+          0,
+          30,
+          0,
+          0,
+          158,
+          0,
+          24,
+          0,
+          58.1372,
+          21,
+          65,
+          48
+        ]
+      },
+      "소울마스터": {
+        "spec": [
+          131,
+          0,
+          0,
+          51,
+          0,
+          0,
+          151,
+          10,
+          0,
+          21,
+          46.25,
+          38.8,
+          60,
+          31
+        ]
+      },
+      "스트라이커": {
+        "spec": [
+          80,
+          0,
+          0,
+          0,
+          0,
+          0,
+          115,
+          10,
+          5,
+          0,
+          26.26,
+          0,
+          50,
+          53
+        ]
+      },
+      "신궁": {
+        "spec": [
+          132,
+          0,
+          0,
+          30,
+          0,
+          0,
+          71,
+          0,
+          21,
+          0,
+          71.38304,
+          60.67,
+          71,
+          51
+        ]
+      },
+      "아델": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          152,
+          10,
+          34,
+          0,
+          68.597,
+          36.01,
+          56,
+          29
+        ]
+      },
+      "아란": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          171,
+          5,
+          51,
+          7,
+          34.2,
+          41,
+          65,
+          29
+        ]
+      },
+      "아크": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          112,
+          0,
+          0,
+          13,
+          42.296,
+          31,
+          71,
+          39
+        ]
+      },
+      "아크메이지(불,독)": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          73,
+          0,
+          50,
+          0,
+          167.4,
+          21,
+          50,
+          21
+        ]
+      },
+      "아크메이지(썬,콜)": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          93,
+          0,
+          50,
+          0,
+          167.4,
+          21,
+          50,
+          23
+        ]
+      },
+      "에반": {
+        "spec": [
+          70,
+          0,
+          0,
+          10,
+          0,
+          0,
+          127,
+          26,
+          0,
+          20,
+          53.4,
+          20,
+          60,
+          45
+        ]
+      },
+      "엔젤릭버스터": {
+        "spec": [
+          120,
+          0,
+          0,
+          0,
+          0,
+          0,
+          96,
+          0,
+          20,
+          0,
+          64.89872,
+          28.6,
+          50,
+          50
+        ]
+      },
+      "와일드헌터": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          165,
+          10,
+          10,
+          0,
+          106.2203,
+          42,
+          95,
+          47
+        ]
+      },
+      "윈드브레이커": {
+        "spec": [
+          50,
+          16,
+          0,
+          30,
+          0,
+          0,
+          137,
+          21,
+          50,
+          41,
+          67.552,
+          27.75,
+          61,
+          37
+        ]
+      },
+      "은월": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          40,
+          0,
+          40,
+          51,
+          85.59827,
+          44.8,
+          51,
+          42
+        ]
+      },
+      "일리움": {
+        "spec": [
+          40,
+          0,
+          0,
+          0,
+          0,
+          0,
+          50,
+          10,
+          25,
+          30,
+          50,
+          25,
+          55,
+          38
+        ]
+      },
+      "제논": {
+        "spec": [
+          105,
+          20,
+          0,
+          0,
+          0,
+          0,
+          51,
+          0,
+          40,
+          0,
+          17,
+          31,
+          55,
+          14
+        ]
+      },
+      "제로": {
+        "spec": [
+          50,
+          0,
+          0,
+          0,
+          0,
+          0,
+          100,
+          0,
+          50,
+          30,
+          47.42,
+          0,
+          65,
+          8
+        ]
+      },
+      "카데나": {
+        "spec": [
+          80,
+          0,
+          0,
+          30,
+          0,
+          0,
+          91,
+          0,
+          20,
+          20,
+          4,
+          20,
+          79,
+          39
+        ]
+      },
+      "카이저": {
+        "spec": [
+          50,
+          0,
+          0,
+          0,
+          0,
+          0,
+          118,
+          30,
+          0,
+          18,
+          33,
+          41,
+          75,
+          32
+        ]
+      },
+      "카인": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          192,
+          0,
+          26,
+          15,
+          124.3375,
+          37.9,
+          70,
+          54
+        ]
+      },
+      "칼리": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          131,
+          0,
+          0,
+          30,
+          72.8,
+          36.8,
+          50,
+          51
+        ]
+      },
+      "캐논슈터": {
+        "spec": [
+          111,
+          0,
+          0,
+          91,
+          0,
+          0,
+          60,
+          0,
+          40,
+          30,
+          61.29575,
+          20,
+          55,
+          28
+        ]
+      },
+      "캡틴": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          101,
+          21,
+          0,
+          0,
+          64.592,
+          20,
+          85,
+          60
+        ]
+      },
+      "키네시스": {
+        "spec": [
+          40,
+          0,
+          0,
+          0,
+          0,
+          0,
+          155,
+          10,
+          26,
+          0,
+          160.4888,
+          46,
+          55,
+          45
+        ]
+      },
+      "팔라딘": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          40,
+          0,
+          0,
+          0,
+          65.77,
+          31,
+          57,
+          30
+        ]
+      },
+      "패스파인더": {
+        "spec": [
+          132,
+          0,
+          0,
+          30,
+          0,
+          0,
+          92,
+          26,
+          10,
+          0,
+          43.36,
+          30,
+          76,
+          16
+        ]
+      },
+      "팬텀": {
+        "spec": [
+          140,
+          0,
+          0,
+          40,
+          0,
+          0,
+          81,
+          0,
+          46,
+          0,
+          70.3,
+          31,
+          50,
+          28
+        ]
+      },
+      "플레임위자드": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          72,
+          13,
+          0,
+          0,
+          106.55,
+          31,
+          50,
+          28
+        ]
+      },
+      "호영": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          136,
+          10,
+          11,
+          20,
+          85.8587885,
+          19.9,
+          66,
+          49
+        ]
+      },
+      "히어로": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          81,
+          0,
+          0,
+          20,
+          216.25,
+          51,
+          50,
+          28
+        ]
+      },
+      "하야토": {
+        "spec": [
+          30,
+          0,
+          0,
+          30,
+          0,
+          0,
+          15,
+          0,
+          80,
+          10,
+          15,
+          36,
+          55,
+          38
+        ]
+      },
+      "칸나": {
+        "spec": [
+          40,
+          0,
+          0,
+          40,
+          0,
+          0,
+          30,
+          0,
+          46,
+          0,
+          0,
+          0,
+          55,
+          28
+        ]
+      },
+      "린": {
+        "spec": [
+          93,
+          0,
+          0,
+          0,
+          0,
+          0,
+          111,
+          0,
+          32,
+          35,
+          65,
+          37,
+          85,
+          38
+        ]
+      },
+      "묵현": {
+        "spec": [
+          80,
+          0,
+          0,
+          0,
+          0,
+          0,
+          151,
+          0,
+          30,
+          21,
+          21,
+          45.49,
+          65,
+          34
+        ]
+      },
+      "시아": {
+        "spec": [
+          20,
+          0,
+          0,
+          0,
+          0,
+          0,
+          105,
+          10,
+          45,
+          20,
+          70,
+          0,
+          47,
+          39
+        ]
+      },
+      "에렐": {
+        "spec": [
+          70,
+          0,
+          0,
+          30,
+          0,
+          0,
+          143,
+          0,
+          41,
+          20,
+          148.5500083,
+          40,
+          61,
+          25
+        ]
+      }
+    },
+    "after": {
+      "나이트로드": {
+        "spec": [
+          70,
+          0,
+          0,
+          30,
+          0,
+          0,
+          133,
+          0,
+          0,
+          31,
+          48.35,
+          32,
+          85,
+          33
+        ]
+      },
+      "나이트워커": {
+        "spec": [
+          80,
+          0,
+          0,
+          0,
+          0,
+          0,
+          74,
+          10,
+          30,
+          0,
+          54.56,
+          16,
+          50,
+          39
+        ]
+      },
+      "다크나이트": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          102,
+          0,
+          5,
+          16,
+          166.328,
+          38.59,
+          66,
+          46
+        ]
+      },
+      "데몬슬레이어": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          52,
+          0,
+          45,
+          0,
+          45.2,
+          31,
+          50,
+          21
+        ]
+      },
+      "데몬어벤져": {
+        "spec": [
+          1000,
+          40,
+          0,
+          0,
+          0,
+          0,
+          92,
+          0,
+          32,
+          0,
+          19,
+          32,
+          50,
+          16
+        ]
+      },
+      "듀얼블레이드": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          94,
+          0,
+          20,
+          5,
+          42.4412,
+          0,
+          56,
+          30
+        ]
+      },
+      "라라": {
+        "spec": [
+          40,
+          0,
+          0,
+          0,
+          0,
+          0,
+          141,
+          0,
+          20,
+          10,
+          92.57,
+          42,
+          57,
+          30
+        ]
+      },
+      "레테": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          102,
+          0,
+          10,
+          0,
+          162.65954,
+          42.88,
+          55,
+          23
+        ]
+      },
+      "렌": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          172,
+          0,
+          16,
+          0,
+          72.17816,
+          44,
+          60,
+          19
+        ]
+      },
+      "루미너스": {
+        "spec": [
+          80,
+          0,
+          0,
+          0,
+          0,
+          0,
+          112,
+          0,
+          15,
+          16,
+          91.7,
+          41,
+          50,
+          26
+        ]
+      },
+      "메르세데스": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          173,
+          31,
+          40,
+          20,
+          51.3044,
+          27,
+          70,
+          34
+        ]
+      },
+      "메카닉": {
+        "spec": [
+          30,
+          0,
+          0,
+          30,
+          0,
+          0,
+          76,
+          0,
+          57,
+          0,
+          42,
+          30,
+          80,
+          16
+        ]
+      },
+      "미하일": {
+        "spec": [
+          110,
+          0,
+          0,
+          30,
+          0,
+          0,
+          114,
+          10,
+          5,
+          0,
+          89,
+          44,
+          70,
+          41
+        ]
+      },
+      "바이퍼": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          94,
+          15,
+          0,
+          20,
+          37.973,
+          48,
+          130,
+          38
+        ]
+      },
+      "배틀메이지": {
+        "spec": [
+          40,
+          0,
+          0,
+          0,
+          0,
+          0,
+          82,
+          17,
+          41,
+          5,
+          59.9,
+          32,
+          70,
+          49
+        ]
+      },
+      "보우마스터": {
+        "spec": [
+          132,
+          0,
+          0,
+          30,
+          0,
+          0,
+          156,
+          25,
+          0,
+          0,
+          62.604,
+          57.9625,
+          71,
+          32
+        ]
+      },
+      "블래스터": {
+        "spec": [
+          30,
+          0,
+          0,
+          30,
+          0,
+          0,
+          72,
+          15,
+          15,
+          11,
+          89.2,
+          41,
+          75,
+          23
+        ]
+      },
+      "비숍": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          147,
+          0,
+          0,
+          10,
+          203.1743,
+          36.8,
+          85,
+          24
+        ]
+      },
+      "섀도어": {
+        "spec": [
+          80,
+          0,
+          0,
+          30,
+          0,
+          0,
+          161,
+          0,
+          24,
+          0,
+          58.1372,
+          22,
+          65,
+          48
+        ]
+      },
+      "소울마스터": {
+        "spec": [
+          132,
+          0,
+          0,
+          52,
+          0,
+          0,
+          152,
+          10,
+          0,
+          22,
+          46.25,
+          40.6,
+          61,
+          32
+        ]
+      },
+      "스트라이커": {
+        "spec": [
+          80,
+          0,
+          0,
+          0,
+          0,
+          0,
+          118,
+          10,
+          5,
+          0,
+          27.33,
+          0,
+          50,
+          54
+        ]
+      },
+      "신궁": {
+        "spec": [
+          134,
+          0,
+          0,
+          30,
+          0,
+          0,
+          72,
+          0,
+          21,
+          0,
+          74.3768,
+          60.67,
+          71,
+          51
+        ]
+      },
+      "아델": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          154,
+          10,
+          35,
+          0,
+          69.884,
+          36.82,
+          57,
+          29
+        ]
+      },
+      "아란": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          171,
+          5,
+          52,
+          7,
+          34.2,
+          42,
+          65,
+          29
+        ]
+      },
+      "아크": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          114,
+          0,
+          0,
+          13,
+          43.472,
+          32,
+          71,
+          40
+        ]
+      },
+      "아크메이지(불,독)": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          76,
+          0,
+          50,
+          0,
+          167.4,
+          21,
+          50,
+          21
+        ]
+      },
+      "아크메이지(썬,콜)": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          93,
+          0,
+          50,
+          0,
+          167.4,
+          21,
+          50,
+          23
+        ]
+      },
+      "에반": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          126,
+          27,
+          0,
+          20,
+          53.4,
+          20,
+          60,
+          46
+        ]
+      },
+      "엔젤릭버스터": {
+        "spec": [
+          120,
+          0,
+          0,
+          0,
+          0,
+          0,
+          97,
+          0,
+          20,
+          0,
+          64.89872,
+          28.6,
+          50,
+          50
+        ]
+      },
+      "와일드헌터": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          167,
+          10,
+          10,
+          0,
+          106.2203,
+          44,
+          95,
+          48
+        ]
+      },
+      "윈드브레이커": {
+        "spec": [
+          50,
+          16,
+          0,
+          30,
+          0,
+          0,
+          139,
+          21,
+          50,
+          42,
+          67.552,
+          27.75,
+          61,
+          38
+        ]
+      },
+      "은월": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          40,
+          0,
+          40,
+          52,
+          87.226325,
+          45.6,
+          51,
+          42
+        ]
+      },
+      "일리움": {
+        "spec": [
+          40,
+          0,
+          0,
+          0,
+          0,
+          0,
+          50,
+          10,
+          25,
+          30,
+          50,
+          25,
+          55,
+          38
+        ]
+      },
+      "제논": {
+        "spec": [
+          105,
+          20,
+          0,
+          0,
+          0,
+          0,
+          52,
+          0,
+          40,
+          0,
+          17,
+          32,
+          55,
+          14
+        ]
+      },
+      "제로": {
+        "spec": [
+          50,
+          0,
+          0,
+          0,
+          0,
+          0,
+          100,
+          0,
+          50,
+          30,
+          47.42,
+          0,
+          65,
+          8
+        ]
+      },
+      "카데나": {
+        "spec": [
+          80,
+          0,
+          0,
+          30,
+          0,
+          0,
+          94,
+          0,
+          20,
+          21,
+          4,
+          20,
+          80,
+          40
+        ]
+      },
+      "카이저": {
+        "spec": [
+          50,
+          0,
+          0,
+          0,
+          0,
+          0,
+          119,
+          30,
+          0,
+          18,
+          33,
+          42,
+          76,
+          32
+        ]
+      },
+      "카인": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          194,
+          0,
+          27,
+          15,
+          126.05,
+          38.8,
+          70,
+          56
+        ]
+      },
+      "칼리": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          132,
+          0,
+          0,
+          30,
+          72.8,
+          37.6,
+          50,
+          51
+        ]
+      },
+      "캐논슈터": {
+        "spec": [
+          111,
+          0,
+          0,
+          91,
+          0,
+          0,
+          60,
+          0,
+          40,
+          31,
+          62.5085,
+          21,
+          55,
+          28
+        ]
+      },
+      "캡틴": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          102,
+          21,
+          0,
+          0,
+          64.592,
+          20,
+          85,
+          59
+        ]
+      },
+      "키네시스": {
+        "spec": [
+          40,
+          0,
+          0,
+          0,
+          0,
+          0,
+          157,
+          10,
+          26,
+          0,
+          160.4888,
+          46,
+          55,
+          45
+        ]
+      },
+      "팔라딘": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          40,
+          0,
+          0,
+          0,
+          66.98,
+          32,
+          58,
+          30
+        ]
+      },
+      "패스파인더": {
+        "spec": [
+          134,
+          0,
+          0,
+          30,
+          0,
+          0,
+          94,
+          27,
+          10,
+          0,
+          44.64,
+          30,
+          76,
+          16
+        ]
+      },
+      "팬텀": {
+        "spec": [
+          140,
+          0,
+          0,
+          40,
+          0,
+          0,
+          82,
+          0,
+          46,
+          0,
+          71.6,
+          31,
+          50,
+          29
+        ]
+      },
+      "플레임위자드": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          74,
+          13,
+          0,
+          0,
+          110.6,
+          31,
+          50,
+          28
+        ]
+      },
+      "호영": {
+        "spec": [
+          60,
+          0,
+          0,
+          0,
+          0,
+          0,
+          137,
+          10,
+          11,
+          20,
+          88.943216,
+          20.8,
+          67,
+          50
+        ]
+      },
+      "히어로": {
+        "spec": [
+          50,
+          0,
+          0,
+          30,
+          0,
+          0,
+          81,
+          0,
+          5,
+          20,
+          218.78,
+          52,
+          50,
+          28
+        ]
+      },
+      "하야토": {
+        "spec": [
+          30,
+          0,
+          0,
+          30,
+          0,
+          0,
+          15,
+          0,
+          81,
+          10,
+          15,
+          37,
+          55,
+          38
+        ]
+      },
+      "칸나": {
+        "spec": [
+          40,
+          0,
+          0,
+          40,
+          0,
+          0,
+          30,
+          0,
+          47,
+          0,
+          0,
+          0,
+          55,
+          28
+        ]
+      },
+      "린": {
+        "spec": [
+          96,
+          0,
+          0,
+          0,
+          0,
+          0,
+          117,
+          0,
+          34,
+          35,
+          70,
+          37,
+          85,
+          38
+        ]
+      },
+      "묵현": {
+        "spec": [
+          80,
+          0,
+          0,
+          0,
+          0,
+          0,
+          152,
+          0,
+          30,
+          21,
+          21,
+          46.28,
+          60,
+          34
+        ]
+      },
+      "시아": {
+        "spec": [
+          20,
+          0,
+          0,
+          0,
+          0,
+          0,
+          110,
+          10,
+          45,
+          20,
+          70,
+          0,
+          49,
+          40
+        ]
+      },
+      "에렐": {
+        "spec": [
+          70,
+          0,
+          0,
+          30,
+          0,
+          0,
+          146,
+          0,
+          41,
+          20,
+          152.6245986,
+          40,
+          62,
+          25
+        ]
+      }
+    }
+  },
+  "authentic_bosses": [
+    "세렌",
+    "칼로스",
+    "대적자",
+    "카링",
+    "흉성",
+    "벨로나",
+    "림보",
+    "발드릭스",
+    "유피테르"
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "retrieved_at": "2026-09-13",
+  "items": [
+    {
+      "name": "Endless Terror",
+      "slot": "ring",
+      "level": 200,
+      "aliases": [
+        "Giant Fear"
+      ],
+      "source": "https://maplestorywiki.net/w/Endless_Terror"
+    },
+    {
+      "name": "Guardian Angel Ring",
+      "slot": "ring",
+      "level": 160,
+      "aliases": [],
+      "source": "https://maplestorywiki.net/w/Guardian_Angel_Ring"
+    },
+    {
+      "name": "Dawn Guardian Angel Ring",
+      "slot": "ring",
+      "level": 160,
+      "aliases": [],
+      "source": "https://maplestorywiki.net/w/Dawn_Guardian_Angel_Ring"
+    },
+    {
+      "name": "Princess No's Wakizashi",
+      "slot": "secondary",
+      "level": 140,
+      "aliases": [],
+      "source": "https://maplestorywiki.net/w/Princess_No%27s_Wakizashi"
+    },
+    {
+      "name": "Arcane Umbra Knight Shoulder",
+      "slot": "shoulder",
+      "level": 200,
+      "aliases": [],
+      "source": "https://maplestorywiki.net/w/Arcane_Umbra_Knight_Shoulder"
+    },
+    {
+      "name": "Deimos Shadow Shield",
+      "slot": "secondary",
+      "level": 130,
+      "aliases": [],
+      "source": "https://maplestorywiki.net/w/Deimos_Shadow_Shield"
+    },
+    {
+      "name": "Mitra's Rage: Thief",
+      "slot": "emblem",
+      "level": 200,
+      "aliases": [
+        "Mithra's Rage: Thief"
+      ],
+      "source": "https://maplestorywiki.net/w/Mitra%27s_Rage%3A_Thief"
+    },
+    {
+      "name": "Total Control",
+      "slot": "heart",
+      "level": 200,
+      "aliases": [
+        "Complete Under Control"
+      ],
+      "source": "https://maplestorywiki.net/w/Total_Control"
+    },
+    {
+      "name": "Tenebris Expedition Ring",
+      "slot": "ring",
+      "level": 120,
+      "aliases": [
+        "Heroic Tenebris Expedition Ring (Complete)",
+        "Heroic Tenebris Expedition Ring (Complete",
+        "Heroic Tenebris Expedition Ring (Stage 1)",
+        "Heroic Tenebris Expedition Ring (Stage 2)",
+        "Heroic Tenebris Expedition Ring (Stage 3)"
+      ],
+      "source": "https://maplestorywiki.net/w/Tenebris_Expedition_Ring"
+    },
+    {
+      "name": "Awake Ring",
+      "slot": "ring",
+      "level": 120,
+      "aliases": [
+        "Heroic Awake Ring (Lv. 1)",
+        "Heroic Awake Ring (Lv. 2)",
+        "Heroic Awake Ring (Lv. 3)",
+        "Heroic Awake Ring (Lv. 4)"
+      ],
+      "source": "https://maplestorywiki.net/w/Awake_Ring"
+    },
+    {
+      "name": "Eternal Flame Ring",
+      "slot": "ring",
+      "level": 120,
+      "aliases": [],
+      "source": "https://maplestorywiki.net/w/Eternal_Flame_Ring"
+    },
+    {
+      "name": "Frozen Fox Marble",
+      "slot": "secondary",
+      "level": 100,
+      "aliases": [],
+      "source": "https://maplestorywiki.net/w/Frozen_Fox_Marble"
+    },
+    {
+      "name": "Gold Heroes Emblem",
+      "slot": "emblem",
+      "level": 100,
+      "aliases": [],
+      "source": "https://maplestorywiki.net/w/Gold_Heroes_Emblem"
+    },
+    {
+      "name": "Genesis Sword",
+      "slot": "weapon",
+      "level": 200,
+      "aliases": [],
+      "source": "https://maplestorywiki.net/w/Genesis_Sword"
+    },
+    {
+      "name": "Princess No's Imugi Gem",
+      "slot": "secondary",
+      "level": 140,
+      "aliases": [],
+      "source": "https://maplestorywiki.net/w/Princess_No%27s_Imugi_Gem"
+    },
+    {
+      "name": "Mitra's Rage: Warrior",
+      "slot": "emblem",
+      "level": 200,
+      "aliases": [
+        "Mithra's Rage: Warrior"
+      ],
+      "source": "https://maplestorywiki.net/w/Mitra%27s_Rage%3A_Warrior"
+    }
+  ]
+}

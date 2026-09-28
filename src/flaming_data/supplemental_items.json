@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "basis": "Verified weapons absent from the original class-catalog snapshot. Importer preserves these records on catalog rebuilds.",
+  "items": [
+    {
+      "id": "wb_6aa6a6507ac1e0c2495ec4de",
+      "source_id": "genesis-gram",
+      "name": "Genesis Gram",
+      "aliases": [],
+      "alias_evidence": null,
+      "slot": "weapon",
+      "job_group": "warrior",
+      "source_classes": [
+        "erel"
+      ],
+      "level": 200,
+      "source_level": 200,
+      "flameable": true,
+      "flame_advantaged": true,
+      "flame_category": "advantaged",
+      "rollable_line_pool": "weapon",
+      "flame_models": [
+        "brf"
+      ],
+      "base_attack": 340,
+      "base_magic_attack": null,
+      "source_region": "SEA-oriented catalog",
+      "icon_url": "https://pub-37581592c5a045f3ad8b1881608a2769.r2.dev/images/equips/weapon/genesis-gram.png",
+      "set": "eternal",
+      "classification_basis": "Whackybeanz isNormalFlame flag; omitted flag means advantaged in its calculator",
+      "metadata_status": "source_catalog",
+      "metadata_evidence": {
+        "url": "https://www.whackybeanz.com/api/getEquips/warrior/erel",
+        "cross_check": "https://maplestorywiki.net/w/Genesis_Gram",
+        "checked_at": "2026-09-20"
+      }
+    },
+    {
+      "id": "gms_genesis_lazuli",
+      "source_id": "genesis-lazuli",
+      "name": "Genesis Lazuli",
+      "aliases": [],
+      "alias_evidence": null,
+      "slot": "weapon",
+      "job_group": "warrior",
+      "source_classes": [
+        "zero"
+      ],
+      "level": 200,
+      "source_level": 200,
+      "flameable": true,
+      "flame_advantaged": false,
+      "flame_category": "normal",
+      "rollable_line_pool": "weapon",
+      "flame_models": [
+        "brf"
+      ],
+      "base_attack": 337,
+      "base_magic_attack": null,
+      "source_region": "GMS",
+      "icon_url": "https://media.maplestorywiki.net/yetidb/Eqp_Genesis_Lazuli.png",
+      "set": "eternal",
+      "classification_basis": "Zero weapon: same normal-flame tier pool and Lapis-based flame attack as Whackybeanz Genesis Lapis.",
+      "metadata_status": "verified_supplement",
+      "flame_base_attack": 342,
+      "metadata_evidence": {
+        "url": "https://maplestorywiki.net/w/Genesis_Lazuli",
+        "flame_attack_basis": "https://strategywiki.org/wiki/MapleStory/Bonus_Stats",
+        "tier_basis": "https://www.whackybeanz.com/api/getEquips/warrior/zero",
+        "checked_at": "2026-09-20"
+      }
+    }
+  ]
+}

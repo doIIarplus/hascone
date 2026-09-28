@@ -1,0 +1,206 @@
+{
+  "version": 2,
+  "width": 312,
+  "height": 267,
+  "portrait": {
+    "x": 90,
+    "y": 0,
+    "width": 132,
+    "height": 177
+  },
+  "slots": {
+    "ring_1": {
+      "x": 0,
+      "y": 0,
+      "width": 42,
+      "height": 42,
+      "flameable": false,
+      "cubeable": true
+    },
+    "ring_2": {
+      "x": 0,
+      "y": 45,
+      "width": 42,
+      "height": 42,
+      "flameable": false,
+      "cubeable": true
+    },
+    "ring_3": {
+      "x": 0,
+      "y": 90,
+      "width": 42,
+      "height": 42,
+      "flameable": false,
+      "cubeable": true
+    },
+    "ring_4": {
+      "x": 0,
+      "y": 135,
+      "width": 42,
+      "height": 42,
+      "flameable": false,
+      "cubeable": true
+    },
+    "face": {
+      "x": 45,
+      "y": 0,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "eye": {
+      "x": 45,
+      "y": 45,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "earring": {
+      "x": 45,
+      "y": 90,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "pendant_1": {
+      "x": 45,
+      "y": 135,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "pendant_2": {
+      "x": 45,
+      "y": 180,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "belt": {
+      "x": 0,
+      "y": 180,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "pocket": {
+      "x": 0,
+      "y": 225,
+      "width": 42,
+      "height": 42,
+      "cubeable": false
+    },
+    "weapon": {
+      "x": 90,
+      "y": 180,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "secondary": {
+      "x": 135,
+      "y": 180,
+      "width": 42,
+      "height": 42,
+      "flameable": false,
+      "cubeable": true
+    },
+    "emblem": {
+      "x": 180,
+      "y": 180,
+      "width": 42,
+      "height": 42,
+      "flameable": false,
+      "cubeable": true
+    },
+    "android": {
+      "x": 225,
+      "y": 180,
+      "width": 42,
+      "height": 42,
+      "flameable": false,
+      "cubeable": false
+    },
+    "heart": {
+      "x": 270,
+      "y": 180,
+      "width": 42,
+      "height": 42,
+      "flameable": false,
+      "cubeable": true
+    },
+    "badge": {
+      "x": 270,
+      "y": 225,
+      "width": 42,
+      "height": 42,
+      "flameable": false,
+      "cubeable": true
+    },
+    "hat": {
+      "x": 225,
+      "y": 0,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "cape": {
+      "x": 270,
+      "y": 0,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "top": {
+      "x": 225,
+      "y": 45,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "gloves": {
+      "x": 270,
+      "y": 45,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "bottom": {
+      "x": 225,
+      "y": 90,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "shoes": {
+      "x": 270,
+      "y": 90,
+      "width": 42,
+      "height": 42,
+      "cubeable": true
+    },
+    "shoulder": {
+      "x": 225,
+      "y": 135,
+      "width": 42,
+      "height": 42,
+      "flameable": false,
+      "cubeable": true
+    },
+    "medal": {
+      "x": 270,
+      "y": 135,
+      "width": 42,
+      "height": 42,
+      "flameable": true,
+      "cubeable": false
+    }
+  },
+  "notes": "Slot-only display extracted from the original equipment-panel reference. Source offsets preserve game capture coordinates. Window chrome and the non-equipment book shortcut are not rendered.",
+  "source": {
+    "width": 366,
+    "height": 443,
+    "offset_x": 27,
+    "offset_y": 99
+  }
+}

@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+configs/
+models/
+logs/
+*.log
+.env
+.build/
+dist/
+Hascone-data/
+
+# Personal/dev-only artifacts not meant for the public repo
+/image.png
+docs/validation-*.md

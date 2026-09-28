@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "defaults": {"secondary_weight": 0.125, "boss_per_attack": 4.3},
+  "overrides": {}
+}

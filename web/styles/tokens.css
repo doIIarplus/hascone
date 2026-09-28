@@ -1,0 +1,70 @@
+/* tokens.css — Hascone design tokens (colors, spacing, type). */
+
+:root {
+  /* ---- Surfaces (dark slate, layered) ---- */
+  --bg: #0d1117;
+  --bg-elev: #11161f;
+  --surface: #161c26;
+  --surface-2: #1d2532;
+  --surface-3: #243042;
+  --hover: #202938;
+  --border: #2a3342;
+  --border-strong: #3a4658;
+
+  /* ---- Text ---- */
+  --text: #e6edf3;
+  --text-muted: #9aa7b8;
+  --text-dim: #94a3b8;
+
+  /* ---- Accent (cyan/teal) ---- */
+  --accent: #2dd4bf;
+  --accent-strong: #14b8a6;
+  --accent-dim: rgba(45, 212, 191, 0.14);
+  --accent-contrast: #04211d;
+
+  /* ---- Status ---- */
+  --ok: #3fb950;
+  --ok-dim: rgba(63, 185, 80, 0.15);
+  --warn: #d29922;
+  --warn-dim: rgba(210, 153, 34, 0.15);
+  --danger: #f85149;
+  --danger-dim: rgba(248, 81, 73, 0.15);
+  --info: #58a6ff;
+  --info-dim: rgba(88, 166, 255, 0.15);
+
+  /* ---- Typography ---- */
+  --font: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, monospace;
+  --fs-xs: 11px;
+  --fs-sm: 12px;
+  --fs-base: 13px;
+  --fs-md: 15px;
+  --fs-lg: 18px;
+  --fs-xl: 24px;
+  --fs-2xl: 32px;
+
+  /* ---- Spacing scale ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+
+  /* ---- Radius ---- */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-full: 999px;
+
+  /* ---- Elevation / glass ---- */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-3: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --glass: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+
+  /* ---- Focus ---- */
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+
+}

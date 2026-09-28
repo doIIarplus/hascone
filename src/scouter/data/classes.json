@@ -1,0 +1,5402 @@
+[
+  {
+    "key": "나이트로드",
+    "name": "Night Lord",
+    "slug": "night_lord",
+    "main": "LUK",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "생사여탈",
+        "url": "/assets/hexaskill/NightLord_1.png",
+        "english_title": "Arbiter of Fate"
+      },
+      "skillCore2": {
+        "title": "크루셜 어썰트",
+        "url": "/assets/hexaskill/NightLord_10.png",
+        "english_title": "Crucial Assault"
+      },
+      "skillCore3": {
+        "title": "쉐도우 리츄얼",
+        "url": "/assets/hexaskill/NightLord_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "쿼드러플 스로우 VI",
+        "url": "/assets/hexaskill/NightLord_2.png",
+        "english_title": "Quad Star VI"
+      },
+      "masteryCore2": {
+        "title": "마크 오브 어쌔신 VI",
+        "url": "/assets/hexaskill/NightLord_7.png",
+        "english_title": "Mark of Assassin VI"
+      },
+      "masteryCore3": {
+        "title": "다크 플레어 VI/쇼다운 챌린지 VI/다크니스 슈리켄",
+        "url": "/assets/hexaskill/NightLord_8.png",
+        "english_title": "Dark Flare VI/Showdown Challenge VI/Darkness Shuriken"
+      },
+      "masteryCore4": {
+        "title": "써든레이드 VI/포 시즌 VI",
+        "url": "/assets/hexaskill/NightLord_9.png",
+        "english_title": "Sudden Raid VI/Four Seasons VI"
+      },
+      "reinCore1": {
+        "title": "스프레드 스로우",
+        "url": "/assets/hexaskill/NightLord_3.png",
+        "english_title": "Spread Throw"
+      },
+      "reinCore2": {
+        "title": "풍마수리검",
+        "url": "/assets/hexaskill/NightLord_4.png",
+        "english_title": "Fuma Shuriken"
+      },
+      "reinCore3": {
+        "title": "다크로드의 비전서",
+        "url": "/assets/hexaskill/NightLord_5.png",
+        "english_title": "Dark Lord's Secret Scroll"
+      },
+      "reinCore4": {
+        "title": "스로우 블래스팅",
+        "url": "/assets/hexaskill/NightLord_6.png",
+        "english_title": "Explosive Shuriken"
+      },
+      "generalCore3": {
+        "title": "얼티밋 다크 사이트 VI",
+        "url": "/assets/hexaskill/NightLord_11.png",
+        "english_title": "HEXA Shadow Walker"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.75,
+      "finalDamage": 48.35,
+      "finalDamage2": 48.35
+    }
+  },
+  {
+    "key": "나이트워커",
+    "name": "Night Walker",
+    "slug": "night_walker",
+    "main": "LUK",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "사일런스",
+        "url": "/assets/hexaskill/NightWalker_1.png",
+        "english_title": "Silence"
+      },
+      "skillCore2": {
+        "title": "스티지언 커맨드",
+        "url": "/assets/hexaskill/NightWalker_10.png",
+        "english_title": "Stygian Command"
+      },
+      "skillCore3": {
+        "title": "싱귤래러티 스로우",
+        "url": "/assets/hexaskill/NightWalker_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "퀸터플 스로우 VI",
+        "url": "/assets/hexaskill/NightWalker_2.png",
+        "english_title": "Quintuple Toss VI"
+      },
+      "masteryCore2": {
+        "title": "쉐도우 배트 VI/래버너스 배트 VI",
+        "url": "/assets/hexaskill/NightWalker_7.png",
+        "english_title": "Shadow Bat VI/Ravenous Bat VI"
+      },
+      "masteryCore3": {
+        "title": "다크니스 오멘 VI",
+        "url": "/assets/hexaskill/NightWalker_8.png",
+        "english_title": "Dark Omen VI"
+      },
+      "masteryCore4": {
+        "title": "도미니언 VI/어비셜 다크니스",
+        "url": "/assets/hexaskill/NightWalker_9.png",
+        "english_title": "Dominion VI/Abyssal Darkness"
+      },
+      "reinCore1": {
+        "title": "쉐도우 스피어",
+        "url": "/assets/hexaskill/NightWalker_3.png",
+        "english_title": "Shadow Spear"
+      },
+      "reinCore2": {
+        "title": "쉐도우 서번트 익스텐드",
+        "url": "/assets/hexaskill/NightWalker_4.png",
+        "english_title": "Steadfast Shadow"
+      },
+      "reinCore3": {
+        "title": "쉐도우 바이트",
+        "url": "/assets/hexaskill/NightWalker_5.png",
+        "english_title": "Shadow Bite"
+      },
+      "reinCore4": {
+        "title": "래피드 스로우",
+        "url": "/assets/hexaskill/NightWalker_6.png",
+        "english_title": "Rapid Throw"
+      },
+      "generalCore3": {
+        "title": "시그너스 팔랑크스 VI",
+        "url": "/assets/hexaskill/NightWalker_11.png",
+        "english_title": "Cygnus Phalanx VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.75,
+      "finalDamage": 54.56,
+      "finalDamage2": 54.56
+    }
+  },
+  {
+    "key": "다크나이트",
+    "name": "Dark Knight",
+    "slug": "dark_knight",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "데드 스페이스",
+        "url": "/assets/hexaskill/DarkKnight_1.png",
+        "english_title": "Dead Space"
+      },
+      "skillCore2": {
+        "title": "다크 헬리덤",
+        "url": "/assets/hexaskill/DarkKnight_10.png",
+        "english_title": "Dark Helidom"
+      },
+      "skillCore3": {
+        "title": "다크니스 오브 그레이스",
+        "url": "/assets/hexaskill/DarkKnight_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "궁니르 디센트 VI",
+        "url": "/assets/hexaskill/DarkKnight_2.png",
+        "english_title": "Gungnir's Descent VI"
+      },
+      "masteryCore2": {
+        "title": "다크 임페일 VI/다크 신서시스 VI",
+        "url": "/assets/hexaskill/DarkKnight_7.png",
+        "english_title": "Dark Impale VI/Dark Synthesis VI"
+      },
+      "masteryCore3": {
+        "title": "파이널 어택 VI/비홀더스 리벤지 VI",
+        "url": "/assets/hexaskill/DarkKnight_8.png",
+        "english_title": "Final Attack VI/Beholder's Revenge VI"
+      },
+      "masteryCore4": {
+        "title": "비홀더 쇼크 VI",
+        "url": "/assets/hexaskill/DarkKnight_9.png",
+        "english_title": "Beholder Shock VI"
+      },
+      "reinCore1": {
+        "title": "다크 스피어",
+        "url": "/assets/hexaskill/DarkKnight_3.png",
+        "english_title": "Dark Spear"
+      },
+      "reinCore2": {
+        "title": "비홀더 임팩트",
+        "url": "/assets/hexaskill/DarkKnight_4.png",
+        "english_title": "Beholder's Impact"
+      },
+      "reinCore3": {
+        "title": "피어스 사이클론",
+        "url": "/assets/hexaskill/DarkKnight_5.png",
+        "english_title": "Piercing Cyclone"
+      },
+      "reinCore4": {
+        "title": "다크니스 오라",
+        "url": "/assets/hexaskill/DarkKnight_6.png",
+        "english_title": "Darkness Aura"
+      },
+      "generalCore3": {
+        "title": "블리츠 실드 VI",
+        "url": "/assets/hexaskill/DarkKnight_11.png",
+        "english_title": "Blitz Shield VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.49,
+      "finalDamage": 164.384,
+      "finalDamage2": 166.328
+    }
+  },
+  {
+    "key": "데몬슬레이어",
+    "name": "Demon Slayer",
+    "slug": "demon_slayer",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "나이트메어",
+        "url": "/assets/hexaskill/DemonSlayer_1.png",
+        "english_title": "Nightmare"
+      },
+      "skillCore2": {
+        "title": "아메시스틴 인트루젼",
+        "url": "/assets/hexaskill/DemonSlayer_10.png",
+        "english_title": "Amethystine Intrusion"
+      },
+      "skillCore3": {
+        "title": "래쓰 오브 세이튼",
+        "url": "/assets/hexaskill/DemonSlayer_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "데몬 임팩트 VI",
+        "url": "/assets/hexaskill/DemonSlayer_2.png",
+        "english_title": "Demon Impact VI"
+      },
+      "masteryCore2": {
+        "title": "데몬 슬래시 VI/데몬 익스플로젼 VI",
+        "url": "/assets/hexaskill/DemonSlayer_7.png",
+        "english_title": "Demon Lash VI/Infernal Concussion VI"
+      },
+      "masteryCore3": {
+        "title": "데빌 크라이 VI/메타모포시스 VI",
+        "url": "/assets/hexaskill/DemonSlayer_8.png",
+        "english_title": "Demon Cry VI/Dark Metamorphosis VI"
+      },
+      "masteryCore4": {
+        "title": "서버러스 VI/데모닉 디센트",
+        "url": "/assets/hexaskill/DemonSlayer_9.png",
+        "english_title": "Cerburus VI/Demonic Descent"
+      },
+      "reinCore1": {
+        "title": "데몬 어웨이크닝",
+        "url": "/assets/hexaskill/DemonSlayer_3.png",
+        "english_title": "Demon Awakening"
+      },
+      "reinCore2": {
+        "title": "요르문간드",
+        "url": "/assets/hexaskill/DemonSlayer_4.png",
+        "english_title": "Jormungand"
+      },
+      "reinCore3": {
+        "title": "오르트로스",
+        "url": "/assets/hexaskill/DemonSlayer_5.png",
+        "english_title": "Orthrus"
+      },
+      "reinCore4": {
+        "title": "데몬 베인",
+        "url": "/assets/hexaskill/DemonSlayer_6.png",
+        "english_title": "Demon Bane"
+      },
+      "generalCore3": {
+        "title": "콜 마스테마 VI",
+        "url": "/assets/hexaskill/DemonSlayer_11.png",
+        "english_title": "Call Mastema VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 45.2,
+      "finalDamage2": 45.2
+    }
+  },
+  {
+    "key": "데몬어벤져",
+    "name": "Demon Avenger",
+    "slug": "demon_avenger",
+    "main": "HP",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "레퀴엠",
+        "url": "/assets/hexaskill/DemonAvenger_1.png",
+        "english_title": "Requiem"
+      },
+      "skillCore2": {
+        "title": "레이지본 데어데빌",
+        "url": "/assets/hexaskill/DemonAvenger_10.png",
+        "english_title": "Ragebone Daredevil"
+      },
+      "skillCore3": {
+        "title": "래비드 카니지",
+        "url": "/assets/hexaskill/DemonAvenger_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "실드 체이싱 VI",
+        "url": "/assets/hexaskill/DemonAvenger_2.png",
+        "english_title": "Shield Chasing VI"
+      },
+      "masteryCore2": {
+        "title": "익시드 : 엑스큐션 VI",
+        "url": "/assets/hexaskill/DemonAvenger_7.png",
+        "english_title": "Exceed : Execution VI"
+      },
+      "masteryCore3": {
+        "title": "익시드 : 문라이트 슬래시 VI/오버맥시마이징 익시드",
+        "url": "/assets/hexaskill/DemonAvenger_8.png",
+        "english_title": "Exceed : Moonlight Slash VI/Over Maximising Exceed"
+      },
+      "masteryCore4": {
+        "title": "사우전드 소드 VI/인핸스드 익시드 VI",
+        "url": "/assets/hexaskill/DemonAvenger_9.png",
+        "english_title": "Thousand Swords VI/Enhanced Exceed VI"
+      },
+      "reinCore1": {
+        "title": "데몬 프렌지",
+        "url": "/assets/hexaskill/DemonAvenger_3.png",
+        "english_title": "Demon Frenzy"
+      },
+      "reinCore2": {
+        "title": "블러드 피스트",
+        "url": "/assets/hexaskill/DemonAvenger_4.png",
+        "english_title": "Blood Feast"
+      },
+      "reinCore3": {
+        "title": "디멘션 소드",
+        "url": "/assets/hexaskill/DemonAvenger_5.png",
+        "english_title": "Dimension Sword"
+      },
+      "reinCore4": {
+        "title": "레버넌트",
+        "url": "/assets/hexaskill/DemonAvenger_6.png",
+        "english_title": "Revenant"
+      },
+      "generalCore3": {
+        "title": "콜 마스테마 VI",
+        "url": "/assets/hexaskill/DemonAvenger_11.png",
+        "english_title": "Call Mastema VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 19,
+      "finalDamage2": 19
+    }
+  },
+  {
+    "key": "듀얼블레이드",
+    "name": "Dual Blade",
+    "slug": "dual_blade",
+    "main": "LUK",
+    "sub": "DEX",
+    "sub2": "STR",
+    "cores": {
+      "skillCore1": {
+        "title": "카르마 블레이드",
+        "url": "/assets/hexaskill/DualBlader_1.png",
+        "english_title": "Karma Blade"
+      },
+      "skillCore2": {
+        "title": "야마즈 디크리",
+        "url": "/assets/hexaskill/DualBlader_10.png",
+        "english_title": "Yamaz Decree"
+      },
+      "skillCore3": {
+        "title": "암영난참",
+        "url": "/assets/hexaskill/DualBlader_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "팬텀 블로우 VI",
+        "url": "/assets/hexaskill/DualBlader_2.png",
+        "english_title": "Phantom Blow VI"
+      },
+      "masteryCore2": {
+        "title": "아수라 VI",
+        "url": "/assets/hexaskill/DualBlader_7.png",
+        "english_title": "Asura VI"
+      },
+      "masteryCore3": {
+        "title": "히든 블레이드 VI/생자필멸",
+        "url": "/assets/hexaskill/DualBlader_8.png",
+        "english_title": "Hidden Blade VI/inevitable Death"
+      },
+      "masteryCore4": {
+        "title": "블레이드 퓨리 VI/써든레이드 VI",
+        "url": "/assets/hexaskill/DualBlader_9.png",
+        "english_title": "Blade Fury VI/Sudden Raid VI"
+      },
+      "reinCore1": {
+        "title": "블레이드 스톰",
+        "url": "/assets/hexaskill/DualBlader_3.png",
+        "english_title": "Blade Storm"
+      },
+      "reinCore2": {
+        "title": "카르마 퓨리",
+        "url": "/assets/hexaskill/DualBlader_4.png",
+        "english_title": "Karmic Fury"
+      },
+      "reinCore3": {
+        "title": "블레이드 토네이도",
+        "url": "/assets/hexaskill/DualBlader_5.png",
+        "english_title": "Blade Tornado"
+      },
+      "reinCore4": {
+        "title": "헌티드 엣지",
+        "url": "/assets/hexaskill/DualBlader_6.png",
+        "english_title": "Haunted Edge"
+      },
+      "generalCore3": {
+        "title": "얼티밋 다크 사이트 VI",
+        "url": "/assets/hexaskill/DualBlader_11.png",
+        "english_title": "HEXA Shadow Walker"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 41.264,
+      "finalDamage2": 42.4412
+    }
+  },
+  {
+    "key": "라라",
+    "name": "Lara",
+    "slug": "lara",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "새록새록 꽃누리",
+        "url": "/assets/hexaskill/Lara_1.png",
+        "english_title": "Blooming Flower World"
+      },
+      "skillCore2": {
+        "title": "안다미로",
+        "url": "/assets/hexaskill/Lara_10.png",
+        "english_title": "Andamiro"
+      },
+      "skillCore3": {
+        "title": "한아름 아우른 숨결",
+        "url": "/assets/hexaskill/Lara_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "정기 뿌리기 VI",
+        "url": "/assets/hexaskill/Lara_2.png",
+        "english_title": "Spirit Sprinkling VI"
+      },
+      "masteryCore2": {
+        "title": "용맥 분출 VI/분출 : 너울이는 강 VI/분출 : 돌개바람 VI/분출 : 해돋이 우물 VI",
+        "url": "/assets/hexaskill/Lara_7.png",
+        "english_title": "Dragon Vein Eruption VI/Eruption: Rippling River VI/Eruption: Whirlwind VI/Eruption: Sunrise Pond VI"
+      },
+      "masteryCore3": {
+        "title": "용맥 흡수 VI/흡수 : 강 웅덩이 물벼락 VI/흡수 : 소소리 바람 VI/흡수 : 햇빛 맹아리 VI",
+        "url": "/assets/hexaskill/Lara_8.png",
+        "english_title": "Dragon Vein Absorption VI/Absorption: River Puddle Shower Power VI/Absorption: Sound of Wind VI/Absorption: Sunlight Bud VI"
+      },
+      "masteryCore4": {
+        "title": "잠 깨우기 VI",
+        "url": "/assets/hexaskill/Lara_9.png",
+        "english_title": "Waking Up VI"
+      },
+      "reinCore1": {
+        "title": "큰 기지개",
+        "url": "/assets/hexaskill/Lara_3.png",
+        "english_title": "Elemental Explosion"
+      },
+      "reinCore2": {
+        "title": "해 강 산 바람",
+        "url": "/assets/hexaskill/Lara_4.png",
+        "english_title": "Nature's Wonders"
+      },
+      "reinCore3": {
+        "title": "용솟음치는 정기",
+        "url": "/assets/hexaskill/Lara_5.png",
+        "english_title": "Soaring Spirit"
+      },
+      "reinCore4": {
+        "title": "산등성이 굽이굽이",
+        "url": "/assets/hexaskill/Lara_6.png",
+        "english_title": "Meandering Ridge"
+      },
+      "generalCore3": {
+        "title": "화중군자 VI",
+        "url": "/assets/hexaskill/Lara_11.png",
+        "english_title": "Lotus VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 89.8,
+      "finalDamage2": 92.57
+    }
+  },
+  {
+    "key": "레테",
+    "name": "Lethe",
+    "slug": "lethe",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "오버로드 : 이터널 게이즈",
+        "url": "/assets/hexaskill/Lethe_1.png",
+        "english_title": "Skill 1"
+      },
+      "skillCore2": {
+        "title": "앱솔루트 레인",
+        "url": "/assets/hexaskill/Lethe_10.png",
+        "english_title": "Skill 2"
+      },
+      "skillCore3": {
+        "title": "보이드 오리진",
+        "url": "/assets/hexaskill/Lethe_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "임프린트 VI/이딕트 : 펠 스톰 VI",
+        "url": "/assets/hexaskill/Lethe_2.png",
+        "english_title": "Mastery 1"
+      },
+      "masteryCore2": {
+        "title": "인보크 : 바르가르 VI/이딕트 : 램페이지 VI",
+        "url": "/assets/hexaskill/Lethe_7.png",
+        "english_title": "Mastery 2"
+      },
+      "masteryCore3": {
+        "title": "인보크 : 템플러 VI/이딕트 : 템플러 아츠 VI",
+        "url": "/assets/hexaskill/Lethe_8.png",
+        "english_title": "Mastery 3"
+      },
+      "masteryCore4": {
+        "title": "임펠 VI/팩트 매니페스트",
+        "url": "/assets/hexaskill/Lethe_9.png",
+        "english_title": "Mastery 4"
+      },
+      "reinCore1": {
+        "title": "오버로드 : 템플러 온슬로트",
+        "url": "/assets/hexaskill/Lethe_3.png",
+        "english_title": "Boost 1"
+      },
+      "reinCore2": {
+        "title": "오버로드 : 바르가르 트라이던트",
+        "url": "/assets/hexaskill/Lethe_4.png",
+        "english_title": "Boost 2"
+      },
+      "reinCore3": {
+        "title": "인보크/오버로드 : 아즈라스",
+        "url": "/assets/hexaskill/Lethe_5.png",
+        "english_title": "Boost 3"
+      },
+      "reinCore4": {
+        "title": "체인 커맨드",
+        "url": "/assets/hexaskill/Lethe_6.png",
+        "english_title": "Boost 4"
+      },
+      "generalCore3": {
+        "title": "프라이멀 퓨리 VI",
+        "url": "/assets/hexaskill/Lethe_11.png",
+        "english_title": "Common 3"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 162.65954,
+      "finalDamage2": 162.65954
+    }
+  },
+  {
+    "key": "렌",
+    "name": "Ren",
+    "slug": "ren",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "창룡파천검 : 승천",
+        "url": "/assets/hexaskill/Len_1.png",
+        "english_title": "Blue Dragon Sword: Rising Wave"
+      },
+      "skillCore2": {
+        "title": "창룡파천검 : 일매낙화 천비인적",
+        "url": "/assets/hexaskill/Len_10.png",
+        "english_title": "Blue Dragon Sword : Falling Blossom, Flying Form"
+      },
+      "skillCore3": {
+        "title": "창룡파천검 : 만참",
+        "url": "/assets/hexaskill/Len_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "매화검 본초 : 선참 VI",
+        "url": "/assets/hexaskill/Len_2.png",
+        "english_title": "Plum Blossom Sword Base Form: First Slash VI"
+      },
+      "masteryCore2": {
+        "title": "망혼검 본초 : 영격 VI/망혼검 2초식 : 연참 VI",
+        "url": "/assets/hexaskill/Len_7.png",
+        "english_title": "Lost Soul Sword Base Form: Intercept VI/Lost Soul Sword 2nd Form: Chain Attack VI"
+      },
+      "masteryCore3": {
+        "title": "망혼강림 VI/망혼검 절기 : 열지 VI/망혼검 절기 : 망탄 VI/망혼검 절기 : 무량겁 VI",
+        "url": "/assets/hexaskill/Len_8.png",
+        "english_title": "Lost Soul Descent VI/Lost Soul Sword Supreme Skill: Earth Splitter VI/Lost Soul Sword Supreme Skill: Ruin Burst VI/Lost Soul Sword Supreme Skill: Boundless Devastation VI"
+      },
+      "masteryCore4": {
+        "title": "매화검 2초식 : 쇄매 VI/매화검 3초식 : 예인 VI",
+        "url": "/assets/hexaskill/Len_9.png",
+        "english_title": "Plum Blossom Sword 2nd Form: Deadly Petals VI/Plum Blossom Sword 3rd Form: Artful Blade VI"
+      },
+      "reinCore1": {
+        "title": "매화검 절기 : 만리향",
+        "url": "/assets/hexaskill/Len_3.png",
+        "english_title": "Plum Blossom Sword Supreme Skill: Thousand-Mile Fragrance"
+      },
+      "reinCore2": {
+        "title": "망혼각성",
+        "url": "/assets/hexaskill/Len_4.png",
+        "english_title": "Lost Soul Awakening"
+      },
+      "reinCore3": {
+        "title": "매화검 절기 : 섬무",
+        "url": "/assets/hexaskill/Len_5.png",
+        "english_title": "Plum Blossom Sword Supreme Skill: Concentrated Force"
+      },
+      "reinCore4": {
+        "title": "망혼검 절기 : 심검",
+        "url": "/assets/hexaskill/Len_6.png",
+        "english_title": "Lost Soul Sword Supreme Skill: Mind Blade"
+      },
+      "generalCore3": {
+        "title": "화중군자 VI",
+        "url": "/assets/hexaskill/Len_11.png",
+        "english_title": "Lotus VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 70.640855,
+      "finalDamage2": 72.17816
+    }
+  },
+  {
+    "key": "루미너스",
+    "name": "Luminous",
+    "slug": "luminous",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "하모닉 패러독스",
+        "url": "/assets/hexaskill/Luminous_1.png",
+        "english_title": "Harmonic Paradox"
+      },
+      "skillCore2": {
+        "title": "러스트러스 오브",
+        "url": "/assets/hexaskill/Luminous_10.png",
+        "english_title": "Lustrous Orb"
+      },
+      "skillCore3": {
+        "title": "앱솔루트 스페이스",
+        "url": "/assets/hexaskill/Luminous_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "앱솔루트 킬 VI",
+        "url": "/assets/hexaskill/Luminous_2.png",
+        "english_title": "Ender VI"
+      },
+      "masteryCore2": {
+        "title": "라이트 리플렉션 VI/엔드리스 다크니스",
+        "url": "/assets/hexaskill/Luminous_7.png",
+        "english_title": "Reflection VI/Endless Darkness"
+      },
+      "masteryCore3": {
+        "title": "아포칼립스 VI/이터널 라이트니스",
+        "url": "/assets/hexaskill/Luminous_8.png",
+        "english_title": "Apocalypse VI/Eternal Lightness"
+      },
+      "masteryCore4": {
+        "title": "트와일라잇 노바 VI",
+        "url": "/assets/hexaskill/Luminous_9.png",
+        "english_title": "Twilight Nova VI"
+      },
+      "reinCore1": {
+        "title": "진리의 문",
+        "url": "/assets/hexaskill/Luminous_3.png",
+        "english_title": "The Gate of Truth"
+      },
+      "reinCore2": {
+        "title": "퍼니싱 리소네이터",
+        "url": "/assets/hexaskill/Luminous_4.png",
+        "english_title": "Punishing Resonator"
+      },
+      "reinCore3": {
+        "title": "빛과 어둠의 세례",
+        "url": "/assets/hexaskill/Luminous_5.png",
+        "english_title": "Equinox Exorcism"
+      },
+      "reinCore4": {
+        "title": "리버레이션 오브",
+        "url": "/assets/hexaskill/Luminous_6.png",
+        "english_title": "Liberation Orb"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Luminous_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 88.94,
+      "finalDamage2": 91.7
+    }
+  },
+  {
+    "key": "메르세데스",
+    "name": "Mercedes",
+    "slug": "mercedes",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "언페이딩 글로리",
+        "url": "/assets/hexaskill/Mercedes_1.png",
+        "english_title": "Unfading Glory"
+      },
+      "skillCore2": {
+        "title": "엘리멘탈 스피릿",
+        "url": "/assets/hexaskill/Mercedes_10.png",
+        "english_title": "Elemental Spirit"
+      },
+      "skillCore3": {
+        "title": "베리안 서지",
+        "url": "/assets/hexaskill/Mercedes_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "이슈타르의 링 VI",
+        "url": "/assets/hexaskill/Mercedes_2.png",
+        "english_title": "Ishtar’s Ring VI"
+      },
+      "masteryCore2": {
+        "title": "리프 토네이도VI/레전드리 스피어 VI/래쓰 오브 엔릴VI",
+        "url": "/assets/hexaskill/Mercedes_7.png",
+        "english_title": "Leaf Tornado VI/Spikes Royale VI/Wrath of Enreal VI"
+      },
+      "masteryCore3": {
+        "title": "유니콘 스파이크 VI/거스트 다이브 VI/스트라이크 듀얼샷 VI",
+        "url": "/assets/hexaskill/Mercedes_8.png",
+        "english_title": "Unicorn Spike VI/Gust Dive VI/Stunning Strikes VI"
+      },
+      "masteryCore4": {
+        "title": "엘리멘탈 나이트 VI/파이널 어택 VI",
+        "url": "/assets/hexaskill/Mercedes_9.png",
+        "english_title": "Elemental Knights VI/Final Attack VI"
+      },
+      "reinCore1": {
+        "title": "엘리멘탈 고스트",
+        "url": "/assets/hexaskill/Mercedes_3.png",
+        "english_title": "Elemental Ghost"
+      },
+      "reinCore2": {
+        "title": "실피디아",
+        "url": "/assets/hexaskill/Mercedes_4.png",
+        "english_title": "Sylvidia"
+      },
+      "reinCore3": {
+        "title": "이르칼라의 숨결",
+        "url": "/assets/hexaskill/Mercedes_5.png",
+        "english_title": "Irkala's Breath"
+      },
+      "reinCore4": {
+        "title": "로얄 나이츠",
+        "url": "/assets/hexaskill/Mercedes_6.png",
+        "english_title": "Royal Rumble"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Mercedes_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 50.0642,
+      "finalDamage2": 51.3044
+    }
+  },
+  {
+    "key": "메카닉",
+    "name": "Mechanic",
+    "slug": "mechanic",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "그라운드 제로",
+        "url": "/assets/hexaskill/Mechanic_1.png",
+        "english_title": "Ground Zero"
+      },
+      "skillCore2": {
+        "title": "메탈아머 : 익스터미네이션",
+        "url": "/assets/hexaskill/Mechanic_10.png",
+        "english_title": "Metal Armor"
+      },
+      "skillCore3": {
+        "title": "버스터 스테이션",
+        "url": "/assets/hexaskill/Mechanic_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "매시브 파이어 : SPLASH-F VI/IRON-B VI",
+        "url": "/assets/hexaskill/Mechanic_2.png",
+        "english_title": "Massive Fire: SPLASH-F VI/IRON-B VI"
+      },
+      "masteryCore2": {
+        "title": "호밍 미사일 VI",
+        "url": "/assets/hexaskill/Mechanic_7.png",
+        "english_title": "Homing Missile VI"
+      },
+      "masteryCore3": {
+        "title": "디스토션 필드 VI",
+        "url": "/assets/hexaskill/Mechanic_8.png",
+        "english_title": "Distortion Field VI"
+      },
+      "masteryCore4": {
+        "title": "로봇 런처 : RM7 VI/마그네틱 필드 VI/로봇 팩토리 : RM1 VI",
+        "url": "/assets/hexaskill/Mechanic_9.png",
+        "english_title": "Robot Launcher: RM7 VI/Rock 'n Shock VI/Robo Factory: RM1 VI"
+      },
+      "reinCore1": {
+        "title": "멀티플 옵션 : M-FL",
+        "url": "/assets/hexaskill/Mechanic_3.png",
+        "english_title": "Multiple Options: M-FL"
+      },
+      "reinCore2": {
+        "title": "마이크로 미사일 컨테이너",
+        "url": "/assets/hexaskill/Mechanic_4.png",
+        "english_title": "Micro Missile Container"
+      },
+      "reinCore3": {
+        "title": "메탈아머 전탄발사",
+        "url": "/assets/hexaskill/Mechanic_5.png",
+        "english_title": "All Metal Armor Missile Launch"
+      },
+      "reinCore4": {
+        "title": "메카 캐리어",
+        "url": "/assets/hexaskill/Mechanic_6.png",
+        "english_title": "Mecha Carrier"
+      },
+      "generalCore3": {
+        "title": "레지스탕스 라인 인팬트리 VI",
+        "url": "/assets/hexaskill/Mechanic_11.png",
+        "english_title": "Resistance Line Infantry VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.5,
+      "finalDamage": 42,
+      "finalDamage2": 42
+    }
+  },
+  {
+    "key": "미하일",
+    "name": "Mihile",
+    "slug": "mihile",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "듀란달",
+        "url": "/assets/hexaskill/Mikhail_1.png",
+        "english_title": "Durandal"
+      },
+      "skillCore2": {
+        "title": "나이트 임모탈스",
+        "url": "/assets/hexaskill/Mikhail_10.png",
+        "english_title": "Knight Immortals"
+      },
+      "skillCore3": {
+        "title": "레디언스 오브 발러",
+        "url": "/assets/hexaskill/Mikhail_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "샤이닝 크로스 VI",
+        "url": "/assets/hexaskill/Mikhail_2.png",
+        "english_title": "Radiant Cross VI"
+      },
+      "masteryCore2": {
+        "title": "로얄 가드 VI",
+        "url": "/assets/hexaskill/Mikhail_7.png",
+        "english_title": "Royal Guard VI"
+      },
+      "masteryCore3": {
+        "title": "인스톨 실드 VI/데들리 차지 VI",
+        "url": "/assets/hexaskill/Mikhail_8.png",
+        "english_title": "Shield Installation VI/Deadly Charge VI"
+      },
+      "masteryCore4": {
+        "title": "오펜시브 디펜스 VI/파이널 어택 VI/소울 마제스티 VI",
+        "url": "/assets/hexaskill/Mikhail_9.png",
+        "english_title": "Offensive Defense VI/Final Attack VI/Soul Majesty VI"
+      },
+      "reinCore1": {
+        "title": "로 아이아스",
+        "url": "/assets/hexaskill/Mikhail_3.png",
+        "english_title": "Rho Aias"
+      },
+      "reinCore2": {
+        "title": "클라우 솔라스",
+        "url": "/assets/hexaskill/Mikhail_4.png",
+        "english_title": "Claimh Solais"
+      },
+      "reinCore3": {
+        "title": "소드 오브 소울 라이트",
+        "url": "/assets/hexaskill/Mikhail_5.png",
+        "english_title": "Sword of Soul Light"
+      },
+      "reinCore4": {
+        "title": "라이트 오브 커리지",
+        "url": "/assets/hexaskill/Mikhail_6.png",
+        "english_title": "Light of Courage"
+      },
+      "generalCore3": {
+        "title": "시그너스 팔랑크스 VI",
+        "url": "/assets/hexaskill/Mikhail_11.png",
+        "english_title": "Cygnus Phalanx VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.24,
+      "finalDamage": 87.5,
+      "finalDamage2": 89
+    }
+  },
+  {
+    "key": "바이퍼",
+    "name": "Buccaneer",
+    "slug": "buccaneer",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "리버레이트 넵투누스",
+        "url": "/assets/hexaskill/Viper_1.png",
+        "english_title": "Liberate Neptunes"
+      },
+      "skillCore2": {
+        "title": "헤이메이커",
+        "url": "/assets/hexaskill/Viper_10.png",
+        "english_title": "Haymaker"
+      },
+      "skillCore3": {
+        "title": "넵투누스 어드밴트",
+        "url": "/assets/hexaskill/Viper_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "피스트 인레이지 VI",
+        "url": "/assets/hexaskill/Viper_2.png",
+        "english_title": "Octopunch VI"
+      },
+      "masteryCore2": {
+        "title": "씨 서펜트 VI/씨 서펜트 인레이지VI/씨 서펜트 버스트VI/전함 노틸러스 VI",
+        "url": "/assets/hexaskill/Viper_7.png",
+        "english_title": "Sea Serpent VI/Sea Serpent Enrage VI/Sea Serpent Burst VI/Nautilus Strike VI"
+      },
+      "masteryCore3": {
+        "title": "서펜트 스톤 VI",
+        "url": "/assets/hexaskill/Viper_8.png",
+        "english_title": "Serpent Stone VI"
+      },
+      "masteryCore4": {
+        "title": "훅 봄버 VI",
+        "url": "/assets/hexaskill/Viper_9.png",
+        "english_title": "Hook Bomber VI"
+      },
+      "reinCore1": {
+        "title": "라이트닝 폼",
+        "url": "/assets/hexaskill/Viper_3.png",
+        "english_title": "Lightning Form"
+      },
+      "reinCore2": {
+        "title": "서펜트 스크류",
+        "url": "/assets/hexaskill/Viper_4.png",
+        "english_title": "Serpent Screw"
+      },
+      "reinCore3": {
+        "title": "퓨리어스 차지",
+        "url": "/assets/hexaskill/Viper_5.png",
+        "english_title": "Furious Charge"
+      },
+      "reinCore4": {
+        "title": "하울링 피스트",
+        "url": "/assets/hexaskill/Viper_6.png",
+        "english_title": "Howling Fist"
+      },
+      "generalCore3": {
+        "title": "파이렛 플래그 VI",
+        "url": "/assets/hexaskill/Viper_11.png",
+        "english_title": "Pirate Flag VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.7,
+      "finalDamage": 36.73,
+      "finalDamage2": 37.973
+    }
+  },
+  {
+    "key": "배틀메이지",
+    "name": "Battle Mage",
+    "slug": "battle_mage",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "크림슨 팩텀",
+        "url": "/assets/hexaskill/BattleMage_1.png",
+        "english_title": "Crimson Factum"
+      },
+      "skillCore2": {
+        "title": "글루미 오라",
+        "url": "/assets/hexaskill/BattleMage_10.png",
+        "english_title": "Gloomy Aura"
+      },
+      "skillCore3": {
+        "title": "모티스 엣지",
+        "url": "/assets/hexaskill/BattleMage_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "데스 VI",
+        "url": "/assets/hexaskill/BattleMage_2.png",
+        "english_title": "Death VI"
+      },
+      "masteryCore2": {
+        "title": "피니쉬 블로우 VI/배틀킹 바 VI",
+        "url": "/assets/hexaskill/BattleMage_7.png",
+        "english_title": "Finishing Blow VI/Battle King Bar VI"
+      },
+      "masteryCore3": {
+        "title": "다크 라이트닝 VI",
+        "url": "/assets/hexaskill/BattleMage_8.png",
+        "english_title": "Dark Shock VI"
+      },
+      "masteryCore4": {
+        "title": "다크 제네시스 VI",
+        "url": "/assets/hexaskill/BattleMage_9.png",
+        "english_title": "Dark Genesis VI"
+      },
+      "reinCore1": {
+        "title": "유니온 오라",
+        "url": "/assets/hexaskill/BattleMage_3.png",
+        "english_title": "Union Aura"
+      },
+      "reinCore2": {
+        "title": "블랙 매직 알터",
+        "url": "/assets/hexaskill/BattleMage_4.png",
+        "english_title": "Black Magic Altar"
+      },
+      "reinCore3": {
+        "title": "그림 리퍼",
+        "url": "/assets/hexaskill/BattleMage_5.png",
+        "english_title": "Grim Reaper"
+      },
+      "reinCore4": {
+        "title": "어비셜 라이트닝",
+        "url": "/assets/hexaskill/BattleMage_6.png",
+        "english_title": "Abyssal Lightning"
+      },
+      "generalCore3": {
+        "title": "레지스탕스 라인 인팬트리 VI",
+        "url": "/assets/hexaskill/BattleMage_11.png",
+        "english_title": "Resistance Line Infantry VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 58.6,
+      "finalDamage2": 59.9
+    }
+  },
+  {
+    "key": "보우마스터",
+    "name": "Bowmaster",
+    "slug": "bowmaster",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "어센던트 셰이드",
+        "url": "/assets/hexaskill/Bowmaster_1.png",
+        "english_title": "Ascendent Shade"
+      },
+      "skillCore2": {
+        "title": "포인트 제로",
+        "url": "/assets/hexaskill/Bowmaster_10.png",
+        "english_title": "Point Zero"
+      },
+      "skillCore3": {
+        "title": "아이 오브 아퀼라",
+        "url": "/assets/hexaskill/Bowmaster_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "폭풍의 시 VI",
+        "url": "/assets/hexaskill/Bowmaster_2.png",
+        "english_title": "Hurricane VI"
+      },
+      "masteryCore2": {
+        "title": "애로우 플래터 VI/언카운터블 애로우 VI",
+        "url": "/assets/hexaskill/Bowmaster_7.png",
+        "english_title": "Arrow Platter VI/Uncountable Arrow VI"
+      },
+      "masteryCore3": {
+        "title": "퀴버 카트리지 VI/피닉스 VI/엑스트라 퀴버 카트리지",
+        "url": "/assets/hexaskill/Bowmaster_8.png",
+        "english_title": "Quiver Cartridge VI/Phoenix VI/Extra Quiver Cartridge"
+      },
+      "masteryCore4": {
+        "title": "플레시 미라주 VI/윈드 오브 프레이 VI",
+        "url": "/assets/hexaskill/Bowmaster_9.png",
+        "english_title": "Flash Mirage VI/Wind of Fray VI"
+      },
+      "reinCore1": {
+        "title": "애로우 레인",
+        "url": "/assets/hexaskill/Bowmaster_3.png",
+        "english_title": "Arrow Rain"
+      },
+      "reinCore2": {
+        "title": "잔영의 시",
+        "url": "/assets/hexaskill/Bowmaster_4.png",
+        "english_title": "Illusionary Shot"
+      },
+      "reinCore3": {
+        "title": "퀴버 풀버스트",
+        "url": "/assets/hexaskill/Bowmaster_5.png",
+        "english_title": "Full Burst Quiver"
+      },
+      "reinCore4": {
+        "title": "실루엣 미라주",
+        "url": "/assets/hexaskill/Bowmaster_6.png",
+        "english_title": "Silhouette Mirage"
+      },
+      "generalCore3": {
+        "title": "이볼브 VI",
+        "url": "/assets/hexaskill/Bowmaster_11.png",
+        "english_title": "Avian Awakening VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 61.226,
+      "finalDamage2": 62.604
+    }
+  },
+  {
+    "key": "블래스터",
+    "name": "Blaster",
+    "slug": "blaster",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "파이널 디스트로이어",
+        "url": "/assets/hexaskill/Blaster_1.png",
+        "english_title": "Final Destroyer"
+      },
+      "skillCore2": {
+        "title": "뱅가드 임팩트",
+        "url": "/assets/hexaskill/Blaster_10.png",
+        "english_title": "Vanguard Impact"
+      },
+      "skillCore3": {
+        "title": "오버히트 펀치",
+        "url": "/assets/hexaskill/Blaster_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "매그넘 펀치 VI/더블 팡 VI",
+        "url": "/assets/hexaskill/Blaster_2.png",
+        "english_title": "Magnum Drive VI/Double Drive VI"
+      },
+      "masteryCore2": {
+        "title": "릴리즈 파일 벙커 VI",
+        "url": "/assets/hexaskill/Blaster_7.png",
+        "english_title": "Release Pile Bunker VI"
+      },
+      "masteryCore3": {
+        "title": "리볼빙 캐논 마스터리 VI/해머 스매시 VI/쇼크 웨이브 펀치 VI",
+        "url": "/assets/hexaskill/Blaster_8.png",
+        "english_title": "Overheat VI/Charging Arm: Smash VI/Shockwave Drive VI"
+      },
+      "masteryCore4": {
+        "title": "리볼빙 캐논 VI/허리케인 믹서 VI",
+        "url": "/assets/hexaskill/Blaster_9.png",
+        "english_title": "Revolving Gauntlet VI/Hurricane Blaster VI"
+      },
+      "reinCore1": {
+        "title": "벙커 버스터",
+        "url": "/assets/hexaskill/Blaster_3.png",
+        "english_title": "Bunker Buster"
+      },
+      "reinCore2": {
+        "title": "발칸 펀치",
+        "url": "/assets/hexaskill/Blaster_4.png",
+        "english_title": "Vulcan Punch"
+      },
+      "reinCore3": {
+        "title": "버닝 브레이커",
+        "url": "/assets/hexaskill/Blaster_5.png",
+        "english_title": "Burning Breaker"
+      },
+      "reinCore4": {
+        "title": "애프터이미지 쇼크",
+        "url": "/assets/hexaskill/Blaster_6.png",
+        "english_title": "Phantasmal Wave"
+      },
+      "generalCore3": {
+        "title": "레지스탕스 라인 인팬트리 VI",
+        "url": "/assets/hexaskill/Blaster_11.png",
+        "english_title": "Resistance Line Infantry VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.7,
+      "finalDamage": 89.2,
+      "finalDamage2": 89.2
+    }
+  },
+  {
+    "key": "비숍",
+    "name": "Bishop",
+    "slug": "bishop",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "홀리 어드밴트",
+        "url": "/assets/hexaskill/Bishop_1.png",
+        "english_title": "Holy Advent"
+      },
+      "skillCore2": {
+        "title": "커맨드 오브 헤븐",
+        "url": "/assets/hexaskill/Bishop_10.png",
+        "english_title": "Command of Heaven"
+      },
+      "skillCore3": {
+        "title": "엔젤스 플레지",
+        "url": "/assets/hexaskill/Bishop_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "엔젤레이 VI",
+        "url": "/assets/hexaskill/Bishop_2.png",
+        "english_title": "Angel Ray VI"
+      },
+      "masteryCore2": {
+        "title": "트라이엄프 페더 VI",
+        "url": "/assets/hexaskill/Bishop_7.png",
+        "english_title": "Big Bang VI/Triumph Feather VI"
+      },
+      "masteryCore3": {
+        "title": "엔젤릭 터치 VI/파운틴 포 엔젤 VI/바하뮤트 VI",
+        "url": "/assets/hexaskill/Bishop_8.png",
+        "english_title": "Angelic Touch VI/Fountain for Angel VI/Bahamut VI"
+      },
+      "masteryCore4": {
+        "title": "제네시스 VI/헤븐즈 도어 VI",
+        "url": "/assets/hexaskill/Bishop_9.png",
+        "english_title": "Genesis VI/Heaven's Door VI"
+      },
+      "reinCore1": {
+        "title": "프레이",
+        "url": "/assets/hexaskill/Bishop_3.png",
+        "english_title": "Pray"
+      },
+      "reinCore2": {
+        "title": "엔젤 오브 리브라",
+        "url": "/assets/hexaskill/Bishop_4.png",
+        "english_title": "Angel of Libra"
+      },
+      "reinCore3": {
+        "title": "피스메이커",
+        "url": "/assets/hexaskill/Bishop_5.png",
+        "english_title": "Peacemaker"
+      },
+      "reinCore4": {
+        "title": "디바인 퍼니시먼트",
+        "url": "/assets/hexaskill/Bishop_6.png",
+        "english_title": "Divine Punishment"
+      },
+      "generalCore3": {
+        "title": "아르카나 오버라이드 VI",
+        "url": "/assets/hexaskill/Bishop_11.png",
+        "english_title": "Arcana Override VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 203.1743,
+      "finalDamage2": 203.1743
+    }
+  },
+  {
+    "key": "섀도어",
+    "name": "Shadower",
+    "slug": "shadower",
+    "main": "LUK",
+    "sub": "DEX",
+    "sub2": "STR",
+    "cores": {
+      "skillCore1": {
+        "title": "일도양단",
+        "url": "/assets/hexaskill/Shadower_1.png",
+        "english_title": "Halve Cut"
+      },
+      "skillCore2": {
+        "title": "어센틱 다크니스",
+        "url": "/assets/hexaskill/Shadower_10.png",
+        "english_title": "Covetous Darkness"
+      },
+      "skillCore3": {
+        "title": "무아지경",
+        "url": "/assets/hexaskill/Shadower_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "암살 VI",
+        "url": "/assets/hexaskill/Shadower_2.png",
+        "english_title": "Assassinate VI"
+      },
+      "masteryCore2": {
+        "title": "메소 익스플로젼 VI",
+        "url": "/assets/hexaskill/Shadower_7.png",
+        "english_title": "Meso Explosion VI"
+      },
+      "masteryCore3": {
+        "title": "다크 플레어 VI/크루얼 스탭 VI",
+        "url": "/assets/hexaskill/Shadower_8.png",
+        "english_title": "Dark Flare VI/Cruel Stab VI"
+      },
+      "masteryCore4": {
+        "title": "써든 레이드 VI/베일 오브 섀도우 VI/커버트 쉐도우",
+        "url": "/assets/hexaskill/Shadower_9.png",
+        "english_title": "Sudden Raid VI/Shadow Veil VI/Coveted Shadow"
+      },
+      "reinCore1": {
+        "title": "쉐도우 어썰트",
+        "url": "/assets/hexaskill/Shadower_3.png",
+        "english_title": "Shadow Assault"
+      },
+      "reinCore2": {
+        "title": "절개",
+        "url": "/assets/hexaskill/Shadower_4.png",
+        "english_title": "Eviscerate"
+      },
+      "reinCore3": {
+        "title": "소닉 블로우",
+        "url": "/assets/hexaskill/Shadower_5.png",
+        "english_title": "Sonic Blow"
+      },
+      "reinCore4": {
+        "title": "멸귀참영진",
+        "url": "/assets/hexaskill/Shadower_6.png",
+        "english_title": "72 Transformations"
+      },
+      "generalCore3": {
+        "title": "얼티밋 다크 사이트 VI",
+        "url": "/assets/hexaskill/Shadower_11.png",
+        "english_title": "HEXA Shadow Walker"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 58.1372,
+      "finalDamage2": 58.1372
+    }
+  },
+  {
+    "key": "소울마스터",
+    "name": "Dawn Warrior",
+    "slug": "dawn_warrior",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "아스트랄 블리츠",
+        "url": "/assets/hexaskill/SoulMaster_1.png",
+        "english_title": "Astral Blitz"
+      },
+      "skillCore2": {
+        "title": "토탈리티",
+        "url": "/assets/hexaskill/SoulMaster_10.png",
+        "english_title": "Totality"
+      },
+      "skillCore3": {
+        "title": "셀레스티얼 클리브",
+        "url": "/assets/hexaskill/SoulMaster_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "솔라 슬래시 VI/루나 디바이드 VI",
+        "url": "/assets/hexaskill/SoulMaster_2.png",
+        "english_title": "Solar Slash VI/Lunar Divide VI"
+      },
+      "masteryCore2": {
+        "title": "코스믹 샤워 VI",
+        "url": "/assets/hexaskill/SoulMaster_7.png",
+        "english_title": "Cosmic Shower VI"
+      },
+      "masteryCore3": {
+        "title": "코스믹 버스트 VI",
+        "url": "/assets/hexaskill/SoulMaster_8.png",
+        "english_title": "Cosmic Burst VI"
+      },
+      "masteryCore4": {
+        "title": "솔루나 슬래시 VI/솔루나 파워 II",
+        "url": "/assets/hexaskill/SoulMaster_9.png",
+        "english_title": "Soluna's Slash VI/Soluna Power II"
+      },
+      "reinCore1": {
+        "title": "코스모스",
+        "url": "/assets/hexaskill/SoulMaster_3.png",
+        "english_title": "Cosmos"
+      },
+      "reinCore2": {
+        "title": "엘리시온",
+        "url": "/assets/hexaskill/SoulMaster_4.png",
+        "english_title": "Elysion"
+      },
+      "reinCore3": {
+        "title": "소울 이클립스",
+        "url": "/assets/hexaskill/SoulMaster_5.png",
+        "english_title": "Soul Eclipse"
+      },
+      "reinCore4": {
+        "title": "플레어 슬래시",
+        "url": "/assets/hexaskill/SoulMaster_6.png",
+        "english_title": "Solar Slash"
+      },
+      "generalCore3": {
+        "title": "시그너스 팔랑크스 VI",
+        "url": "/assets/hexaskill/SoulMaster_11.png",
+        "english_title": "Cygnus Phalanx VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.34,
+      "finalDamage": 46.25,
+      "finalDamage2": 46.25
+    }
+  },
+  {
+    "key": "스트라이커",
+    "name": "Thunder Breaker",
+    "slug": "thunder_breaker",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "뇌명벽해파",
+        "url": "/assets/hexaskill/Striker_1.png",
+        "english_title": "Thunderstorm Sea Wave"
+      },
+      "skillCore2": {
+        "title": "질도섬멸",
+        "url": "/assets/hexaskill/Striker_10.png",
+        "english_title": "Wave of Destruction"
+      },
+      "skillCore3": {
+        "title": "해황폭쇄",
+        "url": "/assets/hexaskill/Striker_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "섬멸 VI",
+        "url": "/assets/hexaskill/Striker_2.png",
+        "english_title": "Annihilation VI/Lightning Strike"
+      },
+      "masteryCore2": {
+        "title": "벽력 VI",
+        "url": "/assets/hexaskill/Striker_7.png",
+        "english_title": "Bolt Anchor VI"
+      },
+      "masteryCore3": {
+        "title": "태풍 VI/해신강림 VI",
+        "url": "/assets/hexaskill/Striker_8.png",
+        "english_title": "Advanced Whirlwind VI/Tidal Wave VI"
+      },
+      "masteryCore4": {
+        "title": "해파 VI/해신강체",
+        "url": "/assets/hexaskill/Striker_9.png",
+        "english_title": "Sea Wave VI/Shield of the Sea God"
+      },
+      "reinCore1": {
+        "title": "신뇌합일",
+        "url": "/assets/hexaskill/Striker_3.png",
+        "english_title": "Lightning in Unity"
+      },
+      "reinCore2": {
+        "title": "교아탄",
+        "url": "/assets/hexaskill/Striker_4.png",
+        "english_title": "Shark Missile"
+      },
+      "reinCore3": {
+        "title": "뇌신창격",
+        "url": "/assets/hexaskill/Striker_5.png",
+        "english_title": "Blitz Lance Attack"
+      },
+      "reinCore4": {
+        "title": "창뇌연격",
+        "url": "/assets/hexaskill/Striker_6.png",
+        "english_title": "Relentless Fury"
+      },
+      "generalCore3": {
+        "title": "시그너스 팔랑크스 VI",
+        "url": "/assets/hexaskill/Striker_11.png",
+        "english_title": "Cygnus Phalanx VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.7,
+      "finalDamage": 26.26,
+      "finalDamage2": 27.33
+    }
+  },
+  {
+    "key": "신궁",
+    "name": "Marksman",
+    "slug": "marksman",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "파이널 에임",
+        "url": "/assets/hexaskill/Marksman_1.png",
+        "english_title": "Final Aim"
+      },
+      "skillCore2": {
+        "title": "페이탈 트리거",
+        "url": "/assets/hexaskill/Marksman_10.png",
+        "english_title": "Final Trigger"
+      },
+      "skillCore3": {
+        "title": "리썰 퍼니셔",
+        "url": "/assets/hexaskill/Marksman_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "스나이핑 VI",
+        "url": "/assets/hexaskill/Marksman_2.png",
+        "english_title": "Snipe VI"
+      },
+      "masteryCore2": {
+        "title": "피어싱 VI",
+        "url": "/assets/hexaskill/Marksman_7.png",
+        "english_title": "Piercing VI"
+      },
+      "masteryCore3": {
+        "title": "프리져 VI/볼트 스위프트 VI",
+        "url": "/assets/hexaskill/Marksman_8.png",
+        "english_title": "Frostprey VI/Bolt Flash VI"
+      },
+      "masteryCore4": {
+        "title": "파이널 어택 VI/롱 레인지 트루샷 VI",
+        "url": "/assets/hexaskill/Marksman_9.png",
+        "english_title": "Final Attack VI/Long Range True Shot VI"
+      },
+      "reinCore1": {
+        "title": "트루 스나이핑",
+        "url": "/assets/hexaskill/Marksman_3.png",
+        "english_title": "True Snipe"
+      },
+      "reinCore2": {
+        "title": "스플릿 애로우",
+        "url": "/assets/hexaskill/Marksman_4.png",
+        "english_title": "Split Arrow"
+      },
+      "reinCore3": {
+        "title": "차지드 애로우",
+        "url": "/assets/hexaskill/Marksman_5.png",
+        "english_title": "Charged Arrow"
+      },
+      "reinCore4": {
+        "title": "리피팅 크로스보우 카트리지",
+        "url": "/assets/hexaskill/Marksman_6.png",
+        "english_title": "Piercing Cartridge"
+      },
+      "generalCore3": {
+        "title": "이볼브 VI",
+        "url": "/assets/hexaskill/Marksman_11.png",
+        "english_title": "Avian Awakening VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.35,
+      "finalDamage": 71.38304,
+      "finalDamage2": 74.3768
+    }
+  },
+  {
+    "key": "아델",
+    "name": "Adele",
+    "slug": "adele",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "마에스트로",
+        "url": "/assets/hexaskill/Adele_1.png",
+        "english_title": "Maestro"
+      },
+      "skillCore2": {
+        "title": "아인하이트",
+        "url": "/assets/hexaskill/Adele_10.png",
+        "english_title": "Einheit"
+      },
+      "skillCore3": {
+        "title": "에테르 뤼페",
+        "url": "/assets/hexaskill/Adele_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "디바이드 VI/샤드 VI/원더 VI",
+        "url": "/assets/hexaskill/Adele_2.png",
+        "english_title": "Divide VI/Shard VI/Wonder VI"
+      },
+      "masteryCore2": {
+        "title": "오더 VI/트레드 VI",
+        "url": "/assets/hexaskill/Adele_7.png",
+        "english_title": "Order VI/Tread VI"
+      },
+      "masteryCore3": {
+        "title": "임페일 VI/레조넌스 VI/게더링 VI/블로섬 VI",
+        "url": "/assets/hexaskill/Adele_8.png",
+        "english_title": "Impale VI/Resonance VI/Gathering VI/Blossom VI"
+      },
+      "masteryCore4": {
+        "title": "크리에이션 VI/테리토리 VI/마커 VI",
+        "url": "/assets/hexaskill/Adele_9.png",
+        "english_title": "Creation VI/Territory VI/Marker VI"
+      },
+      "reinCore1": {
+        "title": "루인",
+        "url": "/assets/hexaskill/Adele_3.png",
+        "english_title": "Ruin"
+      },
+      "reinCore2": {
+        "title": "인피니트",
+        "url": "/assets/hexaskill/Adele_4.png",
+        "english_title": "Infinite"
+      },
+      "reinCore3": {
+        "title": "리스토어",
+        "url": "/assets/hexaskill/Adele_5.png",
+        "english_title": "Restore"
+      },
+      "reinCore4": {
+        "title": "스톰",
+        "url": "/assets/hexaskill/Adele_6.png",
+        "english_title": "Storm"
+      },
+      "generalCore3": {
+        "title": "매직 서킷 풀드라이브 VI",
+        "url": "/assets/hexaskill/Adele_11.png",
+        "english_title": "Magic Circuit Full Drive VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 68.597,
+      "finalDamage2": 69.884
+    }
+  },
+  {
+    "key": "아란",
+    "name": "Aran",
+    "slug": "aran",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "엔드 게임",
+        "url": "/assets/hexaskill/Aran_1.png",
+        "english_title": "Endgame"
+      },
+      "skillCore2": {
+        "title": "프로스트 블러스터",
+        "url": "/assets/hexaskill/Aran_10.png",
+        "english_title": "Frost Bluster"
+      },
+      "skillCore3": {
+        "title": "마하 언리시드",
+        "url": "/assets/hexaskill/Aran_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "비욘더 VI",
+        "url": "/assets/hexaskill/Aran_2.png",
+        "english_title": "Beyond Blade VI"
+      },
+      "masteryCore2": {
+        "title": "부스트 엔드-헌터즈 타겟팅 VI",
+        "url": "/assets/hexaskill/Aran_7.png",
+        "english_title": "Finisher - Hunter's Targeting VI"
+      },
+      "masteryCore3": {
+        "title": "하이퍼 부스트 엔드-라스트 스탠드 VI",
+        "url": "/assets/hexaskill/Aran_8.png",
+        "english_title": "Hyper Boost End - Last Stand VI"
+      },
+      "masteryCore4": {
+        "title": "프로즌 그라운드 VI/아드레날린 맥시멈 VI/파이널 어택 VI",
+        "url": "/assets/hexaskill/Aran_9.png",
+        "english_title": "Frozen Ground VI/Adrenaline Maximum VI/Final Attack VI"
+      },
+      "reinCore1": {
+        "title": "부스트 엔드-아드레날린 서지",
+        "url": "/assets/hexaskill/Aran_3.png",
+        "english_title": "Boost End - Adrenaline Surge"
+      },
+      "reinCore2": {
+        "title": "브랜디쉬 마하",
+        "url": "/assets/hexaskill/Aran_4.png",
+        "english_title": "Brandish Maha"
+      },
+      "reinCore3": {
+        "title": "파이널 비욘더-백호",
+        "url": "/assets/hexaskill/Aran_5.png",
+        "english_title": "Final Beyond Blade - White Tiger"
+      },
+      "reinCore4": {
+        "title": "블리자드 템페스트",
+        "url": "/assets/hexaskill/Aran_6.png",
+        "english_title": "Blizzard Tempest"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Aran_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.49,
+      "finalDamage": 34.2,
+      "finalDamage2": 34.2
+    }
+  },
+  {
+    "key": "아크",
+    "name": "Ark",
+    "slug": "ark",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "가장 오래된 심연",
+        "url": "/assets/hexaskill/Ark_1.png",
+        "english_title": "Ancient Abyss"
+      },
+      "skillCore2": {
+        "title": "절대 심연의 속삭임",
+        "url": "/assets/hexaskill/Ark_10.png",
+        "english_title": "Whispers of the Abyss"
+      },
+      "skillCore3": {
+        "title": "원초의 격류",
+        "url": "/assets/hexaskill/Ark_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "차지드라이브 VI",
+        "url": "/assets/hexaskill/Ark_2.png",
+        "english_title": "Plain Charge Drive VI/Scarlet Charge Drive VI/Gust Charge Drive VI/Abyss Charge Drive VI/Awaken Abyss"
+      },
+      "masteryCore2": {
+        "title": "지워지지 않는 상처 VI/채워지지 않는 굶주림 VI/걷잡을 수 없는 혼돈 VI",
+        "url": "/assets/hexaskill/Ark_7.png",
+        "english_title": "Unfading Scar VI/Endless Hunger VI/Uncontrollable Chaos VI"
+      },
+      "masteryCore3": {
+        "title": "돌아오는 증오 VI/황홀한 구속 VI/끝없는 고통 VI",
+        "url": "/assets/hexaskill/Ark_8.png",
+        "english_title": "Returning Hatred VI/Entrancing Confinement VI/Endless Torment VI"
+      },
+      "masteryCore4": {
+        "title": "잊혀지지 않는 악몽 VI/잊혀지지 않는 흉몽 VI",
+        "url": "/assets/hexaskill/Ark_9.png",
+        "english_title": "Unforgettable Nightmare VI/Unforgettable Ominous Dream VI"
+      },
+      "reinCore1": {
+        "title": "근원의 기억",
+        "url": "/assets/hexaskill/Ark_3.png",
+        "english_title": "Memory of the Root"
+      },
+      "reinCore2": {
+        "title": "인피니티 스펠",
+        "url": "/assets/hexaskill/Ark_4.png",
+        "english_title": "Infinity Spell"
+      },
+      "reinCore3": {
+        "title": "새어 나오는 악몽/새어 나오는 흉몽",
+        "url": "/assets/hexaskill/Ark_5.png",
+        "english_title": "Released Nightmare/Released Ominous Dream"
+      },
+      "reinCore4": {
+        "title": "영원히 굶주리는 짐승",
+        "url": "/assets/hexaskill/Ark_6.png",
+        "english_title": "Ravenous Beast"
+      },
+      "generalCore3": {
+        "title": "매직 서킷 풀드라이브 VI",
+        "url": "/assets/hexaskill/Ark_11.png",
+        "english_title": "Magic Circuit Full Drive VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.7,
+      "finalDamage": 42.296,
+      "finalDamage2": 43.472
+    }
+  },
+  {
+    "key": "아크메이지(불,독)",
+    "name": "Fire Poison",
+    "slug": "fire_poison",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "인페르날 베놈",
+        "url": "/assets/hexaskill/ArchMageFP_1.png",
+        "english_title": "Infernal Venom"
+      },
+      "skillCore2": {
+        "title": "토렌셜 플레임",
+        "url": "/assets/hexaskill/ArchMageFP_10.png",
+        "english_title": "Torrential Flame"
+      },
+      "skillCore3": {
+        "title": "인페르날 웨이브",
+        "url": "/assets/hexaskill/ArchMageFP_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "플레임 스윕 VI",
+        "url": "/assets/hexaskill/ArchMageFP_2.png",
+        "english_title": "Flame Sweep VI"
+      },
+      "masteryCore2": {
+        "title": "플레임 헤이즈 VI/미스트 이럽션 VI",
+        "url": "/assets/hexaskill/ArchMageFP_7.png",
+        "english_title": "Flame Haze VI/Mist Eruption VI"
+      },
+      "masteryCore3": {
+        "title": "이그나이트 VI/이프리트 VI/파이어 오라 VI",
+        "url": "/assets/hexaskill/ArchMageFP_8.png",
+        "english_title": "Ignite VI/Ifrit VI/Fire Aura VI"
+      },
+      "masteryCore4": {
+        "title": "포이즌 리젼 VI/메테오 VI/메기도 플레임 VI",
+        "url": "/assets/hexaskill/ArchMageFP_9.png",
+        "english_title": "Poison Region VI/Meteor VI/Megido Flame VI"
+      },
+      "reinCore1": {
+        "title": "도트 퍼니셔",
+        "url": "/assets/hexaskill/ArchMageFP_3.png",
+        "english_title": "DoT Punisher"
+      },
+      "reinCore2": {
+        "title": "포이즌 노바",
+        "url": "/assets/hexaskill/ArchMageFP_4.png",
+        "english_title": "Poison Nova"
+      },
+      "reinCore3": {
+        "title": "퓨리 오브 이프리트",
+        "url": "/assets/hexaskill/ArchMageFP_5.png",
+        "english_title": "Ifrit's Fiery Anger"
+      },
+      "reinCore4": {
+        "title": "포이즌 체인",
+        "url": "/assets/hexaskill/ArchMageFP_6.png",
+        "english_title": "Poison Pandemic"
+      },
+      "generalCore3": {
+        "title": "아르카나 오버라이드 VI",
+        "url": "/assets/hexaskill/ArchMageFP_11.png",
+        "english_title": "Arcana Override VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 167.4,
+      "finalDamage2": 167.4
+    }
+  },
+  {
+    "key": "아크메이지(썬,콜)",
+    "name": "Ice Lightning",
+    "slug": "ice_lightning",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "프로즌 라이트닝",
+        "url": "/assets/hexaskill/ArchMageTC_1.png",
+        "english_title": "Frozen Lightning"
+      },
+      "skillCore2": {
+        "title": "파라볼릭 볼트",
+        "url": "/assets/hexaskill/ArchMageTC_10.png",
+        "english_title": "Parabolic Bolt"
+      },
+      "skillCore3": {
+        "title": "서브제로 퍼미네이션",
+        "url": "/assets/hexaskill/ArchMageTC_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "체인 라이트닝 VI",
+        "url": "/assets/hexaskill/ArchMageTC_2.png",
+        "english_title": "Chain Lightning VI"
+      },
+      "masteryCore2": {
+        "title": "프로즌 오브 VI/블리자드 VI",
+        "url": "/assets/hexaskill/ArchMageTC_7.png",
+        "english_title": "Frozen Orb VI/Blizzard VI"
+      },
+      "masteryCore3": {
+        "title": "라이트닝 스피어 VI/크라이오 쇼크",
+        "url": "/assets/hexaskill/ArchMageTC_8.png",
+        "english_title": "Lightning Sphere VI/Cryo Shock"
+      },
+      "masteryCore4": {
+        "title": "썬더 스피어 VI/엘퀴네스 VI",
+        "url": "/assets/hexaskill/ArchMageTC_9.png",
+        "english_title": "Thunder Sphere VI/Elquines VI"
+      },
+      "reinCore1": {
+        "title": "프로스트 아크",
+        "url": "/assets/hexaskill/ArchMageTC_3.png",
+        "english_title": "Frost Ark"
+      },
+      "reinCore2": {
+        "title": "썬더 브레이크",
+        "url": "/assets/hexaskill/ArchMageTC_4.png",
+        "english_title": "Thunder Break"
+      },
+      "reinCore3": {
+        "title": "스피릿 오브 스노우",
+        "url": "/assets/hexaskill/ArchMageTC_5.png",
+        "english_title": "Snow's Cold Embrace"
+      },
+      "reinCore4": {
+        "title": "주피터 썬더",
+        "url": "/assets/hexaskill/ArchMageTC_6.png",
+        "english_title": "Jupiter Thunder"
+      },
+      "generalCore3": {
+        "title": "아르카나 오버라이드 VI",
+        "url": "/assets/hexaskill/ArchMageTC_11.png",
+        "english_title": "Arcana Override VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 167.4,
+      "finalDamage2": 167.4
+    }
+  },
+  {
+    "key": "에반",
+    "name": "Evan",
+    "slug": "evan",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "조디악 버스트",
+        "url": "/assets/hexaskill/Evan_1.png",
+        "english_title": "Zodiac Burst"
+      },
+      "skillCore2": {
+        "title": "유니온 드라이브",
+        "url": "/assets/hexaskill/Evan_10.png",
+        "english_title": "Union Drive"
+      },
+      "skillCore3": {
+        "title": "드래곤 소어/버티컬 피니셔/소어-돌아와!",
+        "url": "/assets/hexaskill/Evan_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "서클 오브 마나 VI",
+        "url": "/assets/hexaskill/Evan_2.png",
+        "english_title": "Circle of Mana VI"
+      },
+      "masteryCore2": {
+        "title": "드래곤 스위프트 VI/서클 오브 썬더 VI/스위프트 오브 썬더 VI/스위프트 오브 윈드 VI",
+        "url": "/assets/hexaskill/Evan_7.png",
+        "english_title": "Dragon Swift VI/Circle of Thunder VI/Swift of Thunder VI/Swift of Wind VI"
+      },
+      "masteryCore3": {
+        "title": "드래곤 다이브 VI/다이브 오브 썬더 VI/서클 오브 어스 VI/다이브 오브 어스 VI",
+        "url": "/assets/hexaskill/Evan_8.png",
+        "english_title": "Dragon Dive VI/Dive of Thunder VI/Circle of Earth VI/Dive of Earth VI"
+      },
+      "masteryCore4": {
+        "title": "서클 오브 윈드 VI/드래곤 스파킹 VI/마법 잔해 VI/드래곤 브레스 VI/브레스 오브 어스 VI/브레스 오브 윈드 VI",
+        "url": "/assets/hexaskill/Evan_9.png",
+        "english_title": "Circle of Wind VI/Dragon Spark VI/Magical Residue VI/Dragon Breath VI/Breath of Earth VI/Breath of Wind VI"
+      },
+      "reinCore1": {
+        "title": "엘리멘탈 블래스트",
+        "url": "/assets/hexaskill/Evan_3.png",
+        "english_title": "Elemental Blast"
+      },
+      "reinCore2": {
+        "title": "드래곤 브레이크",
+        "url": "/assets/hexaskill/Evan_4.png",
+        "english_title": "Dragon Break"
+      },
+      "reinCore3": {
+        "title": "조디악 레이",
+        "url": "/assets/hexaskill/Evan_5.png",
+        "english_title": "Zodiac Ray"
+      },
+      "reinCore4": {
+        "title": "스파이럴 오브 마나",
+        "url": "/assets/hexaskill/Evan_6.png",
+        "english_title": "Mana Tornado"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Evan_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 53.4,
+      "finalDamage2": 53.4
+    }
+  },
+  {
+    "key": "엔젤릭버스터",
+    "name": "Angelic Buster",
+    "slug": "angelic_buster",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "그랜드 피날레",
+        "url": "/assets/hexaskill/AngelicBuster_1.png",
+        "english_title": "Grand Finale"
+      },
+      "skillCore2": {
+        "title": "제뉴인 앙코르",
+        "url": "/assets/hexaskill/AngelicBuster_10.png",
+        "english_title": "Genuine Encore"
+      },
+      "skillCore3": {
+        "title": "팝핑 하트",
+        "url": "/assets/hexaskill/AngelicBuster_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "트리니티 VI",
+        "url": "/assets/hexaskill/AngelicBuster_2.png",
+        "english_title": "Trinity VI"
+      },
+      "masteryCore2": {
+        "title": "소울 시커 VI/소울 시커 엑스퍼트 VI",
+        "url": "/assets/hexaskill/AngelicBuster_7.png",
+        "english_title": "Soul Seeker VI/Soul Seeker Expert VI"
+      },
+      "masteryCore3": {
+        "title": "슈퍼 노바 VI",
+        "url": "/assets/hexaskill/AngelicBuster_8.png",
+        "english_title": "Supreme Supernova VI"
+      },
+      "masteryCore4": {
+        "title": "프라이멀 로어 VI/다카포 페투치아",
+        "url": "/assets/hexaskill/AngelicBuster_9.png",
+        "english_title": "Celestial Roar VI/Beginning Ribbon"
+      },
+      "reinCore1": {
+        "title": "에너지 버스트",
+        "url": "/assets/hexaskill/AngelicBuster_3.png",
+        "english_title": "Energy Burst"
+      },
+      "reinCore2": {
+        "title": "스포트라이트",
+        "url": "/assets/hexaskill/AngelicBuster_4.png",
+        "english_title": "Spotlight"
+      },
+      "reinCore3": {
+        "title": "마스코트 패밀리어",
+        "url": "/assets/hexaskill/AngelicBuster_5.png",
+        "english_title": "Familiar Mascot"
+      },
+      "reinCore4": {
+        "title": "트리니티 퓨전",
+        "url": "/assets/hexaskill/AngelicBuster_6.png",
+        "english_title": "Trinity Fusion"
+      },
+      "generalCore3": {
+        "title": "판테온 VI",
+        "url": "/assets/hexaskill/AngelicBuster_11.png",
+        "english_title": "Pantheon VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.7,
+      "finalDamage": 64.89872,
+      "finalDamage2": 64.89872
+    }
+  },
+  {
+    "key": "와일드헌터",
+    "name": "Wild Hunter",
+    "slug": "wild_hunter",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "링크드 임팩트",
+        "url": "/assets/hexaskill/WildHunter_1.png",
+        "english_title": "Linked Impact"
+      },
+      "skillCore2": {
+        "title": "기어 스톰",
+        "url": "/assets/hexaskill/WildHunter_10.png",
+        "english_title": "Gear Storm"
+      },
+      "skillCore3": {
+        "title": "레조넌스 : 와일드 피어스",
+        "url": "/assets/hexaskill/WildHunter_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "와일드 발칸 : 에이펙스 VI",
+        "url": "/assets/hexaskill/WildHunter_2.png",
+        "english_title": "Wild Arrow Blast: Apex VI"
+      },
+      "masteryCore2": {
+        "title": "어시스트 VI",
+        "url": "/assets/hexaskill/WildHunter_7.png",
+        "english_title": "Assist VI"
+      },
+      "masteryCore3": {
+        "title": "커맨드 VI",
+        "url": "/assets/hexaskill/WildHunter_8.png",
+        "english_title": "Command VI"
+      },
+      "masteryCore4": {
+        "title": "어나더 바이트 VI/파이널 어택 VI/트랩 시더 VI",
+        "url": "/assets/hexaskill/WildHunter_9.png",
+        "english_title": "Another Bite VI/Final Attack VI/Trap Seeder VI"
+      },
+      "reinCore1": {
+        "title": "커맨드 : 프레데터스 아이",
+        "url": "/assets/hexaskill/WildHunter_3.png",
+        "english_title": "Enhances Command: Predator's Eye"
+      },
+      "reinCore2": {
+        "title": "오버바이트",
+        "url": "/assets/hexaskill/WildHunter_4.png",
+        "english_title": "Overbite"
+      },
+      "reinCore3": {
+        "title": "프라이멀 블룸",
+        "url": "/assets/hexaskill/WildHunter_5.png",
+        "english_title": "Primal Bloom"
+      },
+      "reinCore4": {
+        "title": "와일드 발칸 : 오버 드라이브",
+        "url": "/assets/hexaskill/WildHunter_6.png",
+        "english_title": "Wild Arrow Blast: Overdrive"
+      },
+      "generalCore3": {
+        "title": "레지스탕스 라인 인팬트리 VI",
+        "url": "/assets/hexaskill/WildHunter_11.png",
+        "english_title": "Resistance Line Infantry VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.35,
+      "finalDamage": 106.2203,
+      "finalDamage2": 106.2203
+    }
+  },
+  {
+    "key": "윈드브레이커",
+    "name": "Wind Archer",
+    "slug": "wind_archer",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "미스트랄 스프링",
+        "url": "/assets/hexaskill/WindBreaker_1.png",
+        "english_title": "Mystral Spring"
+      },
+      "skillCore2": {
+        "title": "엘리멘트 템페스트",
+        "url": "/assets/hexaskill/WindBreaker_10.png",
+        "english_title": "Elemental Tempest"
+      },
+      "skillCore3": {
+        "title": "실프스 브레스",
+        "url": "/assets/hexaskill/WindBreaker_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "천공의 노래 VI",
+        "url": "/assets/hexaskill/WindBreaker_2.png",
+        "english_title": "Cyclone VI"
+      },
+      "masteryCore2": {
+        "title": "트라이플링 윔 VI",
+        "url": "/assets/hexaskill/WindBreaker_7.png",
+        "english_title": "Trifling Winds VI"
+      },
+      "masteryCore3": {
+        "title": "페어리 턴 VI/스톰 브링어 VI/몬순 VI",
+        "url": "/assets/hexaskill/WindBreaker_8.png",
+        "english_title": "Wind Flourish VI/Storm Bringer VI/Violent Squall VI"
+      },
+      "masteryCore4": {
+        "title": "스톰 윔 VI/아네모이",
+        "url": "/assets/hexaskill/WindBreaker_9.png",
+        "english_title": "Storm Winds VI/Anemoi"
+      },
+      "reinCore1": {
+        "title": "하울링 게일",
+        "url": "/assets/hexaskill/WindBreaker_3.png",
+        "english_title": "Howling Gale"
+      },
+      "reinCore2": {
+        "title": "아이들 윔",
+        "url": "/assets/hexaskill/WindBreaker_4.png",
+        "english_title": "Frenzied Winds"
+      },
+      "reinCore3": {
+        "title": "윈드 월",
+        "url": "/assets/hexaskill/WindBreaker_5.png",
+        "english_title": "Wind Wall"
+      },
+      "reinCore4": {
+        "title": "볼텍스 스피어",
+        "url": "/assets/hexaskill/WindBreaker_6.png",
+        "english_title": "Vortex Sphere"
+      },
+      "generalCore3": {
+        "title": "시그너스 팔랑크스 VI",
+        "url": "/assets/hexaskill/WindBreaker_11.png",
+        "english_title": "Cygnus Phalanx VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 67.552,
+      "finalDamage2": 67.552
+    }
+  },
+  {
+    "key": "은월",
+    "name": "Shade",
+    "slug": "shade",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "호신강림",
+        "url": "/assets/hexaskill/Eunwol_1.png",
+        "english_title": "Advent of the Protector God"
+      },
+      "skillCore2": {
+        "title": "영월",
+        "url": "/assets/hexaskill/Eunwol_10.png",
+        "english_title": "Divine Moon"
+      },
+      "skillCore3": {
+        "title": "연우격풍",
+        "url": "/assets/hexaskill/Eunwol_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "귀참 VI",
+        "url": "/assets/hexaskill/Eunwol_2.png",
+        "english_title": "Spirit Claw VI"
+      },
+      "masteryCore2": {
+        "title": "여우령 VI",
+        "url": "/assets/hexaskill/Eunwol_7.png",
+        "english_title": "Fox Spirits VI"
+      },
+      "masteryCore3": {
+        "title": "폭류권 VI/사혼 각인 VI/천귀야참",
+        "url": "/assets/hexaskill/Eunwol_8.png",
+        "english_title": "Bomb Punch VI/Death Mark VI/Nightfall Spirit Fist"
+      },
+      "masteryCore4": {
+        "title": "소혼 장막 VI",
+        "url": "/assets/hexaskill/Eunwol_9.png",
+        "english_title": "Spirit Frenzy VI"
+      },
+      "reinCore1": {
+        "title": "환혼요호진",
+        "url": "/assets/hexaskill/Eunwol_3.png",
+        "english_title": "Fox God Manifestation"
+      },
+      "reinCore2": {
+        "title": "귀문진",
+        "url": "/assets/hexaskill/Eunwol_4.png",
+        "english_title": "Spirit Summoning Circle"
+      },
+      "reinCore3": {
+        "title": "진 귀참",
+        "url": "/assets/hexaskill/Eunwol_5.png",
+        "english_title": "Spirit Claw Barrage"
+      },
+      "reinCore4": {
+        "title": "파쇄 연권",
+        "url": "/assets/hexaskill/Eunwol_6.png",
+        "english_title": "Fox God's Wrath"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Eunwol_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.7,
+      "finalDamage": 85.59827,
+      "finalDamage2": 87.226325
+    }
+  },
+  {
+    "key": "일리움",
+    "name": "Illium",
+    "slug": "illium",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "언리미티드 크리스탈",
+        "url": "/assets/hexaskill/Illium_1.png",
+        "english_title": "Unlimited Crystal"
+      },
+      "skillCore2": {
+        "title": "엑시디움",
+        "url": "/assets/hexaskill/Illium_10.png",
+        "english_title": "Exidium"
+      },
+      "skillCore3": {
+        "title": "글로리 윙 : 스플렌더",
+        "url": "/assets/hexaskill/Illium_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "크래프트:자벨린 VI/글로리 윙:자벨린 VI",
+        "url": "/assets/hexaskill/Illium_2.png",
+        "english_title": "Invoke: Javelin VI/Glory wing : Javelin VI"
+      },
+      "masteryCore2": {
+        "title": "리액션:도미네이션 VI/리액션:디스트럭션 VI/글로리 윙:모탈 윙비트 VI",
+        "url": "/assets/hexaskill/Illium_7.png",
+        "english_title": "Reaction: Domination VI/Reaction: Distruction VI/Glory Wing: Mortal Wing Beat VI"
+      },
+      "masteryCore3": {
+        "title": "리요 VI/마키나 VI/크리스탈 스킬:데우스 VI",
+        "url": "/assets/hexaskill/Illium_8.png",
+        "english_title": "Liyo VI/Makina VI/Crystal Skill: Deus VI"
+      },
+      "masteryCore4": {
+        "title": "롱기누스 VI/커스 마크 완성 VI/롱기누스 존 VI",
+        "url": "/assets/hexaskill/Illium_9.png",
+        "english_title": "Longinus VI/Perfect Curse Mark VI/Longinus Zone VI"
+      },
+      "reinCore1": {
+        "title": "크리스탈 이그니션",
+        "url": "/assets/hexaskill/Illium_3.png",
+        "english_title": "Crystal Ignition"
+      },
+      "reinCore2": {
+        "title": "그람홀더",
+        "url": "/assets/hexaskill/Illium_4.png",
+        "english_title": "Gramholder"
+      },
+      "reinCore3": {
+        "title": "소울 오브 크리스탈",
+        "url": "/assets/hexaskill/Illium_5.png",
+        "english_title": "Crystal of Soul"
+      },
+      "reinCore4": {
+        "title": "크리스탈 게이트",
+        "url": "/assets/hexaskill/Illium_6.png",
+        "english_title": "Crystal Gate"
+      },
+      "generalCore3": {
+        "title": "매직 서킷 풀드라이브 VI",
+        "url": "/assets/hexaskill/Illium_11.png",
+        "english_title": "Magic Circuit Full Drive VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 50,
+      "finalDamage2": 50
+    }
+  },
+  {
+    "key": "제논",
+    "name": "Xenon",
+    "slug": "xenon",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "LUK",
+    "cores": {
+      "skillCore1": {
+        "title": "아티피셜 에볼루션",
+        "url": "/assets/hexaskill/Xenon_1.png",
+        "english_title": "Artificial Evolution"
+      },
+      "skillCore2": {
+        "title": "네오테릭 트라이스",
+        "url": "/assets/hexaskill/Xenon_10.png",
+        "english_title": "Neoteric Trice"
+      },
+      "skillCore3": {
+        "title": "레일 건 캐노네이드",
+        "url": "/assets/hexaskill/Xenon_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "퍼지롭 매스커레이드 VI",
+        "url": "/assets/hexaskill/Xenon_2.png",
+        "english_title": "Fuzzy Rob Masquerade VI"
+      },
+      "masteryCore2": {
+        "title": "트라이앵글 포메이션 VI/홀로그램 그래피티 VI",
+        "url": "/assets/hexaskill/Xenon_7.png",
+        "english_title": "Triangle Formation VI/Hologram Graffiti VI"
+      },
+      "masteryCore3": {
+        "title": "로켓 시스템 VI/멜트다운 익스플로젼 VI",
+        "url": "/assets/hexaskill/Xenon_8.png",
+        "english_title": "Rocket System VI/Meltdown Explosion VI"
+      },
+      "masteryCore4": {
+        "title": "블레이드 댄싱 VI",
+        "url": "/assets/hexaskill/Xenon_9.png",
+        "english_title": "Blade Dancing VI"
+      },
+      "reinCore1": {
+        "title": "메가 스매셔",
+        "url": "/assets/hexaskill/Xenon_3.png",
+        "english_title": "Mega Smasher"
+      },
+      "reinCore2": {
+        "title": "오버로드 모드",
+        "url": "/assets/hexaskill/Xenon_4.png",
+        "english_title": "Surplus Overload"
+      },
+      "reinCore3": {
+        "title": "홀로그램 그래피티 : 융합",
+        "url": "/assets/hexaskill/Xenon_5.png",
+        "english_title": "Hologram Graffiti: Fusion"
+      },
+      "reinCore4": {
+        "title": "포톤 레이",
+        "url": "/assets/hexaskill/Xenon_6.png",
+        "english_title": "Photon Ray"
+      },
+      "generalCore3": {
+        "title": "레지스탕스 라인 인팬트리 VI",
+        "url": "/assets/hexaskill/Xenon_11.png",
+        "english_title": "Resistance Line Infantry VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3125,
+      "finalDamage": 17,
+      "finalDamage2": 17
+    }
+  },
+  {
+    "key": "제로",
+    "name": "Zero",
+    "slug": "zero",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "크로노 트리거",
+        "url": "/assets/hexaskill/Zero_1.png",
+        "english_title": "Chrono Trigger"
+      },
+      "skillCore2": {
+        "title": "바이템포리스",
+        "url": "/assets/hexaskill/Zero_10.png",
+        "english_title": "Bytemporis"
+      },
+      "skillCore3": {
+        "title": "타임 어소리티",
+        "url": "/assets/hexaskill/Zero_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "윈드 커터 VI/기가 크래시 VI",
+        "url": "/assets/hexaskill/Zero_2.png",
+        "english_title": "Wind Cutter VI/Giga Crash VI"
+      },
+      "masteryCore2": {
+        "title": "터닝 드라이브 VI/롤링 커브 VI",
+        "url": "/assets/hexaskill/Zero_7.png",
+        "english_title": "Spin Driver VI/Rolling Cross VI"
+      },
+      "masteryCore3": {
+        "title": "플래시 어썰터 VI/프론트 슬래시 VI",
+        "url": "/assets/hexaskill/Zero_8.png",
+        "english_title": "Flash Assault VI/Flash Cut VI"
+      },
+      "masteryCore4": {
+        "title": "문 스트라이크 VI/어퍼 슬래시 VI/쉐도우 레인 VI/인피니트 레조넌스",
+        "url": "/assets/hexaskill/Zero_9.png",
+        "english_title": "Moon Strike VI/Rising Slash VI/Shadow Rain VI/Infinite Resonance"
+      },
+      "reinCore1": {
+        "title": "리미트 브레이크",
+        "url": "/assets/hexaskill/Zero_3.png",
+        "english_title": "Limit Break"
+      },
+      "reinCore2": {
+        "title": "조인트 어택",
+        "url": "/assets/hexaskill/Zero_4.png",
+        "english_title": "Joint Attack"
+      },
+      "reinCore3": {
+        "title": "쉐도우 플래시",
+        "url": "/assets/hexaskill/Zero_5.png",
+        "english_title": "Shadow Flash"
+      },
+      "reinCore4": {
+        "title": "에고 웨폰",
+        "url": "/assets/hexaskill/Zero_6.png",
+        "english_title": "Ego Weapon"
+      },
+      "generalCore3": {
+        "title": "트랜센던트 VI",
+        "url": "/assets/hexaskill/Zero_11.png",
+        "english_title": "Transcendent VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.49,
+      "finalDamage": 47.42,
+      "finalDamage2": 47.42
+    }
+  },
+  {
+    "key": "카데나",
+    "name": "Cadena",
+    "slug": "cadena",
+    "main": "LUK",
+    "sub": "DEX",
+    "sub2": "STR",
+    "cores": {
+      "skillCore1": {
+        "title": "체인아츠:매서커",
+        "url": "/assets/hexaskill/Cadena_1.png",
+        "english_title": "Chain Arts: Massacre"
+      },
+      "skillCore2": {
+        "title": "브루탈 래비지",
+        "url": "/assets/hexaskill/Cadena_10.png",
+        "english_title": "Brutal Ravage"
+      },
+      "skillCore3": {
+        "title": "체인아츠:토렌트",
+        "url": "/assets/hexaskill/Cadena_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "체인아츠:스트로크 VI",
+        "url": "/assets/hexaskill/Cadena_2.png",
+        "english_title": "Chain Arts: Stroke VI"
+      },
+      "masteryCore2": {
+        "title": "웨폰 버라이어티 VI",
+        "url": "/assets/hexaskill/Cadena_7.png",
+        "english_title": "Weapon Variation VI"
+      },
+      "masteryCore3": {
+        "title": "서먼 커팅 시미터 VI/서먼 스크래칭 클로 VI/서먼 스로잉 윙대거 VI/서먼 비팅 니들배트 VI/체인아츠:크러시 VI",
+        "url": "/assets/hexaskill/Cadena_8.png",
+        "english_title": "Weapon Arts: Blade Cut VI/Weapon Arts: Talon Strike VI/Weapon Arts: Shuriken Bomb VI/Weapon Arts: Assault & Battery VI/Chain Arts: Crush VI"
+      },
+      "masteryCore4": {
+        "title": "서먼 슈팅 샷건 VI/서먼 슬래싱 나이프 VI/서먼 릴리싱 봄 VI/서먼 스트라이킹 브릭 VI/체인아츠:테이크다운 VI/프로페셔널 에이전트 VI",
+        "url": "/assets/hexaskill/Cadena_9.png",
+        "english_title": "Weapon Arts: Shotgun Blaster VI/Weapon Arts: Dancing Daggers VI/Weapon Arts: Energy Bombs VI/Weapon Arts: Cinderblock Smash VI/Chain Arts: Takedown VI/Professionalism VI"
+      },
+      "reinCore1": {
+        "title": "체인아츠:퓨리",
+        "url": "/assets/hexaskill/Cadena_3.png",
+        "english_title": "Chain Arts: Fury"
+      },
+      "reinCore2": {
+        "title": "A.D 오드넌스",
+        "url": "/assets/hexaskill/Cadena_4.png",
+        "english_title": "A.D Ordnance"
+      },
+      "reinCore3": {
+        "title": "체인아츠:메일스트롬",
+        "url": "/assets/hexaskill/Cadena_5.png",
+        "english_title": "Chain Arts: Maelstrom"
+      },
+      "reinCore4": {
+        "title": "웨폰 버라이어티 피날레",
+        "url": "/assets/hexaskill/Cadena_6.png",
+        "english_title": "Chain Nirvana"
+      },
+      "generalCore3": {
+        "title": "판테온 VI",
+        "url": "/assets/hexaskill/Cadena_11.png",
+        "english_title": "Pantheon VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 4,
+      "finalDamage2": 4
+    }
+  },
+  {
+    "key": "카이저",
+    "name": "Kaiser",
+    "slug": "kaiser",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "마이트 오브 노바",
+        "url": "/assets/hexaskill/Kaiser_1.png",
+        "english_title": "Might of Nova"
+      },
+      "skillCore2": {
+        "title": "파이로 인스팅트",
+        "url": "/assets/hexaskill/Kaiser_10.png",
+        "english_title": "Pyro Instinct"
+      },
+      "skillCore3": {
+        "title": "드라코닉 익스팅션",
+        "url": "/assets/hexaskill/Kaiser_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "기가 슬래셔 VI",
+        "url": "/assets/hexaskill/Kaiser_2.png",
+        "english_title": "Gigas Wave VI"
+      },
+      "masteryCore2": {
+        "title": "소드 스트라이크 VI/윌 오브 소드 VI",
+        "url": "/assets/hexaskill/Kaiser_7.png",
+        "english_title": "Blade Burst VI/Tempest Blades VI"
+      },
+      "masteryCore3": {
+        "title": "인퍼널 브레스 VI",
+        "url": "/assets/hexaskill/Kaiser_8.png",
+        "english_title": "Inferno Breath VI"
+      },
+      "masteryCore4": {
+        "title": "윙비트 VI/페트리파이드 VI",
+        "url": "/assets/hexaskill/Kaiser_9.png",
+        "english_title": "Wing Beat VI/Stone Dragon VI"
+      },
+      "reinCore1": {
+        "title": "가디언 오브 노바",
+        "url": "/assets/hexaskill/Kaiser_3.png",
+        "english_title": "Guardian of Nova"
+      },
+      "reinCore2": {
+        "title": "윌 오브 소드 : 스트라이크",
+        "url": "/assets/hexaskill/Kaiser_4.png",
+        "english_title": "Use Tempest Blades: Strike"
+      },
+      "reinCore3": {
+        "title": "드라코 슬래셔",
+        "url": "/assets/hexaskill/Kaiser_5.png",
+        "english_title": "Draco Slasher"
+      },
+      "reinCore4": {
+        "title": "드래곤 블레이즈",
+        "url": "/assets/hexaskill/Kaiser_6.png",
+        "english_title": "Dragon Inferno"
+      },
+      "generalCore3": {
+        "title": "판테온 VI",
+        "url": "/assets/hexaskill/Kaiser_11.png",
+        "english_title": "Pantheon VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.34,
+      "finalDamage": 33,
+      "finalDamage2": 33
+    }
+  },
+  {
+    "key": "카인",
+    "name": "Kain",
+    "slug": "kain",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "어나일레이션",
+        "url": "/assets/hexaskill/Kain_1.png",
+        "english_title": "Annihilation"
+      },
+      "skillCore2": {
+        "title": "맬리셔스 플리커",
+        "url": "/assets/hexaskill/Kain_10.png",
+        "english_title": "[Revelation/Execution] Malicious Flicker"
+      },
+      "skillCore3": {
+        "title": "[발현] 스트라이크 임팩트/[처형] 팬텀 레퀴엠",
+        "url": "/assets/hexaskill/Kain_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "폴링 더스트 VI/포이즌 니들 VI",
+        "url": "/assets/hexaskill/Kain_2.png",
+        "english_title": "Falling Dust VI/Poison Needle VI"
+      },
+      "masteryCore2": {
+        "title": "스트라이크 애로우 VI/스캐터링 샷 VI/테어링 나이프 VI/체인 시클 VI",
+        "url": "/assets/hexaskill/Kain_7.png",
+        "english_title": "Strike Arrow VI/Scattering Shot VI/Tearing Knife VI/Chain Sickle VI"
+      },
+      "masteryCore3": {
+        "title": "드래곤 팡 VI/샤프트 브레이크 VI/팬텀 블레이드 VI/리메인 인센스 VI",
+        "url": "/assets/hexaskill/Kain_8.png",
+        "english_title": "Dragon Fang VI/Shaft Break VI/Phantom Blade VI/Remain Incense VI"
+      },
+      "masteryCore4": {
+        "title": "데스 블레싱 VI/체이싱 샷 VI/스니키 스나이핑 VI",
+        "url": "/assets/hexaskill/Kain_9.png",
+        "english_title": "Death Blessing VI/Chasing Shot VI/Sneaky Sniping VI"
+      },
+      "reinCore1": {
+        "title": "드래곤 버스트",
+        "url": "/assets/hexaskill/Kain_3.png",
+        "english_title": "Dragon Bust"
+      },
+      "reinCore2": {
+        "title": "페이탈 블리츠",
+        "url": "/assets/hexaskill/Kain_4.png",
+        "english_title": "Fatal Blitz"
+      },
+      "reinCore3": {
+        "title": "타나토스 디센트",
+        "url": "/assets/hexaskill/Kain_5.png",
+        "english_title": "Thanatos's Descent"
+      },
+      "reinCore4": {
+        "title": "그립 오브 애거니",
+        "url": "/assets/hexaskill/Kain_6.png",
+        "english_title": "Grip of Agony"
+      },
+      "generalCore3": {
+        "title": "판테온 VI",
+        "url": "/assets/hexaskill/Kain_11.png",
+        "english_title": "Pantheon VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 124.3375,
+      "finalDamage2": 126.05
+    }
+  },
+  {
+    "key": "칼리",
+    "name": "Khali",
+    "slug": "khali",
+    "main": "LUK",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "헥스 : 샌드스톰",
+        "url": "/assets/hexaskill/Khali_1.png",
+        "english_title": "Hex: Sand Storm"
+      },
+      "skillCore2": {
+        "title": "보이드 어웨이크",
+        "url": "/assets/hexaskill/Khali_10.png",
+        "english_title": "Void Awake"
+      },
+      "skillCore3": {
+        "title": "헥스 : 듄 버스트",
+        "url": "/assets/hexaskill/Khali_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "아츠 : 플러리 VI/아츠 : 크레센텀 VI",
+        "url": "/assets/hexaskill/Khali_2.png",
+        "english_title": "Artz: Flurry VI/Artz: Crescentum VI"
+      },
+      "masteryCore2": {
+        "title": "보이드 러쉬 VI/보이드 블리츠 VI/헥스 : 차크람 스플릿 VI",
+        "url": "/assets/hexaskill/Khali_7.png",
+        "english_title": "Void Rush VI/Void Blitz VI/Hex: Chakram Split VI"
+      },
+      "masteryCore3": {
+        "title": "헥스 : 차크람 스윕 VI/헥스 : 차크람 퓨리 VI/데스 블로섬 VI",
+        "url": "/assets/hexaskill/Khali_8.png",
+        "english_title": "Hex: Chakram Sweep VI/Hex: Chakram Fury VI/Death Blossom VI"
+      },
+      "masteryCore4": {
+        "title": "레조네이트 VI/디시빙 블레이드 VI",
+        "url": "/assets/hexaskill/Khali_9.png",
+        "english_title": "Resonate VI/Deceiving Katara VI"
+      },
+      "reinCore1": {
+        "title": "헥스 : 판데모니움",
+        "url": "/assets/hexaskill/Khali_3.png",
+        "english_title": "Hex: Pandemonium"
+      },
+      "reinCore2": {
+        "title": "보이드 버스트",
+        "url": "/assets/hexaskill/Khali_4.png",
+        "english_title": "Void Burst"
+      },
+      "reinCore3": {
+        "title": "아츠 : 아스트라",
+        "url": "/assets/hexaskill/Khali_5.png",
+        "english_title": "Artz: Astra"
+      },
+      "reinCore4": {
+        "title": "레조네이트 : 얼티메이텀",
+        "url": "/assets/hexaskill/Khali_6.png",
+        "english_title": "Resonate: Ultimatum"
+      },
+      "generalCore3": {
+        "title": "매직 서킷 풀드라이브 VI",
+        "url": "/assets/hexaskill/Khali_11.png",
+        "english_title": "Magic Circuit Full Drive VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 72.8,
+      "finalDamage2": 72.8
+    }
+  },
+  {
+    "key": "캐논슈터",
+    "name": "Cannoneer",
+    "slug": "cannoneer",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "슈퍼 캐논 익스플로젼",
+        "url": "/assets/hexaskill/CannonMaster_1.png",
+        "english_title": "Super Cannon Explosion"
+      },
+      "skillCore2": {
+        "title": "배럴 오브 몽키스",
+        "url": "/assets/hexaskill/CannonMaster_10.png",
+        "english_title": "Barrel of Monkeys"
+      },
+      "skillCore3": {
+        "title": "메가 캐논 봄바드",
+        "url": "/assets/hexaskill/CannonMaster_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "캐논 버스터 VI",
+        "url": "/assets/hexaskill/CannonMaster_2.png",
+        "english_title": "Cannon Barrage VI"
+      },
+      "masteryCore2": {
+        "title": "캐논 바주카 VI/미니 캐논볼 VI/마그네틱 앵커 VI/전함 노틸러스 VI",
+        "url": "/assets/hexaskill/CannonMaster_7.png",
+        "english_title": "Cannon Bazooka VI/Mini Cannonball VI/Anchors Away VI/Nautilus Strike VI"
+      },
+      "masteryCore3": {
+        "title": "롤링 캐논 레인보우 VI",
+        "url": "/assets/hexaskill/CannonMaster_8.png",
+        "english_title": "Rolling Cannon Rainbow VI"
+      },
+      "masteryCore4": {
+        "title": "몽키 퓨리어스 VI/서포트 몽키 VI",
+        "url": "/assets/hexaskill/CannonMaster_9.png",
+        "english_title": "Monkey's Fury VI/Monkey Militia VI"
+      },
+      "reinCore1": {
+        "title": "빅 휴즈 기간틱 캐논볼",
+        "url": "/assets/hexaskill/CannonMaster_3.png",
+        "english_title": "Big Fuse Gigantic Cannonball"
+      },
+      "reinCore2": {
+        "title": "ICBM",
+        "url": "/assets/hexaskill/CannonMaster_4.png",
+        "english_title": "ICBM"
+      },
+      "reinCore3": {
+        "title": "스페셜 몽키 에스코트",
+        "url": "/assets/hexaskill/CannonMaster_5.png",
+        "english_title": "Special Monkey Escort"
+      },
+      "reinCore4": {
+        "title": "풀 메이커",
+        "url": "/assets/hexaskill/CannonMaster_6.png",
+        "english_title": "Crater Maker"
+      },
+      "generalCore3": {
+        "title": "파이렛 플래그 VI",
+        "url": "/assets/hexaskill/CannonMaster_11.png",
+        "english_title": "Pirate Flag VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.5,
+      "finalDamage": 61.29575,
+      "finalDamage2": 62.5085
+    }
+  },
+  {
+    "key": "캡틴",
+    "name": "Corsair",
+    "slug": "corsair",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "드레드노트",
+        "url": "/assets/hexaskill/Captain_1.png",
+        "english_title": "Dreadnought"
+      },
+      "skillCore2": {
+        "title": "파이어크래커",
+        "url": "/assets/hexaskill/Captain_10.png",
+        "english_title": "Firecracker"
+      },
+      "skillCore3": {
+        "title": "에어리얼 봄바드먼트",
+        "url": "/assets/hexaskill/Captain_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "래피드 파이어 VI",
+        "url": "/assets/hexaskill/Captain_2.png",
+        "english_title": "Rapid Fire VI"
+      },
+      "masteryCore2": {
+        "title": "배틀쉽 봄버 VI/봄바드 템페스트 VI",
+        "url": "/assets/hexaskill/Captain_7.png",
+        "english_title": "Battleship Bomber VI"
+      },
+      "masteryCore3": {
+        "title": "헤드 샷 VI/퍼실레이드 VI",
+        "url": "/assets/hexaskill/Captain_8.png",
+        "english_title": "Brain Scrambler VI/Eight-Legs Easton VI/Sign of Bombard VI"
+      },
+      "masteryCore4": {
+        "title": "시즈 봄버 VI/서먼 크루 VI/전함 노틸러스 VI/스트레인지 봄 VI",
+        "url": "/assets/hexaskill/Captain_9.png",
+        "english_title": "Siege Bomber VI/Summon Crew VI/Nautilus Strike VI/Strange Bomb VI"
+      },
+      "reinCore1": {
+        "title": "불릿 파티",
+        "url": "/assets/hexaskill/Captain_3.png",
+        "english_title": "Bullet Party"
+      },
+      "reinCore2": {
+        "title": "데드아이",
+        "url": "/assets/hexaskill/Captain_4.png",
+        "english_title": "Dead Eye"
+      },
+      "reinCore3": {
+        "title": "노틸러스 어썰트",
+        "url": "/assets/hexaskill/Captain_5.png",
+        "english_title": "Nautilus Assault"
+      },
+      "reinCore4": {
+        "title": "데스 트리거",
+        "url": "/assets/hexaskill/Captain_6.png",
+        "english_title": "Death Trigger"
+      },
+      "generalCore3": {
+        "title": "파이렛 플래그 VI",
+        "url": "/assets/hexaskill/Captain_11.png",
+        "english_title": "Pirate Flag VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.5,
+      "finalDamage": 64.592,
+      "finalDamage2": 64.592
+    }
+  },
+  {
+    "key": "키네시스",
+    "name": "Kinesis",
+    "slug": "kinesis",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "어나더 렐름",
+        "url": "/assets/hexaskill/Kinesis_1.png",
+        "english_title": "Another Realm"
+      },
+      "skillCore2": {
+        "title": "프렉탈 호라이즌",
+        "url": "/assets/hexaskill/Kinesis_10.png",
+        "english_title": "Fractal Horizon"
+      },
+      "skillCore3": {
+        "title": "그래비티 오브젝트",
+        "url": "/assets/hexaskill/Kinesis_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "얼티메이트 : 프레셔 VI/얼티메이트 : 체크 VI",
+        "url": "/assets/hexaskill/Kinesis_2.png",
+        "english_title": "Ultimate: Pressure VI/Ultimate: Check VI"
+      },
+      "masteryCore2": {
+        "title": "싸이킥 스매싱 VI",
+        "url": "/assets/hexaskill/Kinesis_7.png",
+        "english_title": "Psychic Smash VI"
+      },
+      "masteryCore3": {
+        "title": "얼티메이트 : 오프닝 VI/얼티메이트 : 갬빗 VI",
+        "url": "/assets/hexaskill/Kinesis_8.png",
+        "english_title": "Ultimate: Opening VI/Ultimate: Gambit VI"
+      },
+      "masteryCore4": {
+        "title": "텔레키네시스 VI",
+        "url": "/assets/hexaskill/Kinesis_9.png",
+        "english_title": "Tele Kinesis VI"
+      },
+      "reinCore1": {
+        "title": "얼티메이트 : 체크메이트",
+        "url": "/assets/hexaskill/Kinesis_3.png",
+        "english_title": "Ultimate: Checkmate"
+      },
+      "reinCore2": {
+        "title": "싸이킥 노바",
+        "url": "/assets/hexaskill/Kinesis_4.png",
+        "english_title": "Psychic Nova"
+      },
+      "reinCore3": {
+        "title": "싸이킥 불릿",
+        "url": "/assets/hexaskill/Kinesis_5.png",
+        "english_title": "Psychic Bullet"
+      },
+      "reinCore4": {
+        "title": "싸이킥 보드",
+        "url": "/assets/hexaskill/Kinesis_6.png",
+        "english_title": "Psychic Board"
+      },
+      "generalCore3": {
+        "title": "이계의 잔상 VI",
+        "url": "/assets/hexaskill/Kinesis_11.png",
+        "english_title": "Otherworldly Afterimage VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 160.4888,
+      "finalDamage2": 160.4888
+    }
+  },
+  {
+    "key": "팔라딘",
+    "name": "Paladin",
+    "slug": "paladin",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "세이크리드 바스티온",
+        "url": "/assets/hexaskill/Palladin_1.png",
+        "english_title": "Sacred Bastion"
+      },
+      "skillCore2": {
+        "title": "도미누스 오브리온",
+        "url": "/assets/hexaskill/Palladin_10.png",
+        "english_title": "Dominus Obrion"
+      },
+      "skillCore3": {
+        "title": "디바인 컨버전스",
+        "url": "/assets/hexaskill/Palladin_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "블래스트 VI/디바인 저지먼트 VI",
+        "url": "/assets/hexaskill/Palladin_2.png",
+        "english_title": "Blast VI/Divine Judgement VI"
+      },
+      "masteryCore2": {
+        "title": "디바인 차지 VI/디바인 스티그마 VI/폴링 저스티스",
+        "url": "/assets/hexaskill/Palladin_7.png",
+        "english_title": "Divine Charge VI/Divine Stigma VI/Falling Justice"
+      },
+      "masteryCore3": {
+        "title": "생츄어리 VI",
+        "url": "/assets/hexaskill/Palladin_8.png",
+        "english_title": "Sanctuary VI"
+      },
+      "masteryCore4": {
+        "title": "파이널 어택 VI/라이징 저스티스",
+        "url": "/assets/hexaskill/Palladin_9.png",
+        "english_title": "Final Attack VI/Rising Justice"
+      },
+      "reinCore1": {
+        "title": "홀리 유니티",
+        "url": "/assets/hexaskill/Palladin_3.png",
+        "english_title": "Holy Unity"
+      },
+      "reinCore2": {
+        "title": "블래스드 해머",
+        "url": "/assets/hexaskill/Palladin_4.png",
+        "english_title": "Blessed Hammer"
+      },
+      "reinCore3": {
+        "title": "그랜드 크로스",
+        "url": "/assets/hexaskill/Palladin_5.png",
+        "english_title": "Grand Cross"
+      },
+      "reinCore4": {
+        "title": "마이티 묠니르",
+        "url": "/assets/hexaskill/Palladin_6.png",
+        "english_title": "Mighty Mjolnir"
+      },
+      "generalCore3": {
+        "title": "블리츠 실드 VI",
+        "url": "/assets/hexaskill/Palladin_11.png",
+        "english_title": "Blitz Shield VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.34,
+      "finalDamage": 65.77,
+      "finalDamage2": 66.98
+    }
+  },
+  {
+    "key": "패스파인더",
+    "name": "Pathfinder",
+    "slug": "pathfinder",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "포세이큰 렐릭",
+        "url": "/assets/hexaskill/PathFinder_1.png",
+        "english_title": "Forsaken Relic"
+      },
+      "skillCore2": {
+        "title": "렐릭 페네트레이션",
+        "url": "/assets/hexaskill/PathFinder_10.png",
+        "english_title": "Relic Penetration"
+      },
+      "skillCore3": {
+        "title": "마테리얼 버스트",
+        "url": "/assets/hexaskill/PathFinder_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "카디널 블래스트 VI/에디셔널 블래스트 VI",
+        "url": "/assets/hexaskill/PathFinder_2.png",
+        "english_title": "Cardinal Blast VI/Additional Blast VI"
+      },
+      "masteryCore2": {
+        "title": "카디널 디스차지 VI/에디셔널 디스차지 VI",
+        "url": "/assets/hexaskill/PathFinder_7.png",
+        "english_title": "Cardinal Discharge VI/Additional Discharge VI"
+      },
+      "masteryCore3": {
+        "title": "카디널 트랜지션 VI/엣지 오브 레조넌스 VI/에인션트 아스트라 VI",
+        "url": "/assets/hexaskill/PathFinder_8.png",
+        "english_title": "Cardinal Transition VI/Edge of Resonance VI/Ancient Astra VI"
+      },
+      "masteryCore4": {
+        "title": "레이븐 VI/콤보 어썰트 VI/렐릭 마테리얼라이즈",
+        "url": "/assets/hexaskill/PathFinder_9.png",
+        "english_title": "Raven VI/Combo Assault VI/Relic Materialize"
+      },
+      "reinCore1": {
+        "title": "얼티밋 블래스트",
+        "url": "/assets/hexaskill/PathFinder_3.png",
+        "english_title": "Ultimate Blast"
+      },
+      "reinCore2": {
+        "title": "에인션트 템페스트/프라이멀 템페스트",
+        "url": "/assets/hexaskill/PathFinder_4.png",
+        "english_title": "Raven Tempest/Evolve Tempest"
+      },
+      "reinCore3": {
+        "title": "옵시디언 배리어",
+        "url": "/assets/hexaskill/PathFinder_5.png",
+        "english_title": "Obsidian Barrier"
+      },
+      "reinCore4": {
+        "title": "렐릭 언바운드",
+        "url": "/assets/hexaskill/PathFinder_6.png",
+        "english_title": "Relic Unbound"
+      },
+      "generalCore3": {
+        "title": "이볼브 VI",
+        "url": "/assets/hexaskill/PathFinder_11.png",
+        "english_title": "Avian Awakening VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 43.36,
+      "finalDamage2": 44.64
+    }
+  },
+  {
+    "key": "팬텀",
+    "name": "Phantom",
+    "slug": "phantom",
+    "main": "LUK",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "디파잉 페이트",
+        "url": "/assets/hexaskill/Phantom_1.png",
+        "english_title": "Defying Fate"
+      },
+      "skillCore2": {
+        "title": "문리트 세레나데",
+        "url": "/assets/hexaskill/Phantom_10.png",
+        "english_title": "Moonlit Serenade"
+      },
+      "skillCore3": {
+        "title": "플레슈 르투르",
+        "url": "/assets/hexaskill/Phantom_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "템페스트 오브 카드 VI",
+        "url": "/assets/hexaskill/Phantom_2.png",
+        "english_title": "Tempest VI"
+      },
+      "masteryCore2": {
+        "title": "얼티밋 드라이브 VI",
+        "url": "/assets/hexaskill/Phantom_7.png",
+        "english_title": "Mille Aiguilles VI"
+      },
+      "masteryCore3": {
+        "title": "느와르 카르트 VI",
+        "url": "/assets/hexaskill/Phantom_8.png",
+        "english_title": "Carte Noire VI"
+      },
+      "masteryCore4": {
+        "title": "로즈 카르트 피날레 VI/라모르 카르트",
+        "url": "/assets/hexaskill/Phantom_9.png",
+        "english_title": "Rose Carte Finale VI/Carte de La Mort"
+      },
+      "reinCore1": {
+        "title": "조커",
+        "url": "/assets/hexaskill/Phantom_3.png",
+        "english_title": "Joker"
+      },
+      "reinCore2": {
+        "title": "블랙잭",
+        "url": "/assets/hexaskill/Phantom_4.png",
+        "english_title": "Black Jack"
+      },
+      "reinCore3": {
+        "title": "마크 오브 팬텀",
+        "url": "/assets/hexaskill/Phantom_5.png",
+        "english_title": "Mark of Phantom"
+      },
+      "reinCore4": {
+        "title": "리프트 브레이크",
+        "url": "/assets/hexaskill/Phantom_6.png",
+        "english_title": "Rift Break"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Phantom_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 70.3,
+      "finalDamage2": 71.6
+    }
+  },
+  {
+    "key": "플레임위자드",
+    "name": "Blaze Wizard",
+    "slug": "blaze_wizard",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "이터니티",
+        "url": "/assets/hexaskill/FlameWizard_1.png",
+        "english_title": "Eternity"
+      },
+      "skillCore2": {
+        "title": "플레임 콘체르토",
+        "url": "/assets/hexaskill/FlameWizard_10.png",
+        "english_title": "Flame Concerto"
+      },
+      "skillCore3": {
+        "title": "이그니스 레퀴엠",
+        "url": "/assets/hexaskill/FlameWizard_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "오비탈 플레임 VI",
+        "url": "/assets/hexaskill/FlameWizard_2.png",
+        "english_title": "Orbital Flame VI"
+      },
+      "masteryCore2": {
+        "title": "블레이징 익스팅션 VI",
+        "url": "/assets/hexaskill/FlameWizard_7.png",
+        "english_title": "Blazing Extinction VI"
+      },
+      "masteryCore3": {
+        "title": "오비탈 익스플로젼 VI/피닉스 드라이브 VI",
+        "url": "/assets/hexaskill/FlameWizard_8.png",
+        "english_title": "Orbital Explosion VI/Phoenix Drive VI"
+      },
+      "masteryCore4": {
+        "title": "인페르노라이즈 VI",
+        "url": "/assets/hexaskill/FlameWizard_9.png",
+        "english_title": "Inferno Rise VI"
+      },
+      "reinCore1": {
+        "title": "블레이징 오비탈 플레임",
+        "url": "/assets/hexaskill/FlameWizard_3.png",
+        "english_title": "Blazing Orbital Flame"
+      },
+      "reinCore2": {
+        "title": "플레임 디스차지",
+        "url": "/assets/hexaskill/FlameWizard_4.png",
+        "english_title": "Incarnate's Anger"
+      },
+      "reinCore3": {
+        "title": "인피니티 플레임 서클",
+        "url": "/assets/hexaskill/FlameWizard_5.png",
+        "english_title": "Infinite Flame Circle"
+      },
+      "reinCore4": {
+        "title": "샐리맨더 미스칩",
+        "url": "/assets/hexaskill/FlameWizard_6.png",
+        "english_title": "Salamander Mischief"
+      },
+      "generalCore3": {
+        "title": "시그너스 팔랑크스 VI",
+        "url": "/assets/hexaskill/FlameWizard_11.png",
+        "english_title": "Cygnus Phalanx VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.2,
+      "finalDamage": 106.55,
+      "finalDamage2": 110.6
+    }
+  },
+  {
+    "key": "호영",
+    "name": "Hoyoung",
+    "slug": "hoyoung",
+    "main": "LUK",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "선기 : 파천황",
+        "url": "/assets/hexaskill/Hoyeong_1.png",
+        "english_title": "Sage: Heaven's Havoc"
+      },
+      "skillCore2": {
+        "title": "천세휘령",
+        "url": "/assets/hexaskill/Hoyeong_10.png",
+        "english_title": "Millennial Sweep"
+      },
+      "skillCore3": {
+        "title": "선기 : 사흉해방 도철",
+        "url": "/assets/hexaskill/Hoyeong_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "멸화염 : 천 VI/지진쇄 : 지 VI/금고봉 : 인 VI",
+        "url": "/assets/hexaskill/Hoyeong_2.png",
+        "english_title": "Conflagration Chain: Heaven VI/Rock Chain: Earth/Gold Cudgel: Human VI"
+      },
+      "masteryCore2": {
+        "title": "파초풍 : 천 VI/토파류 : 지 VI/여의선 : 인 VI",
+        "url": "/assets/hexaskill/Hoyeong_7.png",
+        "english_title": "Buchae Chain: Heaven VI/Earth Chain: Earth VI/Flying Fan: Human VI"
+      },
+      "masteryCore3": {
+        "title": "환영 분신부 VI/추적 귀화부 VI",
+        "url": "/assets/hexaskill/Hoyeong_8.png",
+        "english_title": "Phantasmal Clone Talisman VI/Chasing Ghost Talisman VI"
+      },
+      "masteryCore4": {
+        "title": "권술 : 흡성와류 VI/권술 : 호접지몽 VI",
+        "url": "/assets/hexaskill/Hoyeong_9.png",
+        "english_title": "Fist Method: Sucking Vortex VI/Fist Method: Rainbow Butterflies VI"
+      },
+      "reinCore1": {
+        "title": "선기 : 극대 분신난무",
+        "url": "/assets/hexaskill/Hoyeong_3.png",
+        "english_title": "Mystic Energy: Extreme Immolation"
+      },
+      "reinCore2": {
+        "title": "권술 : 산령소환",
+        "url": "/assets/hexaskill/Hoyeong_4.png",
+        "english_title": "Increases damage of Fist Method: Mountain Spirit Summoning"
+      },
+      "reinCore3": {
+        "title": "선기 : 강림 괴력난신",
+        "url": "/assets/hexaskill/Hoyeong_5.png",
+        "english_title": "Mystic Energy: Advent of Rebellious Power"
+      },
+      "reinCore4": {
+        "title": "선기 : 천지인 환영",
+        "url": "/assets/hexaskill/Hoyeong_6.png",
+        "english_title": "Mystic Energy: Illusion of Heaven, Earth and Human"
+      },
+      "generalCore3": {
+        "title": "화중군자 VI",
+        "url": "/assets/hexaskill/Hoyeong_11.png",
+        "english_title": "Lotus VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 85.8587885,
+      "finalDamage2": 88.943216
+    }
+  },
+  {
+    "key": "히어로",
+    "name": "Hero",
+    "slug": "hero",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "스피릿 칼리버",
+        "url": "/assets/hexaskill/Hero_1.png",
+        "english_title": "Spirit Caliber"
+      },
+      "skillCore2": {
+        "title": "사일런트 클리브",
+        "url": "/assets/hexaskill/Hero_10.png",
+        "english_title": "Silent Cleave"
+      },
+      "skillCore3": {
+        "title": "레이지 익스플로젼",
+        "url": "/assets/hexaskill/Hero_12.png",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "레이징 블로우 VI",
+        "url": "/assets/hexaskill/Hero_2.png",
+        "english_title": "Raging Blow VI"
+      },
+      "masteryCore2": {
+        "title": "레이지 업라이징 VI",
+        "url": "/assets/hexaskill/Hero_7.png",
+        "english_title": "Rage Uprising VI"
+      },
+      "masteryCore3": {
+        "title": "오라 블레이드VI/퓨리어스 엣지",
+        "url": "/assets/hexaskill/Hero_8.png",
+        "english_title": "Aura Blade VI/Furious Edge"
+      },
+      "masteryCore4": {
+        "title": "인사이징 VI/파이널 어택 VI/발할라 VI",
+        "url": "/assets/hexaskill/Hero_9.png",
+        "english_title": "Incising VI/Final Attack VI/Valhalla VI"
+      },
+      "reinCore1": {
+        "title": "소드 오브 버닝 소울",
+        "url": "/assets/hexaskill/Hero_3.png",
+        "english_title": "Sword of Burning Soul"
+      },
+      "reinCore2": {
+        "title": "콤보 인스팅트",
+        "url": "/assets/hexaskill/Hero_4.png",
+        "english_title": "Combo Instincts"
+      },
+      "reinCore3": {
+        "title": "콤보 데스폴트",
+        "url": "/assets/hexaskill/Hero_5.png",
+        "english_title": "Deadly Combo Fault"
+      },
+      "reinCore4": {
+        "title": "소드 일루전",
+        "url": "/assets/hexaskill/Hero_6.png",
+        "english_title": "Sword Illusion"
+      },
+      "generalCore3": {
+        "title": "블리츠 실드 VI",
+        "url": "/assets/hexaskill/Hero_11.png",
+        "english_title": "Blitz Shield VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.44,
+      "finalDamage": 216.25,
+      "finalDamage2": 218.78
+    }
+  },
+  {
+    "key": "하야토",
+    "name": "Hayato",
+    "slug": "hayato",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "발도격·진",
+        "url": "/assets/hexaskill/Hayato_1.png",
+        "english_title": "Shin Quick Draw"
+      },
+      "skillCore2": {
+        "title": "찰나의 호흡",
+        "url": "/assets/hexaskill/Hayato_10.png",
+        "english_title": "Fleeting Breath"
+      },
+      "skillCore3": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "[신속] 무참VI/[신속] 잔영참VI",
+        "url": "/assets/hexaskill/Hayato_2.png",
+        "english_title": "HEXA [Shinsoku] Mist Slash/HEXA [Shinsoku] Afterimage Slash"
+      },
+      "masteryCore2": {
+        "title": "[신속] 신월참VI/[신속] 정적의 궤적VI",
+        "url": "/assets/hexaskill/Hayato_7.png",
+        "english_title": "HEXA [Shinsoku] Crescent Moon Cut/HEXA [Shinsoku] Silent Arc"
+      },
+      "masteryCore3": {
+        "title": "[발도] 잔월참VI",
+        "url": "/assets/hexaskill/Hayato_8.png",
+        "english_title": "HEXA [Battou] Dark Moon Cut"
+      },
+      "masteryCore4": {
+        "title": "[발도] 포효의 만월VI",
+        "url": "/assets/hexaskill/Hayato_9.png",
+        "english_title": "HEXA [Battou] Full Moon's Rage"
+      },
+      "reinCore1": {
+        "title": "초월의 형태",
+        "url": "/assets/hexaskill/Hayato_3.png",
+        "english_title": "Shogetsu Form"
+      },
+      "reinCore2": {
+        "title": "[신속] 하강의 만조",
+        "url": "/assets/hexaskill/Hayato_4.png",
+        "english_title": "[Shinsoku] Crashing Tide"
+      },
+      "reinCore3": {
+        "title": "[신속] 분치의 섬광",
+        "url": "/assets/hexaskill/Hayato_5.png",
+        "english_title": "[Shinsoku] Light Cutter"
+      },
+      "reinCore4": {
+        "title": "[발도] 애호의 천광",
+        "url": "/assets/hexaskill/Hayato_6.png",
+        "english_title": "[Battou] Wailing Heavens"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Phantom_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.25,
+      "finalDamage": 15,
+      "finalDamage2": 15
+    }
+  },
+  {
+    "key": "린",
+    "name": "Lynn",
+    "slug": "lynn",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "근원의 흐름",
+        "url": "/assets/hexaskill/Lynn_1.png",
+        "english_title": "Flow of the Root"
+      },
+      "skillCore2": {
+        "title": "린 어센트",
+        "url": "/assets/hexaskill/Lynn_10.png",
+        "english_title": "Chase"
+      },
+      "skillCore3": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "스매시 VI",
+        "url": "/assets/hexaskill/Lynn_2.png",
+        "english_title": "Strike ?"
+      },
+      "masteryCore2": {
+        "title": "암습 VI/급습 VI",
+        "url": "/assets/hexaskill/Lynn_7.png",
+        "english_title": "Ambush VI/Assault VI"
+      },
+      "masteryCore3": {
+        "title": "쪼기 VI",
+        "url": "/assets/hexaskill/Lynn_8.png",
+        "english_title": "Peck VI"
+      },
+      "masteryCore4": {
+        "title": "[집중] 치유 VI/[집중] 숲의 보호 VI/대자연의 손길 VI",
+        "url": "/assets/hexaskill/Lynn_9.png",
+        "english_title": "[Focus] Healing VI/[Focus] Forest Protection/Touch of Nature VI"
+      },
+      "reinCore1": {
+        "title": "맹수의 분노",
+        "url": "/assets/hexaskill/Lynn_3.png",
+        "english_title": "Beast's Wrath Enhancement"
+      },
+      "reinCore2": {
+        "title": "창공의 칼날",
+        "url": "/assets/hexaskill/Lynn_4.png",
+        "english_title": "Blade Assault Enhancement"
+      },
+      "reinCore3": {
+        "title": "[집중] 각성",
+        "url": "/assets/hexaskill/Lynn_5.png",
+        "english_title": "[Focus] Awakening Enhancement"
+      },
+      "reinCore4": {
+        "title": "자연의 은혜",
+        "url": "/assets/hexaskill/Lynn_6.png",
+        "english_title": "Nature's Blessing Enhancement"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Phantom_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.34,
+      "finalDamage": 65,
+      "finalDamage2": 70
+    }
+  },
+  {
+    "key": "묵현",
+    "name": "Mo Xuan",
+    "slug": "mo_xuan",
+    "main": "DEX",
+    "sub": "STR",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "진기 : 파황권",
+        "url": "/assets/hexaskill/Moxuan_1.png",
+        "english_title": "Skill 1"
+      },
+      "skillCore2": {
+        "title": "묵현 어센트",
+        "url": "/assets/hexaskill/Moxuan_10.png",
+        "english_title": "[True Qi] Transcendent Divine Kick"
+      },
+      "skillCore3": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "현산 : 초식전개 [천] / [지] VI",
+        "url": "/assets/hexaskill/Moxuan_2.png",
+        "english_title": "Mastery 1"
+      },
+      "masteryCore2": {
+        "title": "신공 VI(1)",
+        "url": "/assets/hexaskill/Moxuan_7.png",
+        "english_title": "Mastery 2"
+      },
+      "masteryCore3": {
+        "title": "신공 VI(2)/진기 : 흑풍각 VI",
+        "url": "/assets/hexaskill/Moxuan_8.png",
+        "english_title": "Mastery 3"
+      },
+      "masteryCore4": {
+        "title": "비기 : 이형환위 VI",
+        "url": "/assets/hexaskill/Moxuan_9.png",
+        "english_title": "Mastery 4"
+      },
+      "reinCore1": {
+        "title": "진기 : 현천권 강화",
+        "url": "/assets/hexaskill/Moxuan_3.png",
+        "english_title": "Boost 1"
+      },
+      "reinCore2": {
+        "title": "진기 : 무아지경 강화",
+        "url": "/assets/hexaskill/Moxuan_4.png",
+        "english_title": "Boost 2"
+      },
+      "reinCore3": {
+        "title": "진기 : 폭기 강화",
+        "url": "/assets/hexaskill/Moxuan_5.png",
+        "english_title": "Boost 3"
+      },
+      "reinCore4": {
+        "title": "신공 : 태산격 강화",
+        "url": "/assets/hexaskill/Moxuan_6.png",
+        "english_title": "Boost 4"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Phantom_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.75,
+      "finalDamage": 21,
+      "finalDamage2": 21
+    }
+  },
+  {
+    "key": "칸나",
+    "name": "Kanna",
+    "slug": "kanna",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "[천령] 패왕강림",
+        "url": "/assets/hexaskill/Kanna_1.png",
+        "english_title": "Hakumenkonmou Juubi"
+      },
+      "skillCore2": {
+        "title": "[천령] 멸식",
+        "url": "/assets/hexaskill/Kanna_10.png",
+        "english_title": "[Divine Will] Final Rest"
+      },
+      "skillCore3": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "파혼부 : 무VI/쇄심부VI",
+        "url": "/assets/hexaskill/Kanna_2.png",
+        "english_title": "HEXA Soul-Shatter Talisman: Dance/HEXA Heart-Wreck Talisman"
+      },
+      "masteryCore2": {
+        "title": "오니VI",
+        "url": "/assets/hexaskill/Kanna_7.png",
+        "english_title": "HEXA Summon Oni"
+      },
+      "masteryCore3": {
+        "title": "텐구VI",
+        "url": "/assets/hexaskill/Kanna_8.png",
+        "english_title": "HEXA Summon Tengu"
+      },
+      "masteryCore4": {
+        "title": "오로치VI",
+        "url": "/assets/hexaskill/Kanna_9.png",
+        "english_title": "HEXA Summon Orochi"
+      },
+      "reinCore1": {
+        "title": "[영혼] 백면금모 십미호",
+        "url": "/assets/hexaskill/Kanna_3.png",
+        "english_title": "[Spirit] Hakumenkonmou Juubi"
+      },
+      "reinCore2": {
+        "title": "[영혼] 부분해방 : 연염광인",
+        "url": "/assets/hexaskill/Kanna_4.png",
+        "english_title": "(Spirit) Unleash the Radiant Flame"
+      },
+      "reinCore3": {
+        "title": "[영혼] 부분해방 : 흑익파천",
+        "url": "/assets/hexaskill/Kanna_5.png",
+        "english_title": " [Spirit] Unleash Black-Winged Destruction"
+      },
+      "reinCore4": {
+        "title": "[영혼] 부분해방 : 절혼독아",
+        "url": "/assets/hexaskill/Kanna_6.png",
+        "english_title": "[Spirit] Unleash Soul-Searing Venom"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Phantom_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.35,
+      "finalDamage": 0,
+      "finalDamage2": 0
+    }
+  },
+  {
+    "key": "시아",
+    "name": "Sia Astelle",
+    "slug": "sia_astelle",
+    "main": "INT",
+    "sub": "LUK",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "프라이멀 아스테리즘",
+        "url": "/assets/hexaskill/Sia_1.png",
+        "english_title": "Celestial Design"
+      },
+      "skillCore2": {
+        "title": "스타릿 코스모스",
+        "url": "/assets/hexaskill/Sia_10.png",
+        "english_title": "Starlit Cosmos"
+      },
+      "skillCore3": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "레이 VI / 스텔라 I - 토끼 자리 VI",
+        "url": "/assets/hexaskill/Sia_2.png",
+        "english_title": "SHINE Ray/SHINE Stellar I - Antares"
+      },
+      "masteryCore2": {
+        "title": "붐 VI / 도마뱀 자리 VI / 뿔고둥 자리 VI",
+        "url": "/assets/hexaskill/Sia_7.png",
+        "english_title": "SHINE Boom/SHINE Stellar II - Algol/SHINE Stellar V - Fomalhaut"
+      },
+      "masteryCore3": {
+        "title": "XXX",
+        "url": "/assets/icon/icon_guide.png",
+        "english_title": "XXX"
+      },
+      "masteryCore4": {
+        "title": "XXX",
+        "url": "/assets/icon/icon_guide.png",
+        "english_title": "XXX"
+      },
+      "reinCore1": {
+        "title": "샤인",
+        "url": "/assets/hexaskill/Sia_3.png",
+        "english_title": "Shine"
+      },
+      "reinCore2": {
+        "title": "스텔라 XI - 늑대 자리",
+        "url": "/assets/hexaskill/Sia_4.png",
+        "english_title": "Stellar XI - Sirius"
+      },
+      "reinCore3": {
+        "title": "스텔라 XII - 모래시계 자리 ",
+        "url": "/assets/hexaskill/Sia_5.png",
+        "english_title": "Stellar XII - Sadalsuud"
+      },
+      "reinCore4": {
+        "title": "서클 오브 세이비어",
+        "url": "/assets/hexaskill/Sia_6.png",
+        "english_title": "Savior's Circle"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Phantom_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.35,
+      "finalDamage": 70,
+      "finalDamage2": 71.25
+    }
+  },
+  {
+    "key": "에렐",
+    "name": "Erel Light",
+    "slug": "erel_light",
+    "main": "STR",
+    "sub": "DEX",
+    "sub2": "",
+    "cores": {
+      "skillCore1": {
+        "title": "에렐 오리진",
+        "url": "/assets/hexaskill/Erel_1.png",
+        "english_title": "Fall of Melin"
+      },
+      "skillCore2": {
+        "title": "에렐 어센트",
+        "url": "/assets/hexaskill/Erel_10.png",
+        "english_title": "Radiant Spear"
+      },
+      "skillCore3": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 3"
+      },
+      "skillCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 4"
+      },
+      "skillCore5": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 5"
+      },
+      "skillCore6": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Skill 6"
+      },
+      "masteryCore1": {
+        "title": "에렐 마코1",
+        "url": "/assets/hexaskill/Erel_2.png",
+        "english_title": "SHINE Spear of Lugh"
+      },
+      "masteryCore2": {
+        "title": "에렐 마코2",
+        "url": "/assets/hexaskill/Erel_7.png",
+        "english_title": "SHINE Fury of Roan/SHINE Sting of Roan"
+      },
+      "masteryCore3": {
+        "title": "XXX",
+        "url": "/assets/icon/icon_guide.png",
+        "english_title": "XXX"
+      },
+      "masteryCore4": {
+        "title": "XXX",
+        "url": "/assets/icon/icon_guide.png",
+        "english_title": "XXX"
+      },
+      "reinCore1": {
+        "title": "에렐 5차1",
+        "url": "/assets/hexaskill/Erel_3.png",
+        "english_title": "Eternal Light"
+      },
+      "reinCore2": {
+        "title": "에렐 5차2",
+        "url": "/assets/hexaskill/Erel_4.png",
+        "english_title": "Sentinel Rise"
+      },
+      "reinCore3": {
+        "title": "에렐 5차3",
+        "url": "/assets/hexaskill/Erel_5.png",
+        "english_title": "Eternal Guardian"
+      },
+      "reinCore4": {
+        "title": "에렐 5차4",
+        "url": "/assets/hexaskill/Erel_6.png",
+        "english_title": "Destruction of Roan"
+      },
+      "generalCore3": {
+        "title": "프리드의 가호 VI",
+        "url": "/assets/hexaskill/Phantom_11.png",
+        "english_title": "Freud's Protection VI"
+      },
+      "generalCore4": {
+        "title": "미출시",
+        "url": "",
+        "english_title": "Common 4"
+      },
+      "generalCore2": {
+        "title": "Sol Hecate",
+        "url": "/assets/hexaskill/General/General_2.png",
+        "english_title": "Sol Hecate"
+      }
+    },
+    "input_display": {
+      "weaponConstant": 1.3,
+      "finalDamage": 148.5500083,
+      "finalDamage2": 152.6245986
+    }
+  }
+]

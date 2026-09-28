@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "source": "https://www.whackybeanz.com/calc/equips/flames",
+  "guide": "https://www.whackybeanz.com/guides/flames",
+  "scope": "Black Flame probability model selected for flame analysis. Advantaged items use tiers 4\u20137; normal items use tiers 2\u20135. This is not an independently verified mapping of the current GMS meso reset.",
+  "gms_meso_reset_model": null,
+  "line_counts": {
+    "normal": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.16,
+      "4": 0.04
+    },
+    "advantaged": {
+      "4": 1
+    }
+  },
+  "models": {
+    "brf": {
+      "source_name": "Black Resurrection Flame",
+      "normal": {
+        "2": 0.29,
+        "3": 0.45,
+        "4": 0.25,
+        "5": 0.01
+      },
+      "advantaged": {
+        "4": 0.29,
+        "5": 0.45,
+        "6": 0.25,
+        "7": 0.01
+      }
+    }
+  },
+  "normal_weapon_factors": [
+    1,
+    2.2,
+    3.63,
+    5.324,
+    7.3205,
+    8.7846,
+    10.2487
+  ],
+  "default_model": "brf"
+}

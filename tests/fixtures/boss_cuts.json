@@ -1,0 +1,2834 @@
+{
+  "source": "MapleScouter public client modules 33528 / 97571 / 62509; archived 2026-09-14. Synthetic API Shadower baseline; original JavaScript generated expected rows.",
+  "cases": [
+    {
+      "name": "baseline",
+      "user": {
+        "doping": {
+          "bigHero": false,
+          "greatIgnoreGuard": false,
+          "dragonsMeal": false,
+          "extreme": false,
+          "fish": false,
+          "guildBlessing": false,
+          "jangBi": false,
+          "legendHero": false,
+          "legendHp": false,
+          "rebootAtkPotion": false,
+          "shiningRed": false,
+          "shiningBlue": false,
+          "statPotion": false,
+          "stat": "0",
+          "superPower": false,
+          "unionsPower": false,
+          "urus": false,
+          "heroesHawl": false,
+          "noblessBoss": false,
+          "noblessDmg": false,
+          "noblessCriDmg": false,
+          "noblessIgnore": false,
+          "nobless": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "sayram": false,
+          "collector": false,
+          "buff275": false,
+          "additional1": false,
+          "additional2": false,
+          "championAll": "0",
+          "championAtk": "0",
+          "championBoss": "0",
+          "championIgnore": "0",
+          "championCriDmg": "0",
+          "authenticDmg": false,
+          "moonshine": false,
+          "cake": false,
+          "apple": false,
+          "tengu": false,
+          "candy": false,
+          "house": false,
+          "wedding": false,
+          "specialWedding": false,
+          "whiteBear": false,
+          "ultraVip": false,
+          "superVip": false,
+          "truffle": false,
+          "medal": false,
+          "hyperRainbow": false,
+          "rainbow": false,
+          "thanks": false,
+          "genePass": false,
+          "criDmgRing": "0"
+        },
+        "linkSkill": {
+          "ark": "0",
+          "illium": "0",
+          "kadena": "0",
+          "kain": "0",
+          "magician": "0",
+          "thief": "0",
+          "angel": "0",
+          "hoyoung": "0",
+          "mukhyun": "0",
+          "mihile": "0",
+          "kaiser": "0",
+          "hayato": "0",
+          "kanna": "0"
+        },
+        "special": {
+          "isReboot": true,
+          "combat": true,
+          "epiSoul": "0",
+          "mugongSoul": "0",
+          "genesis": false,
+          "oneHandSword": false,
+          "useRuinForceShild": false,
+          "useContinuousRingAsMainRing": false,
+          "restraintRing": "0",
+          "weaponRing": "0",
+          "ringOfSum": "0",
+          "riskTaker": "0",
+          "statThird": "0",
+          "statFourth": "0",
+          "continuosRing": "0",
+          "challenge": false,
+          "is30min": false,
+          "destiny2ndSkill": false,
+          "famPassiveUp": false
+        },
+        "stat": {
+          "myClass": "섀도어",
+          "level": "280",
+          "mainStatBase": "6000",
+          "mainStatPer": "400",
+          "mainStatAbs": "20000",
+          "subStatBase": "3000",
+          "subStatPer": "100",
+          "subStatAbs": "1000",
+          "ssubStatBase": "2500",
+          "ssubStatPer": "100",
+          "ssubStatAbs": "1000",
+          "arcaneForce": "1380",
+          "authenticForce": "660",
+          "classForce": "0",
+          "atkBase": "3000",
+          "atkAbs": "0",
+          "dmg": "80",
+          "bossDmg": "300",
+          "normalDmg": "37",
+          "ignoreDef": "95",
+          "buffDuration": "0",
+          "critical": "100",
+          "criticalDmg": "100",
+          "weaponAtk": "800",
+          "atkPercent": "90",
+          "coolTimeReducePercent": "0",
+          "coolTimeReduce": "0",
+          "wildhunterUnion": "0",
+          "resetCoolDown": "0",
+          "statusAdditionalDmg": "0",
+          "passiveSkillLevelUp": false,
+          "increaseTarget": false,
+          "summonPersistTime": "0",
+          "artifact_increaseTarget": false,
+          "artifact_finalAttack": "0",
+          "subStat_hyper": "",
+          "subStat_ability": "",
+          "subStat_union": "",
+          "subStat_doping": "",
+          "subStat_afterDoping": "",
+          "ssubStat_hyper": "",
+          "ssubStat_ability": "",
+          "ssubStat_union": "",
+          "ssubStat_doping": "",
+          "ssubStat_afterDoping": "",
+          "ignoreElementalResist": "0",
+          "maple_combatPower": "",
+          "tms_fd": "0",
+          "tms_soul": "0"
+        },
+        "hexa": {
+          "skillCore1": "1",
+          "skillCore2": "0",
+          "skillCore3": "0",
+          "skillCore4": "0",
+          "skillCore5": "0",
+          "skillCore6": "0",
+          "masteryCore1": "1",
+          "masteryCore2": "1",
+          "masteryCore3": "1",
+          "masteryCore4": "1",
+          "reinCore1": "0",
+          "reinCore2": "0",
+          "reinCore3": "0",
+          "reinCore4": "0",
+          "generalCore2": "0",
+          "generalCore3": "0",
+          "generalCore4": "0",
+          "hexaStat": 0
+        },
+        "seedRing": {
+          "restraintRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "weaponRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "ringOfSum": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "riskTakerRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "criDamageRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "levelRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "continuosRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "ultiRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "durabilityRing": {
+            "level": "0",
+            "efficiency": 0
+          }
+        },
+        "entireStat": {
+          "str": "6000",
+          "dex": "7000",
+          "int": "0",
+          "luk": "50000"
+        },
+        "isGMS": true,
+        "isTMS": false,
+        "isJMS": false,
+        "isMSEA": false,
+        "power": {
+          "mainStatBase": 0,
+          "mainStatPer": 0,
+          "mainStatAbs": 0,
+          "subStatBase": 0,
+          "subStatPer": 0,
+          "subStatAbs": 0,
+          "ssubStatBase": 0,
+          "ssubStatPer": 0,
+          "ssubStatAbs": 0,
+          "atk": 0,
+          "atkPer": 0,
+          "bossDmg": 0,
+          "criDmg": 0
+        },
+        "huntSkill": {
+          "solJanus": "30",
+          "erdaShower": "25"
+        }
+      },
+      "calculated": {
+        "combatPower": 0,
+        "calculatedDamage_300": 399425919.8618905,
+        "calculatedDamage_380": 390669444.4212595,
+        "calculatedHexaDamage_300": 218384511.35578498,
+        "calculatedHexaDamage_380": 213596943.71129575,
+        "calculatedHexaDamage_kaling": 204160890.5915566,
+        "mr_stat": 0,
+        "mr_hexaStat": 38721759,
+        "boss300_stat": 40797,
+        "boss380_stat": 40645,
+        "boss300_hexaStat": 30799,
+        "boss380_hexaStat": 30716,
+        "boss300_plotter_1": [
+          0
+        ],
+        "boss300_plotter_2": [
+          0
+        ],
+        "boss300_changePoing": 0,
+        "boss380_plotter_1": [
+          0
+        ],
+        "boss380_plotter_2": [
+          0
+        ],
+        "boss380_changePoing": 0,
+        "exchangePower": 70014309.52451268,
+        "exchangePowerHexa": 37484018.74466584,
+        "dojo_floor": null,
+        "dojo_image_url": "",
+        "class": "섀도어",
+        "hexaUsed": [
+          17,
+          300
+        ],
+        "isReboot": true,
+        "increasedByHexa": 0,
+        "specEfficiency": {
+          "dmgeff1": 0.0019036480942946632,
+          "atkeff1": 0.0003278688524590567,
+          "atkPereff1": 0.0052631578947368585,
+          "cridmgeff1": 0.004197429559507748,
+          "igreff1": 0.000822099449973468,
+          "mainStateff1": 8.870123649523665e-05,
+          "mainStatPereff1": 0.0011750962408415967,
+          "mainStatAbseff1": 1.774024729904733e-05,
+          "subStateff1": 8.870123649523664e-06,
+          "subStatPereff1": 0.00013305185474285519,
+          "subStatAbseff1": 4.435061824761943e-06,
+          "ssubStateff1": 8.870123649523664e-06,
+          "ssubStatPereff1": 0.00011087654561904592,
+          "ssubStatAbseff1": 4.435061824761943e-06,
+          "allStatEff": 0.0014190246412034981,
+          "igreffminus40": -0.054806629998240486,
+          "igreffminus35": -0.04426689346011736,
+          "igreffminus30": -0.03523283357029727,
+          "igreffminus20": -0.02055248624934003,
+          "igreffminus15": -0.014507637352475178,
+          "igreffminus10": -0.009134438333039951,
+          "igreff1_380": 0.0010646662782805016,
+          "igreffminus40_380": -0.07097775188538036,
+          "igreffminus35_380": -0.057328184215114875,
+          "igreffminus30_380": -0.04562855478345851,
+          "igreffminus20_380": -0.026616656957017426,
+          "igreffminus15_380": -0.018788228440247523,
+          "igreffminus10_380": -0.01182962531422993
+        },
+        "hexaEffect": {
+          "masteryCore1": 1.1630245452851118,
+          "masteryCore2": 0.9347031333432798,
+          "masteryCore3": 1.2803020789684625,
+          "masteryCore4": 1.1656180819794504,
+          "skillCore1": 0.8791738034786655,
+          "skillCore2": 0,
+          "skillCore3": 0,
+          "skillCore4": 0,
+          "skillCore5": 0,
+          "skillCore6": 0,
+          "reinCore1": 0,
+          "reinCore2": 1.1431268562218417,
+          "reinCore3": 1.1431268562218415,
+          "reinCore4": 1.1431268562218417,
+          "generalCore1": 0,
+          "generalCore2": 0,
+          "generalCore3": 0,
+          "generalCore4": 0
+        },
+        "hexaPoss": {
+          "masteryCore1": 0.3268,
+          "masteryCore2": 0.1686,
+          "masteryCore3": 0.0119,
+          "masteryCore4": 0.0744,
+          "skillCore1": 0.0424,
+          "skillCore2": 0.02365603092783505,
+          "skillCore3": 0,
+          "skillCore4": 0,
+          "skillCore5": 0,
+          "skillCore6": 0,
+          "reinCore1": 0,
+          "reinCore2": 0.0979,
+          "reinCore3": 0.0846,
+          "reinCore4": 0.0681,
+          "generalCore1": 0,
+          "generalCore2": 0.0664,
+          "generalCore3": 0.0212,
+          "generalCore4": 0
+        },
+        "maple_scouter_const": {
+          "stat_score": 57822,
+          "attack_score": 58901,
+          "attackPer_score": 25757,
+          "damage_score": 16066,
+          "criDamage_score": 20491,
+          "def_score": 53212
+        },
+        "elixir": 0,
+        "ascent_const": 0,
+        "ignoreDefConst_300": 0.9240351233349998,
+        "ignoreDefConst_380": 0.9037778228909998,
+        "usePassiveAbility": false,
+        "restraintEff1": 0,
+        "weaponEff1": 1,
+        "spline_300": {
+          "x": [
+            0,
+            23716,
+            31615,
+            44999,
+            55216,
+            67090,
+            83643,
+            96746,
+            108468,
+            117023,
+            127726,
+            140485,
+            151698
+          ],
+          "y": [
+            0,
+            137758493,
+            229962520,
+            496388667,
+            801750419,
+            1285572026,
+            2229075507,
+            3154623206,
+            4541534889,
+            6057857851,
+            8591416707,
+            12853844148,
+            16726477527
+          ],
+          "m": [
+            5808.673174228369,
+            8216.866312408136,
+            14393.878731599674,
+            24112.778912936537,
+            34350.26272348957,
+            47091.8049304321,
+            63351.56181025939,
+            88876.62971110076,
+            143394.68503387054,
+            201630.58724251617,
+            275716.84188753326,
+            339748.60631418653,
+            345369.9615624721
+          ]
+        },
+        "spline_380": {
+          "x": [
+            0,
+            23716,
+            31615,
+            44999,
+            55216,
+            67090,
+            83643,
+            96746,
+            108468,
+            117023,
+            127726,
+            140485,
+            151698
+          ],
+          "y": [
+            0,
+            135185175,
+            226172076,
+            490164836,
+            794051575,
+            1273333809,
+            2217339081,
+            3136951891,
+            4517447646,
+            6027377309,
+            8550592444,
+            12816524090,
+            16662207584
+          ],
+          "m": [
+            5700.16760836566,
+            8081.805154217059,
+            14223.16716394132,
+            23936.164223176827,
+            34119.90403712558,
+            46831.15080481482,
+            63179.56573181246,
+            88367.3909622765,
+            142756.33164731908,
+            200791.49664753157,
+            275131.3371239539,
+            338694.5002080405,
+            342966.5115490948
+          ]
+        },
+        "myClassData": {
+          "main": "LUK",
+          "sub": "DEX",
+          "sub2": "STR",
+          "weaponConstant": 1.3,
+          "finalDamage": 58.1372,
+          "finalDamage2": 58.1372,
+          "finalDamage3": 59.4888,
+          "finalDamage4": 59.4888,
+          "passiveAtkPercent": 0,
+          "passiveAtkPercent2": 0,
+          "passiveAtkPercent3": 0,
+          "passiveAtkPercent4": 0,
+          "proficiency": 0.91,
+          "proficiency2": 0.91,
+          "proficiency3": 0.92,
+          "proficiency4": 0.92,
+          "dpm_mainStat": 0.44,
+          "dpm_atk": 30,
+          "dpm_atkPer": 0,
+          "dpm_bossDmg": 45.30717363,
+          "dpm_ignoreGuard": 49.35674889,
+          "dpm_criticalDmg": 3.241043911,
+          "useResetCoolDown": false,
+          "usePassiveLevelUp": false,
+          "useFinalAttack": false,
+          "useIncreaseTarget": false,
+          "useCoolDown": false,
+          "useIlliumLink": false,
+          "coolDownBestEff": 0,
+          "coolDownEff2s": 0,
+          "coolDownEff4s": 0,
+          "coolDownEff5s": 0,
+          "ignoreElementalResist": 5,
+          "ignoreElementalResistBuff": 0,
+          "seedRingFirst": 0.3239,
+          "seedRingSecond": 0.1634,
+          "seedRingFirstLv5": 1.1734,
+          "seedRingSecondLv5": 1.1857,
+          "exDealCool": 2,
+          "poss60": 0.7285,
+          "poss40": 0.5165
+        },
+        "mercedesBuildType": null,
+        "genePassConst": 1
+      },
+      "expected": [
+        {
+          "id": "jupiter_hard",
+          "percent": 0.05684435782583022,
+          "display_percent": "[Party] 0%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 833,
+          "relevant": false
+        },
+        {
+          "id": "kaling_extreme",
+          "percent": 3.373410212841372,
+          "display_percent": "[Party] 3%",
+          "category": "Impossible",
+          "boss_hexa_score": 26041,
+          "relevant": false
+        },
+        {
+          "id": "adversary_extreme",
+          "percent": 2.590330764366245,
+          "display_percent": "[Party] 3%",
+          "category": "Impossible",
+          "boss_hexa_score": 24349,
+          "relevant": false
+        },
+        {
+          "id": "kalos_extreme",
+          "percent": 7.350274245994225,
+          "display_percent": "[Party] 7%",
+          "category": "Impossible",
+          "boss_hexa_score": 26721,
+          "relevant": false
+        },
+        {
+          "id": "bardrix_destiny",
+          "percent": 0.644956530553635,
+          "display_percent": "0.64%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 13192,
+          "relevant": false
+        },
+        {
+          "id": "bardrix_hard",
+          "percent": 0.644956530553635,
+          "display_percent": "0.64%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 13192,
+          "relevant": false
+        },
+        {
+          "id": "maleficStar_hard",
+          "percent": 2.9532299859910296,
+          "display_percent": "2.95%",
+          "category": "Impossible",
+          "boss_hexa_score": 30162,
+          "relevant": false
+        },
+        {
+          "id": "limbo_destiny",
+          "percent": 2.2808551509423944,
+          "display_percent": "2.28%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 26721,
+          "relevant": false
+        },
+        {
+          "id": "limbo_hard",
+          "percent": 2.2808551509423944,
+          "display_percent": "2.28%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 26721,
+          "relevant": false
+        },
+        {
+          "id": "jupiter_normal",
+          "percent": 0.08693947975452958,
+          "display_percent": "0.09%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 833,
+          "relevant": false
+        },
+        {
+          "id": "adversary_destiny",
+          "percent": 2.658898529186868,
+          "display_percent": "2.66%",
+          "category": "Impossible",
+          "boss_hexa_score": 26721,
+          "relevant": false
+        },
+        {
+          "id": "seren_extreme",
+          "percent": 3.9316537376177756,
+          "display_percent": "3.93%",
+          "category": "Impossible",
+          "boss_hexa_score": 30162,
+          "relevant": false
+        },
+        {
+          "id": "adversary_hard",
+          "percent": 3.323623161483584,
+          "display_percent": "3.32%",
+          "category": "Impossible",
+          "boss_hexa_score": 26721,
+          "relevant": false
+        },
+        {
+          "id": "kaling_hard",
+          "percent": 3.2723352550308884,
+          "display_percent": "3.27%",
+          "category": "Impossible",
+          "boss_hexa_score": 26041,
+          "relevant": false
+        },
+        {
+          "id": "bardrix_normal",
+          "percent": 1.4497710861903763,
+          "display_percent": "1.45%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 13192,
+          "relevant": false
+        },
+        {
+          "id": "blackMage_extreme",
+          "percent": 5.13256044240777,
+          "display_percent": "5.13%",
+          "category": "Impossible",
+          "boss_hexa_score": 28787,
+          "relevant": false
+        },
+        {
+          "id": "kaling_destiny",
+          "percent": 3.9268023060370654,
+          "display_percent": "3.93%",
+          "category": "Impossible",
+          "boss_hexa_score": 26041,
+          "relevant": false
+        },
+        {
+          "id": "limbo_normal",
+          "percent": 4.474451082357862,
+          "display_percent": "4.47%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 26721,
+          "relevant": false
+        },
+        {
+          "id": "kalos_destiny",
+          "percent": 5.299528981063174,
+          "display_percent": "5.30%",
+          "category": "Impossible",
+          "boss_hexa_score": 26721,
+          "relevant": false
+        },
+        {
+          "id": "kalos_chaos",
+          "percent": 5.299528981063174,
+          "display_percent": "5.30%",
+          "category": "Impossible",
+          "boss_hexa_score": 26721,
+          "relevant": false
+        },
+        {
+          "id": "seren_destiny",
+          "percent": 11.17967913347535,
+          "display_percent": "11.18%",
+          "category": "Impossible",
+          "boss_hexa_score": 31519,
+          "relevant": false
+        },
+        {
+          "id": "kaling_normal",
+          "percent": 9.52591172759399,
+          "display_percent": "9.53%",
+          "category": "Impossible",
+          "boss_hexa_score": 26041,
+          "relevant": false
+        },
+        {
+          "id": "maleficStar_normal",
+          "percent": 12.978507386125496,
+          "display_percent": "12.98%",
+          "category": "Impossible",
+          "boss_hexa_score": 30162,
+          "relevant": false
+        },
+        {
+          "id": "lotus_extreme",
+          "percent": 12.608487802963813,
+          "display_percent": "12.61%",
+          "category": "Impossible",
+          "boss_hexa_score": 26721,
+          "relevant": false
+        },
+        {
+          "id": "kalos_champion",
+          "percent": 22.215903499615273,
+          "display_percent": "22.22%",
+          "category": "Impossible",
+          "boss_hexa_score": 30162,
+          "relevant": true
+        },
+        {
+          "id": "adversary_normal",
+          "percent": 24.790280715843853,
+          "display_percent": "24.79%",
+          "category": "Impossible",
+          "boss_hexa_score": 30162,
+          "relevant": true
+        },
+        {
+          "id": "kalos_normal",
+          "percent": 32.21306007444215,
+          "display_percent": "32.21%",
+          "category": "Party-able",
+          "boss_hexa_score": 30162,
+          "relevant": true
+        },
+        {
+          "id": "seren_champion",
+          "percent": 46.00222089074445,
+          "display_percent": "46.00%",
+          "category": "Impossible",
+          "boss_hexa_score": 31519,
+          "relevant": true
+        },
+        {
+          "id": "kaling_easy",
+          "percent": 49.51195500997012,
+          "display_percent": "49.51%",
+          "category": "Party-able",
+          "boss_hexa_score": 30809,
+          "relevant": true
+        },
+        {
+          "id": "seren_hard",
+          "percent": 55.898395667376754,
+          "display_percent": "55.90%",
+          "category": "Party-able",
+          "boss_hexa_score": 31519,
+          "relevant": true
+        },
+        {
+          "id": "adversary_easy",
+          "percent": 76.64169392289068,
+          "display_percent": "76.64%",
+          "category": "Party-able",
+          "boss_hexa_score": 31519,
+          "relevant": true
+        },
+        {
+          "id": "kalos_easy",
+          "percent": 109.879395876705,
+          "display_percent": "109.9%",
+          "category": "Solo Min",
+          "boss_hexa_score": 31519,
+          "relevant": true
+        },
+        {
+          "id": "blackMage_hard",
+          "percent": 56.36684504476853,
+          "display_percent": "56.37%",
+          "category": "Party-able",
+          "boss_hexa_score": 30113,
+          "relevant": true
+        },
+        {
+          "id": "blackMage_champion",
+          "percent": 70.45855630596066,
+          "display_percent": "70.46%",
+          "category": "Impossible",
+          "boss_hexa_score": 30113,
+          "relevant": true
+        },
+        {
+          "id": "seren_normal",
+          "percent": 136.39208542839924,
+          "display_percent": "136.4%",
+          "category": "Possible",
+          "boss_hexa_score": 31519,
+          "relevant": true
+        },
+        {
+          "id": "verusHilla_champion",
+          "percent": 176.87527238185982,
+          "display_percent": "176.9%",
+          "category": "Possible",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "verusHilla_hard",
+          "percent": 256.4691449536968,
+          "display_percent": "256.5%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "darknell_hard",
+          "percent": 293.6712626832439,
+          "display_percent": "293.7%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "gloom_chaos",
+          "percent": 304.9446316921977,
+          "display_percent": "304.9%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "slime_chaos",
+          "percent": 255.36631537673392,
+          "display_percent": "255.4%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "will_hard",
+          "percent": 359.0568029351755,
+          "display_percent": "359.1%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "lucid_hard",
+          "percent": 169.10053513430552,
+          "display_percent": "169.1%",
+          "category": "Possible",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "verusHilla_normal",
+          "percent": 512.9382899073936,
+          "display_percent": "512.9%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "lotus_champion",
+          "percent": 648.0243495836492,
+          "display_percent": "648.0%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "damien_hard",
+          "percent": 704.5855630596066,
+          "display_percent": "704.6%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "lotus_hard",
+          "percent": 939.6353068962914,
+          "display_percent": "939.6%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "darknell_normal",
+          "percent": 1850.1289549044368,
+          "display_percent": "1850%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "gloom_normal",
+          "percent": 1524.7231584609883,
+          "display_percent": "1525%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "lucid_normal",
+          "percent": 1920.9538957031891,
+          "display_percent": "1921%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "will_normal",
+          "percent": 1795.2840146758774,
+          "display_percent": "1795%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "will_easy",
+          "percent": 2692.926022013816,
+          "display_percent": "2693%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "lucid_easy",
+          "percent": 3312.299007076994,
+          "display_percent": "3312%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "slime_normal",
+          "percent": 4596.59367678121,
+          "display_percent": "4597%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "lotus_normal",
+          "percent": 20049.54317262787,
+          "display_percent": "20050%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "damien_normal",
+          "percent": 21137.566891788192,
+          "display_percent": "21138%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "name": "entry_and_force_penalties",
+      "user": {
+        "doping": {
+          "bigHero": false,
+          "greatIgnoreGuard": false,
+          "dragonsMeal": false,
+          "extreme": false,
+          "fish": false,
+          "guildBlessing": false,
+          "jangBi": false,
+          "legendHero": false,
+          "legendHp": false,
+          "rebootAtkPotion": false,
+          "shiningRed": false,
+          "shiningBlue": false,
+          "statPotion": false,
+          "stat": "0",
+          "superPower": false,
+          "unionsPower": false,
+          "urus": false,
+          "heroesHawl": false,
+          "noblessBoss": false,
+          "noblessDmg": false,
+          "noblessCriDmg": false,
+          "noblessIgnore": false,
+          "nobless": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "sayram": false,
+          "collector": false,
+          "buff275": false,
+          "additional1": false,
+          "additional2": false,
+          "championAll": "0",
+          "championAtk": "0",
+          "championBoss": "0",
+          "championIgnore": "0",
+          "championCriDmg": "0",
+          "authenticDmg": false,
+          "moonshine": false,
+          "cake": false,
+          "apple": false,
+          "tengu": false,
+          "candy": false,
+          "house": false,
+          "wedding": false,
+          "specialWedding": false,
+          "whiteBear": false,
+          "ultraVip": false,
+          "superVip": false,
+          "truffle": false,
+          "medal": false,
+          "hyperRainbow": false,
+          "rainbow": false,
+          "thanks": false,
+          "genePass": false,
+          "criDmgRing": "0"
+        },
+        "linkSkill": {
+          "ark": "0",
+          "illium": "0",
+          "kadena": "0",
+          "kain": "0",
+          "magician": "0",
+          "thief": "0",
+          "angel": "0",
+          "hoyoung": "0",
+          "mukhyun": "0",
+          "mihile": "0",
+          "kaiser": "0",
+          "hayato": "0",
+          "kanna": "0"
+        },
+        "special": {
+          "isReboot": true,
+          "combat": true,
+          "epiSoul": "0",
+          "mugongSoul": "0",
+          "genesis": false,
+          "oneHandSword": false,
+          "useRuinForceShild": false,
+          "useContinuousRingAsMainRing": false,
+          "restraintRing": "0",
+          "weaponRing": "0",
+          "ringOfSum": "0",
+          "riskTaker": "0",
+          "statThird": "0",
+          "statFourth": "0",
+          "continuosRing": "0",
+          "challenge": false,
+          "is30min": false,
+          "destiny2ndSkill": false,
+          "famPassiveUp": false
+        },
+        "stat": {
+          "myClass": "섀도어",
+          "level": "259",
+          "mainStatBase": "6000",
+          "mainStatPer": "400",
+          "mainStatAbs": "20000",
+          "subStatBase": "3000",
+          "subStatPer": "100",
+          "subStatAbs": "1000",
+          "ssubStatBase": "2500",
+          "ssubStatPer": "100",
+          "ssubStatAbs": "1000",
+          "arcaneForce": "560",
+          "authenticForce": "160",
+          "classForce": "0",
+          "atkBase": "3000",
+          "atkAbs": "0",
+          "dmg": "80",
+          "bossDmg": "300",
+          "normalDmg": "37",
+          "ignoreDef": "95",
+          "buffDuration": "0",
+          "critical": "100",
+          "criticalDmg": "100",
+          "weaponAtk": "800",
+          "atkPercent": "90",
+          "coolTimeReducePercent": "0",
+          "coolTimeReduce": "0",
+          "wildhunterUnion": "0",
+          "resetCoolDown": "0",
+          "statusAdditionalDmg": "0",
+          "passiveSkillLevelUp": false,
+          "increaseTarget": false,
+          "summonPersistTime": "0",
+          "artifact_increaseTarget": false,
+          "artifact_finalAttack": "0",
+          "subStat_hyper": "",
+          "subStat_ability": "",
+          "subStat_union": "",
+          "subStat_doping": "",
+          "subStat_afterDoping": "",
+          "ssubStat_hyper": "",
+          "ssubStat_ability": "",
+          "ssubStat_union": "",
+          "ssubStat_doping": "",
+          "ssubStat_afterDoping": "",
+          "ignoreElementalResist": "0",
+          "maple_combatPower": "",
+          "tms_fd": "0",
+          "tms_soul": "0"
+        },
+        "hexa": {
+          "skillCore1": "1",
+          "skillCore2": "0",
+          "skillCore3": "0",
+          "skillCore4": "0",
+          "skillCore5": "0",
+          "skillCore6": "0",
+          "masteryCore1": "1",
+          "masteryCore2": "1",
+          "masteryCore3": "1",
+          "masteryCore4": "1",
+          "reinCore1": "0",
+          "reinCore2": "0",
+          "reinCore3": "0",
+          "reinCore4": "0",
+          "generalCore2": "0",
+          "generalCore3": "0",
+          "generalCore4": "0",
+          "hexaStat": 0
+        },
+        "seedRing": {
+          "restraintRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "weaponRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "ringOfSum": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "riskTakerRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "criDamageRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "levelRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "continuosRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "ultiRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "durabilityRing": {
+            "level": "0",
+            "efficiency": 0
+          }
+        },
+        "entireStat": {
+          "str": "6000",
+          "dex": "7000",
+          "int": "0",
+          "luk": "50000"
+        },
+        "isGMS": true,
+        "isTMS": false,
+        "isJMS": false,
+        "isMSEA": false,
+        "power": {
+          "mainStatBase": 0,
+          "mainStatPer": 0,
+          "mainStatAbs": 0,
+          "subStatBase": 0,
+          "subStatPer": 0,
+          "subStatAbs": 0,
+          "ssubStatBase": 0,
+          "ssubStatPer": 0,
+          "ssubStatAbs": 0,
+          "atk": 0,
+          "atkPer": 0,
+          "bossDmg": 0,
+          "criDmg": 0
+        },
+        "huntSkill": {
+          "solJanus": "30",
+          "erdaShower": "25"
+        }
+      },
+      "calculated": {
+        "combatPower": 0,
+        "calculatedDamage_300": 399425919.8618905,
+        "calculatedDamage_380": 390669444.4212595,
+        "calculatedHexaDamage_300": 218384511.35578498,
+        "calculatedHexaDamage_380": 213596943.71129575,
+        "calculatedHexaDamage_kaling": 204160890.5915566,
+        "mr_stat": 0,
+        "mr_hexaStat": 38721759,
+        "boss300_stat": 40797,
+        "boss380_stat": 40645,
+        "boss300_hexaStat": 30799,
+        "boss380_hexaStat": 30716,
+        "boss300_plotter_1": [
+          0
+        ],
+        "boss300_plotter_2": [
+          0
+        ],
+        "boss300_changePoing": 0,
+        "boss380_plotter_1": [
+          0
+        ],
+        "boss380_plotter_2": [
+          0
+        ],
+        "boss380_changePoing": 0,
+        "exchangePower": 70014309.52451268,
+        "exchangePowerHexa": 37484018.74466584,
+        "dojo_floor": null,
+        "dojo_image_url": "",
+        "class": "섀도어",
+        "hexaUsed": [
+          17,
+          300
+        ],
+        "isReboot": true,
+        "increasedByHexa": 0,
+        "specEfficiency": {
+          "dmgeff1": 0.0019036480942946632,
+          "atkeff1": 0.0003278688524590567,
+          "atkPereff1": 0.0052631578947368585,
+          "cridmgeff1": 0.004197429559507748,
+          "igreff1": 0.000822099449973468,
+          "mainStateff1": 8.870123649523665e-05,
+          "mainStatPereff1": 0.0011750962408415967,
+          "mainStatAbseff1": 1.774024729904733e-05,
+          "subStateff1": 8.870123649523664e-06,
+          "subStatPereff1": 0.00013305185474285519,
+          "subStatAbseff1": 4.435061824761943e-06,
+          "ssubStateff1": 8.870123649523664e-06,
+          "ssubStatPereff1": 0.00011087654561904592,
+          "ssubStatAbseff1": 4.435061824761943e-06,
+          "allStatEff": 0.0014190246412034981,
+          "igreffminus40": -0.054806629998240486,
+          "igreffminus35": -0.04426689346011736,
+          "igreffminus30": -0.03523283357029727,
+          "igreffminus20": -0.02055248624934003,
+          "igreffminus15": -0.014507637352475178,
+          "igreffminus10": -0.009134438333039951,
+          "igreff1_380": 0.0010646662782805016,
+          "igreffminus40_380": -0.07097775188538036,
+          "igreffminus35_380": -0.057328184215114875,
+          "igreffminus30_380": -0.04562855478345851,
+          "igreffminus20_380": -0.026616656957017426,
+          "igreffminus15_380": -0.018788228440247523,
+          "igreffminus10_380": -0.01182962531422993
+        },
+        "hexaEffect": {
+          "masteryCore1": 1.1630245452851118,
+          "masteryCore2": 0.9347031333432798,
+          "masteryCore3": 1.2803020789684625,
+          "masteryCore4": 1.1656180819794504,
+          "skillCore1": 0.8791738034786655,
+          "skillCore2": 0,
+          "skillCore3": 0,
+          "skillCore4": 0,
+          "skillCore5": 0,
+          "skillCore6": 0,
+          "reinCore1": 0,
+          "reinCore2": 1.1431268562218417,
+          "reinCore3": 1.1431268562218415,
+          "reinCore4": 1.1431268562218417,
+          "generalCore1": 0,
+          "generalCore2": 0,
+          "generalCore3": 0,
+          "generalCore4": 0
+        },
+        "hexaPoss": {
+          "masteryCore1": 0.3268,
+          "masteryCore2": 0.1686,
+          "masteryCore3": 0.0119,
+          "masteryCore4": 0.0744,
+          "skillCore1": 0.0424,
+          "skillCore2": 0.02365603092783505,
+          "skillCore3": 0,
+          "skillCore4": 0,
+          "skillCore5": 0,
+          "skillCore6": 0,
+          "reinCore1": 0,
+          "reinCore2": 0.0979,
+          "reinCore3": 0.0846,
+          "reinCore4": 0.0681,
+          "generalCore1": 0,
+          "generalCore2": 0.0664,
+          "generalCore3": 0.0212,
+          "generalCore4": 0
+        },
+        "maple_scouter_const": {
+          "stat_score": 57822,
+          "attack_score": 58901,
+          "attackPer_score": 25757,
+          "damage_score": 16066,
+          "criDamage_score": 20491,
+          "def_score": 53212
+        },
+        "elixir": 0,
+        "ascent_const": 0,
+        "ignoreDefConst_300": 0.9240351233349998,
+        "ignoreDefConst_380": 0.9037778228909998,
+        "usePassiveAbility": false,
+        "restraintEff1": 0,
+        "weaponEff1": 1,
+        "spline_300": {
+          "x": [
+            0,
+            23716,
+            31615,
+            44999,
+            55216,
+            67090,
+            83643,
+            96746,
+            108468,
+            117023,
+            127726,
+            140485,
+            151698
+          ],
+          "y": [
+            0,
+            137758493,
+            229962520,
+            496388667,
+            801750419,
+            1285572026,
+            2229075507,
+            3154623206,
+            4541534889,
+            6057857851,
+            8591416707,
+            12853844148,
+            16726477527
+          ],
+          "m": [
+            5808.673174228369,
+            8216.866312408136,
+            14393.878731599674,
+            24112.778912936537,
+            34350.26272348957,
+            47091.8049304321,
+            63351.56181025939,
+            88876.62971110076,
+            143394.68503387054,
+            201630.58724251617,
+            275716.84188753326,
+            339748.60631418653,
+            345369.9615624721
+          ]
+        },
+        "spline_380": {
+          "x": [
+            0,
+            23716,
+            31615,
+            44999,
+            55216,
+            67090,
+            83643,
+            96746,
+            108468,
+            117023,
+            127726,
+            140485,
+            151698
+          ],
+          "y": [
+            0,
+            135185175,
+            226172076,
+            490164836,
+            794051575,
+            1273333809,
+            2217339081,
+            3136951891,
+            4517447646,
+            6027377309,
+            8550592444,
+            12816524090,
+            16662207584
+          ],
+          "m": [
+            5700.16760836566,
+            8081.805154217059,
+            14223.16716394132,
+            23936.164223176827,
+            34119.90403712558,
+            46831.15080481482,
+            63179.56573181246,
+            88367.3909622765,
+            142756.33164731908,
+            200791.49664753157,
+            275131.3371239539,
+            338694.5002080405,
+            342966.5115490948
+          ]
+        },
+        "myClassData": {
+          "main": "LUK",
+          "sub": "DEX",
+          "sub2": "STR",
+          "weaponConstant": 1.3,
+          "finalDamage": 58.1372,
+          "finalDamage2": 58.1372,
+          "finalDamage3": 59.4888,
+          "finalDamage4": 59.4888,
+          "passiveAtkPercent": 0,
+          "passiveAtkPercent2": 0,
+          "passiveAtkPercent3": 0,
+          "passiveAtkPercent4": 0,
+          "proficiency": 0.91,
+          "proficiency2": 0.91,
+          "proficiency3": 0.92,
+          "proficiency4": 0.92,
+          "dpm_mainStat": 0.44,
+          "dpm_atk": 30,
+          "dpm_atkPer": 0,
+          "dpm_bossDmg": 45.30717363,
+          "dpm_ignoreGuard": 49.35674889,
+          "dpm_criticalDmg": 3.241043911,
+          "useResetCoolDown": false,
+          "usePassiveLevelUp": false,
+          "useFinalAttack": false,
+          "useIncreaseTarget": false,
+          "useCoolDown": false,
+          "useIlliumLink": false,
+          "coolDownBestEff": 0,
+          "coolDownEff2s": 0,
+          "coolDownEff4s": 0,
+          "coolDownEff5s": 0,
+          "ignoreElementalResist": 5,
+          "ignoreElementalResistBuff": 0,
+          "seedRingFirst": 0.3239,
+          "seedRingSecond": 0.1634,
+          "seedRingFirstLv5": 1.1734,
+          "seedRingSecondLv5": 1.1857,
+          "exDealCool": 2,
+          "poss60": 0.7285,
+          "poss40": 0.5165
+        },
+        "mercedesBuildType": null,
+        "genePassConst": 1
+      },
+      "expected": [
+        {
+          "id": "jupiter_hard",
+          "percent": 0.009095097252132837,
+          "display_percent": "[Party] 0%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 132,
+          "relevant": false
+        },
+        {
+          "id": "kaling_extreme",
+          "percent": 0.05397456340546196,
+          "display_percent": "[Party] 0%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 443,
+          "relevant": false
+        },
+        {
+          "id": "adversary_extreme",
+          "percent": 0.031083969172394938,
+          "display_percent": "[Party] 0%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 297,
+          "relevant": false
+        },
+        {
+          "id": "kalos_extreme",
+          "percent": 0.1176043879359076,
+          "display_percent": "[Party] 0%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 464,
+          "relevant": false
+        },
+        {
+          "id": "bardrix_destiny",
+          "percent": 0.016123913263840876,
+          "display_percent": "0.02%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 297,
+          "relevant": false
+        },
+        {
+          "id": "bardrix_hard",
+          "percent": 0.016123913263840876,
+          "display_percent": "0.02%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 297,
+          "relevant": false
+        },
+        {
+          "id": "maleficStar_hard",
+          "percent": 0.05101033612166324,
+          "display_percent": "0.05%",
+          "category": "Impossible",
+          "boss_hexa_score": 631,
+          "relevant": false
+        },
+        {
+          "id": "limbo_destiny",
+          "percent": 0.0364936824150783,
+          "display_percent": "0.04%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 464,
+          "relevant": false
+        },
+        {
+          "id": "limbo_hard",
+          "percent": 0.0364936824150783,
+          "display_percent": "0.04%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 464,
+          "relevant": false
+        },
+        {
+          "id": "jupiter_normal",
+          "percent": 0.013910316760724732,
+          "display_percent": "0.01%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 132,
+          "relevant": false
+        },
+        {
+          "id": "adversary_destiny",
+          "percent": 0.042542376466989884,
+          "display_percent": "0.04%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 464,
+          "relevant": false
+        },
+        {
+          "id": "seren_extreme",
+          "percent": 0.8149245928880479,
+          "display_percent": "0.81%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 8279,
+          "relevant": false
+        },
+        {
+          "id": "adversary_hard",
+          "percent": 0.05317797058373736,
+          "display_percent": "0.05%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 464,
+          "relevant": false
+        },
+        {
+          "id": "kaling_hard",
+          "percent": 0.052357364080494205,
+          "display_percent": "0.05%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 443,
+          "relevant": false
+        },
+        {
+          "id": "bardrix_normal",
+          "percent": 0.03624427715475941,
+          "display_percent": "0.04%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 297,
+          "relevant": false
+        },
+        {
+          "id": "blackMage_extreme",
+          "percent": 1.3297997509874675,
+          "display_percent": "1.33%",
+          "category": "Impossible",
+          "boss_hexa_score": 9488,
+          "relevant": false
+        },
+        {
+          "id": "kaling_destiny",
+          "percent": 0.06282883689659305,
+          "display_percent": "0.06%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 443,
+          "relevant": false
+        },
+        {
+          "id": "limbo_normal",
+          "percent": 0.0715912173177258,
+          "display_percent": "0.07%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 464,
+          "relevant": false
+        },
+        {
+          "id": "kalos_destiny",
+          "percent": 0.0847924636970108,
+          "display_percent": "0.08%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 464,
+          "relevant": false
+        },
+        {
+          "id": "kalos_chaos",
+          "percent": 0.0847924636970108,
+          "display_percent": "0.08%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 464,
+          "relevant": false
+        },
+        {
+          "id": "seren_destiny",
+          "percent": 2.6831229920340833,
+          "display_percent": "2.68%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 10555,
+          "relevant": false
+        },
+        {
+          "id": "kaling_normal",
+          "percent": 0.15241458764150384,
+          "display_percent": "0.15%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 443,
+          "relevant": false
+        },
+        {
+          "id": "maleficStar_normal",
+          "percent": 0.22417421848762212,
+          "display_percent": "0.22%",
+          "category": "Impossible",
+          "boss_hexa_score": 631,
+          "relevant": false
+        },
+        {
+          "id": "lotus_extreme",
+          "percent": 5.043395121185525,
+          "display_percent": "5.04%",
+          "category": "Impossible",
+          "boss_hexa_score": 12835,
+          "relevant": false
+        },
+        {
+          "id": "kalos_champion",
+          "percent": 0.3837292422660819,
+          "display_percent": "0.38%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 631,
+          "relevant": false
+        },
+        {
+          "id": "adversary_normal",
+          "percent": 0.42819575781912106,
+          "display_percent": "0.43%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 631,
+          "relevant": false
+        },
+        {
+          "id": "kalos_normal",
+          "percent": 0.5564074012858187,
+          "display_percent": "0.56%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 631,
+          "relevant": false
+        },
+        {
+          "id": "seren_champion",
+          "percent": 11.040533013778669,
+          "display_percent": "11.04%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 10555,
+          "relevant": false
+        },
+        {
+          "id": "kaling_easy",
+          "percent": 5.941434601196415,
+          "display_percent": "5.94%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 4854,
+          "relevant": false
+        },
+        {
+          "id": "seren_hard",
+          "percent": 13.415614960170416,
+          "display_percent": "13.42%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 10555,
+          "relevant": false
+        },
+        {
+          "id": "adversary_easy",
+          "percent": 14.817394158425534,
+          "display_percent": "14.82%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 8432,
+          "relevant": false
+        },
+        {
+          "id": "kalos_easy",
+          "percent": 31.865024804244445,
+          "display_percent": "31.87%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 12763,
+          "relevant": true
+        },
+        {
+          "id": "blackMage_hard",
+          "percent": 16.910053513430555,
+          "display_percent": "16.91%",
+          "category": "Party Min",
+          "boss_hexa_score": 12039,
+          "relevant": true
+        },
+        {
+          "id": "blackMage_champion",
+          "percent": 21.137566891788197,
+          "display_percent": "21.14%",
+          "category": "Impossible",
+          "boss_hexa_score": 12039,
+          "relevant": true
+        },
+        {
+          "id": "seren_normal",
+          "percent": 39.55370477423579,
+          "display_percent": "39.55%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 12763,
+          "relevant": true
+        },
+        {
+          "id": "verusHilla_champion",
+          "percent": 82.54179377820127,
+          "display_percent": "82.54%",
+          "category": "Impossible",
+          "boss_hexa_score": 19627,
+          "relevant": true
+        },
+        {
+          "id": "verusHilla_hard",
+          "percent": 119.68560097839183,
+          "display_percent": "119.7%",
+          "category": "Possible",
+          "boss_hexa_score": 19627,
+          "relevant": true
+        },
+        {
+          "id": "darknell_hard",
+          "percent": 97.0746673869612,
+          "display_percent": "97.07%",
+          "category": "Solo Min",
+          "boss_hexa_score": 14509,
+          "relevant": true
+        },
+        {
+          "id": "gloom_chaos",
+          "percent": 159.9265179541303,
+          "display_percent": "159.9%",
+          "category": "Possible",
+          "boss_hexa_score": 21506,
+          "relevant": true
+        },
+        {
+          "id": "slime_chaos",
+          "percent": 255.36631537673392,
+          "display_percent": "255.4%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "will_hard",
+          "percent": 191.49696156542691,
+          "display_percent": "191.5%",
+          "category": "Possible",
+          "boss_hexa_score": 21781,
+          "relevant": true
+        },
+        {
+          "id": "lucid_hard",
+          "percent": 169.10053513430552,
+          "display_percent": "169.1%",
+          "category": "Possible",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "verusHilla_normal",
+          "percent": 239.37120195678366,
+          "display_percent": "239.4%",
+          "category": "Easy",
+          "boss_hexa_score": 19627,
+          "relevant": true
+        },
+        {
+          "id": "lotus_champion",
+          "percent": 648.0243495836492,
+          "display_percent": "648.0%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "damien_hard",
+          "percent": 704.5855630596066,
+          "display_percent": "704.6%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "lotus_hard",
+          "percent": 939.6353068962914,
+          "display_percent": "939.6%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": true
+        },
+        {
+          "id": "darknell_normal",
+          "percent": 611.5704045378556,
+          "display_percent": "611.6%",
+          "category": "Easy",
+          "boss_hexa_score": 14509,
+          "relevant": true
+        },
+        {
+          "id": "gloom_normal",
+          "percent": 799.6325897706515,
+          "display_percent": "799.6%",
+          "category": "Easy",
+          "boss_hexa_score": 21506,
+          "relevant": true
+        },
+        {
+          "id": "lucid_normal",
+          "percent": 1920.9538957031891,
+          "display_percent": "1921%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "will_normal",
+          "percent": 957.4848078271347,
+          "display_percent": "957.5%",
+          "category": "Easy",
+          "boss_hexa_score": 21781,
+          "relevant": true
+        },
+        {
+          "id": "will_easy",
+          "percent": 1795.284014675877,
+          "display_percent": "1795%",
+          "category": "Easy",
+          "boss_hexa_score": 25419,
+          "relevant": false
+        },
+        {
+          "id": "lucid_easy",
+          "percent": 3312.299007076994,
+          "display_percent": "3312%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "slime_normal",
+          "percent": 4596.59367678121,
+          "display_percent": "4597%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "lotus_normal",
+          "percent": 20049.54317262787,
+          "display_percent": "20050%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        },
+        {
+          "id": "damien_normal",
+          "percent": 21137.566891788192,
+          "display_percent": "21138%",
+          "category": "Easy",
+          "boss_hexa_score": 31607,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "name": "potion_ascent_sacred",
+      "user": {
+        "doping": {
+          "bigHero": false,
+          "greatIgnoreGuard": false,
+          "dragonsMeal": false,
+          "extreme": false,
+          "fish": false,
+          "guildBlessing": false,
+          "jangBi": false,
+          "legendHero": false,
+          "legendHp": false,
+          "rebootAtkPotion": false,
+          "shiningRed": false,
+          "shiningBlue": false,
+          "statPotion": false,
+          "stat": "0",
+          "superPower": false,
+          "unionsPower": false,
+          "urus": false,
+          "heroesHawl": false,
+          "noblessBoss": false,
+          "noblessDmg": false,
+          "noblessCriDmg": false,
+          "noblessIgnore": false,
+          "nobless": [
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "sayram": false,
+          "collector": false,
+          "buff275": false,
+          "additional1": false,
+          "additional2": false,
+          "championAll": "0",
+          "championAtk": "0",
+          "championBoss": "0",
+          "championIgnore": "0",
+          "championCriDmg": "0",
+          "authenticDmg": true,
+          "moonshine": false,
+          "cake": false,
+          "apple": false,
+          "tengu": false,
+          "candy": false,
+          "house": false,
+          "wedding": false,
+          "specialWedding": false,
+          "whiteBear": false,
+          "ultraVip": false,
+          "superVip": false,
+          "truffle": false,
+          "medal": false,
+          "hyperRainbow": false,
+          "rainbow": false,
+          "thanks": false,
+          "genePass": false,
+          "criDmgRing": "0"
+        },
+        "linkSkill": {
+          "ark": "0",
+          "illium": "0",
+          "kadena": "0",
+          "kain": "0",
+          "magician": "0",
+          "thief": "0",
+          "angel": "0",
+          "hoyoung": "0",
+          "mukhyun": "0",
+          "mihile": "0",
+          "kaiser": "0",
+          "hayato": "0",
+          "kanna": "0"
+        },
+        "special": {
+          "isReboot": true,
+          "combat": true,
+          "epiSoul": "0",
+          "mugongSoul": "0",
+          "genesis": false,
+          "oneHandSword": false,
+          "useRuinForceShild": false,
+          "useContinuousRingAsMainRing": false,
+          "restraintRing": "0",
+          "weaponRing": "0",
+          "ringOfSum": "0",
+          "riskTaker": "0",
+          "statThird": "0",
+          "statFourth": "0",
+          "continuosRing": "0",
+          "challenge": false,
+          "is30min": false,
+          "destiny2ndSkill": false,
+          "famPassiveUp": false
+        },
+        "stat": {
+          "myClass": "섀도어",
+          "level": "280",
+          "mainStatBase": "6000",
+          "mainStatPer": "400",
+          "mainStatAbs": "20000",
+          "subStatBase": "3000",
+          "subStatPer": "100",
+          "subStatAbs": "1000",
+          "ssubStatBase": "2500",
+          "ssubStatPer": "100",
+          "ssubStatAbs": "1000",
+          "arcaneForce": "1380",
+          "authenticForce": "660",
+          "classForce": "0",
+          "atkBase": "3000",
+          "atkAbs": "0",
+          "dmg": "80",
+          "bossDmg": "300",
+          "normalDmg": "37",
+          "ignoreDef": "95",
+          "buffDuration": "0",
+          "critical": "100",
+          "criticalDmg": "100",
+          "weaponAtk": "800",
+          "atkPercent": "90",
+          "coolTimeReducePercent": "0",
+          "coolTimeReduce": "0",
+          "wildhunterUnion": "0",
+          "resetCoolDown": "0",
+          "statusAdditionalDmg": "0",
+          "passiveSkillLevelUp": false,
+          "increaseTarget": false,
+          "summonPersistTime": "0",
+          "artifact_increaseTarget": false,
+          "artifact_finalAttack": "0",
+          "subStat_hyper": "",
+          "subStat_ability": "",
+          "subStat_union": "",
+          "subStat_doping": "",
+          "subStat_afterDoping": "",
+          "ssubStat_hyper": "",
+          "ssubStat_ability": "",
+          "ssubStat_union": "",
+          "ssubStat_doping": "",
+          "ssubStat_afterDoping": "",
+          "ignoreElementalResist": "0",
+          "maple_combatPower": "",
+          "tms_fd": "0",
+          "tms_soul": "0"
+        },
+        "hexa": {
+          "skillCore1": "1",
+          "skillCore2": "0",
+          "skillCore3": "0",
+          "skillCore4": "0",
+          "skillCore5": "0",
+          "skillCore6": "0",
+          "masteryCore1": "1",
+          "masteryCore2": "1",
+          "masteryCore3": "1",
+          "masteryCore4": "1",
+          "reinCore1": "0",
+          "reinCore2": "0",
+          "reinCore3": "0",
+          "reinCore4": "0",
+          "generalCore2": "0",
+          "generalCore3": "0",
+          "generalCore4": "0",
+          "hexaStat": 0
+        },
+        "seedRing": {
+          "restraintRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "weaponRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "ringOfSum": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "riskTakerRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "criDamageRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "levelRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "continuosRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "ultiRing": {
+            "level": "0",
+            "efficiency": 0
+          },
+          "durabilityRing": {
+            "level": "0",
+            "efficiency": 0
+          }
+        },
+        "entireStat": {
+          "str": "6000",
+          "dex": "7000",
+          "int": "0",
+          "luk": "50000"
+        },
+        "isGMS": true,
+        "isTMS": false,
+        "isJMS": false,
+        "isMSEA": false,
+        "power": {
+          "mainStatBase": 0,
+          "mainStatPer": 0,
+          "mainStatAbs": 0,
+          "subStatBase": 0,
+          "subStatPer": 0,
+          "subStatAbs": 0,
+          "ssubStatBase": 0,
+          "ssubStatPer": 0,
+          "ssubStatAbs": 0,
+          "atk": 0,
+          "atkPer": 0,
+          "bossDmg": 0,
+          "criDmg": 0
+        },
+        "huntSkill": {
+          "solJanus": "30",
+          "erdaShower": "25"
+        }
+      },
+      "calculated": {
+        "combatPower": 0,
+        "calculatedDamage_300": 399425919.8618905,
+        "calculatedDamage_380": 390669444.4212595,
+        "calculatedHexaDamage_300": 218384511.35578498,
+        "calculatedHexaDamage_380": 213596943.71129575,
+        "calculatedHexaDamage_kaling": 204160890.5915566,
+        "mr_stat": 0,
+        "mr_hexaStat": 38721759,
+        "boss300_stat": 40797,
+        "boss380_stat": 40645,
+        "boss300_hexaStat": 30799,
+        "boss380_hexaStat": 30716,
+        "boss300_plotter_1": [
+          0
+        ],
+        "boss300_plotter_2": [
+          0
+        ],
+        "boss300_changePoing": 0,
+        "boss380_plotter_1": [
+          0
+        ],
+        "boss380_plotter_2": [
+          0
+        ],
+        "boss380_changePoing": 0,
+        "exchangePower": 70014309.52451268,
+        "exchangePowerHexa": 37484018.74466584,
+        "dojo_floor": null,
+        "dojo_image_url": "",
+        "class": "섀도어",
+        "hexaUsed": [
+          17,
+          300
+        ],
+        "isReboot": true,
+        "increasedByHexa": 0,
+        "specEfficiency": {
+          "dmgeff1": 0.0019036480942946632,
+          "atkeff1": 0.0003278688524590567,
+          "atkPereff1": 0.0052631578947368585,
+          "cridmgeff1": 0.004197429559507748,
+          "igreff1": 0.000822099449973468,
+          "mainStateff1": 8.870123649523665e-05,
+          "mainStatPereff1": 0.0011750962408415967,
+          "mainStatAbseff1": 1.774024729904733e-05,
+          "subStateff1": 8.870123649523664e-06,
+          "subStatPereff1": 0.00013305185474285519,
+          "subStatAbseff1": 4.435061824761943e-06,
+          "ssubStateff1": 8.870123649523664e-06,
+          "ssubStatPereff1": 0.00011087654561904592,
+          "ssubStatAbseff1": 4.435061824761943e-06,
+          "allStatEff": 0.0014190246412034981,
+          "igreffminus40": -0.054806629998240486,
+          "igreffminus35": -0.04426689346011736,
+          "igreffminus30": -0.03523283357029727,
+          "igreffminus20": -0.02055248624934003,
+          "igreffminus15": -0.014507637352475178,
+          "igreffminus10": -0.009134438333039951,
+          "igreff1_380": 0.0010646662782805016,
+          "igreffminus40_380": -0.07097775188538036,
+          "igreffminus35_380": -0.057328184215114875,
+          "igreffminus30_380": -0.04562855478345851,
+          "igreffminus20_380": -0.026616656957017426,
+          "igreffminus15_380": -0.018788228440247523,
+          "igreffminus10_380": -0.01182962531422993
+        },
+        "hexaEffect": {
+          "masteryCore1": 1.1630245452851118,
+          "masteryCore2": 0.9347031333432798,
+          "masteryCore3": 1.2803020789684625,
+          "masteryCore4": 1.1656180819794504,
+          "skillCore1": 0.8791738034786655,
+          "skillCore2": 0,
+          "skillCore3": 0,
+          "skillCore4": 0,
+          "skillCore5": 0,
+          "skillCore6": 0,
+          "reinCore1": 0,
+          "reinCore2": 1.1431268562218417,
+          "reinCore3": 1.1431268562218415,
+          "reinCore4": 1.1431268562218417,
+          "generalCore1": 0,
+          "generalCore2": 0,
+          "generalCore3": 0,
+          "generalCore4": 0
+        },
+        "hexaPoss": {
+          "masteryCore1": 0.3268,
+          "masteryCore2": 0.1686,
+          "masteryCore3": 0.0119,
+          "masteryCore4": 0.0744,
+          "skillCore1": 0.0424,
+          "skillCore2": 0.02365603092783505,
+          "skillCore3": 0,
+          "skillCore4": 0,
+          "skillCore5": 0,
+          "skillCore6": 0,
+          "reinCore1": 0,
+          "reinCore2": 0.0979,
+          "reinCore3": 0.0846,
+          "reinCore4": 0.0681,
+          "generalCore1": 0,
+          "generalCore2": 0.0664,
+          "generalCore3": 0.0212,
+          "generalCore4": 0
+        },
+        "maple_scouter_const": {
+          "stat_score": 57822,
+          "attack_score": 58901,
+          "attackPer_score": 25757,
+          "damage_score": 16066,
+          "criDamage_score": 20491,
+          "def_score": 53212
+        },
+        "elixir": 3,
+        "ascent_const": 0.12,
+        "ignoreDefConst_300": 0.9240351233349998,
+        "ignoreDefConst_380": 0.9037778228909998,
+        "usePassiveAbility": false,
+        "restraintEff1": 0,
+        "weaponEff1": 1,
+        "spline_300": {
+          "x": [
+            0,
+            23716,
+            31615,
+            44999,
+            55216,
+            67090,
+            83643,
+            96746,
+            108468,
+            117023,
+            127726,
+            140485,
+            151698
+          ],
+          "y": [
+            0,
+            137758493,
+            229962520,
+            496388667,
+            801750419,
+            1285572026,
+            2229075507,
+            3154623206,
+            4541534889,
+            6057857851,
+            8591416707,
+            12853844148,
+            16726477527
+          ],
+          "m": [
+            5808.673174228369,
+            8216.866312408136,
+            14393.878731599674,
+            24112.778912936537,
+            34350.26272348957,
+            47091.8049304321,
+            63351.56181025939,
+            88876.62971110076,
+            143394.68503387054,
+            201630.58724251617,
+            275716.84188753326,
+            339748.60631418653,
+            345369.9615624721
+          ]
+        },
+        "spline_380": {
+          "x": [
+            0,
+            23716,
+            31615,
+            44999,
+            55216,
+            67090,
+            83643,
+            96746,
+            108468,
+            117023,
+            127726,
+            140485,
+            151698
+          ],
+          "y": [
+            0,
+            135185175,
+            226172076,
+            490164836,
+            794051575,
+            1273333809,
+            2217339081,
+            3136951891,
+            4517447646,
+            6027377309,
+            8550592444,
+            12816524090,
+            16662207584
+          ],
+          "m": [
+            5700.16760836566,
+            8081.805154217059,
+            14223.16716394132,
+            23936.164223176827,
+            34119.90403712558,
+            46831.15080481482,
+            63179.56573181246,
+            88367.3909622765,
+            142756.33164731908,
+            200791.49664753157,
+            275131.3371239539,
+            338694.5002080405,
+            342966.5115490948
+          ]
+        },
+        "myClassData": {
+          "main": "LUK",
+          "sub": "DEX",
+          "sub2": "STR",
+          "weaponConstant": 1.3,
+          "finalDamage": 58.1372,
+          "finalDamage2": 58.1372,
+          "finalDamage3": 59.4888,
+          "finalDamage4": 59.4888,
+          "passiveAtkPercent": 0,
+          "passiveAtkPercent2": 0,
+          "passiveAtkPercent3": 0,
+          "passiveAtkPercent4": 0,
+          "proficiency": 0.91,
+          "proficiency2": 0.91,
+          "proficiency3": 0.92,
+          "proficiency4": 0.92,
+          "dpm_mainStat": 0.44,
+          "dpm_atk": 30,
+          "dpm_atkPer": 0,
+          "dpm_bossDmg": 45.30717363,
+          "dpm_ignoreGuard": 49.35674889,
+          "dpm_criticalDmg": 3.241043911,
+          "useResetCoolDown": false,
+          "usePassiveLevelUp": false,
+          "useFinalAttack": false,
+          "useIncreaseTarget": false,
+          "useCoolDown": false,
+          "useIlliumLink": false,
+          "coolDownBestEff": 0,
+          "coolDownEff2s": 0,
+          "coolDownEff4s": 0,
+          "coolDownEff5s": 0,
+          "ignoreElementalResist": 5,
+          "ignoreElementalResistBuff": 0,
+          "seedRingFirst": 0.3239,
+          "seedRingSecond": 0.1634,
+          "seedRingFirstLv5": 1.1734,
+          "seedRingSecondLv5": 1.1857,
+          "exDealCool": 2,
+          "poss60": 0.7285,
+          "poss40": 0.5165
+        },
+        "mercedesBuildType": null,
+        "genePassConst": 1.1
+      },
+      "expected": [
+        {
+          "id": "jupiter_hard",
+          "percent": 0.05400927336648042,
+          "display_percent": "[Party] 0%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 791,
+          "relevant": false
+        },
+        {
+          "id": "kaling_extreme",
+          "percent": 3.2051630334336627,
+          "display_percent": "[Party] 3%",
+          "category": "Impossible",
+          "boss_hexa_score": 25259,
+          "relevant": false
+        },
+        {
+          "id": "adversary_extreme",
+          "percent": 2.461139288281113,
+          "display_percent": "[Party] 2%",
+          "category": "Impossible",
+          "boss_hexa_score": 23506,
+          "relevant": false
+        },
+        {
+          "id": "kalos_extreme",
+          "percent": 6.983682923938543,
+          "display_percent": "[Party] 7%",
+          "category": "Impossible",
+          "boss_hexa_score": 25950,
+          "relevant": false
+        },
+        {
+          "id": "bardrix_destiny",
+          "percent": 0.6127896400008157,
+          "display_percent": "0.61%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 12548,
+          "relevant": false
+        },
+        {
+          "id": "bardrix_hard",
+          "percent": 0.6127896400008157,
+          "display_percent": "0.61%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 12548,
+          "relevant": false
+        },
+        {
+          "id": "maleficStar_hard",
+          "percent": 2.8059390892617073,
+          "display_percent": "2.81%",
+          "category": "Impossible",
+          "boss_hexa_score": 29383,
+          "relevant": false
+        },
+        {
+          "id": "limbo_destiny",
+          "percent": 2.1670986192514623,
+          "display_percent": "2.17%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 25950,
+          "relevant": false
+        },
+        {
+          "id": "limbo_hard",
+          "percent": 2.1670986192514623,
+          "display_percent": "2.17%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 25950,
+          "relevant": false
+        },
+        {
+          "id": "jupiter_normal",
+          "percent": 0.08260341585331998,
+          "display_percent": "0.08%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 791,
+          "relevant": false
+        },
+        {
+          "id": "adversary_destiny",
+          "percent": 2.5262872694698943,
+          "display_percent": "2.53%",
+          "category": "Impossible",
+          "boss_hexa_score": 25950,
+          "relevant": false
+        },
+        {
+          "id": "seren_extreme",
+          "percent": 3.7355644362799443,
+          "display_percent": "3.74%",
+          "category": "Impossible",
+          "boss_hexa_score": 29383,
+          "relevant": false
+        },
+        {
+          "id": "adversary_hard",
+          "percent": 3.1578590868373677,
+          "display_percent": "3.16%",
+          "category": "Impossible",
+          "boss_hexa_score": 25950,
+          "relevant": false
+        },
+        {
+          "id": "kaling_hard",
+          "percent": 3.10912913955772,
+          "display_percent": "3.11%",
+          "category": "Impossible",
+          "boss_hexa_score": 25259,
+          "relevant": false
+        },
+        {
+          "id": "bardrix_normal",
+          "percent": 1.3774644645082974,
+          "display_percent": "1.38%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 12548,
+          "relevant": false
+        },
+        {
+          "id": "blackMage_extreme",
+          "percent": 4.876576508320089,
+          "display_percent": "4.88%",
+          "category": "Impossible",
+          "boss_hexa_score": 28018,
+          "relevant": false
+        },
+        {
+          "id": "kaling_destiny",
+          "percent": 3.7309549674692635,
+          "display_percent": "3.73%",
+          "category": "Impossible",
+          "boss_hexa_score": 25259,
+          "relevant": false
+        },
+        {
+          "id": "limbo_normal",
+          "percent": 4.2512900297414955,
+          "display_percent": "4.25%",
+          "category": "Can't Enter",
+          "boss_hexa_score": 25950,
+          "relevant": false
+        },
+        {
+          "id": "kalos_destiny",
+          "percent": 5.035217573022975,
+          "display_percent": "5.04%",
+          "category": "Impossible",
+          "boss_hexa_score": 25950,
+          "relevant": false
+        },
+        {
+          "id": "kalos_chaos",
+          "percent": 5.035217573022975,
+          "display_percent": "5.04%",
+          "category": "Impossible",
+          "boss_hexa_score": 25950,
+          "relevant": false
+        },
+        {
+          "id": "seren_destiny",
+          "percent": 10.622098121320246,
+          "display_percent": "10.62%",
+          "category": "Impossible",
+          "boss_hexa_score": 30716,
+          "relevant": false
+        },
+        {
+          "id": "kaling_normal",
+          "percent": 9.050811553487215,
+          "display_percent": "9.05%",
+          "category": "Impossible",
+          "boss_hexa_score": 25259,
+          "relevant": false
+        },
+        {
+          "id": "maleficStar_normal",
+          "percent": 12.331210697354718,
+          "display_percent": "12.33%",
+          "category": "Impossible",
+          "boss_hexa_score": 29383,
+          "relevant": false
+        },
+        {
+          "id": "lotus_extreme",
+          "percent": 11.97964565937571,
+          "display_percent": "11.98%",
+          "category": "Impossible",
+          "boss_hexa_score": 25950,
+          "relevant": false
+        },
+        {
+          "id": "kalos_champion",
+          "percent": 21.107896211448598,
+          "display_percent": "21.11%",
+          "category": "Impossible",
+          "boss_hexa_score": 29383,
+          "relevant": true
+        },
+        {
+          "id": "adversary_normal",
+          "percent": 23.553877626978778,
+          "display_percent": "23.55%",
+          "category": "Impossible",
+          "boss_hexa_score": 29383,
+          "relevant": true
+        },
+        {
+          "id": "kalos_normal",
+          "percent": 30.60644950660047,
+          "display_percent": "30.61%",
+          "category": "Party-able",
+          "boss_hexa_score": 29383,
+          "relevant": true
+        },
+        {
+          "id": "seren_champion",
+          "percent": 43.70788269199954,
+          "display_percent": "43.71%",
+          "category": "Impossible",
+          "boss_hexa_score": 30716,
+          "relevant": true
+        },
+        {
+          "id": "kaling_easy",
+          "percent": 47.04257054386559,
+          "display_percent": "47.04%",
+          "category": "Party-able",
+          "boss_hexa_score": 30019,
+          "relevant": true
+        },
+        {
+          "id": "seren_hard",
+          "percent": 53.11049060660123,
+          "display_percent": "53.11%",
+          "category": "Party-able",
+          "boss_hexa_score": 30716,
+          "relevant": true
+        },
+        {
+          "id": "adversary_easy",
+          "percent": 72.8192270380542,
+          "display_percent": "72.82%",
+          "category": "Party-able",
+          "boss_hexa_score": 30716,
+          "relevant": true
+        },
+        {
+          "id": "kalos_easy",
+          "percent": 104.39921491297113,
+          "display_percent": "104.4%",
+          "category": "Solo Min",
+          "boss_hexa_score": 30716,
+          "relevant": true
+        },
+        {
+          "id": "blackMage_hard",
+          "percent": 53.555576301111685,
+          "display_percent": "53.56%",
+          "category": "Party-able",
+          "boss_hexa_score": 29330,
+          "relevant": true
+        },
+        {
+          "id": "blackMage_champion",
+          "percent": 66.9444703763896,
+          "display_percent": "66.94%",
+          "category": "Impossible",
+          "boss_hexa_score": 29330,
+          "relevant": true
+        },
+        {
+          "id": "seren_normal",
+          "percent": 129.589597080107,
+          "display_percent": "129.6%",
+          "category": "Possible",
+          "boss_hexa_score": 30716,
+          "relevant": true
+        },
+        {
+          "id": "verusHilla_champion",
+          "percent": 168.05370494486766,
+          "display_percent": "168.1%",
+          "category": "Possible",
+          "boss_hexa_score": 30799,
+          "relevant": true
+        },
+        {
+          "id": "verusHilla_hard",
+          "percent": 258.29854450026164,
+          "display_percent": "258.3%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": true
+        },
+        {
+          "id": "darknell_hard",
+          "percent": 295.7660256805193,
+          "display_percent": "295.8%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": true
+        },
+        {
+          "id": "gloom_chaos",
+          "percent": 307.119807856355,
+          "display_percent": "307.1%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": true
+        },
+        {
+          "id": "slime_chaos",
+          "percent": 233.80713492531174,
+          "display_percent": "233.8%",
+          "category": "Easy",
+          "boss_hexa_score": 29330,
+          "relevant": true
+        },
+        {
+          "id": "will_hard",
+          "percent": 361.6179623003663,
+          "display_percent": "361.6%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": true
+        },
+        {
+          "id": "lucid_hard",
+          "percent": 285.9867774479363,
+          "display_percent": "286.0%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": true
+        },
+        {
+          "id": "verusHilla_normal",
+          "percent": 604.3211229817442,
+          "display_percent": "604.3%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": true
+        },
+        {
+          "id": "lotus_champion",
+          "percent": 763.4735217965651,
+          "display_percent": "763.5%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": true
+        },
+        {
+          "id": "damien_hard",
+          "percent": 830.111432667231,
+          "display_percent": "830.1%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": true
+        },
+        {
+          "id": "lotus_hard",
+          "percent": 1107.0366066050192,
+          "display_percent": "1107%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": false
+        },
+        {
+          "id": "darknell_normal",
+          "percent": 2179.7398043549215,
+          "display_percent": "2180%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": false
+        },
+        {
+          "id": "gloom_normal",
+          "percent": 1796.3611402918875,
+          "display_percent": "1796%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": false
+        },
+        {
+          "id": "lucid_normal",
+          "percent": 2263.1826055666324,
+          "display_percent": "2263%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": false
+        },
+        {
+          "id": "will_normal",
+          "percent": 2115.1239304361047,
+          "display_percent": "2115%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": false
+        },
+        {
+          "id": "will_easy",
+          "percent": 3172.6858956541564,
+          "display_percent": "3173%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": false
+        },
+        {
+          "id": "lucid_easy",
+          "percent": 3902.4036516546125,
+          "display_percent": "3902%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": false
+        },
+        {
+          "id": "slime_normal",
+          "percent": 4923.184199559394,
+          "display_percent": "4923%",
+          "category": "Easy",
+          "boss_hexa_score": 29330,
+          "relevant": false
+        },
+        {
+          "id": "lotus_normal",
+          "percent": 23621.48173329181,
+          "display_percent": "23621%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": false
+        },
+        {
+          "id": "damien_normal",
+          "percent": 24903.34298001693,
+          "display_percent": "24903%",
+          "category": "Easy",
+          "boss_hexa_score": 30799,
+          "relevant": false
+        }
+      ]
+    }
+  ]
+}

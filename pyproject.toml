@@ -1,0 +1,19 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "src"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"app.py" = ["E402"]
+# Test modules import each other's pytest fixtures by name (e.g. `client`, `saved`) and
+# use them only as parameter names, which static analysis can't see as real usage.
+"tests/*.py" = ["F401", "F811"]
+
+[tool.ruff.format]
+quote-style = "double"

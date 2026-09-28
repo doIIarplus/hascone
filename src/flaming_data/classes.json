@@ -1,0 +1,523 @@
+[
+  {
+    "class": "Adele",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "AngelicBuster",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Aran",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Ark",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "BattleMage",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Bishop",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Blaster",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "BlazeWizard",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Bowmaster",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Buccaneer",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Cadena",
+    "main_stats": [
+      "LUK"
+    ],
+    "secondary_stats": [
+      "STR",
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Cannoneer",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Corsair",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "DarkKnight",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "DawnWarrior",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "DemonAvenger",
+    "main_stats": [
+      "Max HP"
+    ],
+    "secondary_stats": [],
+    "att": "ATT"
+  },
+  {
+    "class": "DemonSlayer",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "DualBlade",
+    "main_stats": [
+      "LUK"
+    ],
+    "secondary_stats": [
+      "STR",
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "ErelLight",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Evan",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "FirePoison",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Hayato",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Hero",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Hoyoung",
+    "main_stats": [
+      "LUK"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "IceLightning",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Illium",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Kain",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Kaiser",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Kanna",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Khali",
+    "main_stats": [
+      "LUK"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Kinesis",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Lara",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Luminous",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Lynn",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
+    "class": "Marksman",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Mechanic",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Mercedes",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Mihile",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "MoXuan",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "NightLord",
+    "main_stats": [
+      "LUK"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "NightWalker",
+    "main_stats": [
+      "LUK"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Paladin",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Pathfinder",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Phantom",
+    "main_stats": [
+      "LUK"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Ren",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Shade",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Shadower",
+    "main_stats": [
+      "LUK"
+    ],
+    "secondary_stats": [
+      "STR",
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "ThunderBreaker",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "WildHunter",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "WindArcher",
+    "main_stats": [
+      "DEX"
+    ],
+    "secondary_stats": [
+      "STR"
+    ],
+    "att": "ATT"
+  },
+  {
+    "class": "Xenon",
+    "main_stats": [
+      "STR",
+      "DEX",
+      "LUK"
+    ],
+    "secondary_stats": [],
+    "att": "ATT"
+  },
+  {
+    "class": "Zero",
+    "main_stats": [
+      "STR"
+    ],
+    "secondary_stats": [
+      "DEX"
+    ],
+    "att": "ATT"
+  }
+]

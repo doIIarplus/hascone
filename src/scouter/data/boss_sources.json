@@ -1,0 +1,54 @@
+{
+  "inspected": "2026-09-14",
+  "page": "https://maplescouter.com/en/result",
+  "sources": [
+    {
+      "url": "https://maplescouter.com/_next/static/chunks/8153-2b1c1aecbf471d8e.js",
+      "file": "8153-2b1c1aecbf471d8e.js",
+      "sha256": "244c50c4571d9b7bb3379d0264cadcbf1a66947507e649be6e833c547bc56237",
+      "bytes": 68807
+    },
+    {
+      "url": "https://maplescouter.com/_next/static/chunks/4281-5951b3c61e94b46a.js",
+      "file": "4281-5951b3c61e94b46a.js",
+      "sha256": "2b7c2cfd7e13f57cfedcfcf8d23627ef9d0539f63654ff0e6acb0aea86e30137",
+      "bytes": 68037
+    },
+    {
+      "url": "https://maplescouter.com/_next/static/chunks/4850-33b9de98baedef8f.js",
+      "file": "4850-33b9de98baedef8f.js",
+      "sha256": "18a023ba0a68dff72f7486aa142bac35863cad221a3f5b3fe4efbd15826ed0ad",
+      "bytes": 82881
+    },
+    {
+      "url": "https://maplescouter.com/_next/static/chunks/8259-2a0c70af3131abbc.js",
+      "file": "8259-2a0c70af3131abbc.js",
+      "sha256": "befa72caa86ea365693ad8212ea746f77d741253d0474486b705f3d631c7812c",
+      "bytes": 24870
+    },
+    {
+      "url": "https://maplescouter.com/_next/static/chunks/3723-92a44e51fd1cbcf6.js",
+      "file": "3723-92a44e51fd1cbcf6.js",
+      "sha256": "c8477f9978db44129556d6904a143e1f6a2ffcdcd2d5a115a9a3cc4fb397327f",
+      "bytes": 104516
+    },
+    {
+      "url": "https://maplescouter.com/_next/static/chunks/app/%5Blocale%5D/(pages)/result/page-416c229ecd65b4d4.js",
+      "file": "page-416c229ecd65b4d4.js",
+      "sha256": "bde1b7337af4f6ee8ac8ee755ecc0cf88ca6c156f9c86e28a1d581b3d7ca06e6",
+      "bytes": 334525
+    }
+  ],
+  "modules": {
+    "row_calculation": 33528,
+    "thresholds_and_force": 97571,
+    "gms_table": 40577,
+    "region_selection": 66457,
+    "level_penalties": 59737,
+    "english_translations": 72415
+  },
+  "english_bundle": {
+    "url": "https://maplescouter.com/_next/static/chunks/2415.ea65e1cf6828f7f2.js",
+    "sha256": "b2321fdef4a8d0399a3f988a0dd6a77014ce0f7b40ed102953a4f2f187ef4c13"
+  }
+}
