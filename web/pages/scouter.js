@@ -52,7 +52,7 @@ export async function mountScouter(view) {
     <div id="sc-problem" class="sc-problem" role="alert"></div><nav class="fl-subtabs sc-tabs" role="tablist" aria-label="Scouter view"><button class="btn" id="sc-tab-inputs" role="tab" aria-controls="sc-panel-inputs" data-sc-tab="inputs">Inputs</button><button class="btn" id="sc-tab-results" role="tab" aria-controls="sc-panel-results" data-sc-tab="results">Results</button><button class="btn" id="sc-tab-simulator" role="tab" aria-controls="sc-panel-simulator" data-sc-tab="simulator">Simulator</button><button class="btn" id="sc-tab-suggestions" role="tab" aria-controls="sc-panel-suggestions" data-sc-tab="suggestions">Compare upgrades</button><button class="btn" id="sc-tab-efficiencies" role="tab" aria-controls="sc-panel-efficiencies" data-sc-tab="efficiencies">Efficiencies</button></nav><div class="sc-layout"><section class="sc-inputs" id="sc-panel-inputs" role="tabpanel" aria-labelledby="sc-tab-inputs"><div class="sc-section-title"><h2>Inputs</h2><span class="sub" id="sc-missing"></span><span class="sub sc-save-status" id="sc-save-status" role="status" aria-live="polite">Saved</span></div>
       <div id="sc-missing-links" class="sc-missing-links"></div><div id="sc-fields"></div></section><section class="sc-results" id="sc-panel-results" role="tabpanel" aria-labelledby="sc-tab-results"><div class="sc-section-title"><h2>Results</h2></div>
       <div class="sub sc-note">Scores come directly from MapleScouter. Calculations save a snapshot of these inputs.</div>
-      <select class="input" id="sc-history" aria-label="Saved calculation"></select><div id="sc-output"></div></section><section id="sc-panel-simulator" role="tabpanel" aria-labelledby="sc-tab-simulator"></section><section id="sc-panel-suggestions" role="tabpanel" aria-labelledby="sc-tab-suggestions"></section><section id="sc-panel-efficiencies" role="tabpanel" aria-labelledby="sc-tab-efficiencies"></section></div>`;
+      <select class="input" id="sc-history" aria-label="Saved calculation"></select><form id="sc-name-form" class="actions"><label>Snapshot name <input class="input" id="sc-snapshot-name" maxlength="80" placeholder="Optional name"></label><button class="btn" type="submit">Save name</button></form><div id="sc-output"></div></section><section id="sc-panel-simulator" role="tabpanel" aria-labelledby="sc-tab-simulator"></section><section id="sc-panel-suggestions" role="tabpanel" aria-labelledby="sc-tab-suggestions"></section><section id="sc-panel-efficiencies" role="tabpanel" aria-labelledby="sc-tab-efficiencies"></section></div>`;
   const q = s => view.querySelector(s);
   const disposeTooltips=attachInputTooltips(q('#sc-fields'));
   function showTab(name) {
@@ -138,12 +138,14 @@ export async function mountScouter(view) {
   }
   function renderResults() {
     const history = [...profile.history].reverse();
-    q('#sc-history').innerHTML = history.length ? history.map(r=>`<option value="${esc(r.id)}">${esc(new Date(r.created).toLocaleString())}</option>`).join('') : '<option>No calculations yet</option>';
+    q('#sc-history').innerHTML = history.length ? history.map(r=>`<option value="${esc(r.id)}">${esc(new Date(r.created).toLocaleString())}${r.name?" · "+esc(r.name):""}</option>`).join('') : '<option>No calculations yet</option>';
     if (!history.some(r=>r.id===selectedResult)) selectedResult = history[0]?.id || '';
     q('#sc-history').value = selectedResult;
     simulator.update(profile,selectedResult);
     suggestions.update(profile,dirty);
     const result = history.find(r=>r.id===selectedResult);
+    q('#sc-name-form').hidden=!result;
+    q('#sc-snapshot-name').value=result?.name||'';
     renderEfficiencies(q('#sc-panel-efficiencies'),result,dirty||result?.fingerprint!==profile.fingerprint);
     q('#sc-eff-preset')?.addEventListener('click',exportPreset);
     q('#sc-eff-results')?.addEventListener('click',()=>showTab('results'));
@@ -356,6 +358,7 @@ export async function mountScouter(view) {
   q('#sc-stop').onclick=async()=>{try {await api.post('/api/scouter/cancel',{});status('Stop requested.');}catch(e){toast(e.message,'danger');}};
   q('#sc-preset-export').onclick=exportPreset;
   q('#sc-prep').onclick=()=>window.open('https://maplescouter.com/en/input','_blank','noopener,noreferrer');
+  q('#sc-name-form').onsubmit=e=>{e.preventDefault();action(async()=>{const record=selectedResult;const saved=await api.post(`${endpoint()}/history/${encodeURIComponent(record)}/name`,{name:q('#sc-snapshot-name').value});profile.history.find(r=>r.id===record).name=saved.name;renderResults();});};
   q('#sc-history').onchange=()=>{selectedResult=q('#sc-history').value;renderResults();};
   async function tick() {
     if (disposed || polling || pending || saveFlight) return;polling=true;

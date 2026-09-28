@@ -106,14 +106,14 @@ def _flame_attack_formula(item, base, mixed):
     return attack
 
 
-def line_table(item, model="brf") -> list[dict[str, Any]]:
+def line_table(item, model="brf", *, tiers=None) -> list[dict[str, Any]]:
     """19 distinct rollable lines with stat values at every eligible tier.
 
     Mirrors the calculator's level brackets. Weapon ATT/MATT tables use its
     selected class's base attack, as the source calculator does. Level/attack
     outside that calculator's domain remains unsupported rather than guessed.
     """
-    tiers = tier_distribution(item, model)
+    tiers = tier_distribution(item, model) if tiers is None else tiers
     if not tiers:
         return []
     level = item["level"]

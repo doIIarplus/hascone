@@ -323,6 +323,7 @@ def save_inputs(identifier, body):
         data["inputs"].update(cleaned)
         for path in cleaned:
             data["scanned"].pop(path, None)
+            data.setdefault("manual_versions", {})[path] = data["revision"] + 1
         data["revision"] += 1
         write(identifier, data)
     return snapshot(identifier)

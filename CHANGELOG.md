@@ -2,6 +2,15 @@
 
 Notable feature-level changes to Hascone.
 
+## 1.1.0 - Background scanning and character navigation
+
+- Character-info captures now process in the background alongside equipment captures, allowing users to continue scanning other characters. Scan indicators show elapsed time, queued reads, and failures; OCR times out instead of waiting indefinitely.
+- Background results stay attached to their captured character, preserve subsequent manual edits, and stop dependent saves when character verification fails.
+- A slim teal arrow at the middle of the left edge opens the character roster, with per-character processing indicators.
+- Individual equipment scan buttons name the item slot. Upgrade recommendations include flame, star, and cube icons.
+- Scouter snapshots support custom names beside their date and time.
+- Summed flame stats and inferred tier breakdowns appear side by side, with a tier badge on each breakdown line. Ambiguous or unsupported breakdowns are identified explicitly.
+
 ## 0.5.4 - Navigation and overview
 
 The pinned header spans the window above the content scrollbar. It stays expanded at the top, shrinks after scrolling, and expands on hover or keyboard navigation. Character selection remains in the compact bar. The Home indicator returns to the vertical character roster. Character selection sits beside Add character. Potentials and Star Force show compact ordered upgrade cards; expand a card for the target, probability and plan details. Equipment and Scouter retain their comparison lists.

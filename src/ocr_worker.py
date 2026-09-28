@@ -36,6 +36,12 @@ def read(image, mode):
             _conn = parent
         try:
             _conn.send((image, mode))
+            if not _conn.poll(180):
+                _process.terminate()
+                _process.join(timeout=2)
+                _conn.close()
+                _process = None
+                raise RuntimeError("OCR timed out after 3 minutes. Scan this step again.")
             ok, value = _conn.recv()
         except (EOFError, OSError, BrokenPipeError):
             _process = None

@@ -36,6 +36,7 @@ job_lock = threading.RLock()
 job = {"active": False, "status": "idle"}
 preview = None
 generation = 0
+_scan_identities = {}
 LAYOUT = read_payload_json("src/flaming_data/equipment_layout.json")
 
 
@@ -86,7 +87,7 @@ def section_preferences():
 
 @app.get("/api/health")
 def health():
-    return jsonify(application="hascone", version="1.0.0")
+    return jsonify(application="hascone", version="1.1.0")
 
 
 @app.route("/api/characters", methods=["GET", "POST"])
@@ -151,6 +152,14 @@ def character(identifier):
                 item_level=(item_metadata(slot, item) or {}).get("level"),
             )
     return jsonify(data)
+
+
+@app.get("/api/characters/<identifier>/equipment/<slot>/flame-tiers")
+def flame_tiers(identifier, slot):
+    from flaming.breakdown import breakdown
+    if slot not in LAYOUT["slots"]:
+        raise ValueError("Unknown equipment slot")
+    return jsonify(breakdown(characters.load(identifier)["equipment"].get(slot, {}), slot))
 
 
 @app.post("/api/characters/<identifier>/equipment/<slot>/flame")
@@ -277,6 +286,21 @@ def history(identifier, record):
     from scouter.boss_cuts import with_boss_cuts
 
     return jsonify(with_boss_cuts(next(r for r in profiles.load(identifier)["history"] if r["id"] == record)))
+
+
+@app.post("/api/scouter/characters/<identifier>/history/<record>/name")
+def name_snapshot(identifier, record):
+    name = (request.get_json() or {}).get("name")
+    if not isinstance(name, str) or len(name.strip()) > 80:
+        raise ValueError("Snapshot names must be text up to 80 characters")
+    with profiles.lock:
+        data = profiles.load(identifier)
+        saved = next((row for row in data["history"] if row["id"] == record), None)
+        if saved is None:
+            raise ValueError("Snapshot not found")
+        saved["name"] = name.strip()
+        profiles.write(identifier, data)
+    return jsonify(name=saved["name"])
 
 
 @app.get("/api/scouter/icons/<name>")
@@ -426,6 +450,12 @@ def hover_queue_state(identifier):
     return jsonify(hover_queue.status(identifier))
 
 
+@app.get("/api/scan/queues")
+def scan_queues():
+    import hover_queue
+    return jsonify(hover_queue.all_status())
+
+
 @app.post("/api/scan/queue/<identifier>/reset")
 def hover_queue_reset(identifier):
     import hover_queue
@@ -450,6 +480,10 @@ def start_scan():
     body = request.json
     identifier, mode = body["character"], body["mode"]
     characters.load(identifier)
+    import hover_queue
+    pending = hover_queue.status(identifier)["pending"]
+    if (mode == "equipment" and pending) or mode in pending or body.get("slot") in pending:
+        raise ValueError("This character's captured readings are still processing. Scan another character meanwhile.")
     if mode not in ["equipment", "hover:any"] + ["hover:"+slot for slot in LAYOUT["slots"]] + [s["mode"] for s in modes(identifier)]:
         raise ValueError("Unknown scan step")
     slot = body.get("slot")
@@ -587,12 +621,78 @@ def _hover_watch(body, token):
         return
 
 
+def _process_character_capture(body, image, baseline):
+    from ocr_worker import read
+    mode = body["mode"]
+    session_key = (body["character"], body.get("session"))
+    if body.get("session"):
+        if mode == "overview":
+            # Following captures must not overwrite a character if its identity
+            # check failed. The shared queue processes the overview first.
+            _scan_identities[session_key] = False
+        elif _scan_identities.get(session_key) is False:
+            raise ValueError("Character stats could not be verified. Rescan Character Info before this step.")
+    result = read(image, "tooltip" if mode.startswith("tooltip:") else mode)
+    # Live panel/cursor checks happened before the frame entered the queue.
+    result = _finalize_result(mode, {**body, "image": True}, image, None, result)
+    if result.get("errors"):
+        raise ValueError("; ".join(result["errors"]))
+    if not result.get("values") and not result.get("links"):
+        raise ValueError("No readings found. Scan this step again.")
+    with profiles.lock:
+        current = profiles.load(body["character"])
+        if any(current.get("manual_versions", {}).get(key) != baseline.get(key) for key in result.get("values", {})):
+            raise ValueError("These inputs changed during processing. Scan this step again.")
+        profiles.save_scan(body["character"], result.get("values", {}), [], profiles.now(), links=result.get("links"))
+        if mode == "overview" and body.get("session"):
+            _scan_identities[session_key] = True
+
+
+def _character_watch(body, token):
+    global job
+    import capture
+    import hover_queue
+    from scouter.capture_ready import regions, stable
+
+    while True:
+        with job_lock:
+            if token != generation:
+                return
+        try:
+            profile = profiles.load(body["character"])
+            first = capture.frame(body["window"])
+            crops = regions(first, body["mode"], capture.pointer(body["window"]), profile["class_info"])
+            time.sleep(0.15)
+            second = capture.frame(body["window"])
+            stable(crops, regions(second, body["mode"], capture.pointer(body["window"]), profile["class_info"]))
+            with job_lock:
+                if token != generation:
+                    return
+                baseline = copy.deepcopy(profile.get("manual_versions", {}))
+                hover_queue.submit_task(body["character"], body["mode"],
+                                        lambda: _process_character_capture(body, second, baseline))
+                job = {"active": False, "status": "captured", "message": "Captured. Processing in the background."}
+            return
+        except Exception as exc:
+            with job_lock:
+                if token != generation:
+                    return
+                fatal = isinstance(exc, (ImportError, AttributeError, TypeError))
+                job = {"active": not fatal, "status": "error" if fatal else "watching", "message": str(exc)}
+            if fatal:
+                return
+            time.sleep(0.2)
+
+
 def perform(body, token, stamp, delay):
     global job, preview
 
     watching = bool(body.get("watch")) and not body.get("image")
     if watching and body["mode"].startswith("hover:"):
         _hover_watch(body, token)
+        return
+    if watching and body.get("background") and body["mode"] != "equipment":
+        _character_watch(body, token)
         return
     previous = None
     partial_since = None
