@@ -2,6 +2,7 @@ import copy
 import threading
 import time
 
+import cv2
 import pytest
 from test_app import ID, client, get, post
 from test_resolution import frame
@@ -14,18 +15,22 @@ from scouter import profiles
 from scouter.capture_ready import regions, stable
 
 
-def test_character_capture_finishes_before_ocr_and_survives_cancel(client, monkeypatch):
+@pytest.mark.parametrize("filtered_1440p", [False, True])
+def test_character_capture_finishes_before_ocr_and_survives_cancel(client, monkeypatch, filtered_1440p):
     import capture
     import ocr_worker
 
     started, release = threading.Event(), threading.Event()
     image = frame("stats")
+    if filtered_1440p:
+        image = cv2.resize(image, (2560, 1440), interpolation=cv2.INTER_LINEAR)
     monkeypatch.setattr(capture, "frame", lambda window: image.copy())
     monkeypatch.setattr(capture, "pointer", lambda window: (0, 0))
     result = {"values": {"stat.level": {"value": "280", "confidence": 1}}, "errors": []}
     monkeypatch.setattr(app, "_finalize_result", lambda mode, body, image, pointer, result: result)
 
     def read(image, mode):
+        assert image.shape == (768, 1366, 3)
         started.set()
         assert release.wait(5)
         return copy.deepcopy(result)
@@ -131,6 +136,22 @@ def test_snapshot_name_persists_and_validates(client):
     assert post(client, path.replace("example", "missing"), {"name": "test"}).status_code == 400
 
 
+def test_tooltip_heading_can_be_partly_covered_by_cursor():
+    from scouter.vision import anchor, applied_anchor
+
+    image = frame("int").copy()
+    expected = applied_anchor(image)
+    x, y = expected
+    image[y:y + 12, x:x + 18] = 255
+    with pytest.raises(ReadError):
+        anchor(image, "applied", masked=True, threshold=0.95)
+    assert applied_anchor(image) == expected
+    assert regions(image, "tooltip:mainStat", (661, 397), {"main": "INT", "sub": "LUK"})[0].size
+    image[y:y + 12, x:x + 80] = 255
+    with pytest.raises(ReadError):
+        applied_anchor(image)
+
+
 def test_numeric_overview_error_is_not_an_identity_failure(client, monkeypatch):
     import ocr_worker
     monkeypatch.setattr(app, "_scan_identities", {})
@@ -151,6 +172,8 @@ def test_hexa_capture_returns_read_levels_without_starting_ocr(client, monkeypat
     import ocr_worker
     from scouter import hexa_scan
     image = cv2.imread(str(Path(__file__).parent / "fixtures/demon_slayer_hexa.png"))
+    # Capture returns a complete supported client frame, not a panel crop.
+    image = cv2.copyMakeBorder(image, 0, 1080 - image.shape[0], 0, 1920 - image.shape[1], cv2.BORDER_CONSTANT)
     expected = hexa_scan.read_matrix(image)
     monkeypatch.setattr(capture, "frame", lambda window: image)
     monkeypatch.setattr(capture, "pointer", lambda window: (0, 0))

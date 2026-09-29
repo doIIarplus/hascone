@@ -136,24 +136,62 @@ def test_scouter_steps_follow_class_roles(client):
     assert [x["label"] for x in steps[1:4]] == ["LUK breakdown", "DEX breakdown", "STR breakdown"]
 
 
-def test_erel_light_profile_creation_and_scouter(client, monkeypatch):
+def test_weapon_step_remains_valid_after_background_equipment_save(client, monkeypatch):
+    submit = Mock()
+    monkeypatch.setattr(app.scan_executor, "submit", submit)
+    steps = get(client, f"/api/characters/{ID}/steps").json
+    weapon_step = next(step for step in steps if step["mode"] == "weapon")
+
+    data = characters.load(ID)
+    data["equipment"]["weapon"] = {"weapon_attack": 500}
+    characters.write(data)
+    assert "weapon" not in [step["mode"] for step in get(client, f"/api/characters/{ID}/steps").json]
+
+    result = post(client, "/api/scan", {"character": ID, "mode": weapon_step["mode"], "watch": True})
+    assert result.status_code == 200, result.json
+    submit.assert_called_once()
+    assert submit.call_args.args[1]["mode"] == "weapon"
+
+
+def test_unknown_scan_step_is_still_rejected(client, monkeypatch):
+    submit = Mock()
+    monkeypatch.setattr(app.scan_executor, "submit", submit)
+    result = post(client, "/api/scan", {"character": ID, "mode": "unknown", "watch": True})
+    assert result.status_code == 400
+    assert "Unknown scan step" in result.json["error"]
+    submit.assert_not_called()
+
+
+@pytest.mark.parametrize("job, internal, main, sub, attack", [
+    ("Erel Light", "ErelLight", "STR", "DEX", "ATT"),
+    ("Sia Astelle", "SiaAstelle", "INT", "LUK", "MATT"),
+])
+def test_new_class_profile_creation_and_scouter(client, monkeypatch, job, internal, main, sub, attack):
     from unittest.mock import Mock
 
-    from flaming.profiles import classes
+    from cubing.profiles import effective
+    from flaming.profiles import classes, stat_weights
     response = Mock()
-    response.json.return_value = {"ranks": [{"characterName":"ErelTest", "jobName":"Erel Light", "level":267}]}
+    response.json.return_value = {"ranks": [{"characterName":"ClassTest", "jobName":job, "level":267}]}
     monkeypatch.setattr(characters.requests,"get",Mock(return_value=response))
-    result = post(client,"/api/characters",{"name":"ErelTest"})
+    result = post(client,"/api/characters",{"name":"ClassTest"})
     assert result.status_code == 200, result.json
     identifier = result.json["id"]
-    assert result.json["class"] == "ErelLight"
-    roles = classes()["ErelLight"]
-    assert roles["main_stats"] == ["STR"]
-    assert roles["secondary_stats"] == ["DEX"]
-    assert roles["att"] == "ATT"
-    assert profiles.load(identifier)["class_info"]["name"] == "Erel Light"
+    assert result.json["class"] == internal
+    roles = classes()[internal]
+    assert roles["main_stats"] == [main]
+    assert roles["secondary_stats"] == [sub]
+    assert roles["att"] == attack
+    assert profiles.load(identifier)["class_info"]["name"] == job
     steps = get(client,f"/api/characters/{identifier}/steps").json
-    assert steps[1]["label"] == "STR breakdown"
+    assert steps[1]["label"] == f"{main} breakdown"
+    assert steps[2]["label"] == f"{sub} breakdown"
+
+    weights = stat_weights(internal)
+    assert float(weights[main]) > 0
+    assert float(weights["Magic Attack" if attack == "MATT" else "Attack Power"]) > 0
+    assert float(weights["Attack Power" if attack == "MATT" else "Magic Attack"]) == 0
+    assert effective(internal)["all_stat_weight"] > 0
 
 
 def test_manual_flame_correction_persists_and_recalculates(client):

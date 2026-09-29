@@ -59,3 +59,26 @@ def test_genuine_capture_failure_still_reaches_caller(monkeypatch):
     monkeypatch.setattr(wgc.WgcCamera, "_start", fail)
     with pytest.raises(RuntimeError, match="window 123: Window is unavailable"):
         wgc.WgcCamera(window_hwnd=123)
+
+
+@pytest.mark.parametrize("offset", [(0, 0), (8, 31)])
+def test_1440p_fullscreen_and_bordered_window_preserve_client_pixels(monkeypatch, offset):
+    x, y = offset
+    frame = np.zeros((1440 + y + 8, 2560 + x + 8, 3), dtype=np.uint8)
+    frame[y + 1400, x + 2500] = [11, 22, 33]
+    camera = object.__new__(wgc.WgcCamera)
+    camera.window_hwnd = 123
+    camera._crop_warned = False
+    monkeypatch.setattr(wgc, "client_rect_in_window_frame", lambda hwnd: (x, y, 2560, 1440))
+    client = camera._crop_to_client(frame)
+    assert client.shape == (1440, 2560, 3)
+    assert client[1400, 2500].tolist() == [11, 22, 33]
+
+
+def test_switch_to_1440p_drops_old_size_frame(monkeypatch):
+    camera = object.__new__(wgc.WgcCamera)
+    camera.window_hwnd = 123
+    camera._crop_warned = False
+    monkeypatch.setattr(wgc, "client_rect_in_window_frame", lambda hwnd: (0, 0, 2560, 1440))
+    assert camera._crop_to_client(np.zeros((1080, 1920, 3), dtype=np.uint8)) is None
+    assert camera._crop_to_client(np.zeros((1440, 2560, 3), dtype=np.uint8)).shape == (1440, 2560, 3)

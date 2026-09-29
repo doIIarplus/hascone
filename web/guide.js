@@ -2,9 +2,10 @@ import {api} from './api.js';
 import {escapeHtml as esc,toast} from './ui.js';
 
 function recoveryHint(message){
+ if(/VI skill|VI list|SHINE|Erda Link/i.test(message))return 'Open Skills → VI (Erda Link), scroll to the requested end, and move the cursor off the skill rows. If the list changed, restart the SHINE scan from the top.';
  if(/fresh screenshot|capture timeout|capture.*closed/i.test(message))return 'Restore the game window and keep it open. If frames still do not arrive, restart Hascone to recreate capture.';
  if(/capture.*not.*start|Graphics Capture/i.test(message))return 'Keep MapleStory restored, select its main window, and retry. Include this message and Hascone-data/logs/native.log when reporting the issue.';
- if(/1920|1366|resolution/i.test(message))return 'In MapleStory options, choose 1920 x 1080 or 1366 x 768 at native UI scale, then refresh the window list.';
+ if(/2560|1920|1366|resolution/i.test(message))return 'In MapleStory options, choose 2560 x 1440 with Default Ratio (Filter Applied), 1920 x 1080, or 1366 x 768, then refresh the window list.';
  if(/clipped|bottom edge|incomplete|truncated/i.test(message))return 'Keep all stat and potential lines visible. Move overlapping windows aside and hover the item again.';
  if(/not clear|confiden|unobstructed/i.test(message))return 'Hold the cursor still over the requested item or stat row. Move other panels away from its text, then try again.';
  if(/Disk|permission|denied|write|read.only/i.test(message))return 'Move Hascone and its data folder to a writable location, check free disk space, then rescan to save the image.';
@@ -52,7 +53,7 @@ export async function openGuide(character,steps,onSaved,equipmentFlow=false){
   content.querySelector('#watch').onclick=async()=>{if(paused){watch().catch(fail);}else{await stop();paused=true;content.querySelector('#watch').textContent='Resume watching';content.querySelector('.scan-spinner').hidden=true;content.querySelector('#scan-status').textContent='Paused. Your saved readings are kept.';}};
   content.querySelector('#save').onclick=async()=>{try{const state=await api.get('/api/scan');await api.post('/api/scan/save');exclude=state.signature;changed=true;completed.push(step.label);await next(state.result);}catch(e){fail(e);}};
   content.querySelector('#upload').onchange=async e=>{const file=e.target.files[0];if(!file)return;if(file.size>10*1024*1024){fail(new Error('Screenshot must be smaller than 10 MB.'));return;}await stop();const r=new FileReader();r.onload=()=>watch(String(r.result).split(',')[1]).catch(fail);r.readAsDataURL(file);};
-  if(windows.length)watch().catch(fail);else {paused=true;content.querySelector('#watch').textContent='Start watching';content.querySelector('#scan-status').textContent='Waiting for MapleStory in a 1920 × 1080 or 1366 × 768 window…';findWindow(epoch);}
+  if(windows.length)watch().catch(fail);else {paused=true;content.querySelector('#watch').textContent='Start watching';content.querySelector('#scan-status').textContent='Waiting for MapleStory in a 2560 × 1440, 1920 × 1080 or 1366 × 768 window…';findWindow(epoch);}
  }
  // Poll for the game window until it appears, then start watching.
  function findWindow(version){
@@ -72,6 +73,11 @@ export async function openGuide(character,steps,onSaved,equipmentFlow=false){
    steps.splice(1,steps.length,...(slots.length?[{mode:'hover:any',label:'Equipment items',slots,done:[],total:slots.length}]:[]));
   }
   index++;
+  if(!equipmentFlow && steps[index]?.mode==='weapon'){
+   profile=await api.get('/api/characters/'+character);
+   if(disposed)return;
+   if(profile.equipment.weapon?.weapon_attack)steps.splice(index,1);
+  }
   if(index>=steps.length){await finish();return;}
   if(equipmentFlow)profile=await api.get('/api/characters/'+character);
   draw();

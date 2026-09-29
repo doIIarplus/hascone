@@ -7,6 +7,7 @@ import cv2
 import numpy as np
 
 from flaming.vision import ReadError
+from ocr_confidence import verify
 from scouter.vision import anchor
 from utils.payload_data import read_payload_bytes, read_payload_json
 
@@ -125,9 +126,12 @@ def read_hover(frame, reader, key):
     groups = np.split(occupied, np.flatnonzero(np.diff(occupied) > 3) + 1)
     crops = [region[max(0, int(g[0]) - 2) : int(g[-1]) + 3] for g in groups if 7 <= len(g) <= 16]
     matches = []
-    for text, confidence in reader(crops) if crops else []:
+    for crop, (text, confidence) in zip(crops, reader(crops) if crops else [], strict=True):
         match = re.fullmatch(r"\[\s*Level\s+(\d{1,2})\s*\]", text.strip(), re.I)
-        if match and confidence >= 0.97 and 1 <= int(match[1]) <= 30:
+        if match and 1 <= int(match[1]) <= 30:
+            (text, confidence), accepted = verify(reader, crop, (text, confidence))
+            if not accepted:
+                raise ReadError("HEXA tooltip level readings are unclear or disagree; scan again")
             matches.append({"value": str(int(match[1])), "confidence": confidence, "text": text})
     # A mastery node can describe two skills with the same shared level.
     levels = {match["value"] for match in matches}

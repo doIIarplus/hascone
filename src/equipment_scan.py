@@ -9,6 +9,7 @@ import cv2
 import numpy as np
 
 from flaming.vision import ReadError, parse_stat
+from ocr_confidence import verify
 from utils.payload_data import read_payload_bytes, read_payload_json
 
 
@@ -37,7 +38,8 @@ def grid(frame):
     for slot, box in layout["slots"].items():
         sx, sy = x + 27 + box["x"], y + 99 + box["y"]
         gap = frame[sy + 6 : sy + 36, sx - 3 : sx - 1]
-        if np.mean(gap.min(axis=2) > 210) < 0.9:
+        # Filtering blends the white gap with the adjacent slot outline.
+        if np.mean(gap.min(axis=2) > 200) < 0.9:
             raise ReadError("Move the cursor and overlapping windows away from the equipment grid.")
         icon = frame[sy + 4 : sy + 38, sx + 4 : sx + 38]
         center = icon[4:-4, 4:-4]
@@ -68,18 +70,18 @@ def _glyph_mask(image):
     return (image.min(axis=2) > 140).astype(np.uint8) * 255
 
 
-def _verified_bottom_candidates(frame, x, ay, coverage):
+def _verified_bottom_candidates(frame, x, ay, coverage, *, coverage_min=0.8, corner_min=0.9):
     """A bright animated background can hide part of the translucent edge. Require both
     a mostly continuous bottom line and its rounded corner; lowering the line threshold
     alone can accept the game's HUD instead."""
     corner = cv2.cvtColor(template("tooltip_bottom_right"), cv2.COLOR_BGR2GRAY)
     verified = []
-    for offset in np.flatnonzero(coverage > 0.8):
+    for offset in np.flatnonzero(coverage > coverage_min):
         bottom = ay + 65 + int(offset) + 3
         crop = frame[bottom - 11 : bottom, x + 306 : x + 323]
         if crop.shape[:2] == corner.shape:
             quality = cv2.matchTemplate(cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY), corner, cv2.TM_CCOEFF_NORMED)[0, 0]
-            if quality >= 0.9:
+            if quality >= corner_min:
                 verified.append(offset)
     return np.array(verified)
 
@@ -115,6 +117,12 @@ def tooltip_bounds(frame, allow_clipped_footer=False, near=None):
     candidates = np.flatnonzero(coverage > 0.94)
     if not len(candidates):
         candidates = _verified_bottom_candidates(frame, x, ay, coverage)
+    if not len(candidates):
+        # The 1440p display filter softens the one-pixel border. Require a
+        # nearly continuous line AND its rounded corner for this softer edge;
+        # a bright background or the HUD alone must not stand in for a footer.
+        soft = ((strip[1:-1] - strip[:-2]).min(axis=2) > 8) & ((strip[1:-1] - strip[2:]).min(axis=2) > 15)
+        candidates = _verified_bottom_candidates(frame, x, ay, soft.mean(axis=1), coverage_min=.94, corner_min=.85)
     if not len(candidates):
         if allow_clipped_footer and frame.shape[:2] == (768, 1366):
             return x, ay, frame.shape[0]
@@ -215,9 +223,24 @@ def _scan_stat_rows(frame, x, reader, rows, readings, result):
     stats, attack_totals, stat_rows, in_stats = [], {}, 0, True
     for (a, b), (text, confidence) in zip(rows, readings[1:], strict=True):
         level = re.search(r"Required\s*Level\s*(Lv\.?\s*.*)", text, re.I)
-        if level and confidence >= 0.9:
+        if level:
             from flaming.item_tooltip import parse_level
 
+            def level_values(value):
+                found = re.search(r"Required\s*Level\s*(Lv\.?\s*.*)", value, re.I)
+                if not found:
+                    raise ReadError("Missing Required Level label")
+                parse_level(found[1])
+                # Optional punctuation in Lv. can differ between reads, but
+                # the effective level, base level and reduction must all agree.
+                return tuple(map(int, re.findall(r"\d+", found[1])))
+
+            (text, confidence), accepted = verify(
+                reader, mono(frame[a:b, x + 15:x + 310]), (text, confidence), level_values,
+            )
+            if not accepted:
+                raise ReadError("Required level is unclear; scan again")
+            level = re.search(r"Required\s*Level\s*(Lv\.?\s*.*)", text, re.I)
             result["required_level"] = parse_level(level[1])
         if re.search(r"Bonus Stats|Potential|Check the enhancement|Interact/Harvest|Soul\s*:", text, re.I):
             in_stats = False
@@ -229,14 +252,19 @@ def _scan_stat_rows(frame, x, reader, rows, readings, result):
             text,
             re.I,
         ):
+            (text, confidence), accepted = verify(reader, mono(region), (text, confidence))
+            if not accepted:
+                raise ReadError("Stat row is unclear or readings disagree: " + text)
             stat_rows += 1
             match = re.match(r"(Attack Power|Magic ATT)\s*\+\s*(\d+)", text, re.I)
-            if match and confidence >= 0.95:
+            if match and confidence >= 0.90:
                 attack_totals["MATT" if match[1].lower().startswith("magic") else "ATT"] = int(match[2])
             if cyan.sum() >= 4:
-                value, quality = reader([cv2.cvtColor(cyan.astype(np.uint8) * 255, cv2.COLOR_GRAY2BGR)])[0]
+                crop = cv2.cvtColor(cyan.astype(np.uint8) * 255, cv2.COLOR_GRAY2BGR)
+                value, quality = reader([crop])[0]
                 label = re.split(r"\s*[+:]", text, maxsplit=1)[0]
-                if quality < 0.9 or confidence < 0.9:
+                (value, quality), accepted = verify(reader, crop, (value, quality), lambda value: parse_stat(label + value))
+                if not accepted:
                     raise ReadError("Flame bonus not clear: " + text)
                 stats.append(asdict(parse_stat(label + value)))
     return stats, attack_totals, stat_rows
@@ -265,8 +293,9 @@ def _bonus_stats_detail(frame, x, reader, texts, rows):
         if not detail_crops or len(detail_crops) > 4:
             raise ReadError("Bonus Stats details are incomplete. Move the cursor away from the tooltip.")
         totals = {}
-        for text, quality in reader(detail_crops):
-            if quality < 0.9:
+        for crop, reading in zip(detail_crops, reader(detail_crops), strict=True):
+            (text, quality), accepted = verify(reader, crop, reading, parse_bonus_detail)
+            if not accepted:
                 raise ReadError("Bonus Stats detail is unclear. Move the cursor away from the tooltip.")
             for stat in parse_bonus_detail(text):
                 key = (stat.name, stat.percent)
@@ -307,10 +336,18 @@ def _read_potential(frame, x, reader, readings, rows, name):
             tier = _potential_tier(frame, x, a, b)
             if tier is None:
                 break
-            if confidence < 0.9:
-                # The coloured bullet can lower confidence; read the text alone once more.
-                text, confidence = reader([mono(frame[a:b, x + 26 : x + 310])], use_cache=False)[0]
-            if confidence < 0.9 or "..." in text or "\u2026" in text:
+            def potential_text(value):
+                return re.sub(r"\s+", "", re.sub(r"^[\s\u25a0\u2022\-]+", "", value)).casefold()
+            if re.search(r"\d", text):
+                (text, confidence), accepted = verify(
+                    reader, mono(frame[a:b, x + 26:x + 310]), (text, confidence), potential_text,
+                )
+            else:
+                # Text-only skill-granting potentials retain their existing gate.
+                if confidence < 0.90:
+                    text, confidence = reader([mono(frame[a:b, x + 26:x + 310])], use_cache=False)[0]
+                accepted = confidence >= 0.90
+            if not accepted or "..." in text or "\u2026" in text:
                 raise ReadError("A potential line is unclear or truncated. Expand the tooltip and scan again.")
             lines.append(re.sub(r"^[\s\u25a0\u2022\-]+", "", text))
             tiers.append(tier)
@@ -352,13 +389,17 @@ def _apply_slot_capabilities(result, slot, name, stats, full):
         result.pop("stats", None)
 
 
-def _ring_level(readings, name):
+def _ring_level(readings, name, reader=None, crops=None):
     if name.strip() not in ("Continuous Ring", "Ring of Restraint", "Weapon Jump Ring"):
         return None
-    for text, quality in readings[1:]:
+    for index, (text, quality) in enumerate(readings[1:], 1):
         match = re.fullmatch(r"Lv\.?\s*(\d)", text.strip())
-        if match and quality >= 0.95 and 1 <= int(match[1]) <= 6:
-            return int(match[1])
+        if match and 1 <= int(match[1]) <= 6:
+            accepted = quality >= 0.97
+            if reader is not None and not accepted:
+                (text, quality), accepted = verify(reader, crops[index], (text, quality))
+            if accepted:
+                return int(match[1])
     return None
 
 
@@ -391,7 +432,7 @@ def hover(frame, reader, slot=None):
         result["stats"] = stats
     result["starforce"] = _read_starforce(frame, slot, full)
     _apply_slot_capabilities(result, slot, name, stats, full)
-    ring_level = _ring_level(readings, name)
+    ring_level = _ring_level(readings, name, reader, crops)
     if ring_level:
         result["ring_level"] = ring_level
     result["readings"] = texts

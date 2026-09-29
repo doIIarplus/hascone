@@ -20,7 +20,7 @@ def frame(slot):
     return cv2.imread(str(FIXTURES/(slot+'.png')))
 
 
-def replay(crops):
+def replay(crops, **kwargs):
     records=json.loads((FIXTURES/'readings.json').read_text(encoding='utf8'))
     return [records[str(c.shape)+hashlib.sha256(c.tobytes()).hexdigest()] for c in crops]
 
@@ -36,6 +36,22 @@ def test_live_grid_and_wrong_slot():
     image[250:450,1000:1270]=0
     with pytest.raises(ReadError):
         grid(image)
+
+
+def test_filtered_tooltip_footer_requires_continuous_edge_and_corner(monkeypatch):
+    import equipment_scan
+
+    x, ay, bottom = 20, 120, 400
+    image = np.full((500, 400, 3), 50, dtype=np.uint8)
+    image[bottom - 2, x + 20:x + 300] = 64
+    image[bottom - 1, x + 20:x + 300] = 20
+    image[bottom - 11:bottom, x + 306:x + 323] = equipment_scan.template("tooltip_bottom_right")
+    monkeypatch.setattr(equipment_scan, "_find_currently_equipped", lambda *args: (1, x + 155, ay))
+    assert tooltip_bounds(image) == (x, ay, bottom)
+    # A horizontal line without the tooltip's corner is insufficient.
+    image[bottom - 11:bottom, x + 306:x + 323] = 50
+    with pytest.raises(ReadError, match="bottom edge"):
+        tooltip_bounds(image)
 
 
 def test_hat_combines_stars_flames_and_potential():
@@ -175,7 +191,7 @@ def test_low_confidence_name_retries_alone():
 
 def test_expanded_bonus_details_recover_cursor_obscured_int():
     records = json.loads((FIXTURES/'dreamy_belt_readings.json').read_text(encoding='utf-8'))
-    def reader(crops):
+    def reader(crops, **kwargs):
         return [records[str(c.shape)+hashlib.sha256(c.tobytes()).hexdigest()] for c in crops]
     result = hover(frame('dreamy_belt'), reader, 'belt')
     assert {s['name']:s['value'] for s in result['stats']} == {

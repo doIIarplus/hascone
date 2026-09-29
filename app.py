@@ -88,7 +88,7 @@ def section_preferences():
 
 @app.get("/api/health")
 def health():
-    return jsonify(application="hascone", version="1.1.5")
+    return jsonify(application="hascone", version="1.1.6")
 
 
 @app.route("/api/characters", methods=["GET", "POST"])
@@ -383,7 +383,7 @@ def windows():
     return jsonify(capture.windows())
 
 
-def modes(identifier):
+def modes(identifier, *, recommended_only=True):
     info = profiles.load(identifier)["class_info"]
     result = [
         {
@@ -443,8 +443,18 @@ def modes(identifier):
             "instruction": "Hover Sol Janus in HEXA Skills so its [Level] tooltip is visible. Skip if already read.",
         }
     )
-    if characters.load(identifier)["equipment"].get("weapon",{}).get("weapon_attack"):
+    if recommended_only and characters.load(identifier)["equipment"].get("weapon",{}).get("weapon_attack"):
         result = [step for step in result if step["mode"] != "weapon"]
+    if info.get("shine"):
+        result = [step for step in result if not step["mode"].startswith("hexa")]
+        result += [{
+            "mode": f"shine:{info['slug']}:{position}",
+            "label": "Erda Link skills · " + position,
+            "instruction": "Scroll the VI skill list all the way to the " + position
+            + ". Open Skills → VI (Erda Link), move the cursor off the skill rows, and leave the full list visible. "
+            + ("After capture, scroll to the bottom for the next step." if position == "top"
+               else "If the whole list fits without scrolling, leave it as it is."),
+        } for position in ("top", "bottom")]
     return result
 
 
@@ -513,8 +523,12 @@ def start_scan():
     pending = hover_queue.status(identifier)["pending"]
     if (mode == "equipment" and pending) or mode in pending or body.get("slot") in pending:
         raise ValueError("This character's captured readings are still processing. Scan another character meanwhile.")
-    if mode not in ["equipment", "hover:any"] + ["hover:"+slot for slot in LAYOUT["slots"]] + [s["mode"] for s in modes(identifier)]:
+    # Background OCR may finish after the guide loads. A completed step is
+    # still supported even when a newly generated guide would omit it.
+    if mode not in ["equipment", "hover:any"] + ["hover:"+slot for slot in LAYOUT["slots"]] + [s["mode"] for s in modes(identifier, recommended_only=False)]:
         raise ValueError("Unknown scan step")
+    if mode.startswith("shine:") and (not isinstance(body.get("session"), str) or not 1 <= len(body["session"]) <= 128):
+        raise ValueError("Start a guided SHINE scan to capture the top and bottom together.")
     slot = body.get("slot")
     if mode == "hover:any":
         if not body.get("watch") or not body.get("slots") or set(body["slots"]) - set(LAYOUT["slots"]):
@@ -620,11 +634,13 @@ def _hover_watch(body, token):
                 return
         try:
             # Check one frame cheaply; only a promising one gets a second frame.
-            pointer = capture.pointer(body["window"])
-            first = capture.frame(body["window"])
+            raw_pointer = capture.pointer(body["window"])
+            first = _scan_frame(body)
+            from game_resolution import scan_point
+            pointer = scan_point(raw_pointer, body.get("_scan_scale", 1))
             slot, origin, bounds = hover_target(first, pointer, slots)
-            second = capture.frame(body["window"])
-            hover_capture_ready(first, second, slot, origin, bounds, capture.pointer(body["window"]))
+            second = _scan_frame(body)
+            hover_capture_ready(first, second, slot, origin, bounds, _scan_pointer(body))
         except (ImportError, AttributeError, TypeError) as exc:
             with job_lock:
                 if token == generation:
@@ -674,16 +690,26 @@ def _process_character_capture(body, image, baseline, result=None):
         raise ValueError("; ".join(result["errors"]))
     if not result.get("values") and not result.get("links"):
         raise ValueError("No readings found. Scan this step again.")
+    _save_character_result(body, result, baseline)
+
+
+def _save_character_result(body, result, baseline=None):
     with profiles.lock:
         current = profiles.load(body["character"])
-        if any(current.get("manual_versions", {}).get(key) != baseline.get(key) for key in result.get("values", {})):
+        if baseline is None:
+            baseline = copy.deepcopy(current.get("manual_versions", {}))
+        values, shine = result.get("values", {}), None
+        if result.get("shine_page"):
+            from scouter.shine_scan import prepare_save
+            values, shine = prepare_save(current, result["shine_page"], body.get("session"), baseline)
+        if any(current.get("manual_versions", {}).get(key) != baseline.get(key) for key in values):
             raise ValueError("These inputs changed during processing. Scan this step again.")
-        profiles.save_scan(body["character"], result.get("values", {}), [], profiles.now(), links=result.get("links"))
+        profiles.save_scan(body["character"], values, result.get("errors", []), profiles.now(),
+                           links=result.get("links"), shine=shine)
 
 
 def _character_watch(body, token):
     global job
-    import capture
     import hover_queue
     from scouter.capture_ready import regions, stable
 
@@ -693,11 +719,11 @@ def _character_watch(body, token):
                 return
         try:
             profile = profiles.load(body["character"])
-            first = capture.frame(body["window"])
-            crops = regions(first, body["mode"], capture.pointer(body["window"]), profile["class_info"])
+            first = _scan_frame(body)
+            crops = regions(first, body["mode"], _scan_pointer(body), profile["class_info"])
             time.sleep(0.15)
-            second = capture.frame(body["window"])
-            stable(crops, regions(second, body["mode"], capture.pointer(body["window"]), profile["class_info"]))
+            second = _scan_frame(body)
+            stable(crops, regions(second, body["mode"], _scan_pointer(body), profile["class_info"]))
             result = None
             if body["mode"] == "hexa":
                 from scouter.hexa_scan import read_matrix
@@ -779,38 +805,57 @@ def _wait_out_delay(token, delay):
     return False
 
 
+def _scan_frame(body):
+    import capture
+    from game_resolution import normalize_scan
+
+    image, scale = normalize_scan(capture.frame(body["window"]), body["mode"])
+    body["_scan_scale"] = scale
+    return image
+
+
+def _scan_pointer(body):
+    import capture
+    from game_resolution import scan_point
+
+    return scan_point(capture.pointer(body["window"]), body.get("_scan_scale", 1))
+
+
 def _acquire_scan_image(body):
     """Capture or decode the source frame, verifying the expected hover slot stayed put."""
     if body.get("image"):
-        return cv2.imdecode(
+        from game_resolution import normalize_scan
+        image = cv2.imdecode(
             np.frombuffer(base64.b64decode(body["image"], validate=True), dtype=np.uint8),
             cv2.IMREAD_COLOR,
-        ), None
+        )
+        image, body["_scan_scale"] = normalize_scan(image, body["mode"])
+        return image, None
     import capture
 
     mode = body["mode"]
-    before_pointer = capture.pointer(body["window"]) if mode.startswith(("hover:", "tooltip:")) else None
-    image = capture.frame(body["window"])
+    from game_resolution import scan_point
+    raw_pointer = capture.pointer(body["window"]) if mode.startswith(("hover:", "tooltip:")) else None
+    image = _scan_frame(body)
+    before_pointer = scan_point(raw_pointer, body.get("_scan_scale", 1))
     if mode.startswith("hover:"):
         from equipment_scan import hovered_slot
 
         expected = mode.split(":")[1]
-        if hovered_slot(image, before_pointer) != expected or hovered_slot(image, capture.pointer(body["window"])) != expected:
+        if hovered_slot(image, before_pointer) != expected or hovered_slot(image, _scan_pointer(body)) != expected:
             raise ValueError("Hover your " + expected.replace("_", " ") + " in Equipment.")
     return image, before_pointer
 
 
 def _verify_hover_settled(mode, body, image):
-    import capture
     from equipment_scan import hovered_slot
 
     expected = mode.split(":")[1]
-    if hovered_slot(image, capture.pointer(body["window"])) != expected:
+    if hovered_slot(image, _scan_pointer(body)) != expected:
         raise ValueError("The cursor moved before the reading finished. Hold it over " + expected + ".")
 
 
 def _verify_tooltip_hover(mode, body, image, before_pointer):
-    import capture
     from scouter.vision import verify_hover
 
     info = profiles.load(body["character"])["class_info"]
@@ -818,7 +863,7 @@ def _verify_tooltip_hover(mode, body, image, before_pointer):
     stat = {"mainStat": info["main"], "subStat": info["sub"], "ssubStat": info.get("sub2"),
             "atk": "MATT" if info["main"] == "INT" else "ATT"}[key]
     verify_hover(image, before_pointer, stat)
-    verify_hover(image, capture.pointer(body["window"]), stat)
+    verify_hover(image, _scan_pointer(body), stat)
 
 
 def _tooltip_values(mode, values):
@@ -835,10 +880,9 @@ def _tooltip_values(mode, values):
 
 
 def _verify_weapon_hover(body, image):
-    import capture
     from equipment_scan import hovered_slot
 
-    if hovered_slot(image, capture.pointer(body["window"])) != "weapon":
+    if hovered_slot(image, _scan_pointer(body)) != "weapon":
         raise ValueError("Hover your equipped weapon.")
 
 
@@ -875,7 +919,7 @@ def _finalize_result(mode, body, image, before_pointer, result):
         result["slot_verified"] = True
     if mode == "weapon":
         result["values"] = _weapon_values(body, result["values"])
-    if mode == "hexa" or mode.startswith("hexa_hover:"):
+    if mode == "hexa" or mode.startswith(("hexa_hover:", "shine:")):
         result["values"] = _hexa_values(body, result["values"])
     return result
 
@@ -937,13 +981,7 @@ def save_scan():
             save(current, result, frame)
             message = "Equipment readings saved."
         else:
-            profiles.save_scan(
-                identifier,
-                result.get("values", {}),
-                result.get("errors", []),
-                profiles.now(),
-                links=result.get("links"),
-            )
+            _save_character_result(body, result)
             message = "Readings saved."
         preview = None
         job = {"active": False, "status": "saved", "message": message}

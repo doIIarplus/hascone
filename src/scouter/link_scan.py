@@ -9,6 +9,7 @@ import re
 import cv2
 
 from flaming.vision import ReadError
+from ocr_confidence import verify
 from scouter.vision import anchor
 
 LINKS = {
@@ -103,7 +104,13 @@ def _link_crops(frame, ox, oy, slots):
 def _retry_uncertain(reader, results, originals):
     # A second mask retains the faint antialiasing of truncated Windows labels.
     # Retry only uncertain applied rows; keep the confidence/identity checks.
+    confirmed = set()
     for index, (_, confidence) in enumerate(results):
+        if index % 2:
+            results[index], accepted = verify(reader, originals[index], results[index])
+            if accepted:
+                confirmed.add(index)
+            continue
         if index >= 2 and confidence < 0.97:
             retry_crop = cv2.cvtColor(
                 (originals[index].min(axis=2) > 180).astype("uint8") * 255, cv2.COLOR_GRAY2BGR
@@ -111,10 +118,11 @@ def _retry_uncertain(reader, results, originals):
             retry = list(reader([retry_crop]))[0]
             if retry[1] > confidence:
                 results[index] = retry
+    return confirmed
 
 
-def _parse_link_slot(i, name, nc, level, lc, values, equipped):
-    if nc < 0.97 or lc < 0.97:
+def _parse_link_slot(i, name, nc, level, lc, values, equipped, *, confirmed=False):
+    if nc < 0.97 or lc < (0.90 if confirmed else 0.97):
         raise ReadError(f"Could not confidently read equipped link slot {i + 1}")
     name = link_name(name)
     match = re.fullmatch(r"Lv\.?\s*(\d{1,2})", level.strip(), re.I)
@@ -139,12 +147,12 @@ def read_links(frame, reader):
     slots = [(537, 355)] + [(748 + 183 * col, 355 + 57 * row) for row in range(3) for col in range(4)]
     crops, originals = _link_crops(frame, ox, oy, slots)
     results = list(reader(crops))
-    _retry_uncertain(reader, results, originals)
+    confirmed = _retry_uncertain(reader, results, originals)
     values, errors, equipped = {}, [], []
     for i in range(len(slots)):
         (name, nc), (level, lc) = results[i * 2 : i * 2 + 2]
         try:
-            _parse_link_slot(i, name, nc, level, lc, values, equipped)
+            _parse_link_slot(i, name, nc, level, lc, values, equipped, confirmed=i * 2 + 1 in confirmed)
         except ReadError as exc:
             errors.append(str(exc))
     # Only a complete scan can prove a link absent. Unknown/occluded rows never

@@ -7,15 +7,17 @@ import cv2
 import numpy as np
 
 from flaming.vision import ReadError
+from ocr_confidence import padded, verify
 from utils.payload_data import read_payload_bytes
 
 
-def anchor(frame, name, threshold=0.96, masked=False):
+def anchor(frame, name, threshold=0.96, masked=False, trim_left=0):
     source = cv2.imdecode(
         np.frombuffer(read_payload_bytes(f"images/window/scouter/{name}.png"), np.uint8), cv2.IMREAD_COLOR
     )
     if source is None:
         raise ReadError(f"Missing Scouter anchor: {name}")
+    source = source[:, trim_left:]
     if masked:
         source = (source.min(axis=2) > 105).astype(np.uint8) * 255
         frame = (frame.min(axis=2) > 105).astype(np.uint8) * 255
@@ -27,7 +29,17 @@ def anchor(frame, name, threshold=0.96, masked=False):
     scores[max(0, y - 3) : y + 4, max(0, x - 3) : x + 4] = 0
     if scores.max() >= threshold:
         raise ReadError(f"Multiple {name} panels are visible")
-    return point
+    return x - trim_left, y
+
+
+def applied_anchor(frame):
+    try:
+        return anchor(frame, "applied", masked=True, threshold=0.95)
+    except ReadError:
+        # Tall tooltips are clamped against the bottom of the game window.
+        # The cursor can cover the first letters of this heading while all
+        # numeric rows remain clear. Match the rest at the same threshold.
+        return anchor(frame, "applied", masked=True, threshold=0.95, trim_left=20)
 
 
 def origin(frame):
@@ -93,29 +105,29 @@ def _overview_crops(frame, ox, oy):
     return crops, originals
 
 
+def _overview_number(path, text):
+    if path == "cooldown":
+        match = re.fullmatch(r"(\d+(?:\.\d+)?)\s*sec\s*/\s*(\d+(?:\.\d+)?)\s*%", text.strip(), re.I)
+        if not match:
+            raise ReadError("Could not read both cooldown values")
+        return match.groups()
+    if path == "stat.level":
+        text = re.sub(r"^Lv\.?\s*", "", text, flags=re.I)
+    return numeric(text)
+
+
 def _retry_uncertain_overview(reader, results, originals):
-    # Buff arrows can become OCR characters after thresholding (e.g. 100%
-    # reads at 93%). Retry only uncertain numbers using the original colors.
-    retry = [
-        i
-        for i, (path, (_, confidence)) in enumerate(zip(OVERVIEW_FIELDS, results, strict=True))
-        if path not in ("character_name", "character_class", "cooldown") and confidence < 0.97
-    ]
-    if not retry:
-        return
-    for i, alternate in zip(retry, reader([originals[i] for i in retry]), strict=True):
-        if alternate[1] < 0.97:
+    confirmed = set()
+    for i, path in enumerate(OVERVIEW_FIELDS):
+        if path in ("character_name", "character_class") or results[i][1] >= 0.97:
             continue
-        try:
-            original = numeric(results[i][0])
-        except ReadError:
-            original = None
-        try:
-            recovered = numeric(alternate[0])
-        except ReadError:
-            continue
-        if original is None or original == recovered:
-            results[i] = alternate
+        results[i], accepted = verify(
+            reader, originals[i], results[i], lambda text: _overview_number(path, text),
+            variants=[originals[i], padded(foreground(originals[i]))],
+        )
+        if accepted:
+            confirmed.add(path)
+    return confirmed
 
 
 def _retry_uncertain_identity(reader, results, originals):
@@ -143,9 +155,11 @@ def _parse_cooldown(text, confidence, values):
         values["stat." + k] = {"value": v, "confidence": confidence, "text": text}
 
 
-def _parse_overview_field(path, text, confidence, values, identity):
-    if confidence < (0.95 if path == "cooldown" else 0.97):
-        raise ReadError(f"Low confidence ({confidence:.0%})")
+def _parse_overview_field(path, text, confidence, values, identity, *, confirmed=False):
+    required = 0.90 if confirmed and path not in ("character_name", "character_class") else 0.97
+    if confidence < required:
+        percent = int(confidence * 10000) / 100
+        raise ReadError(f"Low confidence ({percent:.2f}%; requires {required:.0%})")
     if path in ("character_name", "character_class"):
         identity[path] = text
         return
@@ -169,18 +183,18 @@ def overview(frame, reader):
     crops, originals = _overview_crops(frame, ox, oy)
     results = list(reader(crops))
     _retry_uncertain_identity(reader, results, originals)
-    _retry_uncertain_overview(reader, results, originals)
+    confirmed = _retry_uncertain_overview(reader, results, originals)
     values, errors, identity = {}, [], {}
     for path, (text, confidence) in zip(OVERVIEW_FIELDS, results, strict=True):
         try:
-            _parse_overview_field(path, text, confidence, values, identity)
+            _parse_overview_field(path, text, confidence, values, identity, confirmed=path in confirmed)
         except ReadError as exc:
             errors.append(f"{path}: {exc}")
     return {"kind": "scouter", "values": values, "errors": errors, **identity}
 
 
 def tooltip(frame, reader):
-    x, y = anchor(frame, "applied", masked=True, threshold=0.95)
+    x, y = applied_anchor(frame)
     crops = [frame[y + 14 + i * 16 : y + 29 + i * 16, x - 2 : x + 252] for i in range(3)]
     values = {}
     for index, (key, (text, confidence)) in enumerate(
@@ -192,17 +206,19 @@ def tooltip(frame, reader):
             "unaffected": r"%\s*Value\s*Not\s*Applied\s*:\s*(\d+)",
         }[key]
         match = re.fullmatch(pattern, text.strip(), re.I)
-        if confidence < 0.95 and text.strip():
-            # Batch padding can hurt short tooltip rows. Reread that row alone,
-            # bypassing the glyph cache which otherwise returns the same failure.
-            retry_text, retry_confidence = list(reader([crops[index]], use_cache=False))[0]
-            retry_match = re.fullmatch(pattern, retry_text.strip(), re.I)
-            if retry_match and retry_confidence >= 0.95:
-                if match and match[1] != retry_match[1]:
-                    raise ReadError(f"Conflicting tooltip {key} readings")
-                text, confidence, match = retry_text, retry_confidence, retry_match
-        if not match or confidence < 0.95:
+        accepted = confidence >= 0.97
+        if text.strip() and not accepted:
+            def parse_row(candidate):
+                found = re.fullmatch(pattern, candidate.strip(), re.I)
+                if not found:
+                    raise ReadError("Unrecognized tooltip row")
+                return found[1]
+            (text, confidence), accepted = verify(reader, crops[index], (text, confidence), parse_row)
+            match = re.fullmatch(pattern, text.strip(), re.I)
+        if not match or not accepted:
             if key == "unaffected":
+                if match:
+                    raise ReadError("Could not verify tooltip unaffected value; scan again")
                 # Only clear an absent row when the next section is visible.
                 heading = frame[y + 58:y + 80, x - 2:x + 252]
                 heading_text, heading_confidence = list(reader([heading]))[0]
@@ -229,9 +245,16 @@ def weapon(frame, reader):
     groups = [g for g in np.split(occupied, np.flatnonzero(np.diff(occupied) > 3) + 1) if len(g)]
     crops = [region[max(0, int(g[0]) - 2) : int(g[-1]) + 3] for g in groups if 7 <= len(g) <= 14]
     matches = {}
-    for text, confidence in reader(crops):
-        match = re.fullmatch(r"(Attack Power|Magic ATT)\s*\+\s*(\d+)(?:\s*\([^%]*\))?", text.strip(), re.I)
-        if match and confidence >= 0.97:
+    pattern = r"(Attack Power|Magic ATT)\s*\+\s*(\d+)(?:\s*\([^%]*\))?"
+    for crop, (text, confidence) in zip(crops, reader(crops), strict=True):
+        match = re.fullmatch(pattern, text.strip(), re.I)
+        if not match:
+            continue
+        (text, confidence), accepted = verify(reader, crop, (text, confidence))
+        if not accepted:
+            raise ReadError("Weapon attack readings are unclear or disagree; scan again")
+        match = re.fullmatch(pattern, text.strip(), re.I)
+        if match and accepted:
             matches["MATT" if match[1].lower().startswith("magic") else "ATT"] = {
                 "value": match[2],
                 "confidence": confidence,
@@ -245,6 +268,11 @@ def weapon(frame, reader):
 def scene(frame, reader, mode) -> dict[str, Any]:
     from scouter.hexa_scan import read_hover, read_matrix
     from scouter.link_scan import read_links
+
+    if mode.startswith("shine:"):
+        from scouter.shine_scan import read_page
+        _, slug, position = mode.split(":")
+        return read_page(frame, reader, slug, position)
 
     if mode == "hexa":
         return read_matrix(frame)

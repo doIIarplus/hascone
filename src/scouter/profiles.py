@@ -146,6 +146,16 @@ def class_info(name):
     normalized = aliases.get(normalized, normalized)
     for row in read_payload_json("src/scouter/data/classes.json"):
         if re.sub("[^a-z]", "", row["name"].lower()) == normalized:
+            if row["slug"] in ("sia_astelle", "erel_light"):
+                row = copy.deepcopy(row)
+                row["shine"] = True
+                # The bundled upstream labels still include placeholder cores
+                # and Freud's Protection for SHINE. GMS uses Tree of Stars.
+                for key in ("masteryCore3", "masteryCore4"):
+                    row["cores"][key]["url"] = ""
+                row["cores"]["generalCore3"].update(
+                    english_title="SHINE Tree of Stars", url="/assets/hexaskill/SHINE_tree.png",
+                )
             return row
     raise ValueError(f"MapleScouter does not have a class mapping for {name}")
 
@@ -237,6 +247,10 @@ def effective(data):
     for path, item in flatten(value).items():
         if item is None and path not in visible:
             assign(value, path, "0")
+    if data["class_info"].get("shine"):
+        # Retain old saved records, but never send the upstream placeholder
+        # mastery slots as real SHINE skills.
+        value["hexa"]["masteryCore3"] = value["hexa"]["masteryCore4"] = "0"
     return value
 
 
@@ -329,7 +343,7 @@ def save_inputs(identifier, body):
     return snapshot(identifier)
 
 
-def save_scan(identifier, readings, errors, started, *, links=None):
+def save_scan(identifier, readings, errors, started, *, links=None, shine=None):
     with lock:
         data = load(identifier)
         # A scan fills the fields it actually read, exactly like manual entry.
@@ -338,6 +352,8 @@ def save_scan(identifier, readings, errors, started, *, links=None):
         data["scanned"] = {p: r for p, r in readings.items() if p in allowed and p not in FIXED}
         data["inputs"].update({p: r["value"] for p, r in data["scanned"].items()})
         data["scan"] = {"started": started, "finished": now(), "errors": errors, "links": links or []}
+        if shine is not None:
+            data["shine_levels"] = shine
         data["revision"] += 1
         write(identifier, data)
 

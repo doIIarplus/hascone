@@ -4,11 +4,20 @@ import numpy as np
 
 from flaming.vision import ReadError
 from game_resolution import validate_frame
-from scouter.vision import _overview_crops, anchor, origin, verify_hover
+from scouter.vision import _overview_crops, anchor, applied_anchor, origin, verify_hover
 
 
 def regions(frame, mode, point, info):
     validate_frame(frame)
+    if mode.startswith("shine:"):
+        from scouter.shine_scan import panel
+        _, slug, position = mode.split(":")
+        if slug != info["slug"]:
+            raise ReadError("Select the matching SHINE character before scanning.")
+        x, y, _, _ = panel(frame, position)
+        if point is not None and x <= point[0] < x + 284 and y + 40 <= point[1] < y + 277:
+            raise ReadError("Move the cursor off the VI skill rows so their names and levels are visible.")
+        return [frame[y:y + 277, x:x + 297]]
     if mode == "overview":
         ox, oy = origin(frame)
         sx, sy = anchor(frame, "stats_panel")
@@ -19,7 +28,7 @@ def regions(frame, mode, point, info):
         stat = {"mainStat": info["main"], "subStat": info["sub"], "ssubStat": info.get("sub2"),
                 "atk": "MATT" if info["main"] == "INT" else "ATT"}[mode.split(":")[1]]
         verify_hover(frame, point, stat)
-        x, y = anchor(frame, "applied", masked=True, threshold=0.95)
+        x, y = applied_anchor(frame)
         return [frame[y:y + 80, x - 2:x + 252]]
     if mode == "links":
         from scouter.link_scan import links_origin

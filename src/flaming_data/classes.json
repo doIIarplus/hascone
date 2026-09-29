@@ -471,6 +471,16 @@
     "att": "ATT"
   },
   {
+    "class": "SiaAstelle",
+    "main_stats": [
+      "INT"
+    ],
+    "secondary_stats": [
+      "LUK"
+    ],
+    "att": "MATT"
+  },
+  {
     "class": "ThunderBreaker",
     "main_stats": [
       "STR"
