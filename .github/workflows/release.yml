@@ -49,16 +49,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Verify tag matches build version
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Verify version and patch notes
         shell: pwsh
         run: |
           $version = (Select-String -Path tools/build_native.py -Pattern "^VERSION = '([^']+)'").Matches[0].Groups[1].Value
           $tag = "${{ github.ref_name }}" -replace '^v', ''
-          if ($tag -ne $version) {
+          if ("${{ github.ref }}".StartsWith('refs/tags/') -and $tag -ne $version) {
             Write-Error "Tag v$tag does not match VERSION '$version' in tools/build_native.py. Update VERSION and retag."
             exit 1
           }
+          $notes = "release-notes/$version.md"
+          if (!(Test-Path -LiteralPath $notes) -or [string]::IsNullOrWhiteSpace((Get-Content -LiteralPath $notes -Raw))) {
+            throw "Write user-facing patch notes in $notes before publishing."
+          }
+          "HASCONE_VERSION=$version" >> $env:GITHUB_ENV
 
       - name: Download OCR recognition model
         shell: pwsh
@@ -76,4 +80,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: dist/Hascone-Portable-*.exe
-          generate_release_notes: true
+          body_path: release-notes/${{ env.HASCONE_VERSION }}.md
+          generate_release_notes: false

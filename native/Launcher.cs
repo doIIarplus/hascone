@@ -42,6 +42,7 @@ internal static class Program {
             }
         };
         Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);
+        if(Option("--apply-update")!=null)return Updates.Apply(Option("--apply-update"));
         try {
             string customData=Option("--data-dir");
             string folder=Path.GetDirectoryName(Application.ExecutablePath);
@@ -71,6 +72,32 @@ internal sealed class Launcher : Form {
     string logPath;string root;string origin;bool running;bool missingWebView;bool cached;bool repair;
     long shownMs;long readyMs;bool failed;System.Windows.Forms.Timer timer=new System.Windows.Forms.Timer();
     readonly object logLock=new object();
+    UpdateRelease availableUpdate;string updateDownload;bool updateBusy;
+    void UpdateState(string state,string message="",int percent=0){
+        if(IsDisposed||cancel.IsCancellationRequested)return;
+        if(InvokeRequired){BeginInvoke((Action)(()=>UpdateState(state,message,percent)));return;}
+        web.CoreWebView2.PostWebMessageAsJson(new JavaScriptSerializer().Serialize(new{type="update",state=state,message=message,percent=percent,current=Updates.Current,version=availableUpdate==null?null:availableUpdate.Version,notes=availableUpdate==null?null:availableUpdate.Notes}));
+    }
+    async Task CheckUpdate(bool manual){
+        if(updateBusy)return;
+        if(updateDownload!=null){UpdateState("ready");return;}
+        updateBusy=true;if(manual)UpdateState("checking");
+        try{availableUpdate=await Task.Run(()=>Updates.Check(cancel.Token));UpdateState(availableUpdate==null?"current":"available");}
+        catch(Exception ex){Log("UPDATE_CHECK "+ex.Message);if(manual)UpdateState("error","Could not check for updates. Check your connection and try again.");}
+        finally{updateBusy=false;}
+    }
+    async Task DownloadUpdate(){
+        if(updateBusy||availableUpdate==null||updateDownload!=null)return;updateBusy=true;UpdateState("downloading");
+        try{updateDownload=await Task.Run(()=>Updates.Download(availableUpdate,Path.Combine(Program.Data,"updates"),p=>UpdateState("downloading","",p),cancel.Token));UpdateState("ready");}
+        catch(Exception ex){Log("UPDATE_DOWNLOAD "+ex.Message);UpdateState("error","Download failed. "+ex.Message);}
+        finally{updateBusy=false;}
+    }
+    async Task InstallUpdate(){
+        if(updateBusy||updateDownload==null)return;updateBusy=true;UpdateState("installing");
+        try{await Task.Run(()=>Updates.Verify(updateDownload,availableUpdate));await Updates.StartInstaller(updateDownload,Program.Data,cancel.Token);Close();}
+        catch(Exception ex){Log("UPDATE_INSTALL "+ex.Message);UpdateState("ready","Could not restart to update. "+ex.Message);}
+        finally{updateBusy=false;}
+    }
     public Launcher(){
         Text="Hascone";Size=new Size(1440,1000);MinimumSize=new Size(900,650);StartPosition=FormStartPosition.CenterScreen;
         BackColor=Color.FromArgb(13,17,23);ForeColor=Color.FromArgb(230,237,243);Font=new Font("Segoe UI",11);
@@ -143,11 +170,14 @@ internal sealed class Launcher : Form {
             web.CoreWebView2.Settings.IsStatusBarEnabled=false;
             web.CoreWebView2.Settings.AreHostObjectsAllowed=false;
             web.CoreWebView2.Settings.IsWebMessageEnabled=true;
-            web.CoreWebView2.WebMessageReceived+=(s,e)=>{
+            web.CoreWebView2.WebMessageReceived+=async(s,e)=>{
                 Uri source;
                 if(!Uri.TryCreate(e.Source,UriKind.Absolute,out source)||source.GetLeftPart(UriPartial.Authority)!=origin)return;
                 string command;try{command=e.TryGetWebMessageAsString();}catch{return;}
                 if(command=="open-data-folder")OpenFolder(Program.Data);
+                else if(command=="check-updates")await CheckUpdate(true);
+                else if(command=="download-update")await DownloadUpdate();
+                else if(command=="install-update")await InstallUpdate();
                 else if(command=="quit")BeginInvoke((Action)(()=>Close()));
             };
             web.CoreWebView2.NewWindowRequested+=(s,e)=>{e.Handled=true;OpenExternal(e.Uri);};
@@ -162,6 +192,7 @@ internal sealed class Launcher : Form {
             await loaded.Task;
             timer.Stop();web.Visible=true;splash.Visible=false;
             Log("UI_READY "+Program.Clock.ElapsedMilliseconds+"ms");
+            if(!Program.Smoke)await CheckUpdate(false);
             if(Program.Smoke){
                 string health=await web.CoreWebView2.ExecuteScriptAsync("fetch('/api/health').then(r=>r.json())");
                 // ExecuteScriptAsync serializes a Promise rather than awaiting it; use XHR for the smoke assertion.

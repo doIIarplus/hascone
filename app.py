@@ -5,6 +5,7 @@ import copy
 import io
 import os
 import secrets
+import shutil
 import sys
 import threading
 import time
@@ -87,7 +88,7 @@ def section_preferences():
 
 @app.get("/api/health")
 def health():
-    return jsonify(application="hascone", version="1.1.2")
+    return jsonify(application="hascone", version="1.1.3")
 
 
 @app.route("/api/characters", methods=["GET", "POST"])
@@ -111,6 +112,31 @@ def portrait(identifier):
     if not path.exists():
         return send_from_directory(ROOT / "web", "avatar.svg")
     return send_from_directory(path.parent.resolve(), path.name)
+
+
+@app.delete("/api/characters/<identifier>")
+def delete_character(identifier):
+    import hover_queue
+
+    with job_lock, service._lock, characters.lock, profiles.lock:
+        characters.load(identifier)
+        if job.get("active") or hover_queue.status(identifier)["pending"]:
+            return jsonify(error="Wait for scanning and processing to finish before deleting this character."), 409
+        calculation = service.state()
+        if calculation.get("active") and calculation.get("profile") == identifier:
+            return jsonify(error="Wait for this character's Scouter calculation to finish before deleting it."), 409
+        folder = characters.PROFILE_DIR / identifier
+        parent = characters.PROFILE_DIR.resolve()
+        if folder.is_symlink() or folder.resolve() != parent / identifier:
+            raise ValueError("Invalid character data folder")
+        if folder.exists():
+            shutil.rmtree(folder)
+        (profiles.DIRECTORY / f"{identifier}.json").unlink(missing_ok=True)
+        characters.portrait_path(identifier).unlink(missing_ok=True)
+        (characters.PROFILE_DIR / f"{identifier}.json").unlink()
+        characters.save_order([row["id"] for row in characters.listing()])
+        hover_queue.reset(identifier)
+    return jsonify(deleted=identifier)
 
 
 @app.get("/api/characters/<identifier>/equipment/<slot>/icon")
@@ -502,6 +528,7 @@ def start_scan():
         else profiles.load(identifier)["inputs"]
     )
     with job_lock:
+        characters.load(identifier)
         if job.get("active"):
             raise ValueError("A capture is already running")
         generation += 1

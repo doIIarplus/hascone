@@ -64,6 +64,29 @@ def test_new_character_from_public_rankings(client, monkeypatch):
     assert post(client, "/api/characters", {"name": "ActualName"}).json["id"] == r.json["id"]
 
 
+def test_accented_character_names_preserve_accents_and_avoid_duplicates(client, monkeypatch):
+    response = Mock()
+    response.json.return_value = {
+        "ranks": [{"characterName": "Bumblë", "jobName": "Mercedes", "level": 280}]
+    }
+    lookup = Mock(return_value=response)
+    monkeypatch.setattr(characters.requests, "get", lookup)
+    result = post(client, "/api/characters", {"name": "Bumble\u0308"})
+    assert result.status_code == 200, result.json
+    assert result.json["name"] == "Bumblë"
+    assert lookup.call_args.kwargs["params"]["character_name"] == "Bumblë"
+    assert post(client, "/api/characters", {"name": "BUMBLË"}).json["id"] == result.json["id"]
+    assert post(client, "/api/characters", {"name": "Bumble"}).status_code == 400
+
+
+@pytest.mark.parametrize("name", ["x", "a" * 17, "Bum ble", "../Bumblë", "Bumblë!"])
+def test_invalid_character_names_are_rejected_before_lookup(client, monkeypatch, name):
+    lookup = Mock(side_effect=AssertionError("Invalid names must not reach Nexon"))
+    monkeypatch.setattr(characters.requests, "get", lookup)
+    assert post(client, "/api/characters", {"name": name}).status_code == 400
+    lookup.assert_not_called()
+
+
 def test_countdown_cancel_never_captures(client, monkeypatch):
     import capture
 

@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SDK_VERSION = '1.0.4191.47'
-VERSION = '1.1.2'
+VERSION = '1.1.3'
 
 def _ensure_webview2_sdk(cache):
     sdk = cache/'webview2-sdk'/'sdk'
@@ -55,7 +55,7 @@ def _compile_command(csc, output, sdk, cache, files):
     icon = ROOT/'native/icon.ico'
     if icon.exists():
         cmd.append(f'/win32icon:{icon}')
-    cmd += [str(ROOT/'native/Launcher.cs'), str(assembly)]
+    cmd += [str(ROOT/'native/Launcher.cs'), str(ROOT/'native/Updates.cs'), str(assembly)]
     return cmd
 
 

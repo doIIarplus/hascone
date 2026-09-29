@@ -6,6 +6,7 @@ import os
 import re
 import tempfile
 import threading
+import unicodedata
 import uuid
 from pathlib import Path
 from urllib.parse import urlparse
@@ -93,8 +94,8 @@ def add(name):
     from flaming.profiles import classes
     from scouter.profiles import class_info
 
-    name = str(name).strip()
-    if not re.fullmatch(r"[A-Za-z0-9]{2,16}", name):
+    name = unicodedata.normalize("NFC", str(name).strip())
+    if not 2 <= len(name) <= 16 or not name.isalnum():
         raise ValueError("Enter a MapleStory character name (2–16 letters or numbers)")
     response = requests.get(
         "https://www.nexon.com/api/maplestory/no-auth/ranking/v2/na",
@@ -103,7 +104,7 @@ def add(name):
     )
     response.raise_for_status()
     rows = response.json().get("ranks", [])
-    rows = [r for r in rows if r.get("characterName", "").casefold() == name.casefold()]
+    rows = [r for r in rows if unicodedata.normalize("NFC", r.get("characterName", "")).casefold() == name.casefold()]
     if len(rows) != 1:
         raise ValueError(
             "Nexon did not return one exact character. Check the spelling and ranking availability."
@@ -128,7 +129,7 @@ def add(name):
     if job not in classes():
         raise ValueError("This class is not yet supported: " + row["jobName"])
     with lock:
-        old = next((p for p in listing() if p["name"].casefold() == name.casefold()), None)
+        old = next((p for p in listing() if unicodedata.normalize("NFC", p["name"]).casefold() == name.casefold()), None)
         if old:
             return old
         data = {

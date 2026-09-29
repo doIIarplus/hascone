@@ -11,6 +11,7 @@ import {api} from './api.js';
 import {escapeHtml as esc,toast} from './ui.js';
 import {mountScouter} from './pages/scouter.js';
 import {mountHexa} from './pages/hexa.js';
+import {mountUpdates} from './updates.js';
 import {openGuide,openEquipmentGuide} from './guide.js';
 import {mountEnhancement,flameIcon} from './enhancement.js';
 import {potentialMarkup} from './components/potential.js';
@@ -36,7 +37,7 @@ async function render(){
  document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('btn-primary',b.dataset.page===page));
  if(!selected){view.innerHTML='<section class="empty"><h1>Your characters, clearly measured.</h1><p class="sub">Scan flames, potentials and character stats. Compare gains with Scouter.</p><p>Add your first character to begin.</p><button class="btn btn-primary" id="first-add">+ Add character</button></section>';document.querySelector('#first-add').onclick=()=>document.querySelector('#add-character').click();return;}
  localStorage.setItem('hascone.scouter.character',selected);
- if(page==='home'){const host=document.createElement('div');view.replaceChildren(host);await mountHome(host,id=>navigate('equipment',id));return;}
+ if(page==='home'){const host=document.createElement('div');view.replaceChildren(host);await mountHome(host,id=>navigate('equipment',id),async()=>{await render();if(selected)localStorage.setItem('hascone.character',selected);else{localStorage.removeItem('hascone.character');localStorage.removeItem('hascone.scouter.character');}});return;}
  if(page==='scouter'){dispose=await mountScouter(view);return;}
  if(page==='hexa'){
   const host=document.createElement('div');view.replaceChildren(host);
@@ -111,4 +112,5 @@ const roster=mountRoster(id=>navigate(page==='home'?'equipment':page,id));
 render().catch(toast);
 
 mountHeader();
+mountUpdates();
 mountSections(view);
