@@ -47,6 +47,10 @@ def test_unsupported_interval_falls_back_and_copies_only_requested_frames(monkey
     assert camera._frame_id == 1  # one request, one copy
     assert camera._latest.shape == (3, 4, 3)
     camera.release()
+    assert camera._latest is None
+    camera._wanted = True
+    callback(frame, None)
+    assert camera._latest is None  # late callbacks after stop cannot retain frames
 
 
 def test_genuine_capture_failure_still_reaches_caller(monkeypatch):

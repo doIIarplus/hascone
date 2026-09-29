@@ -2,6 +2,7 @@
 
 import sys
 import threading
+from contextlib import contextmanager
 
 
 def windows():
@@ -24,12 +25,46 @@ def windows():
 
 _camera = None
 _camera_hwnd = None
-_camera_lock = threading.Lock()
+_camera_lock = threading.RLock()
 _retired = []
+_session = None
+_local = threading.local()
+
+
+def stop():
+    """Stop native capture and invalidate any in-flight scan's frame requests."""
+    global _camera, _camera_hwnd
+    with _camera_lock:
+        if _session is not None:
+            _session.set()
+        if _camera is not None:
+            _camera.release()
+            # Native callbacks may still be unwinding after stop.
+            _retired.append(_camera)
+            _camera = None
+            _camera_hwnd = None
+
+
+@contextmanager
+def session():
+    """Keep a camera only for the lifetime of one scanner job."""
+    global _session
+    with _camera_lock:
+        stop()
+        owner = _session = threading.Event()
+        _local.session = owner
+    try:
+        yield
+    finally:
+        with _camera_lock:
+            if _session is owner:
+                stop()
+                _session = None
+            del _local.session
 
 
 def frame(hwnd):
-    """Reuse one capture session; never tear down a native callback per frame."""
+    """Reuse the native session within a scan, never after it ends."""
     global _camera, _camera_hwnd
     from utils.wgc_camera import WgcCamera
 
@@ -37,6 +72,9 @@ def frame(hwnd):
     if hwnd not in [w["id"] for w in windows()]:
         raise ValueError("Select a running MapleStory window and unminimize it.")
     with _camera_lock:
+        owner = getattr(_local, "session", None)
+        if owner is not None and owner.is_set():
+            raise RuntimeError("Capture was cancelled")
         if _camera is None or _camera_hwnd != hwnd:
             if _camera is not None:
                 _camera.release()

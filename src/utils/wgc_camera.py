@@ -1,7 +1,7 @@
 """Windows.Graphics.Capture screenshots of the game window.
 
-Frames are copied only when a screenshot is requested, so an idle session costs
-nothing and a request is answered by the next native frame.
+Frames are copied only when requested. The scanner closes the native session
+when the scan ends, so no capture session stays active while idle.
 """
 
 import contextlib
@@ -82,6 +82,7 @@ class WgcCamera:
         self._latest: np.ndarray | None = None
         self._frame_id: int = 0
         self._wanted: bool = False
+        self._released: bool = False
         self._control = None
         self._crop_warned: bool = False
 
@@ -140,7 +141,7 @@ class WgcCamera:
         @self._cap.event
         def on_frame_arrived(frame, capture_control):  # noqa: ANN001 — windows-capture callback
             # Only pay for the full-frame BGRA -> BGR copy when a screenshot is pending.
-            if not self._wanted:
+            if self._released or not self._wanted:
                 return
             # frame_buffer is (H, W, 4) BGRA, already de-strided by the lib. A
             # copy is mandatory: the native buffer is reused after this callback
@@ -148,6 +149,8 @@ class WgcCamera:
             buf = np.asarray(frame.frame_buffer)
             bgr = np.ascontiguousarray(buf[:, :, :3])
             with self._lock:
+                if self._released:
+                    return
                 self._latest = bgr
                 self._frame_id += 1
                 self._wanted = False
@@ -215,7 +218,10 @@ class WgcCamera:
         return frame[y : y + height, x : x + width]
 
     def release(self) -> None:
-        with contextlib.suppress(Exception):
-            if self._control is not None:
-                self._control.stop()
+        with self._lock:
+            self._released = True
+            self._wanted = False
+            self._latest = None
+        if self._control is not None:
+            self._control.stop()
         self._control = None

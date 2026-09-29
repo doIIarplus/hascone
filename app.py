@@ -88,7 +88,7 @@ def section_preferences():
 
 @app.get("/api/health")
 def health():
-    return jsonify(application="hascone", version="1.1.3")
+    return jsonify(application="hascone", version="1.1.4")
 
 
 @app.route("/api/characters", methods=["GET", "POST"])
@@ -493,8 +493,11 @@ def hover_queue_reset(identifier):
 @app.post("/api/scan/cancel")
 def cancel_scan():
     global generation, preview, job
+    import capture
+
     with job_lock:
         generation += 1
+        capture.stop()
         preview = None
         job = {"active": False, "status": "cancelled", "message": "Capture discarded."}
         return jsonify(job)
@@ -712,6 +715,13 @@ def _character_watch(body, token):
 
 
 def perform(body, token, stamp, delay):
+    import capture
+
+    with capture.session():
+        _perform(body, token, stamp, delay)
+
+
+def _perform(body, token, stamp, delay):
     global job, preview
 
     watching = bool(body.get("watch")) and not body.get("image")
