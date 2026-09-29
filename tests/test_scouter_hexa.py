@@ -1,7 +1,27 @@
+from pathlib import Path
+
+import cv2
 import numpy as np
 import pytest
 
 from scouter import hexa_scan
+
+
+def test_demon_slayer_badges_do_not_depend_on_full_or_split_skill_icons():
+    image = cv2.imread(str(Path(__file__).parent / 'fixtures/demon_slayer_hexa.png'))
+    result = hexa_scan.read_matrix(image)
+    assert result['values']['hexa.skillCore1']['value'] == '9'
+    assert result['values']['hexa.skillCore2']['value'] == '2'
+    assert result['values']['hexa.skillCore3']['value'] == '0'
+    assert result['values']['hexa.masteryCore2']['value'] == '12'
+    assert result['values']['hexa.masteryCore3']['value'] == '2'
+
+
+def test_real_badges_with_four_and_six():
+    image = cv2.imread(str(Path(__file__).parent / 'fixtures/resolution_1366/hexa.png'))
+    result = hexa_scan.read_matrix(image)
+    assert result['values']['huntSkill.solJanus']['value'] == '4'
+    assert result['values']['hexa.masteryCore2']['value'] == '6'
 
 
 @pytest.mark.parametrize("levels,accepted", [([6, 6], True), ([6, 7], False)])

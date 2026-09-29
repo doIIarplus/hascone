@@ -120,12 +120,28 @@ export async function openGuide(character,steps,onSaved,equipmentFlow=false){
     content.querySelector('#scan-help').textContent=recoveryHint(state.message||'');
     if(state.active){timer=setTimeout(tick,500);return;}
     if(state.status==='captured'){
+     if(step.mode==='overview'){
+      content.querySelector('#skip').disabled=true;
+      if(queue.pending.includes('overview')){
+       content.querySelector('.scan-spinner').hidden=false;
+       content.querySelector('#scan-status').textContent='Verifying Character Info before scanning the remaining panels...';
+       content.querySelector('#scan-elapsed').textContent=`Reading Character Info · ${Math.floor((Date.now()-started)/1000)}s`;
+       timer=setTimeout(tick,500);return;
+      }
+      if(queue.failed.overview){
+       paused=true;content.querySelector('.scan-spinner').hidden=true;
+       content.querySelector('#scan-status').textContent=queue.failed.overview;
+       content.querySelector('#scan-help').textContent='Keep Character Info and Details visible, then retry this scan. The remaining steps have not started.';
+       content.querySelector('#watch').textContent='Retry Character Info';
+       return;
+      }
+     }
      changed=true;
      if(step.slots){
       step.slots=step.slots.filter(s=>s!==state.slot);step.done.push(state.slot);completed.push(human(state.slot));
       if(step.slots.length){draw();return;}
      }else completed.push(step.label);
-     await next();return;
+     await next(state.result);return;
     }
     if(state.status==='saved'){exclude=state.signature;changed=true;completed.push(step.label);await next(state.result);return;}
     if(state.status==='review'){

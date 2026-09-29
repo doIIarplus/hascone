@@ -129,3 +129,35 @@ def test_snapshot_name_persists_and_validates(client):
     assert post(client, path, {"name": "x" * 81}).status_code == 400
     assert post(client, path, {"name": ""}).json == {"name": ""}
     assert post(client, path.replace("example", "missing"), {"name": "test"}).status_code == 400
+
+
+def test_numeric_overview_error_is_not_an_identity_failure(client, monkeypatch):
+    import ocr_worker
+    monkeypatch.setattr(app, "_scan_identities", {})
+    monkeypatch.setattr(app, "_finalize_result", lambda mode, body, image, pointer, result: result)
+    monkeypatch.setattr(ocr_worker, "read", lambda image, mode: {"values": {"stat.level": {"value": "280"}}, "errors": ["critical rate unclear"]})
+    body = {"character": ID, "mode": "overview", "session": "numeric-error"}
+    with pytest.raises(ValueError, match="critical rate unclear"):
+        app._process_character_capture(body, None, {})
+    assert app._scan_identities[(ID, "numeric-error")] is True
+
+
+def test_hexa_capture_returns_read_levels_without_starting_ocr(client, monkeypatch):
+    from pathlib import Path
+
+    import cv2
+
+    import capture
+    import ocr_worker
+    from scouter import hexa_scan
+    image = cv2.imread(str(Path(__file__).parent / "fixtures/demon_slayer_hexa.png"))
+    expected = hexa_scan.read_matrix(image)
+    monkeypatch.setattr(capture, "frame", lambda window: image)
+    monkeypatch.setattr(capture, "pointer", lambda window: (0, 0))
+    monkeypatch.setattr("scouter.capture_ready.regions", lambda *args: [image])
+    monkeypatch.setattr(hover_queue, "submit_task", lambda character, key, task: task())
+    monkeypatch.setattr(ocr_worker, "read", lambda *args: pytest.fail("HEXA badges do not need OCR"))
+    app.perform({"character": ID, "mode": "hexa", "watch": True, "background": True, "window": 1}, app.generation, "", 0)
+    assert app.job["status"] == "captured"
+    assert app.job["result"] == expected
+    assert profiles.load(ID)["inputs"]["hexa.skillCore1"] == "9"

@@ -118,6 +118,23 @@ def _retry_uncertain_overview(reader, results, originals):
             results[i] = alternate
 
 
+def _retry_uncertain_identity(reader, results, originals):
+    # Tight name/class crops can turn the first letter into a different glyph.
+    # Require agreement between two padded renderings at the usual threshold.
+    for path in ("character_name", "character_class"):
+        index = list(OVERVIEW_FIELDS).index(path)
+        if results[index][1] >= 0.97:
+            continue
+        original = originals[index]
+        variants = [
+            cv2.copyMakeBorder(original, 8, 8, 8, 8, cv2.BORDER_REPLICATE),
+            cv2.copyMakeBorder(foreground(original), 8, 8, 8, 8, cv2.BORDER_CONSTANT),
+        ]
+        readings = [list(reader([crop], use_cache=False))[0] for crop in variants]
+        if all(confidence >= 0.97 for _, confidence in readings) and len({text.strip().casefold() for text, _ in readings}) == 1:
+            results[index] = min(readings, key=lambda result: result[1])
+
+
 def _parse_cooldown(text, confidence, values):
     match = re.fullmatch(r"(\d+(?:\.\d+)?)\s*sec\s*/\s*(\d+(?:\.\d+)?)\s*%", text, re.I)
     if not match:
@@ -151,6 +168,7 @@ def overview(frame, reader):
         raise ReadError("Keep the expanded stats panel fully visible.")
     crops, originals = _overview_crops(frame, ox, oy)
     results = list(reader(crops))
+    _retry_uncertain_identity(reader, results, originals)
     _retry_uncertain_overview(reader, results, originals)
     values, errors, identity = {}, [], {}
     for path, (text, confidence) in zip(OVERVIEW_FIELDS, results, strict=True):

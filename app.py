@@ -651,8 +651,7 @@ def _hover_watch(body, token):
         return
 
 
-def _process_character_capture(body, image, baseline):
-    from ocr_worker import read
+def _process_character_capture(body, image, baseline, result=None):
     mode = body["mode"]
     session_key = (body["character"], body.get("session"))
     if body.get("session"):
@@ -662,9 +661,15 @@ def _process_character_capture(body, image, baseline):
             _scan_identities[session_key] = False
         elif _scan_identities.get(session_key) is False:
             raise ValueError("Character stats could not be verified. Rescan Character Info before this step.")
-    result = read(image, "tooltip" if mode.startswith("tooltip:") else mode)
+    if result is None:
+        from ocr_worker import read
+        result = read(image, "tooltip" if mode.startswith("tooltip:") else mode)
     # Live panel/cursor checks happened before the frame entered the queue.
     result = _finalize_result(mode, {**body, "image": True}, image, None, result)
+    if mode == "overview" and body.get("session"):
+        # Identity validation succeeded even if a separate numeric field needs
+        # a rescan. Do not misreport those failures as a different character.
+        _scan_identities[session_key] = True
     if result.get("errors"):
         raise ValueError("; ".join(result["errors"]))
     if not result.get("values") and not result.get("links"):
@@ -674,8 +679,6 @@ def _process_character_capture(body, image, baseline):
         if any(current.get("manual_versions", {}).get(key) != baseline.get(key) for key in result.get("values", {})):
             raise ValueError("These inputs changed during processing. Scan this step again.")
         profiles.save_scan(body["character"], result.get("values", {}), [], profiles.now(), links=result.get("links"))
-        if mode == "overview" and body.get("session"):
-            _scan_identities[session_key] = True
 
 
 def _character_watch(body, token):
@@ -695,13 +698,17 @@ def _character_watch(body, token):
             time.sleep(0.15)
             second = capture.frame(body["window"])
             stable(crops, regions(second, body["mode"], capture.pointer(body["window"]), profile["class_info"]))
+            result = None
+            if body["mode"] == "hexa":
+                from scouter.hexa_scan import read_matrix
+                result = read_matrix(second)
             with job_lock:
                 if token != generation:
                     return
                 baseline = copy.deepcopy(profile.get("manual_versions", {}))
                 hover_queue.submit_task(body["character"], body["mode"],
-                                        lambda: _process_character_capture(body, second, baseline))
-                job = {"active": False, "status": "captured", "message": "Captured. Processing in the background."}
+                                        lambda: _process_character_capture(body, second, baseline, result))
+                job = {"active": False, "status": "captured", "message": "Captured. Processing in the background.", "result": result}
             return
         except Exception as exc:
             with job_lock:
