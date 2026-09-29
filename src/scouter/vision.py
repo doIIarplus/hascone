@@ -121,9 +121,15 @@ def _retry_uncertain_overview(reader, results, originals):
     for i, path in enumerate(OVERVIEW_FIELDS):
         if path in ("character_name", "character_class") or results[i][1] >= 0.97:
             continue
+        variants = [originals[i], padded(foreground(originals[i]))]
+        if path == "stat.level":
+            # The tiny Lv. prefix can dominate confidence or lose its v.
+            # This anchored field reserves its first 17 pixels for the prefix;
+            # retry the unchanged digits without accepting malformed labels.
+            variants.append(originals[i][:, 17:])
         results[i], accepted = verify(
             reader, originals[i], results[i], lambda text: _overview_number(path, text),
-            variants=[originals[i], padded(foreground(originals[i]))],
+            variants=variants,
         )
         if accepted:
             confirmed.add(path)

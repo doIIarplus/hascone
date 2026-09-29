@@ -57,3 +57,32 @@ def test_low_confidence_error_does_not_round_up_to_the_cutoff():
         vision._parse_overview_field("stat.ignoreDef", "96.91%", .96561795, {}, {})
     with pytest.raises(vision.ReadError, match=r"96\.99%; requires 97%"):
         vision._parse_overview_field("stat.ignoreDef", "96.91%", .96999999, {}, {})
+
+
+@pytest.mark.parametrize("digits,accepted", [("295", True), ("285", False)])
+def test_level_retry_recovers_broken_prefix_but_rejects_conflicting_digits(digits, accepted):
+    import numpy as np
+
+    index = list(vision.OVERVIEW_FIELDS).index("stat.level")
+    originals = [np.zeros((21, 51, 3), dtype=np.uint8)] * len(vision.OVERVIEW_FIELDS)
+    results = [("1", 1.0)] * len(originals)
+    results[index] = ("L.295", .9131)
+    # Actual failure: both full crops lose the v, while the padded reading
+    # recovers the label at insufficient confidence. Digits remain clear.
+    readings = iter([("L.295", .9169), ("Lv. 295", .7634), (digits, .9999)])
+    shapes = []
+
+    def reader(crops, *, use_cache=True):
+        assert not use_cache
+        shapes.append(crops[0].shape)
+        return [next(readings)]
+
+    confirmed = vision._retry_uncertain_overview(reader, results, originals)
+    assert shapes == [(21, 51, 3), (37, 67, 3), (21, 34, 3)]
+    assert ("stat.level" in confirmed) is accepted
+    if accepted:
+        values = {}
+        vision._parse_overview_field("stat.level", *results[index], values, {}, confirmed=True)
+        assert values["stat.level"]["value"] == "295"
+    else:
+        assert results[index] == ("L.295", .9131)
