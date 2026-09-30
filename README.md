@@ -8,7 +8,7 @@ Download the latest portable Windows .exe from the [Releases page](https://githu
 
 ## Note
 
-Some users have reported Spinning Runes and Lie Detector prompts while using Hascone. We are investigating these reports and looking into potential solutions; the cause has not yet been confirmed.
+Some users have reported Spinning Runes and Lie Detector prompts while using Hascone. I'm looking into potential solutions, but unclear if this app is the cause.
 
 Hascone captures screenshots of the game window using Windows Graphics Capture and reads the images with OCR. It does not hook into or inject code into the game process, or read or modify game memory. Its capture approach is similar to the screen-sharing and recording features of apps such as OBS and Discord. Capture stops when a scan ends.
 
