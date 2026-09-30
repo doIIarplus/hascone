@@ -20,6 +20,7 @@ internal static class Program {
     internal static string[] Args;
     internal static string Data;
     internal static Stopwatch Clock = Stopwatch.StartNew();
+    internal static readonly DateTime Started = DateTime.UtcNow;
     internal static Mutex Instance;
     internal static EventWaitHandle Activate;
     internal static bool Smoke;
@@ -192,6 +193,9 @@ internal sealed class Launcher : Form {
             await loaded.Task;
             timer.Stop();web.Visible=true;splash.Visible=false;
             Log("UI_READY "+Program.Clock.ElapsedMilliseconds+"ms");
+            // Smoke tests close right away, so clean up before reporting; otherwise stay off the startup path.
+            if(Program.Smoke)CleanUp();
+            else new Thread(CleanUp){IsBackground=true,Priority=ThreadPriority.BelowNormal}.Start();
             if(!Program.Smoke)await CheckUpdate(false);
             if(Program.Smoke){
                 string health=await web.CoreWebView2.ExecuteScriptAsync("fetch('/api/health').then(r=>r.json())");
@@ -241,6 +245,23 @@ internal sealed class Launcher : Form {
         }
         token.ThrowIfCancellationRequested();File.WriteAllText(Path.Combine(partial,"ready"),key);
         DeleteRuntime(destination,parent);Directory.Move(partial,destination);Log("RUNTIME_EXTRACT_COMPLETE");return destination;
+    }
+    // Each build unpacks its own runtime and each update leaves its helper behind. Keep only what
+    // this build uses. A helper that just installed this update may still be exiting, so retry briefly.
+    void CleanUp(){
+        try{
+            if(Program.Option("--backend-root")==null&&root!=null){
+                string parent=Path.GetDirectoryName(root),keep=Path.GetFileName(root);int removed=0;
+                foreach(string folder in Directory.GetDirectories(parent)){
+                    string name=Path.GetFileName(folder);
+                    if(name.Equals(keep,StringComparison.OrdinalIgnoreCase)||name.Equals("webview2",StringComparison.OrdinalIgnoreCase))continue;
+                    try{DeleteRuntime(folder,parent);removed++;}catch(Exception ex){Log("RUNTIME_CLEANUP "+name+": "+ex.Message);}
+                }
+                if(removed>0)Log("RUNTIME_CLEANUP removed "+removed);
+            }
+            string updates=Path.Combine(Program.Data,"updates");
+            for(int attempt=0;!Updates.Clean(updates,Program.Started)&&attempt<5&&!Program.Smoke&&!cancel.IsCancellationRequested;attempt++)Thread.Sleep(5000);
+        }catch(Exception ex){Log("CLEANUP "+ex.Message);}
     }
     static void DeleteRuntime(string target,string parent){
         string full=Path.GetFullPath(target);string allowed=Path.GetFullPath(parent)+Path.DirectorySeparatorChar;

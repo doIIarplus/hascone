@@ -87,6 +87,19 @@ internal static class Updates {
         for(int i=0;i<100;i++){token.ThrowIfCancellationRequested();if(File.Exists(job+".ready"))return;await Task.Delay(100,token);}
         throw new IOException("The update helper could not start. Your current app is still running.");
     }
+    // Delete helpers and downloads left by earlier updates. Anything created after this launch
+    // started belongs to the current session and is kept. Returns false while a file is still in use.
+    internal static bool Clean(string folder,DateTime before) {
+        if(!Directory.Exists(folder))return true;
+        bool done=true;
+        foreach(string file in Directory.GetFiles(folder)){
+            string name=Path.GetFileName(file);
+            if(!name.StartsWith("helper-",StringComparison.OrdinalIgnoreCase)&&!name.StartsWith("download-",StringComparison.OrdinalIgnoreCase))continue;
+            if(File.GetCreationTimeUtc(file)>=before||File.GetLastWriteTimeUtc(file)>=before)continue;
+            try{File.Delete(file);}catch(IOException){done=false;}catch(UnauthorizedAccessException){done=false;}
+        }
+        return done;
+    }
     internal static int Apply(string job) {
         string target=null,backup=null,stage=null;bool replaced=false;
         try{

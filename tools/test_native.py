@@ -56,6 +56,22 @@ print('FRESH', first, flush=True)
 second = launch(data, ['--smoke-test'])
 assert second['ok'] and second['cached'], second
 print('CACHED', second, flush=True)
+# Runtimes from earlier builds and files left by earlier updates are removed at startup.
+stale = data / 'runtime' / '0123456789abcdef'
+(stale / 'python').mkdir(parents=True)
+(stale / 'python' / 'old.txt').write_text('old')
+(data / 'runtime' / 'fedcba9876543210.partial').mkdir()
+updates = data / 'updates'
+updates.mkdir(exist_ok=True)
+for name in ('helper-old.exe', 'helper-old.exe.json', 'helper-old.exe.json.ready', 'download-old.exe'):
+    (updates / name).write_bytes(b'old')
+(updates / 'keep.txt').write_text('keep')
+cleaned = launch(data, ['--smoke-test'])
+current = Path(cleaned['root'])
+assert cleaned['ok'] and cleaned['cached'] and (current / 'python' / 'python.exe').exists(), cleaned
+assert sorted(p.name for p in (data / 'runtime').iterdir()) == sorted([current.name, 'webview2'])
+assert [p.name for p in updates.iterdir()] == ['keep.txt']
+print('CLEANUP_PASSED', flush=True)
 cancelled = test_root / 'cancelled preparation'
 cancelled.mkdir(exist_ok=True)
 marker = cancelled / 'profile-preservation.txt'
