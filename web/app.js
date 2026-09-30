@@ -74,12 +74,14 @@ async function render(){
   });
   await enhancement.refresh();
  }
+ // Pinned to the bottom of the page, so the weight source is always visible.
+ function weightsFooter(){const footer=document.createElement('div');footer.className='page-footer';footer.setAttribute('role','region');footer.setAttribute('aria-label','Weights');view.append(footer);return footer;}
  if(page==='flame') {
   const weights=document.createElement('div');weights.className='profile-costs';weights.dataset.collapsible='flame-weights';
   view.querySelector('#enhancement-totals').before(weights);
-  mountFlameWeights(weights,profile,refreshWeights);
+  mountFlameWeights(weights,profile,refreshWeights,weightsFooter());
  }
- if(page==='potential'){const weights=document.createElement('div');weights.dataset.collapsible='potential-weights';view.querySelector('#enhancement-totals').before(weights);mountPotentialWeights(weights,profile,refreshWeights);}
+ if(page==='potential'){const weights=document.createElement('div');weights.dataset.collapsible='potential-weights';view.querySelector('#enhancement-totals').before(weights);mountPotentialWeights(weights,profile,refreshWeights,weightsFooter());}
  view.querySelectorAll('[data-slot]').forEach(b=>b.onclick=()=>selectGear(b.dataset.slot));
  function bindDetail(){
  if(['equipment','flame'].includes(page)&&item.stats?.length)mountFlameBreakdown(view.querySelector('#flame-breakdown'),profile.id,slot);

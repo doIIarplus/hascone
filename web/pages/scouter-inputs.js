@@ -46,11 +46,11 @@ export function renderInputs(profile, values, draft) {
   function check(path,label,disabled=false) {
     return `<label class="sc-site-check" title="${esc(label)}${disabled?' · fixed for this profile':''}"><input class="sc-checkbox" type="checkbox" role="switch" ${disabled?'disabled':`data-path="${esc(path)}"`} ${values[path]?'checked':''}><span>${esc(label)}</span></label>`;
   }
-  function tile(path,label,image,{toggle,max=30,checkOnly=false}={}) {
-    const on = checkOnly ? values[path] : toggle ? values[toggle] : Number(values[path])>0;
+  // On/off buffs are toggled by clicking the tile; number tiles are on above 0.
+  function tile(path,label,image,{max=30,checkOnly=false}={}) {
+    const on = checkOnly ? values[path] : Number(values[path])>0;
     return `<div class="sc-field sc-site-tile ${on?'is-on':''} ${values[path]==null?'sc-missing':''}" data-sc-tooltip="${esc(label)}">
-      ${toggle?`<label class="sc-site-tile-image">${icon(image)}<input class="sc-checkbox" type="checkbox" role="switch" data-path="${esc(toggle)}" aria-label="Enable ${esc(label)}" ${values[toggle]?'checked':''}></label>`:
-      checkOnly?`<label class="sc-site-tile-image" for="sc-${esc(path)}">${icon(image)}</label>`:icon(image)}
+      ${checkOnly?`<label class="sc-site-tile-image" for="sc-${esc(path)}">${icon(image)}</label>`:icon(image)}
       ${checkOnly?`<input class="sc-checkbox" id="sc-${esc(path)}" type="checkbox" role="switch" data-path="${esc(path)}" aria-label="${esc(label)}" ${values[path]?'checked':''}>`:input(path,label,{max,step:1,compact:true})}</div>`;
   }
   const readonly = (label,key,unit='') => `<div class="sc-site-stat sc-site-readonly"><span>${esc(label)}</span><output data-display="${key}" data-unit="${unit}"></output></div>`;
@@ -83,7 +83,7 @@ export function renderInputs(profile, values, draft) {
     <aside class="card sc-site-sidebar" aria-label="Buffs and skills">
       <section class="sc-site-section" data-group="Buffs"><div class="sc-site-heading"><h3>Buffs</h3><label class="sc-site-check"><input class="sc-checkbox" type="checkbox" role="switch" id="sc-all-buffs">Select all</label></div>
         <div class="sc-site-tiles">${guildSkills.map(([,l,img,i])=>tile(`doping.nobless.${i}`,l,`doping_v2_${img}.png`,{max:15})).join('')}
-        ${tile('doping.stat','Stat potion amount','doping_v2_statpotion.png',{toggle:'doping.statPotion',max:30})}
+        ${tile('doping.stat','Stat potion amount','doping_v2_statpotion.png',{max:30})}
         ${buffs.map(([key,label,img])=>tile(`doping.${da&&key==='legendHero'?'legendHp':key}`,da&&key==='legendHero'?'Legendary HP Potion':label,`doping_v2_${img}.png`,{checkOnly:true})).join('')}
         ${champions.map(([key,label])=>tile(`doping.${key}`,`Legion Champion · ${label}`,'doping_v2_champion.png',{max:5})).join('')}</div>
       </section>

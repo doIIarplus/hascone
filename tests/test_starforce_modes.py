@@ -6,18 +6,32 @@ from starforce import cost, stats
 from starforce.suggestions import suggestions
 
 SAFE = {"mode_15_17": "safeguard", "mode_18_21": 4}
+FULL = {"15": "safeguard", "16": "safeguard", "17": "safeguard", "18": 4, "19": 4, "20": 4, "21": 4}
 
 
 def test_item_modes_validation():
     assert cost.item_modes(None) is None
-    assert cost.item_modes(SAFE) == SAFE
-    for bad in ({"mode_15_17": 1}, {"mode_15_17": 5, "mode_18_21": 1}, {"mode_15_17": 1, "mode_18_21": "safeguard"}, "x"):
+    # Older saves chose one mode per range; they expand to every star.
+    assert cost.item_modes(SAFE) == FULL
+    mixed = {**FULL, "17": 1, "18": 1, "19": 1}
+    assert cost.item_modes(mixed) == mixed
+    assert cost.mode_summary(mixed) == "15–16★ Safeguard, 17–19★ Mode 1, 20–21★ Mode 4"
+    for bad in ({"mode_15_17": 1}, {"mode_15_17": 5, "mode_18_21": 1}, {"mode_15_17": 1, "mode_18_21": "safeguard"}, "x",
+                {**FULL, "15": 4}, {**FULL, "18": "safeguard"}, {k: v for k, v in FULL.items() if k != "21"}):
         with pytest.raises(ValueError):
             cost.item_modes(bad)
 
 
+def test_each_star_uses_its_own_mode():
+    modes = cost.item_modes({**FULL, "18": 1, "19": 1})
+    plan = cost.optimize(200, 15, 22, modes=modes)["starforce_plan"]
+    assert [(s["star"], s["mode"]) for s in plan if s["star"] >= 15] == [
+        (15, "safeguard"), (16, "safeguard"), (17, "safeguard"), (18, 1), (19, 1), (20, 4), (21, 4)
+    ]
+
+
 def test_fixed_modes_are_used_at_every_star_and_avoid_booms():
-    fixed = cost.optimize(150, 15, 22, modes=SAFE)
+    fixed = cost.optimize(150, 15, 22, modes=cost.item_modes(SAFE))
     assert [s["mode"] for s in fixed["starforce_plan"] if 15 <= s["star"] <= 17] == ["safeguard"] * 3
     assert [s["mode"] for s in fixed["starforce_plan"] if 18 <= s["star"] <= 21] == [4] * 4
     assert fixed["expected_booms"] == 0
@@ -61,7 +75,7 @@ def test_modes_route_saves_and_clears(client):
     characters.write(p)
     path = f"/api/characters/{ID}/equipment/hat/starforce-modes"
     assert post(client, path, {"modes": SAFE}).status_code == 200
-    assert characters.load(ID)["equipment"]["hat"]["starforce_modes"] == SAFE
+    assert characters.load(ID)["equipment"]["hat"]["starforce_modes"] == FULL
     assert post(client, path, {"modes": {"mode_15_17": 9, "mode_18_21": 1}}).status_code == 400
     assert post(client, path, {"modes": None}).status_code == 200
     assert "starforce_modes" not in characters.load(ID)["equipment"]["hat"]

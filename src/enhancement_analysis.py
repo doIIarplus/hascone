@@ -9,6 +9,7 @@ from cubing.item_database import item_metadata
 from cubing.scoring import current_score
 from cubing.targets import SLOTS
 from flaming import item_database
+from flaming.breakdown import legacy as legacy_flame
 from flaming.character_score import character_score
 from flaming.probability import improvement
 from flaming.score import flame_score
@@ -77,6 +78,8 @@ def _add_flame_row(result, detail, common, slot, item, layout, flame_weights):
         catalog = item_database.lookup(item.get("name"), slot)
         if catalog is None:
             raise ValueError("Flame level and advantage metadata are unknown.")
+        if note := legacy_flame(item, slot):
+            raise ValueError(note)
         detail["catalog"] = {k: catalog[k] for k in ("level", "flame_advantaged")}
         upgrade = improvement(catalog, baseline, flame_weights)
         current = improvement(catalog, baseline, flame_weights, inclusive=True)
@@ -149,7 +152,7 @@ def _add_combined_row(result, detail, common):
 
 
 def _sorted_result(result):
-    result["combined_costs"].sort(key=lambda r: (-r["expected_mesos"], r["slot"]))
+    result["combined_costs"].sort(key=lambda r: (r["expected_mesos"], r["slot"]))
     result["starforce_costs"].sort(key=lambda r: (r["expected_mesos"], r["slot"]))
     result["flame_order"].sort(key=lambda r: (-r["probability"], r["slot"]))
     result["flame_costs"].sort(key=lambda r: (r["expected_mesos"], r["slot"]))

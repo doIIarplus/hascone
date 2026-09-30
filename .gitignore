@@ -11,6 +11,9 @@ logs/
 .build/
 dist/
 Hascone-data/
+# Desktop app data when the repo root is the data directory (start.bat)
+/runtime/
+/webview2/
 
 # Personal/dev-only artifacts not meant for the public repo
 /image.png

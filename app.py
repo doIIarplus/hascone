@@ -241,15 +241,21 @@ def item_starforce_modes(identifier, slot):
 @app.post("/api/characters/<identifier>/scoring")
 def character_scoring(identifier):
     from flaming.character_score import scoring
+    from flaming.score import normalize_score
 
-    source = (request.get_json(silent=True) or {}).get("source")
-    if source not in ("default", "scouter"):
-        return jsonify(error="Choose default or Scouter weights"), 400
+    body = request.get_json(silent=True) or {}
+    source = body.get("source")
+    if source not in ("default", "scouter", "custom"):
+        return jsonify(error="Choose default, Scouter or custom weights"), 400
     with characters.lock:
         data = characters.load(identifier)
         _, info = scoring(data)
         if source == "scouter" and info["scouter_weights"] is None:
             return jsonify(error="Calculate Scouter for this character first."), 400
+        if source == "custom":
+            # Start from the weights in effect; unlisted stats keep the class defaults.
+            weights = body.get("weights") or data.get("flame_custom_weights") or info["weights"]
+            data["flame_custom_weights"] = normalize_score({"class": data["class"], "weights": weights})["weights"]
         data["flame_weight_source"] = source
         data.pop("flame_all_stat_source", None)
         characters.write(data)

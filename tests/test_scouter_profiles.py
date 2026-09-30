@@ -218,6 +218,11 @@ def test_website_inputs_are_sufficient_without_hidden_api_fields(store):
     assert all(value is not None for value in profiles.flatten(user).values())
     assert user["stat"]["weaponAtk"] == "0"
     assert data["inputs"]["stat.weaponAtk"] is None  # Saved data is not destroyed.
+    # The stat potion's only control is its amount; an older saved flag cannot disagree.
+    data["inputs"].update({"doping.statPotion": False, "doping.stat": "30"})
+    assert profiles.payload(data)["doping"]["statPotion"] is True
+    data["inputs"].update({"doping.statPotion": True, "doping.stat": "0"})
+    assert profiles.payload(data)["doping"]["statPotion"] is False
     data["inputs"]["stat.critical"] = None
     with pytest.raises(ValueError, match="stat.critical"):
         profiles.payload(data)

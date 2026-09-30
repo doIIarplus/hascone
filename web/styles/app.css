@@ -571,11 +571,11 @@ input[type="checkbox"][role="switch"]:disabled { opacity: .4; cursor: not-allowe
 .sc-site-tile.is-on { border-color:color-mix(in srgb,var(--accent) 65%,var(--border)); background:color-mix(in srgb,var(--accent) 10%,var(--bg-elev)); }
 .sc-site-tile img { width:32px; height:32px; object-fit:contain; image-rendering:pixelated; }
 .sc-site-form .sc-site-tile > .input { padding:2px; width:40px; min-height:23px; height:23px; font-size:11px; text-align:center; }
-.sc-site-form .sc-site-tile > .sc-checkbox { margin:4px 0; }
+/* The whole on/off tile is the switch; its highlight shows the state. */
+.sc-site-form .sc-site-tile > input.sc-checkbox[role="switch"] { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer; }
+.sc-site-form .sc-site-tile:has(> input.sc-checkbox:focus-visible) { outline:2px solid var(--accent); outline-offset:2px; }
+.sc-site-form .sc-site-tile:not(.is-on) img { opacity:.45; filter:grayscale(.6); }
 .sc-site-form .sc-site-tile-image { display:flex; position:relative; cursor:pointer; padding:0; }
-.sc-site-tile-image input { position:absolute; bottom:-2px; right:-4px; width:13px; height:13px; margin:0!important; }
-.sc-site-tile-image:has(input[role="switch"]) { flex-direction:column; align-items:center; gap:4px; }
-.sc-site-tile-image input[role="switch"] { position:relative; bottom:auto; right:auto; }
 .sc-site-bottom { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }
 .sc-site-bottom > div { display:flex; flex-direction:column; gap:22px; }
 .sc-site-ability { display:flex; flex-direction:column; gap:10px; }

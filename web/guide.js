@@ -137,7 +137,11 @@ export async function openGuide(character,steps,onSaved,equipmentFlow=false){
       if(queue.failed.overview){
        paused=true;content.querySelector('.scan-spinner').hidden=true;
        content.querySelector('#scan-status').textContent=queue.failed.overview;
-       content.querySelector('#scan-help').textContent='Keep Character Info and Details visible, then retry this scan. The remaining steps have not started.';
+       // Light or busy profile backgrounds wash out the name, class and level text.
+       const background=/character_name|character_class|stat\.level|Character Info reads/.test(queue.failed.overview);
+       content.querySelector('#scan-help').textContent=background
+        ?'Your Character Info background may be hiding the name, class or level. Switch to a darker, plainer background, then retry this scan. The remaining steps have not started.'
+        :'Keep Character Info and Details visible, then retry this scan. The remaining steps have not started.';
        content.querySelector('#watch').textContent='Retry Character Info';
        return;
       }

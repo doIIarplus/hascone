@@ -16,6 +16,7 @@ from cubing.item_database import item_metadata
 from cubing.lines import parse_line
 from cubing.targets import SLOTS
 from flaming import characters, item_database
+from flaming.breakdown import legacy as legacy_flame
 from flaming.probability import SCALE, _distribution
 from scouter import cooldown, profiles
 from scouter.flame_examples import examples as flame_examples
@@ -143,6 +144,8 @@ def flame_suggestion(slot, item, weights, attack, checkpoint=lambda: None):
     meta = item_database.lookup(item.get("name"), slot)
     if meta is None:
         raise ValueError("Flame metadata is unavailable.")
+    if note := legacy_flame(item, slot):
+        raise ValueError(note)
     table = item_database.line_table(meta)
     if not table:
         raise ValueError("This item cannot be flamed.")

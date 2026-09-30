@@ -1,4 +1,4 @@
-"""Resolve character flame weights from defaults or a saved Scouter calculation."""
+"""Resolve character flame weights from defaults, a saved Scouter calculation, or the user's own."""
 
 import json
 from decimal import Decimal, InvalidOperation
@@ -23,7 +23,19 @@ def scoring(profile, identifier=None):
         "scouter_weights": None,
         "stat_order": [],
         "calculated_at": None,
+        "custom_weights": None,
     }
+    if profile.get("flame_custom_weights"):
+        try:
+            info["custom_weights"] = normalize_score(
+                {"class": profile["class"], "weights": profile["flame_custom_weights"]}
+            )["weights"]
+        except ValueError:
+            pass
+    if source == "custom" and info["custom_weights"]:
+        # The user's own weights, e.g. to model another build or a future patch.
+        score = {"class": profile["class"], "weights": info["custom_weights"]}
+        info["effective_source"] = "custom"
     identifier = identifier or profile.get("id") or profile.get("source_character")
     try:
         if not identifier:

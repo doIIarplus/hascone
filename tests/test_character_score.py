@@ -187,3 +187,25 @@ def test_standalone_toggle_revalues_grid_and_costs(client, monkeypatch):
     assert post(client, f"/api/characters/{ID}/scoring", {"source": "default"}).json["equipment"]["hat"]["flame_score"] == 130
     assert post(client, f"/api/characters/{ID}/scoring", {"source": "other"}).status_code == 400
 
+
+
+def test_custom_flame_weights_rescore_items_and_are_validated(client):
+    from test_app import ID, post
+
+    profile = characters.load(ID)
+    profile["equipment"] = {"hat": {"name": "Highness Assassin Bonnet", "status": "scanned", "cubeable": False,
+        "stats": [{"name": "LUK", "value": 80, "percent": False}, {"name": "All Stats", "value": 5, "percent": True}]}}
+    characters.write(profile)
+    path = f"/api/characters/{ID}/scoring"
+    # Choosing Custom starts from the weights in effect, so scores are unchanged.
+    assert post(client, path, {"source": "custom"}).json["equipment"]["hat"]["flame_score"] == 130
+    response = post(client, path, {"source": "custom", "weights": {"LUK": "2", "All Stats": "20"}})
+    assert response.status_code == 200
+    assert response.json["equipment"]["hat"]["flame_score"] == 260
+    assert response.json["flame_scoring"]["effective_source"] == "custom"
+    assert characters.load(ID)["flame_custom_weights"]["LUK"] == "2"
+    assert post(client, path, {"source": "custom", "weights": {"LUK": "-1"}}).status_code == 400
+    assert post(client, path, {"source": "custom", "weights": {"Luck": "1"}}).status_code == 400
+    # Default ignores, but keeps, the saved custom weights.
+    assert post(client, path, {"source": "default"}).json["equipment"]["hat"]["flame_score"] == 130
+    assert post(client, path, {"source": "custom"}).json["equipment"]["hat"]["flame_score"] == 260

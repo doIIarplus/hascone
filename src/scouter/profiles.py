@@ -376,6 +376,8 @@ def payload(data):
         "riskTaker": "riskTakerRing",
     }.items():
         user["seedRing"][target]["level"] = user["special"][source]
+    # The stat potion has one control, its amount; older saves could disagree.
+    user["doping"]["statPotion"] = float(user["doping"]["stat"]) > 0
     return copy.deepcopy(user)
 
 

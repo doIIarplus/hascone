@@ -3,10 +3,6 @@
 from starforce import cost, stats
 
 
-def _mode_name(mode):
-    return "Safeguard" if mode == "safeguard" else f"Mode {mode}"
-
-
 def suggestions(slot, item, weights, gear, settings=None):
     meta = stats.metadata(slot, item)
     reading = item.get("starforce") or {}
@@ -66,7 +62,7 @@ def suggestions(slot, item, weights, gear, settings=None):
                 "examples": [f"{key}: +{value}" for key, value in delta.items()],
                 "protected": [],
                 "notes": [
-                    f"Uses this item's modes: 15–17★ {_mode_name(modes['mode_15_17'])}, 18–21★ {_mode_name(modes['mode_18_21'])}, including recovery after destruction."
+                    f"Uses this item's modes: {cost.mode_summary(modes)}, including recovery after destruction."
                     if modes
                     else "Optimizes the enhancement mode separately at every star, including recovery after destruction.",
                     "Expected booms is the average number of destroyed items before reaching the target. Replacement equipment prices are excluded.",

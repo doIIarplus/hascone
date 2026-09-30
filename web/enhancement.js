@@ -11,6 +11,12 @@ const score = v => Number(v).toFixed(1);
 const cost = v => v == null ? 'Unavailable' : compactCost(v);
 const percent = v => (v*100).toLocaleString(undefined,{maximumFractionDigits:3})+'%';
 const exact = v => v == null ? 'No matching outcome in the published table' : Math.round(v).toLocaleString()+' mesos';
+const MODE_STARS=[15,16,17,18,19,20,21];
+const modeName=m=>m==='safeguard'?'Safeguard':'Mode '+m;
+// Older saves chose one mode for 15–17★ and one for 18–21★.
+const perStarModes=m=>m&&'mode_15_17' in m?Object.fromEntries(MODE_STARS.map(star=>[star,star<=17?m.mode_15_17:m.mode_18_21])):m;
+// Runs of stars, e.g. "15–16★ Safeguard, 17–19★ Mode 1, 20–21★ Mode 4".
+const modeSummary=m=>MODE_STARS.reduce((runs,star)=>{const last=runs.at(-1);if(last&&last.mode===m[star])last.to=star;else runs.push({from:star,to:star,mode:m[star]});return runs;},[]).map(r=>`${r.from}${r.to!==r.from?'–'+r.to:''}★ ${modeName(r.mode)}`).join(', ');
 const flameBasis = 'Black Flame: 3M per roll. Upgrade order uses a strictly higher Flame Score; current cost matches or exceeds the saved score. These are expected costs, not guaranteed CP gains.';
 const cubeBasis = 'Bright: 22M; Glowing: 12M per cube. Match current main-stat or attack equivalent, retaining Crit Damage and cooldown. Drop, mesos, IED and other utility lines are excluded. Tier-up and reveal costs are excluded.';
 
@@ -81,34 +87,33 @@ export function mountEnhancement(root,{profile,page,slot,onSelect}) {
   const combined=model.items[slot]?.combined;
   root.querySelector('#enhancement-selected').innerHTML=combined?`<section><h3>Expected cost for this item</h3><div class="enhancement-totals">${orderedParts(combined).map(([name,mesos])=>totalValue(name+(name==='Cubes'&&model.items[slot].cube_cheapest?' ('+model.items[slot].cube_cheapest+')':''),mesos,1)).join('')}${totalValue('Combined',combined.expected_mesos,1)}</div>${combined.missing.map(m=>`<p class="sub">Not included &middot; ${esc(m)}</p>`).join('')}</section>`:`<p class="sub">${esc(model.items[slot]?.mirror||'Hover this item in the scan guide to price it.')}</p>`;
   if(!selectionOnly){
-   panels.innerHTML=`<section class="analysis-panel"><h2>Combined cost per item</h2><p class="sub">Star Force + flames + cubes &middot; Most expensive first.</p><div class="enhancement-grid">${rows.map(r=>`<div class="enhancement-step"><button class="enhancement-item ${slot===r.slot?'selected':''}" data-enhancement-slot="${esc(r.slot)}" title="${esc(breakdown(r))}">${art(r)}<span class="enhancement-name">${esc(r.name)}</span><strong class="enhancement-price">${cost(r.expected_mesos)}</strong><span class="sub">${esc(breakdown(r))}${r.missing.length?' &middot; partial':''}</span></button></div>`).join('')||'<p class="sub">Scan your equipment to see costs.</p>'}</div></section>`;
+   panels.innerHTML=`<section class="analysis-panel"><h2>Combined cost per item</h2><p class="sub">Star Force + flames + cubes &middot; Lowest cost first.</p><div class="enhancement-grid">${rows.map(r=>`<div class="enhancement-step"><button class="enhancement-item ${slot===r.slot?'selected':''}" data-enhancement-slot="${esc(r.slot)}" title="${esc(breakdown(r))}">${art(r)}<span class="enhancement-name">${esc(r.name)}</span><strong class="enhancement-price">${cost(r.expected_mesos)}</strong><span class="sub">${esc(breakdown(r))}${r.missing.length?' &middot; partial':''}</span></button></div>`).join('')||'<p class="sub">Scan your equipment to see costs.</p>'}</div></section>`;
    panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.onclick=()=>onSelect(b.dataset.enhancementSlot));
   }else panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.classList.toggle('selected',b.dataset.enhancementSlot===slot));
  }
- // Per-item Star Force modes: saved on the item, then costs and the upgrade order refresh.
+ // Per-item Star Force modes, one per star: saved on the item, then costs and the upgrade order refresh.
  function bindModes(){
   const own=root.querySelector('#sf-own-modes');if(!own)return;
-  const fields=root.querySelector('.sf-mode-fields'),m15=root.querySelector('#sf-mode-15'),m18=root.querySelector('#sf-mode-18');
+  const fields=root.querySelector('.sf-mode-fields'),selects=[...root.querySelectorAll('[data-mode-star]')];
   const read=el=>el.value==='safeguard'?'safeguard':Number(el.value);
   async function save(){
    const status=root.querySelector('#sf-modes-status');
-   const body={modes:own.checked?{mode_15_17:read(m15),mode_18_21:read(m18)}:null};
-   [own,m15,m18].forEach(el=>el.disabled=true);status.textContent='Saving…';
+   const body={modes:own.checked?Object.fromEntries(selects.map(el=>[el.dataset.modeStar,read(el)])):null};
+   [own,...selects].forEach(el=>el.disabled=true);status.textContent='Saving…';
    try{const fresh=await api.post(`/api/characters/${profile.id}/equipment/${encodeURIComponent(slot)}/starforce-modes`,body);Object.assign(profile,fresh);await refresh();}
-   catch(e){status.textContent=e.message;[own,m15,m18].forEach(el=>el.disabled=false);}
+   catch(e){status.textContent=e.message;[own,...selects].forEach(el=>el.disabled=false);}
   }
   own.onchange=()=>{fields.hidden=!own.checked;save();};
-  m15.onchange=save;m18.onchange=save;
+  selects.forEach(el=>el.onchange=save);
  }
  function drawStarForce(selectionOnly){
   const rows=model.starforce_costs||[],cfg=model.starforce_options||{};
   const basis='Expected cost from 0 stars to the scanned level, using the least-meso mode at each step and including recovery after destruction. Replacement items are excluded.';
   totals.innerHTML=`<h3>Current Star Force cost</h3><div class="enhancement-totals">${totalValue('Total',model.totals['Star Force'],rows.length)}</div><p class="sub">${rows.length} items${model.unpriced.starforce.length?' &middot; Partial estimate':''}</p><p class="sub">${cfg.discount?'30% meso discount':'No meso discount'} &middot; ${cfg.boom_reduction?'30% boom reduction':'No boom reduction'}</p>`;
-  const item=model.items[slot]||{},current=item.starforce_current,gear=profile.equipment[slot]||{},modes=gear.starforce_modes;
-  const modeText=m=>m==='safeguard'?'Safeguard':'Mode '+m;
-  const basisText=modes?`Expected cost from 0 stars to the scanned level using this item's modes (15–17★ ${modeText(modes.mode_15_17)}, 18–21★ ${modeText(modes.mode_18_21)}), including recovery after destruction. Replacement items are excluded.`:basis;
+  const item=model.items[slot]||{},current=item.starforce_current,gear=profile.equipment[slot]||{},modes=perStarModes(gear.starforce_modes);
+  const basisText=modes?`Expected cost from 0 stars to the scanned level using this item's modes (${modeSummary(modes)}), including recovery after destruction. Replacement items are excluded.`:basis;
   const option=(value,label,chosen)=>`<option value="${value}" ${String(chosen)===String(value)?'selected':''}>${label}</option>`;
-  const modeControls=gear.starforce?.status==='scanned'&&!item.mirror?`<section class="sf-item-modes"><h3>Enhancement modes for this item</h3><label class="score-toggle"><input type="checkbox" role="switch" id="sf-own-modes" ${modes?'checked':''}> Use my own modes</label><div class="sf-mode-fields" ${modes?'':'hidden'}><label>15–17★<select class="input" id="sf-mode-15">${option(1,'Mode 1',modes?.mode_15_17)}${option(2,'Mode 2',modes?.mode_15_17)}${option(3,'Mode 3',modes?.mode_15_17)}${option('safeguard','Safeguard · no destruction',modes?.mode_15_17)}</select></label><label>18–21★<select class="input" id="sf-mode-18">${[1,2,3].map(m=>option(m,'Mode '+m,modes?.mode_18_21)).join('')}${option(4,'Mode 4 · no destruction',modes?.mode_18_21)}</select></label></div><p class="sub" id="sf-modes-status">${modes?'The upgrade order and costs for this item use these modes.':'Off: each star uses whichever mode is cheapest, and the upgrade order also shows a fewest-booms plan.'}</p></section>`:'';
+  const modeControls=gear.starforce?.status==='scanned'&&!item.mirror?`<section class="sf-item-modes"><h3>Enhancement modes for this item</h3><label class="score-toggle"><input type="checkbox" role="switch" id="sf-own-modes" ${modes?'checked':''}> Use my own modes</label><div class="sf-mode-fields" ${modes?'':'hidden'}>${MODE_STARS.map(star=>`<label>${star}★<select class="input" data-mode-star="${star}">${(star<=17?[1,2,3,'safeguard']:[1,2,3,4]).map(m=>option(m,modeName(m),modes?.[star])).join('')}</select></label>`).join('')}<p class="sub">Safeguard (15–17★) and Mode 4 (18–21★) prevent destruction.</p></div><p class="sub" id="sf-modes-status">${modes?'The upgrade order and costs for this item use these modes.':'Off: each star uses whichever mode is cheapest, and the upgrade order also shows a fewest-booms plan.'}</p></section>`:'';
   root.querySelector('#enhancement-selected').innerHTML=(current?`<section><h3>Current Star Force cost</h3><div class="enhancement-totals">${totalValue('0 to '+current.stars+' stars',current.expected_mesos,1)}</div><p class="sub">${number(current.expected_booms)} expected booms &middot; Level ${current.level}</p><p class="sub">${basisText}</p></section>`:`<p class="sub">${esc(item.mirror||item.starforce_error||'Hover this item to scan its stars.')}</p>`)+modeControls;
   bindModes();
   if(!selectionOnly){

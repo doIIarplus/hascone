@@ -51,6 +51,18 @@ def test_zero_partner_sword_is_priced_with_the_weapon():
     assert all(r['slot'] != 'secondary' for rows in data['unpriced'].values() for r in rows)
     assert data['items']['weapon']['catalog']['level'] == 200
 
+def test_legacy_transposed_flame_is_unpriced_not_quadrillions():
+    p = profile()
+    p['equipment']['pendant_1'] = {
+        'name': 'Sweetwater Pendant', 'required_level': 160, 'status': 'scanned', 'flameable': True,
+        'stats': [{'name': 'STR', 'value': 84, 'percent': False}, {'name': 'INT', 'value': 30, 'percent': False},
+                  {'name': 'All Stats', 'value': 5, 'percent': True}],
+    }
+    data = snapshot(p)
+    assert all(r['slot'] != 'pendant_1' for r in data['flame_order'] + data['flame_costs'])
+    assert any(r['slot'] == 'pendant_1' and r['reason'].startswith('Legacy flame') for r in data['unpriced']['flame'])
+    assert data['totals']['Black Flame'] == pytest.approx(sum(r['expected_mesos'] for r in data['flame_costs']))
+
 def test_unknown_and_epic_costs_remain_unpriced_not_zero():
     p = profile()
     p['equipment']['hat']['name'] = 'Unknown test equipment'

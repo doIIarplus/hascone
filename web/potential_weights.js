@@ -1,17 +1,20 @@
 import {api} from './api.js';
 import {escapeHtml as esc} from './ui.js';
-export async function mountPotentialWeights(root,profile,onSaved){
+// The switch lives in a sticky page footer so the source stays visible while scrolling.
+export async function mountPotentialWeights(root,profile,onSaved,footer){
  root.className='profile-costs';
  let catalog;
  try{catalog=await api.get('/api/potential-weights');}catch(e){root.textContent=e.message;return;}
  if(!root.isConnected)return;
  const job=profile.class, effective=catalog.effective[job];
- root.innerHTML=`<h3>Potential equivalent weights</h3><p class="sub">These weights apply to potential equivalents, current-roll costs and the potential upgrade order.</p><label class="score-toggle"><input type="checkbox" role="switch" id="pot-scouter"> Use Scouter weights</label><p class="sub" id="pot-scouter-info"></p><div id="pot-weight-table"></div><details class="pot-manual"><summary>Adjust manual weights</summary><p class="sub">Used when Scouter is off.</p><label class="weight-toggle"><input type="checkbox" role="switch" id="pot-override" ${catalog.overrides[job]?'checked':''}> Override defaults for ${esc(job)}</label><div class="potential-weights">${[['secondary_weight','1% secondary stat to main stat %',0,10],['boss_per_attack','Boss % equal to 1% ATT / MATT',0.000001,1000]].map(([key,label,min,max])=>`<label>${label}<input class="input" type="number" data-weight="${key}" value="${effective[key]}" min="${min}" max="${max}" step="any"></label>`).join('')}<p class="sub">1% All Stat = <strong id="pot-all-stat">${effective.all_stat_weight}%</strong> main stat equivalent. Derived from this class's primary and secondary stats.</p></div><p class="sub" id="pot-weight-status">${catalog.overrides[job]?'Changes apply to every '+esc(job)+' profile.':'Editing a number changes the global defaults for classes without overrides.'} Saved when you leave the field.</p></details>`;
+ root.innerHTML=`<h3>Potential equivalent weights</h3><p class="sub">These weights apply to potential equivalents, current-roll costs and the potential upgrade order.</p><p class="sub" id="pot-scouter-info"></p><div id="pot-weight-table"></div><details class="pot-manual"><summary>Adjust manual weights</summary><p class="sub">Used when Scouter is off.</p><label class="weight-toggle"><input type="checkbox" role="switch" id="pot-override" ${catalog.overrides[job]?'checked':''}> Override defaults for ${esc(job)}</label><div class="potential-weights">${[['secondary_weight','1% secondary stat to main stat %',0,10],['boss_per_attack','Boss % equal to 1% ATT / MATT',0.000001,1000]].map(([key,label,min,max])=>`<label>${label}<input class="input" type="number" data-weight="${key}" value="${effective[key]}" min="${min}" max="${max}" step="any"></label>`).join('')}<p class="sub">1% All Stat = <strong id="pot-all-stat">${effective.all_stat_weight}%</strong> main stat equivalent. Derived from this class's primary and secondary stats.</p></div><p class="sub" id="pot-weight-status">${catalog.overrides[job]?'Changes apply to every '+esc(job)+' profile.':'Editing a number changes the global defaults for classes without overrides.'} Saved when you leave the field.</p></details>`;
+ footer.innerHTML='<span>Potential weights: <strong id="pot-source-name"></strong></span><label class="score-toggle"><input type="checkbox" role="switch" id="pot-scouter"> Use Scouter weights</label>';
  let saving=false;
- const source=root.querySelector('#pot-scouter');
+ const source=footer.querySelector('#pot-scouter');
  function updateSource(){
   const info=profile.potential_scoring;
   source.checked=info.source==='scouter';
+  footer.querySelector('#pot-source-name').textContent=source.checked&&info.scouter_weights?'Scouter':'Manual';
   source.disabled=saving||(!source.checked&&!info.scouter_weights);
   root.querySelectorAll('[data-weight],#pot-override').forEach(el=>el.disabled=saving||source.checked);
   const weights=info.scouter_weights;

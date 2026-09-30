@@ -46,12 +46,13 @@ export async function mountScouter(view) {
   view.innerHTML = `<div class="page-head"><h1>Scouter</h1><div class="sc-scope"><span>GMS</span><span>Reboot</span><span class="sc-liberated">Liberated</span></div></div>
     <section class="card sc-profile"><div class="card-body sc-toolbar"><img id="sc-portrait" alt="" hidden>
       <div class="sc-identity"><strong>${esc(characters.find(c=>c.id===selected)?.name||'')}</strong><select class="input" id="sc-character" hidden>${characters.map(c => `<option value="${esc(c.id)}" ${c.id===selected?'selected':''}>${esc(c.name)} · ${esc(human(c.class))}</option>`).join('')}</select><div class="sub" id="sc-scan-date">No scan yet</div></div>
-      <div class="sc-actions"><button class="btn btn-primary" id="sc-calculate">Calculate</button><button class="btn btn-primary" id="sc-scan" title="Use your bossing preset with 100% critical rate. Follow the panel and hover prompts, then review buffs, rings and Legion before calculating.">Scan stats from game</button><button class="btn" id="sc-preset-export">Export to MapleScouter</button><button class="btn btn-ghost sc-help" id="sc-prep" title="${esc(PREP)}" aria-label="How to prepare for scanning">?</button><button class="btn btn-danger" id="sc-stop">Stop</button></div>
+      <div class="sc-actions"><button class="btn btn-primary" id="sc-scan" title="Use your bossing preset with 100% critical rate. Follow the panel and hover prompts, then review buffs, rings and Legion before calculating.">Scan stats from game</button><button class="btn" id="sc-preset-export">Export to MapleScouter</button><button class="btn btn-ghost sc-help" id="sc-prep" title="${esc(PREP)}" aria-label="How to prepare for scanning">?</button><button class="btn btn-danger" id="sc-stop">Stop</button></div>
     </div><div id="sc-progress" role="status" aria-live="polite"></div></section>
     <div id="sc-problem" class="sc-problem" role="alert"></div><nav class="fl-subtabs sc-tabs" role="tablist" aria-label="Scouter view"><button class="btn" id="sc-tab-inputs" role="tab" aria-controls="sc-panel-inputs" data-sc-tab="inputs">Inputs</button><button class="btn" id="sc-tab-results" role="tab" aria-controls="sc-panel-results" data-sc-tab="results">Results</button><button class="btn" id="sc-tab-simulator" role="tab" aria-controls="sc-panel-simulator" data-sc-tab="simulator">Simulator</button><button class="btn" id="sc-tab-suggestions" role="tab" aria-controls="sc-panel-suggestions" data-sc-tab="suggestions">Compare upgrades</button><button class="btn" id="sc-tab-efficiencies" role="tab" aria-controls="sc-panel-efficiencies" data-sc-tab="efficiencies">Efficiencies</button></nav><div class="sc-layout"><section class="sc-inputs" id="sc-panel-inputs" role="tabpanel" aria-labelledby="sc-tab-inputs"><div class="sc-section-title"><h2>Inputs</h2><span class="sub" id="sc-missing"></span><span class="sub sc-save-status" id="sc-save-status" role="status" aria-live="polite">Saved</span></div>
       <div id="sc-missing-links" class="sc-missing-links"></div><div id="sc-fields"></div></section><section class="sc-results" id="sc-panel-results" role="tabpanel" aria-labelledby="sc-tab-results"><div class="sc-section-title"><h2>Results</h2></div>
       <div class="sub sc-note">Scores come directly from MapleScouter. Calculations save a snapshot of these inputs.</div>
-      <div class="sc-snapshot-toolbar"><select class="input" id="sc-history" aria-label="Saved calculation"></select><form id="sc-name-form"><input class="input" id="sc-snapshot-name" aria-label="Snapshot name" maxlength="80" placeholder="Snapshot name (optional)"><button class="btn" type="submit">Save name</button></form></div><div id="sc-output"></div></section><section id="sc-panel-simulator" role="tabpanel" aria-labelledby="sc-tab-simulator"></section><section id="sc-panel-suggestions" role="tabpanel" aria-labelledby="sc-tab-suggestions"></section><section id="sc-panel-efficiencies" role="tabpanel" aria-labelledby="sc-tab-efficiencies"></section></div>`;
+      <div class="sc-snapshot-toolbar"><select class="input" id="sc-history" aria-label="Saved calculation"></select><form id="sc-name-form"><input class="input" id="sc-snapshot-name" aria-label="Snapshot name" maxlength="80" placeholder="Snapshot name (optional)"><button class="btn" type="submit">Save name</button></form></div><div id="sc-output"></div></section><section id="sc-panel-simulator" role="tabpanel" aria-labelledby="sc-tab-simulator"></section><section id="sc-panel-suggestions" role="tabpanel" aria-labelledby="sc-tab-suggestions"></section><section id="sc-panel-efficiencies" role="tabpanel" aria-labelledby="sc-tab-efficiencies"></section></div>
+    <div class="page-footer" role="region" aria-label="Calculate"><span class="sub" id="sc-footer-status"></span><button class="btn btn-primary" id="sc-calculate">Calculate</button></div>`;
   const q = s => view.querySelector(s);
   const disposeTooltips=attachInputTooltips(q('#sc-fields'));
   function showTab(name) {
@@ -122,6 +123,7 @@ export async function mountScouter(view) {
     q('#sc-missing-links').innerHTML=missing.slice(0,8).map(el=>`<button class="btn btn-sm" data-jump="${esc(el.dataset.path)}">${esc(el.getAttribute('aria-label')||human(el.dataset.path))}</button>`).join('');
     q('#sc-missing-links').querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{const el=q(`[data-path="${b.dataset.jump}"]`);revealSection(el);el?.scrollIntoView({block:'center'});el?.focus({preventScroll:true});});
     q('#sc-missing').textContent = count ? `${count} missing or invalid` : 'Ready to calculate';
+    q('#sc-footer-status').textContent = q('#sc-missing').textContent;
     q('#sc-save-status').textContent = dirty ? 'Saving…' : 'Saved';
     q('#sc-calculate').disabled = pending || count>0;
   }
@@ -298,6 +300,8 @@ export async function mountScouter(view) {
     if(numericField(e.target)){
       // Empty while replacing a number is an edit buffer, not a missing scan.
       if(e.target.value==='')return;
+      // Cap typed values at the field's in-game maximum (HEXA 30, guild skills 15, ...).
+      if(e.target.max!==''&&Number(e.target.value)>Number(e.target.max))e.target.value=e.target.max;
       e.target.dataset.numberEditing='true';
     }
     draft[path]=e.target.type==='checkbox'?e.target.checked:(e.target.value===''?null:e.target.value);

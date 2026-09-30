@@ -6,6 +6,7 @@ from functools import lru_cache
 from utils.payload_data import read_payload_json
 
 DEFAULTS = {"mode_15_17": 1, "mode_18_21": 1, "discount": False, "boom_reduction": False}
+MODE_STARS = range(15, 22)
 
 
 @lru_cache(maxsize=1)
@@ -39,13 +40,37 @@ def options(value=None):
 
 
 def item_modes(value):
-    """An item's chosen enhancement modes, or None to optimize the mode at every star."""
+    """An item's chosen mode at each star from 15★ to 21★, or None to optimize every star.
+
+    Older saves chose one mode for 15–17★ and one for 18–21★; they expand to each star."""
     if value is None:
         return None
-    if not isinstance(value, dict) or set(value) != {"mode_15_17", "mode_18_21"}:
-        raise ValueError("Choose a mode for 15–17★ and for 18–21★")
-    options(value)
-    return {"mode_15_17": value["mode_15_17"], "mode_18_21": value["mode_18_21"]}
+    if isinstance(value, dict) and set(value) == {"mode_15_17", "mode_18_21"}:
+        options(value)
+        value = {str(star): value["mode_15_17"] if star <= 17 else value["mode_18_21"] for star in MODE_STARS}
+    if not isinstance(value, dict) or set(value) != {str(star) for star in MODE_STARS}:
+        raise ValueError("Choose a mode for each star from 15★ to 21★")
+    for star in MODE_STARS:
+        mode = value[str(star)]
+        # Safeguard is the no-destruction choice at 15–17★; Mode 4 is at 18–21★.
+        if not (star <= 17 and mode == "safeguard") and (type(mode) is not int or not 1 <= mode <= (3 if star <= 17 else 4)):
+            raise ValueError(f"{star}★ is not an available enhancement mode")
+    return {str(star): value[str(star)] for star in MODE_STARS}
+
+
+def mode_summary(modes):
+    """Item modes as runs of stars, e.g. "15–16★ Safeguard, 17–19★ Mode 1, 20–21★ Mode 4"."""
+    runs = []
+    for star in MODE_STARS:
+        mode = modes[str(star)]
+        if runs and runs[-1][2] == mode:
+            runs[-1][1] = star
+        else:
+            runs.append([star, star, mode])
+    name = {"safeguard": "Safeguard"}
+    return ", ".join(
+        f"{first}{'–' + str(last) if last != first else ''}★ {name.get(mode, f'Mode {mode}')}" for first, last, mode in runs
+    )
 
 
 def selection(star, cfg):
@@ -112,7 +137,7 @@ def expectations(level, current, target, settings=None):
 def optimize(level, current, target, settings=None, *, objective="mesos", modes=None):
     """Choose a mode at each visited star, with exact expected recovery costs.
 
-    MODES (from item_modes) fixes the mode for 15–17★ and 18–21★ instead.
+    MODES (from item_modes) fixes the mode at each star from 15★ to 21★ instead.
 
     Each increment depends monotonically on the already optimized increments
     below it. Minimizing these in star order considers every possible policy
@@ -127,7 +152,7 @@ def optimize(level, current, target, settings=None, *, objective="mesos", modes=
     for star in range(target):
         choices = [1, 2, 3, "safeguard"] if 15 <= star <= 17 else [1, 2, 3, 4] if 18 <= star <= 21 else [None]
         if modes and 15 <= star <= 21:
-            choices = [modes["mode_15_17"] if star <= 17 else modes["mode_18_21"]]
+            choices = [modes[str(star)]]
         candidates = []
         for mode in choices:
             settings = {**cfg}
