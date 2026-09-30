@@ -100,6 +100,142 @@
         "star_force_basis": "Live tooltip: 26-star cap; 21->22 gave INT +15, LUK +15, Magic ATT +17.",
         "checked_at": "2026-09-29"
       }
+    },
+    {
+      "id": "gms_lazuli_type_7",
+      "source_id": "lazuli-type-7",
+      "name": "Lazuli Type 7",
+      "aliases": [],
+      "alias_evidence": null,
+      "slot": "weapon",
+      "job_group": "warrior",
+      "source_classes": [
+        "zero"
+      ],
+      "level": 150,
+      "source_level": 150,
+      "flameable": true,
+      "flame_advantaged": false,
+      "flame_category": "normal",
+      "rollable_line_pool": "weapon",
+      "flame_models": [
+        "brf"
+      ],
+      "base_attack": 169,
+      "base_magic_attack": null,
+      "source_region": "GMS",
+      "icon_url": "https://media.maplestorywiki.net/yetidb/Eqp_Lazuli_Type_7.png",
+      "set": "faf",
+      "classification_basis": "Zero weapon: same flame metadata and Lapis-based flame attack as Whackybeanz Lapis Type 7.",
+      "metadata_status": "verified_supplement",
+      "flame_base_attack": 173,
+      "metadata_evidence": {
+        "url": "https://maplestorywiki.net/w/Lazuli_Type_7",
+        "tier_basis": "https://www.whackybeanz.com/api/getEquips/warrior/zero",
+        "checked_at": "2026-09-29"
+      }
+    },
+    {
+      "id": "gms_lazuli_type_8",
+      "source_id": "lazuli-type-8",
+      "name": "Lazuli Type 8",
+      "aliases": [],
+      "alias_evidence": null,
+      "slot": "weapon",
+      "job_group": "warrior",
+      "source_classes": [
+        "zero"
+      ],
+      "level": 160,
+      "source_level": 160,
+      "flameable": true,
+      "flame_advantaged": false,
+      "flame_category": "normal",
+      "rollable_line_pool": "weapon",
+      "flame_models": [
+        "brf"
+      ],
+      "base_attack": 203,
+      "base_magic_attack": null,
+      "source_region": "GMS",
+      "icon_url": "https://media.maplestorywiki.net/yetidb/Eqp_Lazuli_Type_8.png",
+      "set": "abs",
+      "classification_basis": "Zero weapon: same flame metadata and Lapis-based flame attack as Whackybeanz Lapis Type 8.",
+      "metadata_status": "verified_supplement",
+      "flame_base_attack": 207,
+      "metadata_evidence": {
+        "url": "https://maplestorywiki.net/w/Lazuli_Type_8",
+        "tier_basis": "https://www.whackybeanz.com/api/getEquips/warrior/zero",
+        "checked_at": "2026-09-29"
+      }
+    },
+    {
+      "id": "gms_lazuli_type_9",
+      "source_id": "lazuli-type-9",
+      "name": "Lazuli Type 9",
+      "aliases": [],
+      "alias_evidence": null,
+      "slot": "weapon",
+      "job_group": "warrior",
+      "source_classes": [
+        "zero"
+      ],
+      "level": 200,
+      "source_level": 200,
+      "flameable": true,
+      "flame_advantaged": false,
+      "flame_category": "normal",
+      "rollable_line_pool": "weapon",
+      "flame_models": [
+        "brf"
+      ],
+      "base_attack": 293,
+      "base_magic_attack": null,
+      "source_region": "GMS",
+      "icon_url": "https://media.maplestorywiki.net/yetidb/Eqp_Lazuli_Type_9.png",
+      "set": "acs",
+      "classification_basis": "Zero weapon: same flame metadata and Lapis-based flame attack as Whackybeanz Lapis Type 9.",
+      "metadata_status": "verified_supplement",
+      "flame_base_attack": 297,
+      "metadata_evidence": {
+        "url": "https://maplestorywiki.net/w/Lazuli_Type_9",
+        "tier_basis": "https://www.whackybeanz.com/api/getEquips/warrior/zero",
+        "checked_at": "2026-09-29"
+      }
+    },
+    {
+      "id": "gms_destiny_lazuli",
+      "source_id": "destiny-lazuli",
+      "name": "Destiny Lazuli",
+      "aliases": [],
+      "alias_evidence": null,
+      "slot": "weapon",
+      "job_group": "warrior",
+      "source_classes": [
+        "zero"
+      ],
+      "level": 250,
+      "source_level": 250,
+      "flameable": true,
+      "flame_advantaged": false,
+      "flame_category": "normal",
+      "rollable_line_pool": "weapon",
+      "flame_models": [
+        "brf"
+      ],
+      "base_attack": 370,
+      "base_magic_attack": null,
+      "source_region": "GMS",
+      "icon_url": "https://media.maplestorywiki.net/yetidb/Eqp_Destiny_Lazuli.png",
+      "set": "eternal",
+      "classification_basis": "Zero weapon: same flame metadata and Lapis-based flame attack as Whackybeanz Destiny Lapis.",
+      "metadata_status": "verified_supplement",
+      "flame_base_attack": 375,
+      "metadata_evidence": {
+        "url": "https://maplestorywiki.net/w/Destiny_Lazuli",
+        "tier_basis": "https://www.whackybeanz.com/api/getEquips/warrior/zero",
+        "checked_at": "2026-09-29"
+      }
     }
   ]
 }

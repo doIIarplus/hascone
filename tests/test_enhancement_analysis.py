@@ -2,8 +2,9 @@ import copy
 
 import pytest
 from test_app import ID, client, get
-from test_equipment_scan import frame, replay
+from test_equipment_scan import frame, replay, zero_hover
 
+import zero
 from cubing.lines import parse_line
 from enhancement_analysis import snapshot
 from equipment_scan import hover
@@ -37,6 +38,18 @@ def test_real_scans_have_consistent_upgrade_odds_and_current_costs():
         assert current['expected_mesos'] <= row['expected_mesos']
     assert data['items']['weapon']['catalog']['level'] == 200
 
+
+def test_zero_partner_sword_is_priced_with_the_weapon():
+    equipment = {}
+    for name, slot in (('lazuli', 'weapon'), ('lapis', 'secondary')):
+        reading = zero_hover(name, slot)
+        equipment[slot] = {**reading, 'name': reading['item'], 'hover_scanned': True}
+    data = snapshot({'id': ID, 'name': 'Example', 'class': 'Zero', 'equipment': equipment})
+    assert [r['slot'] for r in data['starforce_costs']] == ['weapon']
+    assert data['totals']['Star Force'] == data['starforce_costs'][0]['expected_mesos'] > 0
+    assert data['items']['secondary'] == {'mirror': zero.MIRROR_NOTE}
+    assert all(r['slot'] != 'secondary' for rows in data['unpriced'].values() for r in rows)
+    assert data['items']['weapon']['catalog']['level'] == 200
 
 def test_unknown_and_epic_costs_remain_unpriced_not_zero():
     p = profile()

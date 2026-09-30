@@ -4,6 +4,7 @@ import json
 import threading
 from functools import lru_cache
 
+import zero
 from cubing.item_database import item_metadata
 from cubing.scoring import current_score
 from cubing.targets import SLOTS
@@ -177,6 +178,9 @@ def _cached(encoded):
             continue
         common = {"slot": slot, "name": item.get("name") or slot.replace("_", " ")}
         detail = result["items"][slot] = {}
+        if zero.mirrored(profile["class"], slot):
+            detail["mirror"] = zero.MIRROR_NOTE
+            continue
         _add_starforce_row(result, detail, common, slot, item, data["starforce_options"])
         _add_flame_row(result, detail, common, slot, item, layout, data["flame_score"])
         _add_cube_row(result, detail, common, slot, item, profile["class"], data["cube_score"], data["attack_score"])

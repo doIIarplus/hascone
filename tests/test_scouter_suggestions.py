@@ -5,10 +5,12 @@ import threading
 import numpy as np
 import pytest
 
+import zero
 from flaming import characters
 from flaming.probability import _distribution
 from scouter import profiles, service
 from scouter import suggestions as s
+from utils.payload_data import read_payload_json
 
 
 @pytest.fixture
@@ -369,3 +371,43 @@ def test_potential_upgrade_weights_follow_the_scouter_toggle(saved,monkeypatch):
     assert seen[1]['Boss Damage']==pytest.approx(seen[0][attack+' %']/cube_profiles.attack_score(gear['class'])['boss_per_attack'])
     assert seen[1]['Critical Damage %']==seen[0]['Critical Damage %']
     assert manual_result['gear_fingerprint']!=scouter_result['gear_fingerprint']
+
+def test_zero_weapon_potential_applies_to_both_swords(cube_table):
+    item = cube_table(
+        [[("STR %", 10, 50), ("STR %", 20, 50)], [("Junk", 0, 100)], [("Junk", 0, 100)]],
+        ["STR +10%", "DEF +9%", "DEF +9%"],
+        "weapon",
+    )
+    hero, zero_row = (s.cube_suggestions("weapon", item, job, {"STR %": 0.01}, 0.01, lambda: None)[0] for job in ("Hero", "Zero"))
+    assert zero_row["probability"] == hero["probability"] == 0.5
+    assert zero_row["expected_fd"] == pytest.approx(2 * hero["expected_fd"]) == pytest.approx(0.2)
+    item = cube_table(
+        [[("Ignore Enemy Defense %", 40, 100)], [("Junk", 0, 100)], [("Junk", 0, 100)]],
+        ["Ignore Enemy Defense +30%", "DEF +9%", "DEF +9%"],
+        "weapon",
+    )
+    row = s.cube_suggestions("weapon", item, "Zero", {}, 0.01, lambda: None)[0]
+    # Each sword's IED line multiplies separately.
+    assert row["expected_fd"] == pytest.approx(1 - (0.6 / 0.7) ** 2)
+
+
+def test_zero_weapon_flames_count_boss_twice_and_keep_top_attack(monkeypatch):
+    item = {"name": "Lazuli Type 9", "status": "scanned", "stats": [{"name": "Boss Damage", "value": 6, "percent": True}]}
+    row = s.flame_suggestion("weapon", item, {"STR": 0.001, "Boss Damage": 0.02, "Attack Power": 0.01}, "ATT")
+    assert row["goal"].endswith("tier-5 ATT")
+    seen = []
+    monkeypatch.setattr(s, "flame_suggestion", lambda slot, item, weights, *args: seen.append(weights) or {})
+    flat = {"STR": 1, "Boss Damage": 2, "Damage": 3, "Attack Power": 4}
+    for job in ("Hero", "Zero"):
+        s._item_choices("flame", "weapon", item, {"class": job}, {}, flat, {}, 0, "ATT", lambda: None, None)
+    assert seen == [flat, {**flat, "Boss Damage": 4, "Damage": 6}]
+
+
+def test_zero_secondary_is_listed_as_mirroring_the_weapon():
+    layout = read_payload_json("src/flaming_data/equipment_layout.json")["slots"]
+    item = {"name": "Lapis Type 9", "starforce": {"status": "scanned", "stars": 16, "max_stars": 30}}
+    rows, skipped = s._slot_rows(
+        "secondary", item, {"class": "Zero"}, {}, layout, {}, {}, 0, "ATT", lambda: None, lambda _: None, None
+    )
+    assert rows == []
+    assert [(r["kind"], r["reason"]) for r in skipped] == [("cube", zero.MIRROR_NOTE), ("starforce", zero.MIRROR_NOTE)]

@@ -45,6 +45,16 @@ def test_kanna_talisman_uses_weapon_star_gains():
     assert suggestions("secondary", item, weights, gear)[0]["stat_gains"] == {"INT": 15, "LUK": 15, "Magic Attack": 17}
 
 
+def test_zero_swords_use_weapon_star_force_from_their_own_base_attack():
+    # Live Lazuli/Lapis Type 9 tooltips at 16 stars: STR/DEX +55, Max HP +255, ATT +122/+125.
+    for name, attack in (("Lazuli Type 9", 122), ("Lapis Type 9", 125)):
+        meta = stats.metadata("weapon", {"name": name, "required_level": 200})
+        assert stats.gains(meta, 0, 16) == {"STR": 55, "DEX": 55, "Max HP": 255, "Attack Power": attack}
+    for name, level in (("Genesis Lazuli", 200), ("Destiny Lazuli", 250)):
+        with pytest.raises(ValueError, match="Fixed Genesis"):
+            stats.metadata("weapon", {"name": name, "required_level": level})
+
+
 def test_modes_route_saves_and_clears(client):
     p = characters.load(ID)
     p["equipment"]["hat"] = {"name": "Hat", "starforce": {"status": "scanned", "stars": 17, "max_stars": 30}}

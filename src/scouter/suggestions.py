@@ -10,6 +10,7 @@ from decimal import Decimal
 
 import numpy as np
 
+import zero
 from cubing import probability as cubes
 from cubing.item_database import item_metadata
 from cubing.lines import parse_line
@@ -158,14 +159,14 @@ def flame_suggestion(slot, item, weights, attack, checkpoint=lambda: None):
     counts = tuple(
         (int(n), p) for n, p in item_database.rules()["line_counts"][meta["flame_category"]].items()
     )
-    required = None
+    required = top = None
     if slot == "weapon":
-        if "7" not in tiers:
-            raise ValueError("Weapon keep rule requires tier-7 attack, unavailable for this item.")
+        # Keep only the top attack tier: 7 when flame advantaged, 5 otherwise (Zero's swords).
+        top = max(tiers, key=int)
         stat = "Magic Attack" if attack == "MATT" else "Attack Power"
         required = (
             next(i for i, line in enumerate(table) if line["stats"] == [stat]),
-            list(tiers).index("7"),
+            list(tiers).index(top),
         )
     scores, tail = _distribution(values, tuple(tiers.values()), counts, required)
     baseline = sum(weights.get(s["name"], 0) * s["value"] for s in item["stats"])
@@ -189,7 +190,7 @@ def flame_suggestion(slot, item, weights, attack, checkpoint=lambda: None):
         "kind": "flame",
         **expectation,
         "flame_examples": samples,
-        "goal": "Any modeled FD improvement" + (f" with tier-7 {attack}" if required else ""),
+        "goal": "Any modeled FD improvement" + (f" with tier-{top} {attack}" if required else ""),
         "current": [f"{s['name']} +{s['value']}{'%' if s.get('percent') else ''}" for s in item["stats"]],
         "protected": [],
         "examples": [],
@@ -238,10 +239,10 @@ def _protected_stats(parsed, model):
     return protected
 
 
-def _record_outcome(buckets, model, protected, old_score, old_ied, ied_weight, args):
+def _record_outcome(buckets, model, protected, old_score, old_ied, ied_weight, args, copies=1):
     chance, score, ied, totals, labels = args
     # Replacing an existing IED source: combine complements, never add IED percentages.
-    gain = score - old_score + ied_weight * 100 * (1 - ied / old_ied)
+    gain = score - old_score + ied_weight * 100 * (1 - (ied / old_ied) ** copies)
     seconds = totals.get(cooldown.CATEGORY, 0)
     if model:
         gain = model.gain(seconds, gain)
@@ -287,6 +288,9 @@ def _cube_row(name, cost, model, protected, potential, seconds, bucket):
 
 def cube_suggestions(slot, item, character_class, weights, ied_weight, checkpoint, hat_model=None):
     potential, rank, level = _scanned_roll(slot, item)
+    # Zero's partner sword repeats the weapon potential, so each line applies twice.
+    copies = zero.copies(character_class, slot)
+    weights = {k: v * copies for k, v in weights.items()}
     parsed, old_score, old_ied = _scan_baseline(potential, weights)
     model = hat_model(parsed) if slot == "hat" and hat_model else None
     protected = _protected_stats(parsed, model)
@@ -301,7 +305,7 @@ def cube_suggestions(slot, item, character_class, weights, ied_weight, checkpoin
         def visit(index, counts, chance, score, ied, totals, labels, pools=pools, buckets=buckets):
             if index == 3:
                 _record_outcome(
-                    buckets, model, protected, old_score, old_ied, ied_weight, (chance, score, ied, totals, labels)
+                    buckets, model, protected, old_score, old_ied, ied_weight, (chance, score, ied, totals, labels), copies
                 )
                 return
             if index == 0:
@@ -334,7 +338,9 @@ def cube_suggestions(slot, item, character_class, weights, ied_weight, checkpoin
 
 def _item_choices(kind, slot, item, gear, data, flat, pot, ied, attack, checkpoint, hat_model):
     if kind == "flame":
-        return [flame_suggestion(slot, item, flat, attack, checkpoint)]
+        copies = zero.copies(gear["class"], slot)
+        weights = {**flat, **{k: flat[k] * copies for k in zero.SHARED_FLAME_STATS if k in flat}}
+        return [flame_suggestion(slot, item, weights, attack, checkpoint)]
     if kind == "cube":
         return cube_suggestions(slot, item, gear["class"], pot, ied, checkpoint, hat_model)
     return starforce_suggestions(slot, item, flat, gear, data.get("starforce_options"))
@@ -356,6 +362,8 @@ def _slot_rows(slot, item, gear, data, layout, flat, pot, ied, attack, checkpoin
     progress(f"Comparing upgrades for {item.get('name') or slot}…")
     common = {"slot": slot, "name": item.get("name") or slot, "icon": slot}  # Hascone serves captured equipment icons by slot.
     rows, skipped = [], []
+    if zero.mirrored(gear["class"], slot):
+        return rows, [{**common, "kind": kind, "reason": zero.MIRROR_NOTE} for kind in _slot_kinds(slot, item, layout)]
     for kind in _slot_kinds(slot, item, layout):
         try:
             choices = _item_choices(kind, slot, item, gear, data, flat, pot, ied, attack, checkpoint, hat_model)

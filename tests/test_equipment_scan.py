@@ -14,6 +14,7 @@ from flaming.vision import ReadError
 from scouter import profiles
 
 FIXTURES = Path(__file__).parent / 'fixtures/equipment_hover'
+ZERO = Path(__file__).parent / 'fixtures/zero'
 
 
 def frame(slot):
@@ -23,6 +24,13 @@ def frame(slot):
 def replay(crops, **kwargs):
     records=json.loads((FIXTURES/'readings.json').read_text(encoding='utf8'))
     return [records[str(c.shape)+hashlib.sha256(c.tobytes()).hexdigest()] for c in crops]
+
+
+def zero_hover(name, slot):
+    records=json.loads((ZERO/'readings.json').read_text(encoding='utf8'))
+    def reader(crops, **kwargs):
+        return [records[str(c.shape)+hashlib.sha256(c.tobytes()).hexdigest()] for c in crops]
+    return hover(cv2.imread(str(ZERO/(name+'.png'))),reader,slot)
 
 
 def test_live_grid_and_wrong_slot():
@@ -82,6 +90,16 @@ def test_kanna_talisman_reads_26_star_layout():
     # A secondary whose read fails is silently recorded as having no stars.
     result=read(frame('talisman'))
     assert (result['stars'],result['max_stars'])==(21,26)
+
+
+def test_zero_grid_and_mirrored_swords():
+    # Zero's window adds a Job Weapon tab and a locked Astra cell; the grid is unchanged.
+    assert len(grid(cv2.imread(str(ZERO/'grid.png')))['slots'])==19
+    lazuli,lapis=zero_hover('lazuli','weapon'),zero_hover('lapis','secondary')
+    assert (lazuli['item'],lapis['item'])==('Lazuli Type 9','Lapis Type 9')
+    assert lazuli['starforce']['stars']==lapis['starforce']['stars']==16
+    assert lazuli['potential']['lines']==lapis['potential']['lines']
+    assert lazuli['weapon_attack']=={'ATT':415}
 
 
 @pytest.mark.parametrize('slot',['ring_4','badge','medal'])

@@ -703,14 +703,13 @@
   ],
   "unsupported_prefixes": [
     "Tyrant ",
-    "Heliseum Elite ",
-    "Lapis ",
-    "Lazuli "
+    "Heliseum Elite "
   ],
   "notes": [
     "Stat tables store per-star gains indexed by the star reached, not cumulative totals.",
     "Stat gains stop after 22; armor attack continues through 30.",
     "Low-level weapon attack requires the clean non-flame base attack; Heroic only.",
-    "Superior Gollux equipment uses ordinary Star Force, not Superior/Tyrant rules."
+    "Superior Gollux equipment uses ordinary Star Force, not Superior/Tyrant rules.",
+    "Zero's Lazuli/Lapis Type 7-9 use ordinary weapon Star Force from each sword's own base ATT (live Type 9 tooltips: +122/+125 ATT at 16 stars)."
   ]
 }
