@@ -1,6 +1,14 @@
+import hashlib
+import json
+from pathlib import Path
+
+import cv2
+import numpy as np
 import pytest
 
 from scouter import vision
+
+CHARACTER_INFO = Path(__file__).parent / "fixtures/character_info"
 
 
 def test_collapsed_character_panel_keeps_waiting(monkeypatch):
@@ -30,7 +38,8 @@ def test_uncertain_name_retry_requires_agreement():
     vision._retry_uncertain_identity(lambda crops, **kwargs: [("NameTest", .99)], results, originals)
     assert results[index] == ("NameTest", .99)
     results[index] = ("HameTest", .91)
-    readings = iter([("NameTest", .99), ("other", .99)])
+    # Neither the padded pair nor the background-adjusted pair agrees.
+    readings = iter([("NameTest", .99), ("other", .99), ("NameTest", .99), ("other", .99)])
     vision._retry_uncertain_identity(lambda crops, **kwargs: [next(readings)], results, originals)
     assert results[index] == ("HameTest", .91)
 
@@ -69,7 +78,8 @@ def test_level_retry_recovers_broken_prefix_but_rejects_conflicting_digits(digit
     results[index] = ("L.295", .9131)
     # Actual failure: both full crops lose the v, while the padded reading
     # recovers the label at insufficient confidence. Digits remain clear.
-    readings = iter([("L.295", .9169), ("Lv. 295", .7634), (digits, .9999)])
+    # The background-adjusted pill renderings come first and lose the v too.
+    readings = iter([("L.295", .92), ("L.295", .93), ("L.295", .9169), ("Lv. 295", .7634), (digits, .9999)])
     shapes = []
 
     def reader(crops, *, use_cache=True):
@@ -78,7 +88,7 @@ def test_level_retry_recovers_broken_prefix_but_rejects_conflicting_digits(digit
         return [next(readings)]
 
     confirmed = vision._retry_uncertain_overview(reader, results, originals)
-    assert shapes == [(21, 51, 3), (37, 67, 3), (21, 34, 3)]
+    assert shapes == [(21, 51, 3), (32, 76, 3), (21, 51, 3), (37, 67, 3), (21, 34, 3)]
     assert ("stat.level" in confirmed) is accepted
     if accepted:
         values = {}
@@ -86,3 +96,28 @@ def test_level_retry_recovers_broken_prefix_but_rejects_conflicting_digits(digit
         assert values["stat.level"]["value"] == "295"
     else:
         assert results[index] == ("L.295", .9131)
+
+
+@pytest.mark.parametrize("background", ["purple", "lavender", "pink"])
+def test_profile_backgrounds_do_not_wash_out_level_and_class(background):
+    # Live pills on user profile backgrounds, with their recorded OCR readings.
+    records = json.loads((CHARACTER_INFO / "readings.json").read_text(encoding="utf8"))
+
+    def reader(crops, **kwargs):
+        return [tuple(records[str(c.shape) + hashlib.sha256(c.tobytes()).hexdigest()]) for c in crops]
+
+    fields = list(vision.OVERVIEW_FIELDS)
+    level, job = fields.index("stat.level"), fields.index("character_class")
+    originals = [np.zeros((21, 51, 3), np.uint8)] * len(fields)
+    originals[level] = cv2.imread(str(CHARACTER_INFO / f"{background}_level.png"))
+    originals[job] = cv2.imread(str(CHARACTER_INFO / f"{background}_class.png"))
+    results = [("1", 1.0)] * len(fields)
+    results[level], results[job] = reader([vision.foreground(originals[level]), vision.foreground(originals[job])])
+    assert min(results[level][1], results[job][1]) < 0.97
+    vision._retry_uncertain_identity(reader, results, originals)
+    confirmed = vision._retry_uncertain_overview(reader, results, originals)
+    values, identity = {}, {}
+    vision._parse_overview_field("stat.level", *results[level], values, identity, confirmed="stat.level" in confirmed)
+    vision._parse_overview_field("character_class", *results[job], values, identity)
+    assert values["stat.level"]["value"] == "290"
+    assert identity["character_class"] == "Illium"

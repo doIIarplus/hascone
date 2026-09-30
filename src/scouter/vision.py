@@ -54,6 +54,24 @@ def foreground(crop):
     return cv2.cvtColor((white | yellow).astype(np.uint8) * 255, cv2.COLOR_GRAY2BGR)
 
 
+def pill(crop):
+    """White level, name and class text on a pill tinted by the profile background."""
+    lightness = crop.min(axis=2).astype(np.float32)
+    # Stretch this pill's own fill to black; a light fill otherwise passes as text.
+    fill = float(np.median(lightness[6:15]))
+    text = np.clip((lightness - fill) * 255 / max(1.0, 255 - fill), 0, 255).astype(np.uint8)
+    # Scenery shows above and below the pill, outside the text and its descenders.
+    text[:3] = 0
+    text[19:] = 0
+    return cv2.cvtColor(text, cv2.COLOR_GRAY2BGR)
+
+
+def pill_variants(crop):
+    # Dark-on-light and enlarged renderings keep thin glyphs such as "Ill" apart.
+    text = pill(crop)
+    return [255 - text, cv2.resize(text, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_CUBIC)]
+
+
 def numeric(text):
     text = text.strip().replace(" ", "")
     # Deliberately do not silently turn uncertain letters into digits.
@@ -123,6 +141,8 @@ def _retry_uncertain_overview(reader, results, originals):
             continue
         variants = [originals[i], padded(foreground(originals[i]))]
         if path == "stat.level":
+            # A light profile background washes out the level pill; try it first.
+            variants[:0] = pill_variants(originals[i])
             # The tiny Lv. prefix can dominate confidence or lose its v.
             # This anchored field reserves its first 17 pixels for the prefix;
             # retry the unchanged digits without accepting malformed labels.
@@ -137,20 +157,26 @@ def _retry_uncertain_overview(reader, results, originals):
 
 
 def _retry_uncertain_identity(reader, results, originals):
-    # Tight name/class crops can turn the first letter into a different glyph.
-    # Require agreement between two padded renderings at the usual threshold.
+    # Tight name/class crops can turn the first letter into a different glyph,
+    # and a light profile background can wash out the white text. Require
+    # agreement between two renderings of one pair at the usual threshold.
     for path in ("character_name", "character_class"):
         index = list(OVERVIEW_FIELDS).index(path)
         if results[index][1] >= 0.97:
             continue
         original = originals[index]
-        variants = [
-            cv2.copyMakeBorder(original, 8, 8, 8, 8, cv2.BORDER_REPLICATE),
-            cv2.copyMakeBorder(foreground(original), 8, 8, 8, 8, cv2.BORDER_CONSTANT),
-        ]
-        readings = [list(reader([crop], use_cache=False))[0] for crop in variants]
-        if all(confidence >= 0.97 for _, confidence in readings) and len({text.strip().casefold() for text, _ in readings}) == 1:
-            results[index] = min(readings, key=lambda result: result[1])
+        pairs = (
+            [
+                cv2.copyMakeBorder(original, 8, 8, 8, 8, cv2.BORDER_REPLICATE),
+                cv2.copyMakeBorder(foreground(original), 8, 8, 8, 8, cv2.BORDER_CONSTANT),
+            ],
+            pill_variants(original),
+        )
+        for variants in pairs:
+            readings = [list(reader([crop], use_cache=False))[0] for crop in variants]
+            if all(confidence >= 0.97 for _, confidence in readings) and len({text.strip().casefold() for text, _ in readings}) == 1:
+                results[index] = min(readings, key=lambda result: result[1])
+                break
 
 
 def _parse_cooldown(text, confidence, values):
