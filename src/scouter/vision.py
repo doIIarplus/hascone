@@ -102,8 +102,6 @@ OVERVIEW_FIELDS = {
     "stat.authenticForce": (1095, 715, 1138),
     "cooldown": (843, 587, 920),
     "stat.level": (899, 109, 950),
-    "character_name": (867, 248, 979),
-    "character_class": (710, 118, 817),
 }
 
 
@@ -137,7 +135,7 @@ def _overview_number(path, text):
 def _retry_uncertain_overview(reader, results, originals):
     confirmed = set()
     for i, path in enumerate(OVERVIEW_FIELDS):
-        if path in ("character_name", "character_class") or results[i][1] >= 0.97:
+        if results[i][1] >= 0.97:
             continue
         variants = [originals[i], padded(foreground(originals[i]))]
         if path == "stat.level":
@@ -156,33 +154,6 @@ def _retry_uncertain_overview(reader, results, originals):
     return confirmed
 
 
-CUT = re.compile(r"\s*(?:\.+|…)$")
-
-
-def _retry_uncertain_identity(reader, results, originals):
-    # Tight name/class crops can turn the first letter into a different glyph,
-    # and a light profile background can wash out the white text. Require
-    # agreement between two renderings of one pair at the usual threshold.
-    for path in ("character_name", "character_class"):
-        index = list(OVERVIEW_FIELDS).index(path)
-        if results[index][1] >= 0.97:
-            continue
-        original = originals[index]
-        pairs = (
-            [
-                cv2.copyMakeBorder(original, 8, 8, 8, 8, cv2.BORDER_REPLICATE),
-                cv2.copyMakeBorder(foreground(original), 8, 8, 8, 8, cv2.BORDER_CONSTANT),
-            ],
-            pill_variants(original),
-        )
-        for variants in pairs:
-            readings = [list(reader([crop], use_cache=False))[0] for crop in variants]
-            # A cut-off long name ends in dots; renderings may read a different number of them.
-            if all(confidence >= 0.97 for _, confidence in readings) and len({CUT.sub("…", text.strip()).casefold() for text, _ in readings}) == 1:
-                results[index] = min(readings, key=lambda result: result[1])
-                break
-
-
 def _parse_cooldown(text, confidence, values):
     match = re.fullmatch(r"(\d+(?:\.\d+)?)\s*sec\s*/\s*(\d+(?:\.\d+)?)\s*%", text, re.I)
     if not match:
@@ -191,14 +162,11 @@ def _parse_cooldown(text, confidence, values):
         values["stat." + k] = {"value": v, "confidence": confidence, "text": text}
 
 
-def _parse_overview_field(path, text, confidence, values, identity, *, confirmed=False):
-    required = 0.90 if confirmed and path not in ("character_name", "character_class") else 0.97
+def _parse_overview_field(path, text, confidence, values, *, confirmed=False):
+    required = 0.90 if confirmed else 0.97
     if confidence < required:
         percent = int(confidence * 10000) / 100
         raise ReadError(f"Low confidence ({percent:.2f}%; requires {required:.0%})")
-    if path in ("character_name", "character_class"):
-        identity[path] = text
-        return
     if path == "cooldown":
         _parse_cooldown(text, confidence, values)
         return
@@ -218,15 +186,14 @@ def overview(frame, reader):
         raise ReadError("Keep the expanded stats panel fully visible.")
     crops, originals = _overview_crops(frame, ox, oy)
     results = list(reader(crops))
-    _retry_uncertain_identity(reader, results, originals)
     confirmed = _retry_uncertain_overview(reader, results, originals)
-    values, errors, identity = {}, [], {}
+    values, errors = {}, []
     for path, (text, confidence) in zip(OVERVIEW_FIELDS, results, strict=True):
         try:
-            _parse_overview_field(path, text, confidence, values, identity, confirmed=path in confirmed)
+            _parse_overview_field(path, text, confidence, values, confirmed=path in confirmed)
         except ReadError as exc:
             errors.append(f"{path}: {exc}")
-    return {"kind": "scouter", "values": values, "errors": errors, **identity}
+    return {"kind": "scouter", "values": values, "errors": errors}
 
 
 def tooltip(frame, reader):

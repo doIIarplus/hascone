@@ -35,19 +35,16 @@ def test_numeric_agreement_requires_fresh_valid_matching_read(first, second, acc
         assert reading[1] == min(first[1], second[1])
 
 
-def test_overview_agreement_accepts_lower_score_without_changing_identity():
+def test_overview_agreement_accepts_lower_score():
     originals = [np.zeros((21, 52, 3), dtype=np.uint8)] * len(vision.OVERVIEW_FIELDS)
     results = [("1", 1.0)] * len(originals)
     index = list(vision.OVERVIEW_FIELDS).index("stat.ignoreDef")
     results[index] = ("96.91%", .965)
     confirmed = vision._retry_uncertain_overview(Mock(return_value=[("96.91%", .92)]), results, originals)
     values = {}
-    vision._parse_overview_field("stat.ignoreDef", *results[index], values, {}, confirmed="stat.ignoreDef" in confirmed)
+    vision._parse_overview_field("stat.ignoreDef", *results[index], values, confirmed="stat.ignoreDef" in confirmed)
     assert values["stat.ignoreDef"]["value"] == "96.91"
     assert values["stat.ignoreDef"]["confidence"] == .92
-    for field in ("character_name", "character_class"):
-        with pytest.raises(vision.ReadError, match="requires 97%"):
-            vision._parse_overview_field(field, "NameTest", .96, {}, {}, confirmed=True)
 
 
 @pytest.mark.parametrize("retry,accepted", [("5sec / 6%", True), ("5sec / 8%", False)])

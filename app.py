@@ -37,7 +37,6 @@ job_lock = threading.RLock()
 job = {"active": False, "status": "idle"}
 preview = None
 generation = 0
-_scan_identities = {}
 LAYOUT = read_payload_json("src/flaming_data/equipment_layout.json")
 
 
@@ -702,23 +701,11 @@ def _hover_watch(body, token):
 
 def _process_character_capture(body, image, baseline, result=None):
     mode = body["mode"]
-    session_key = (body["character"], body.get("session"))
-    if body.get("session"):
-        if mode == "overview":
-            # Following captures must not overwrite a character if its identity
-            # check failed. The shared queue processes the overview first.
-            _scan_identities[session_key] = False
-        elif _scan_identities.get(session_key) is False:
-            raise ValueError("Character stats could not be verified. Rescan Character Info before this step.")
     if result is None:
         from ocr_worker import read
         result = read(image, "tooltip" if mode.startswith("tooltip:") else mode)
     # Live panel/cursor checks happened before the frame entered the queue.
     result = _finalize_result(mode, {**body, "image": True}, image, None, result)
-    if mode == "overview" and body.get("session"):
-        # Identity validation succeeded even if a separate numeric field needs
-        # a rescan. Do not misreport those failures as a different character.
-        _scan_identities[session_key] = True
     if result.get("errors"):
         raise ValueError("; ".join(result["errors"]))
     if not result.get("values") and not result.get("links"):
@@ -938,10 +925,6 @@ def _finalize_result(mode, body, image, before_pointer, result):
     if mode.startswith("hover:") and live:
         _verify_hover_settled(mode, body, image)
         result["slot_verified"] = True
-    if mode == "overview":
-        from identity import verify_character
-
-        verify_character(result, profiles.load(body["character"]))
     if mode.startswith("tooltip:") and live:
         _verify_tooltip_hover(mode, body, image, before_pointer)
         result["slot_verified"] = True

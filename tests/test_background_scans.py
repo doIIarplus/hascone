@@ -87,29 +87,6 @@ def test_background_errors_leave_saved_inputs_untouched(client, monkeypatch):
     assert profiles.load(ID)["inputs"] == {}
 
 
-def test_failed_identity_blocks_following_captures_from_that_session(client, monkeypatch):
-    import ocr_worker
-
-    reads = []
-
-    def read(image, mode):
-        reads.append(mode)
-        return {"values": {"stat.level": {"value": "280"}}}
-
-    monkeypatch.setattr(ocr_worker, "read", read)
-    monkeypatch.setattr(app, "_scan_identities", {})
-    def wrong_character(*args):
-        raise ValueError("Wrong character")
-    monkeypatch.setattr(app, "_finalize_result", wrong_character)
-    body = {"character": ID, "mode": "overview", "session": "identity-test"}
-    with pytest.raises(ValueError, match="Wrong character"):
-        app._process_character_capture(body, None, {})
-    with pytest.raises(ValueError, match="could not be verified"):
-        app._process_character_capture({**body, "mode": "tooltip:mainStat"}, None, {})
-    assert reads == ["overview"]
-    assert profiles.load(ID)["inputs"] == {}
-
-
 def test_character_regions_validate_cursor_and_reject_changing_stats():
     info = {"main": "INT", "sub": "LUK"}
     image = frame("stats")
@@ -150,17 +127,6 @@ def test_tooltip_heading_can_be_partly_covered_by_cursor():
     image[y:y + 12, x:x + 80] = 255
     with pytest.raises(ReadError):
         applied_anchor(image)
-
-
-def test_numeric_overview_error_is_not_an_identity_failure(client, monkeypatch):
-    import ocr_worker
-    monkeypatch.setattr(app, "_scan_identities", {})
-    monkeypatch.setattr(app, "_finalize_result", lambda mode, body, image, pointer, result: result)
-    monkeypatch.setattr(ocr_worker, "read", lambda image, mode: {"values": {"stat.level": {"value": "280"}}, "errors": ["critical rate unclear"]})
-    body = {"character": ID, "mode": "overview", "session": "numeric-error"}
-    with pytest.raises(ValueError, match="critical rate unclear"):
-        app._process_character_capture(body, None, {})
-    assert app._scan_identities[(ID, "numeric-error")] is True
 
 
 def test_hexa_capture_returns_read_levels_without_starting_ocr(client, monkeypatch):
