@@ -124,6 +124,10 @@ export async function mountBossing(root,character,onSelect){
   const each=(b,party)=>Math.floor(b.mesos*(heroic?model.heroic_multiplier:1)/party);
   function draw(){
    const weekly=Object.keys(chosen).filter(key=>key.startsWith('weekly:')).length;
+   // Redrawing replaces the list; keep its scroll position and the focused control.
+   const top=dialog.querySelector('.boss-choices')?.scrollTop||0,focused=document.activeElement;
+   const focus=dialog.contains(focused)&&['base','difficulty','size'].find(k=>focused.dataset?.[k]);
+   const focusKey=focus&&focused.dataset[focus];
    dialog.innerHTML=`<h2>Bosses for ${esc(c.name)}</h2><p class="sub">${weekly} weekly bosses chosen. Only the ${model.weekly_limit} most valuable weekly crystals sell each week${weekly>model.weekly_limit?', so some of these will not':''}. Values are per party member${c.world?' in '+esc(c.world):''}.</p>
     <nav class="fl-subtabs" role="tablist">${Object.entries(CATEGORY).map(([key,label])=>`<button class="btn" role="tab" aria-selected="${key===category}" data-category="${key}">${label}</button>`).join('')}</nav>
     <ul class="boss-choices">${bases.filter(g=>g.category===category).map(g=>{
@@ -133,7 +137,9 @@ export async function mountBossing(root,character,onSelect){
       <select class="input" data-size="${esc(g.key)}" aria-label="${esc(g.base)} party size">${Array.from({length:variant.party_max},(_,i)=>`<option value="${i+1}" ${i+1===party?'selected':''}>${i+1} ${i?'players':'player'}</option>`).join('')}</select>
       <span class="boss-value">${mesos(each(variant,Math.min(party,variant.party_max)))}</span></li>`;}).join('')}</ul>
     <footer><button class="btn" data-cancel>Cancel</button><button class="btn btn-primary" data-save>Save bosses</button></footer>`;
-   dialog.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>{category=b.dataset.category;draw();});
+   dialog.querySelector('.boss-choices').scrollTop=top;
+   if(focus)dialog.querySelector(`[data-${focus}="${CSS.escape(focusKey)}"]`)?.focus({preventScroll:true});
+   dialog.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>{category=b.dataset.category;draw();dialog.querySelector('.boss-choices').scrollTop=0;});
    const read=key=>{const g=bases.find(x=>x.key===key);const difficulty=dialog.querySelector(`[data-difficulty="${CSS.escape(key)}"]`).value;const v=g.variants.find(x=>x.difficulty===difficulty);return {difficulty,party:Math.min(Number(dialog.querySelector(`[data-size="${CSS.escape(key)}"]`).value),v.party_max)};};
    dialog.querySelectorAll('[data-base]').forEach(box=>box.onchange=()=>{if(box.checked)chosen[box.dataset.base]=read(box.dataset.base);else delete chosen[box.dataset.base];draw();});
    dialog.querySelectorAll('[data-difficulty],[data-size]').forEach(select=>select.onchange=()=>{const base=select.dataset.difficulty||select.dataset.size;chosen[base]=read(base);draw();});
@@ -158,6 +164,13 @@ export async function mountBossing(root,character,onSelect){
   root.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editor(c));
   root.querySelector('[data-world]')?.addEventListener('change',e=>save(api.put(base,{world:e.target.value||null})));
   root.querySelectorAll('[data-clear]').forEach(box=>box.onchange=()=>save(api.put(base+'/clears',{boss:box.dataset.clear,count:box.checked?1:0})));
+  // A click anywhere on a weekly or monthly row toggles it; the party picker and checkbox keep their own clicks.
+  root.querySelectorAll('.boss-row').forEach(row=>{
+   const box=row.querySelector('[data-clear]');
+   if(!box||box.disabled)return;
+   row.classList.add('is-toggle');
+   row.onclick=e=>{if(e.target.closest('input,select,button,label'))return;box.checked=!box.checked;box.dispatchEvent(new Event('change'));};
+  });
   root.querySelectorAll('[data-count]').forEach(b=>b.onclick=()=>{const boss=c.bosses.find(x=>x.name===b.dataset.count);save(api.put(base+'/clears',{boss:boss.name,count:boss.count+Number(b.dataset.step)}));});
   root.querySelectorAll('[data-party]').forEach(select=>select.onchange=()=>save(api.put(base,{bosses:{...bosses(),[select.dataset.party]:{...bosses()[select.dataset.party],party:Number(select.value)}}})));
   root.querySelectorAll('[data-all]').forEach(b=>b.onclick=async()=>{
