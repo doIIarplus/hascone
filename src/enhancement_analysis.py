@@ -20,7 +20,7 @@ PRICES = {"Bright": 22_000_000, "Glowing": 12_000_000}
 _lock = threading.Lock()
 
 
-def snapshot(profile):
+def _inputs(profile):
     from cubing.character_score import scoring
     cube_score, attack_score, _ = scoring(profile)
     from scouter import profiles as scouter_profiles
@@ -34,9 +34,27 @@ def snapshot(profile):
         "cube_score": cube_score,
         "attack_score": attack_score,
     }, sort_keys=True)
+    return encoded
+
+
+def snapshot(profile):
+    encoded = _inputs(profile)
     # Serialize cold distribution builds; repeated UI reads reuse this snapshot.
     with _lock:
         return json.loads(_cached(encoded))
+
+
+def gear_value(profile):
+    """The combined cost of the character's current gear, and whether any item is unpriced."""
+    encoded = _inputs(profile)
+    with _lock:
+        return dict(_value(encoded))
+
+
+@lru_cache(maxsize=64)
+def _value(encoded):
+    data = json.loads(_cached(encoded))
+    return (("mesos", data["totals"]["Combined"]), ("partial", any(row["missing"] for row in data["combined_costs"])))
 
 
 def _add_starforce_row(result, detail, common, slot, item, options_config):
@@ -164,7 +182,7 @@ def _sorted_result(result):
     return result
 
 
-@lru_cache(maxsize=16)
+@lru_cache(maxsize=64)
 def _cached(encoded):
     data = json.loads(encoded)
     profile = data["profile"]

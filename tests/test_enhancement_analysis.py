@@ -180,3 +180,12 @@ def test_combined_cost_lists_what_could_not_be_priced():
     hat = snapshot(p)['items']['hat']['combined']
     assert 'Cubes' not in hat['parts']
     assert any(m.startswith('Potential:') for m in hat['missing'])
+
+
+def test_gear_value_matches_the_full_analysis(client):
+    from enhancement_analysis import gear_value
+
+    p = profile()
+    data = snapshot(p)
+    assert gear_value(p) == {"mesos": data["totals"]["Combined"], "partial": any(r["missing"] for r in data["combined_costs"])}
+    assert get(client, f"/api/characters/{ID}/gear-value").json == {"mesos": 0, "partial": False}

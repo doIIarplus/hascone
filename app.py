@@ -347,6 +347,24 @@ def potential_scoring_source(identifier):
     return character(identifier)
 
 
+@app.get("/api/characters/<identifier>/gear-value")
+def gear_value(identifier):
+    from enhancement_analysis import gear_value
+
+    return jsonify(gear_value(characters.load(identifier)))
+
+
+def _warm_gear_values():
+    """Price every character's gear after launch so the overview shows values right away."""
+    from enhancement_analysis import gear_value
+
+    for profile in characters.listing():
+        try:
+            gear_value(profile)
+        except Exception as exc:  # A character that fails to price still loads on demand.
+            app.logger.info("Gear value for %s: %s", profile["id"], exc)
+
+
 @app.get("/api/characters/<identifier>/enhancement-analysis")
 def enhancement_analysis(identifier):
     from enhancement_analysis import snapshot
@@ -1083,6 +1101,7 @@ if __name__ == "__main__":
 
         server = make_server("127.0.0.1", SERVER_PORT, app, threaded=True)
         SERVER_PORT = server.server_port
+        threading.Thread(target=_warm_gear_values, daemon=True).start()
         print(f"HASCONE_READY {SERVER_PORT}", flush=True)
         server.serve_forever()
         sys.exit(0)
@@ -1102,4 +1121,5 @@ if __name__ == "__main__":
         import webbrowser
 
         threading.Timer(1, lambda: webbrowser.open("http://127.0.0.1:5001")).start()
+    threading.Thread(target=_warm_gear_values, daemon=True).start()
     app.run(host="127.0.0.1", port=5001, debug=False, threaded=True)

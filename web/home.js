@@ -2,6 +2,9 @@ import {api} from './api.js';
 import {escapeHtml as esc,toast} from './ui.js';
 import {refreshButton} from './portrait.js';
 import {compactCost} from './format.js';
+// Gear values last shown, kept between visits so returning to the overview doesn't blank them.
+const known=new Map();
+const VALUE_NOTE='Expected mesos to rebuild this gear: Star Force from 0, flames and the cheaper of Bright or Glowing cubes.';
 export async function mountHome(root,onSelect,onDeleted){
  const data=await api.get('/api/summary');
  if(!root.isConnected)return;
@@ -11,30 +14,32 @@ export async function mountHome(root,onSelect,onDeleted){
  root.classList.add('home-page');
  root.innerHTML=`<div class="intro home-intro"><span class="eyebrow">YOUR ROSTER</span><h1>Account overview</h1><p>Pick a character to view equipment and plan your next upgrade.${data.profiles.length>1?' Drag cards to reorder them.':''}</p></div><div class="roster-grid">${data.profiles.map(p=>`<article class="roster-tile"><button class="roster-card" data-character="${p.id}" draggable="true" title="Drag to reorder · Alt+Arrow keys also move it"><img src="/api/characters/${p.id}/portrait" alt="" width="120" height="150"><div class="roster-text"><h2>${esc(p.name)}</h2><span class="sub">${esc(p.class)}${p.level?' &middot; Lv. '+p.level:''}</span>${p.cp?`<span class="roster-cp" title="Combat Power from the latest Character Info scan">CP ${Number(p.cp).toLocaleString()}</span>`:''}<strong class="roster-score">${p.hexa==null?'Not calculated':Number(p.hexa).toLocaleString()}</strong><span class="eyebrow roster-score-label">HEXA &middot; 380 DEF</span><span class="roster-value">${p.fragments==null?'':`<span class="roster-stat" title="${fragmentNote(p)}"><img src="/static/sol-erda-fragment.png" alt="Sol Erda Fragments" width="20" height="20">${lower(p)?'&ge; ':''}${Number(p.fragments).toLocaleString()}</span>`}<span class="roster-stat"><img src="/static/meso.png" alt="Mesos" width="20" height="20"><span data-meso="${p.id}">&hellip;</span></span></span></div></button>${refreshButton(p.id,p.name)}<button class="roster-delete" data-delete="${p.id}" aria-label="Delete ${esc(p.name)}" title="Delete character"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></svg></button></article>`).join('')}<button class="roster-new" type="button" aria-label="Add character" title="Add character"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg></button></div>${data.profiles.length?'<div class="home-totals" role="region" aria-label="Account totals"><span class="eyebrow">Account total</span><span class="roster-stat"><img src="/static/sol-erda-fragment.png" alt="Sol Erda Fragments" width="20" height="20"><span id="home-fragments"></span></span><span class="roster-stat"><img src="/static/meso.png" alt="Mesos" width="20" height="20"><span id="home-mesos"></span></span><span class="home-zoom">Zoom: Ctrl + mouse wheel &middot; Reset: Ctrl + 0</span></div>':''}`;
  const fragments=data.profiles.reduce((sum,p)=>sum+(p.fragments||0),0),fragmentsLower=data.profiles.some(p=>p.fragments==null||lower(p));
- const mesos={total:0,lower:false,done:0};
  function drawTotals(){
   const f=root.querySelector('#home-fragments'),m=root.querySelector('#home-mesos');if(!f)return;
   f.textContent=`${fragmentsLower?'≥ ':''}${fragments.toLocaleString()}`;
   f.title=fragmentsLower?'Some characters have unscanned or unsupported HEXA, so this is a minimum.':'Sol Erda Fragments spent on HEXA across the roster.';
-  const loading=mesos.done<data.profiles.length;
-  m.textContent=loading?`${compactCost(mesos.total)} · valuing ${mesos.done+1} of ${data.profiles.length}…`:`${mesos.lower?'≥ ':''}${compactCost(mesos.total)}`;
-  m.title='Expected mesos to rebuild every character\'s current gear: Star Force from 0, flames and the cheaper of Bright or Glowing cubes.'+(mesos.lower?' Some items are not priced yet, so this is a minimum.':'');
+  const values=data.profiles.map(p=>known.get(p.id)),pending=values.filter(v=>!v).length;
+  const total=values.reduce((sum,v)=>sum+(v?.mesos||0),0),lower=values.some(v=>v&&(v.partial||v.failed));
+  m.textContent=pending?`${compactCost(total)} · valuing ${data.profiles.length-pending+1} of ${data.profiles.length}…`:`${lower?'≥ ':''}${compactCost(total)}`;
+  m.title=VALUE_NOTE.replace('this gear','every character\'s current gear')+(lower?' Some items are not priced yet, so this is a minimum.':'');
  }
- // Gear values use each character's cost analysis; fill them in one at a time after the page shows.
+ function drawValue(p){
+  const cell=root.querySelector(`[data-meso="${CSS.escape(p.id)}"]`),value=known.get(p.id);
+  if(!cell||!value)return;
+  if(value.failed){cell.textContent='Value unavailable';return;}
+  cell.textContent=`${value.partial?'≥ ':''}${compactCost(value.mesos)}`;
+  cell.title=VALUE_NOTE+(value.partial?' Some items are not priced yet, so this is a minimum.':'');
+ }
+ // Show the last known values at once, then refresh each quietly; unchanged gear is answered from the server's cache.
  async function loadValues(){
   for(const p of data.profiles){
    if(!root.isConnected)return;
-   const cell=root.querySelector(`[data-meso="${CSS.escape(p.id)}"]`);
-   try{
-    const model=await api.get(`/api/characters/${encodeURIComponent(p.id)}/enhancement-analysis`);
-    const value=model.totals.Combined,partial=model.combined_costs.some(r=>r.missing.length);
-    mesos.total+=value;mesos.lower||=partial;
-    if(cell){cell.textContent=`${partial?'≥ ':''}${compactCost(value)}`;cell.title='Expected mesos to rebuild this character\'s current gear: Star Force from 0, flames and the cheaper of Bright or Glowing cubes.'+(partial?' Some items are not priced yet, so this is a minimum.':'');}
-   }catch{mesos.lower=true;if(cell)cell.textContent='Value unavailable';}
-   mesos.done++;drawTotals();
+   try{known.set(p.id,await api.get(`/api/characters/${encodeURIComponent(p.id)}/gear-value`));}
+   catch{if(!known.has(p.id))known.set(p.id,{failed:true});}
+   drawValue(p);drawTotals();
   }
  }
- drawTotals();loadValues();
+ data.profiles.forEach(drawValue);drawTotals();loadValues();
  root.querySelectorAll('[data-delete]').forEach(button=>button.onclick=()=>{
   const character=data.profiles.find(p=>p.id===button.dataset.delete);
   const dialog=document.createElement('dialog');dialog.className='delete-character-dialog';
