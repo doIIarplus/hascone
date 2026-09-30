@@ -44,6 +44,18 @@ def test_uncertain_name_retry_requires_agreement():
     assert results[index] == ("HameTest", .91)
 
 
+
+@pytest.mark.parametrize("second,accepted", [("NotFamAny.", True), ("NotFamAny", False)])
+def test_cut_off_name_renderings_agree_despite_dot_count(second, accepted):
+    # Live capture: "NotFamAny.." read with two, one or no dots across renderings.
+    index = list(vision.OVERVIEW_FIELDS).index("character_name")
+    originals = [np.zeros((21, 112, 3), dtype=np.uint8)] * len(vision.OVERVIEW_FIELDS)
+    results = [("ok", 1.0)] * len(originals)
+    results[index] = ("NotFamAny..", .9602)
+    readings = iter([("NotFamAny..", .9632), ("NotFamAny", .9750), ("NotFamAny..", .9827), (second, .9734)])
+    vision._retry_uncertain_identity(lambda crops, **kwargs: [next(readings)], results, originals)
+    assert (results[index][1] >= .97) is accepted
+
 @pytest.mark.parametrize("retry_text,accepted", [("96.91%", True), ("96.97%", False)])
 def test_numeric_retry_uses_uncached_padded_crop_and_rejects_conflicts(retry_text, accepted):
     import numpy as np

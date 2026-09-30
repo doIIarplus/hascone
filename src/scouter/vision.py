@@ -156,6 +156,9 @@ def _retry_uncertain_overview(reader, results, originals):
     return confirmed
 
 
+CUT = re.compile(r"\s*(?:\.+|…)$")
+
+
 def _retry_uncertain_identity(reader, results, originals):
     # Tight name/class crops can turn the first letter into a different glyph,
     # and a light profile background can wash out the white text. Require
@@ -174,7 +177,8 @@ def _retry_uncertain_identity(reader, results, originals):
         )
         for variants in pairs:
             readings = [list(reader([crop], use_cache=False))[0] for crop in variants]
-            if all(confidence >= 0.97 for _, confidence in readings) and len({text.strip().casefold() for text, _ in readings}) == 1:
+            # A cut-off long name ends in dots; renderings may read a different number of them.
+            if all(confidence >= 0.97 for _, confidence in readings) and len({CUT.sub("…", text.strip()).casefold() for text, _ in readings}) == 1:
                 results[index] = min(readings, key=lambda result: result[1])
                 break
 
