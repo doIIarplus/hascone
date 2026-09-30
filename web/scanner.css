@@ -18,33 +18,36 @@ body{display:block;overflow:auto;height:auto;min-height:100vh}button,input,selec
 .scan-activity{display:flex;align-items:center;gap:8px;min-height:20px}
 /* Roster rail: a slim column of character avatars beside every page. */
 .app-body{flex:1 1 auto;min-height:0;display:flex}
-.roster-rail{position:relative;flex:0 0 118px;width:118px;min-height:0;display:flex;flex-direction:column;box-sizing:border-box;padding-top:max(0px,calc(var(--header-expanded-height,80px) - 46px));background:var(--surface);border-right:1px solid var(--border);z-index:150}
-.roster-head{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px 10px}
+.roster-rail{position:relative;flex:0 0 92px;width:92px;min-height:0;display:flex;flex-direction:column;box-sizing:border-box;padding-top:max(0px,calc(var(--header-expanded-height,80px) - 46px));background:var(--surface);border-right:1px solid var(--border);z-index:150}
+.roster-head{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px 10px}
 .roster-head .eyebrow{display:flex;align-items:center;gap:5px;font-size:10px;letter-spacing:1px}
 .roster-total{min-width:14px;padding:0 5px;border-radius:999px;background:var(--accent-dim);color:var(--accent);font-size:10px;font-variant-numeric:tabular-nums;text-align:center;letter-spacing:0}
 .roster-total:empty{display:none}
-.roster-actions{display:flex;gap:6px}
-.roster-add,.roster-hide{display:grid;place-items:center;width:28px;height:28px;padding:0;border:1px solid var(--border-strong);border-radius:8px;background:var(--surface-2);color:var(--text-muted)}
-.roster-add:hover,.roster-add:focus-visible,.roster-hide:hover,.roster-hide:focus-visible{color:var(--accent);border-color:var(--accent)}
+.roster-actions{display:flex;align-items:center;gap:6px}
+.roster-home{display:grid;place-items:center;width:28px;height:28px;padding:0;border:1px solid var(--border-strong);border-radius:8px;background:var(--surface-2);color:var(--text-muted)}
+.roster-home:hover,.roster-home:focus-visible{color:var(--accent);border-color:var(--accent)}
+/* A tab on the rail's outer edge; it covers the rail's border so the two read as one piece. */
+.roster-toggle{position:absolute;left:100%;top:12px;display:grid;place-items:center;width:18px;height:32px;padding:0;border:1px solid var(--border);border-left:0;border-radius:0 8px 8px 0;background:var(--surface);color:var(--text-muted)}
+.roster-toggle:hover,.roster-toggle:focus-visible{color:var(--accent);background:var(--surface-2)}
+.roster-toggle svg{transition:transform .15s}
 .roster-list{flex:1 1 auto;min-height:0;overflow-y:auto;padding:2px 10px 16px;scrollbar-width:none}
 .roster-list::-webkit-scrollbar{display:none}
 .roster-row{margin:0 0 8px}
-.roster-item{position:relative;display:grid;place-items:center;width:98px;height:98px;padding:0;overflow:hidden;border:1px solid var(--border);border-radius:12px;background:var(--bg-elev);transition:border-color .12s,background .12s}
+.roster-item{position:relative;display:grid;place-items:center;width:72px;height:72px;padding:0;overflow:hidden;border:1px solid var(--border);border-radius:12px;background:var(--bg-elev);transition:border-color .12s,background .12s}
 .roster-item:hover{border-color:var(--border-strong);background:var(--hover)}
 .roster-item:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .roster-row.is-selected .roster-item{border:2px solid var(--accent);background:var(--surface-2)}
-/* Portraits are 96px; draw them at native size so they stay sharp. */
-.roster-item img{width:96px;height:96px;flex:none;image-rendering:pixelated}
+/* Portraits are 96px; scale them down smoothly to fit the tile. */
+.roster-item img{width:70px;height:70px;flex:none}
 .roster-state{position:absolute;top:3px;right:3px}
 .roster-alert{display:grid;place-items:center;min-width:16px;height:16px;padding:0 4px;box-sizing:border-box;border-radius:999px;background:var(--danger);color:#fff;font-size:10px;font-weight:700}
 .roster-empty{margin:12px 4px;color:var(--text-muted);font-size:11px;text-align:center}
-/* Hidden: the page takes the full width and the edge tab brings the rail back. */
-.roster-tab{position:fixed;left:0;top:50%;z-index:240;transform:translateY(-50%);display:none;align-items:center;justify-content:center;width:16px;height:40px;padding:0;border:1px solid var(--border-strong);border-left:0;border-radius:0 9px 9px 0;background:var(--surface);box-shadow:var(--shadow-1)}
-.roster-tab:hover{background:var(--hover);border-color:var(--accent)}
-body.roster-hidden .roster-rail{display:none}body.roster-hidden .roster-tab{display:flex}
-.roster-arrow{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:5px solid var(--accent)}
-.roster-count{position:absolute;top:calc(100% + 5px);left:0;min-width:16px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;color:var(--text);background:var(--surface);border-radius:5px}
-.roster-count:empty{display:none}
+/* Minimised: a narrow strip keeps Home and scan status. */
+body.roster-hidden .roster-rail{flex-basis:46px;width:46px}
+body.roster-hidden :is(.roster-list,.roster-head .eyebrow){display:none}
+body.roster-hidden .roster-toggle svg{transform:scaleX(-1)}
+.roster-count{display:none;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+body.roster-hidden .roster-count:not(:empty){display:flex}
 .roster-count .scan-spinner{width:10px;height:10px}
 /* Character-specific flame scoring and hover details. */
 :is(.ce-potential-tooltip,.cf-flame-tooltip) { position:fixed; z-index:10000; box-sizing:border-box; width:280px; max-width:calc(100vw - 16px); max-height:calc(100vh - 16px); overflow:auto; padding:12px 14px; color:var(--text); background:#111923; border:1px solid #536276; border-radius:7px; box-shadow:0 8px 24px #0009, inset 0 0 0 1px #ffffff0a; pointer-events:none; }
@@ -91,10 +94,15 @@ body.roster-hidden .roster-rail{display:none}body.roster-hidden .roster-tab{disp
 html{height:100%;overflow:hidden}
 body{height:100vh;min-height:0;display:flex;flex-direction:column;overflow:hidden}
 .app-header{position:relative;top:auto;flex:0 0 auto;width:100%;margin:0;border-radius:0}
-#page-scroll{flex:1 1 auto;min-height:0;min-width:0;overflow:auto;scrollbar-gutter:stable}
+#page-scroll{flex:1 1 auto;min-height:0;min-width:0;overflow:auto;scrollbar-gutter:stable;display:flex;flex-direction:column}
+#page-scroll>*{flex:none}
+/* Widths match the old block layout: 1440px of content plus 28px padding on each side. */
+#page-scroll>#view,#page-scroll>.zoom-hint{align-self:center;width:100%;max-width:1496px;box-sizing:border-box}
+#page-scroll>#view{flex:1 0 auto}
+#view:has(>.home-page){display:flex;flex-direction:column}.home-page{flex:1 0 auto;display:flex;flex-direction:column}
 
 .app-header.is-collapsed{padding:4px 16px;gap:12px;min-height:42px}
-.app-header.is-collapsed nav,.app-header.is-collapsed #add-character,.app-header.is-collapsed .settings-menu,.app-header.is-collapsed .brand-home>span:last-child{display:none}
+.app-header.is-collapsed nav,.app-header.is-collapsed .settings-menu,.app-header.is-collapsed .brand-home>span:last-child{display:none}
 .app-header.is-collapsed .brand-mark{width:26px;height:26px;font-size:18px}
 .app-header.is-collapsed .header-character{font-size:0;gap:0;margin-right:auto}
 .app-header.is-collapsed .header-character select{font-size:12px;padding-top:4px;padding-bottom:4px;height:28px}
@@ -136,12 +144,13 @@ body{height:100vh;min-height:0;display:flex;flex-direction:column;overflow:hidde
 .header-shell>.app-header.is-collapsed{height:46px;min-height:46px;padding:0}
 .app-header .brand-home{position:absolute;left:24px;top:7px;margin:0;padding:0;gap:8px}
 .app-header .brand-mark,.app-header.is-collapsed .brand-mark{width:30px;height:30px;font-size:21px}
-.app-header .header-character,.app-header.is-collapsed .header-character{position:absolute;right:68px;top:8px;width:192px;font-size:0;gap:0;margin:0}
+.app-header .header-character,.app-header.is-collapsed .header-character{position:absolute;right:106px;top:8px;width:192px;font-size:0;gap:0;margin:0}
 .app-header .header-character select,.app-header.is-collapsed .header-character select{width:192px;min-width:192px;max-width:192px;height:30px;padding:4px 10px;font-size:12px}
-.app-header .settings-menu,.app-header.is-collapsed .settings-menu{display:block;position:absolute;right:24px;top:8px}
+.app-header .settings-menu,.app-header.is-collapsed .settings-menu{display:block;position:absolute;right:62px;top:8px}
+.github-link{position:absolute;right:24px;top:8px;display:grid;place-items:center;width:30px;height:30px;box-sizing:border-box;border:1px solid var(--border);border-radius:9px;color:var(--text-muted)}
+.github-link:hover,.github-link:focus-visible{color:var(--accent);border-color:var(--accent)}
 .app-header .settings-menu summary{width:30px;height:30px;min-width:30px;min-height:30px;padding:5px}
-.app-header #add-character{position:absolute;right:274px;top:8px;height:30px;padding:4px 10px}
-.app-header nav{position:absolute;left:220px;right:420px;top:7px;justify-content:center;flex-wrap:nowrap;height:32px}
+.app-header nav{position:absolute;left:220px;right:318px;top:7px;justify-content:center;flex-wrap:nowrap;height:32px}
 @media(max-width:1250px){.header-shell>.app-header:not(.is-collapsed){height:90px;min-height:90px}.app-header nav{left:24px;right:24px;top:49px;justify-content:flex-start}}
 @media(max-width:700px){.app-header .brand-home>span:last-child{display:none}.app-header nav{gap:5px;left:12px;right:12px}.app-header nav .btn{padding:6px}}
 .roster-grid{grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:14px}
@@ -244,4 +253,15 @@ body{height:100vh;min-height:0;display:flex;flex-direction:column;overflow:hidde
 .sc-portrait{position:relative;display:inline-block;flex:0 0 84px;width:84px;height:84px}
 .sc-portrait>img{width:84px;height:84px;object-fit:contain;image-rendering:pixelated}
 .sc-portrait>.portrait-refresh{left:-4px;bottom:-4px}
-.roster-frags{display:block;margin-top:6px}
+/* The last card in the overview grid adds a character. */
+.roster-new{display:grid;place-items:center;min-height:200px;padding:0;background:var(--surface);border:1px solid var(--border);border-radius:14px;color:var(--text-muted)}
+.roster-new:hover,.roster-new:focus-visible{border-color:var(--accent);background:var(--surface-2);color:var(--accent)}
+.roster-cp{display:block;margin-top:2px;color:var(--text-muted);font-size:12px;font-variant-numeric:tabular-nums}
+.roster-value{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 14px;margin-top:6px;color:var(--text-muted);font-size:12px;font-variant-numeric:tabular-nums}
+/* Fragment and meso icons share one 20px box. */
+.roster-stat{display:inline-flex;align-items:center;gap:5px}.roster-stat img{flex:none;width:20px;height:20px;object-fit:contain}
+/* Totals stay pinned to the window's bottom edge; the page's zoom hint moves into the same row. */
+.home-page .roster-grid{margin-bottom:22px}
+.home-totals{position:sticky;bottom:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;margin-top:auto;padding:10px 0 12px;background:var(--bg);border-top:1px solid var(--border);color:var(--text);font-size:15px;font-variant-numeric:tabular-nums}
+.home-zoom{margin-left:auto;color:var(--text-muted);font-size:11px}
+#view:has(>.home-page){padding-bottom:0}#page-scroll:has(>#view>.home-page)>.zoom-hint{display:none}

@@ -36,7 +36,7 @@ async function render(){
  document.querySelector('#character').innerHTML=all.profiles.map(p=>`<option value="${p.id}" ${p.id===selected?'selected':''}>${esc(p.name)} &middot; ${esc(p.class)}</option>`).join('');
  document.querySelector('#character').disabled=!all.profiles.length;
  document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('btn-primary',b.dataset.page===page));
- if(!selected){view.innerHTML='<section class="empty"><h1>Your characters, clearly measured.</h1><p class="sub">Scan flames, potentials and character stats. Compare gains with Scouter.</p><p>Add your first character to begin.</p><button class="btn btn-primary" id="first-add">+ Add character</button></section>';document.querySelector('#first-add').onclick=()=>document.querySelector('#add-character').click();return;}
+ if(!selected){view.innerHTML='<section class="empty"><h1>Your characters, clearly measured.</h1><p class="sub">Scan flames, potentials and character stats. Compare gains with Scouter.</p><p>Add your first character to begin.</p><button class="btn btn-primary" id="first-add">+ Add character</button></section>';document.querySelector('#first-add').onclick=()=>document.querySelector('#add-dialog').showModal();return;}
  localStorage.setItem('hascone.scouter.character',selected);
  if(page==='home'){const host=document.createElement('div');view.replaceChildren(host);await mountHome(host,id=>navigate('equipment',id),async()=>{await render();if(selected)localStorage.setItem('hascone.character',selected);else{localStorage.removeItem('hascone.character');localStorage.removeItem('hascone.scouter.character');}});return;}
  if(page==='scouter'){dispose=await mountScouter(view);return;}
@@ -106,7 +106,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')settingsMenu.open=fa
 document.querySelectorAll('[data-native]').forEach(b=>{b.disabled=!window.chrome?.webview;b.onclick=()=>{settingsMenu.open=false;window.chrome.webview.postMessage(b.dataset.native);};});
 window.addEventListener('open-scouter',()=>navigate('scouter').catch(toast));
 window.addEventListener('open-hexa',()=>navigate('hexa').catch(toast));
-document.querySelector('#add-character').onclick=()=>document.querySelector('#add-dialog').showModal();
 document.querySelector('#add-cancel').onclick=()=>document.querySelector('#add-dialog').close();
 document.querySelector('#add-form').onsubmit=async e=>{e.preventDefault();const b=document.querySelector('#add-submit');b.disabled=true;document.querySelector('#add-error').textContent='Looking up character…';try{const p=await api.post('/api/characters',{name:document.querySelector('#new-name').value});page='equipment';selected=p.id;localStorage.setItem('hascone.character',selected);document.querySelector('#add-dialog').close();await render();await openEquipmentGuide(selected,render);}catch(e){document.querySelector('#add-error').textContent=e.message;}finally{b.disabled=false;}};
 window.addEventListener('scouter-guide',async e=>{try{page='scouter';await render();await openGuide(e.detail,await api.get('/api/characters/'+e.detail+'/steps'),render);}catch(e){toast(e.message);}});

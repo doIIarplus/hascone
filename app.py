@@ -362,6 +362,15 @@ def cancel_calculation():
     return jsonify(service.stop())
 
 
+def _combat_power(user):
+    """Combat Power read from Character Info during a Scouter scan, if any."""
+    try:
+        value = int(float(user["stat"].get("maple_combatPower") or 0))
+    except (TypeError, ValueError):
+        return None
+    return value or None
+
+
 @app.get("/api/summary")
 def summary():
     from scouter.hexa_costs import fragments
@@ -382,7 +391,7 @@ def summary():
             "hexa":calculated.get("boss380_hexaStat"),"result_created":(result or {}).get("created"),"stale":bool(result and not current),
             "scanned":sum(bool(item.get("hover_scanned")) for item in equipment.values()),"equipped":len(equipment),
             "stars":sum(item.get("starforce",{}).get("stars",0) for item in equipment.values() if item.get("starforce",{}).get("status")=="scanned"),
-            "fragments":spent,"fragments_partial":partial,"fragments_minimum":minimum})
+            "fragments":spent,"fragments_partial":partial,"fragments_minimum":minimum,"cp":_combat_power(user)})
     return jsonify(profiles=rows)
 
 
