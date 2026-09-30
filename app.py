@@ -88,7 +88,7 @@ def section_preferences():
 
 @app.get("/api/health")
 def health():
-    return jsonify(application="hascone", version="1.2.0")
+    return jsonify(application="hascone", version="1.2.1")
 
 
 @app.route("/api/characters", methods=["GET", "POST"])
