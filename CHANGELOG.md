@@ -2,6 +2,15 @@
 
 Notable feature-level changes to Hascone.
 
+## 1.2.0 - Zero and Kanna, character sidebar, per-attempt Star Force
+
+- A docked, scrollable character sidebar replaces the pop-out roster. It shows HEXA score, stars and HEXA fragments per character, can be hidden and shown again, and becomes a drawer on narrow windows.
+- The overview totals Sol Erda Fragments spent on HEXA from saved levels.
+- Zero's Lazuli and Lapis are priced once as one weapon, with shared potential and flame Boss/Damage counted for both swords. Kanna's Talisman stars are read and priced with weapon Star Force gains.
+- Star Force modes are set per attempt from 15★ to 21★ with sliders and range presets, showing each attempt's odds and cost.
+- Flames support custom weights. Legacy transposed flames are recognized and left unpriced.
+- Character Info scans handle light profile backgrounds. Scouter pins Calculate, caps HEXA inputs, simplifies buff tiles and can delete old calculations.
+
 ## 1.1.1 - Toggle switches
 
 - Checkbox settings now use teal toggle switches, including Scouter weights, item enhancement modes, Star Force options, and buffs.
