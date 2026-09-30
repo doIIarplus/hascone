@@ -11,6 +11,10 @@ SHARED_SLOTS = {"ring", "face", "eye", "earring", "pendant", "belt", "heart", "b
 EXCLUDED_SLOTS = {"pocket", "emblem", "android", "medal"}
 
 
+class FixedStars(ValueError):
+    """The item's stars are fixed, so Star Force has no further cost."""
+
+
 @lru_cache(maxsize=1)
 def database():
     return read_payload_json("src/starforce/data/stats.json")
@@ -25,7 +29,7 @@ def metadata(slot, item):
     if part == "weapon" and any(
         name.casefold().startswith(p.casefold()) for p in data["fixed_weapon_prefixes"]
     ):
-        raise ValueError("Fixed Genesis/Destiny weapon; additional Star Force is unavailable")
+        raise FixedStars("Fixed Genesis/Destiny weapon; additional Star Force is unavailable")
     if any(name.casefold().startswith(p.casefold()) for p in data["unsupported_prefixes"]):
         raise ValueError("Superior or special weapon Star Force rules are not yet supported")
     meta = item_metadata(slot, item)

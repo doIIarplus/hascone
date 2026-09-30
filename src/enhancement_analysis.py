@@ -66,6 +66,7 @@ def _add_starforce_row(result, detail, common, slot, item, options_config):
         result["totals"]["Star Force"] += row["expected_mesos"]
     except (ValueError, KeyError, TypeError) as exc:
         detail["starforce_error"] = str(exc)
+        detail["starforce_fixed"] = isinstance(exc, sf_stats.FixedStars)
         result["unpriced"]["starforce"].append({**common, "reason": str(exc)})
 
 
@@ -133,7 +134,8 @@ def _add_combined_row(result, detail, common):
     parts, missing = {}, []
     if "starforce_current" in detail:
         parts["Star Force"] = detail["starforce_current"]["expected_mesos"]
-    elif "starforce_error" in detail:
+    elif "starforce_error" in detail and not detail["starforce_fixed"]:
+        # Fixed-star weapons have nothing left to buy, so they do not make the total partial.
         missing.append("Star Force: " + detail["starforce_error"])
     if detail.get("flame_current", {}).get("expected_mesos") is not None and "flame_error" not in detail:
         parts["Flames"] = detail["flame_current"]["expected_mesos"]

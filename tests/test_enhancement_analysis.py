@@ -167,6 +167,13 @@ def test_combined_cost_adds_star_force_flames_and_cheaper_cube():
     assert data['totals']['Combined'] == pytest.approx(sum(r['expected_mesos'] for r in data['combined_costs']))
 
 
+def test_fixed_star_weapon_does_not_make_combined_cost_partial():
+    weapon = snapshot(profile())['items']['weapon']
+    assert 'Fixed Genesis' in weapon['starforce_error']
+    assert 'Star Force' not in weapon['combined']['parts']
+    assert not any(m.startswith('Star Force:') for m in weapon['combined']['missing'])
+
+
 def test_combined_cost_lists_what_could_not_be_priced():
     p = profile()
     p['equipment']['hat']['potential']['rank'] = 'Epic'
