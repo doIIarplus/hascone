@@ -10,6 +10,11 @@ Data sources retained in the individual catalog files:
 - Star Force reference: https://brendonmay.github.io/starforceCalculator/
 - Equipment metadata/art: https://maplestorywiki.net/
 - Character class/portrait: public Nexon GMS rankings and avatar CDN
+- Boss crystal values (GMS v270, `src/bossing/data/bosses.json`): https://maplestorywiki.net/w/Intense_Power_Crystal (reviewed 2026-09-30)
+- Boss categories, party limits and notable drop list (`src/bossing/data/`): MapleHub's boss tracker and diary, https://maplehub.app/ (reviewed 2026-09-30)
+- Meso and Sol Erda Fragment icons (`web/meso.png`, `web/sol-erda-fragment.png`): MapleStory Wiki and maplestory.io item 4009547
+- Boss portraits (`web/bosses/`): in-game Maple Guide art from https://maplestorywiki.net/w/Bosses (reviewed 2026-09-30)
+- Boss drop item icons (`web/items/`): https://maplestory.io item icons, GMS v270
 - OCR model: PaddleOCR PP-OCRv6 medium recognition (model README in `models/`)
 
 

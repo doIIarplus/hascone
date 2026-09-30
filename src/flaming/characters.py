@@ -125,6 +125,7 @@ def add(name):
             "name": row["characterName"],
             "class": job,
             "level": row.get("level"),
+            "world_id": row.get("worldID"),
             "equipment": {},
             "version": 1,
         }
@@ -164,6 +165,20 @@ def _save_portrait(url, identifier):
     Image.open(io.BytesIO(image.content)).convert("RGBA").save(portrait_path(identifier))
 
 
+def lookup_world(identifier):
+    """Save the character's Nexon world ID, looked up once for older profiles."""
+    name = load(identifier)["name"]
+    try:
+        world = _ranking(unicodedata.normalize("NFC", name)).get("worldID")
+    except (requests.RequestException, ValueError):
+        world = None  # The Bossing page lets the player choose the world instead.
+    with lock:
+        data = load(identifier)
+        data["world_id"] = world if isinstance(world, int) else None
+        write(data)
+    return data
+
+
 def refresh(identifier):
     """Fetch the character's current sprite and level from Nexon's public rankings."""
     name = load(identifier)["name"]
@@ -176,5 +191,7 @@ def refresh(identifier):
         data = load(identifier)
         if isinstance(row.get("level"), int):
             data["level"] = row["level"]
+        if isinstance(row.get("worldID"), int):
+            data["world_id"] = row["worldID"]
         write(data)
     return data

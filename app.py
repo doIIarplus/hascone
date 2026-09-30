@@ -141,7 +141,71 @@ def delete_character(identifier):
         (characters.PROFILE_DIR / f"{identifier}.json").unlink()
         characters.save_order([row["id"] for row in characters.listing()])
         hover_queue.reset(identifier)
+    from bossing import tracker
+
+    tracker.forget(identifier)
     return jsonify(deleted=identifier)
+
+
+def _bossing():
+    from bossing import tracker
+
+    roster = characters.listing()
+    missing = [p["id"] for p in roster if "world_id" not in p]
+    if missing:
+        # Profiles saved before world tracking ask Nexon once; failures fall back to a manual choice.
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            list(pool.map(characters.lookup_world, missing))
+        roster = characters.listing()
+    return tracker.summary(roster)
+
+
+@app.get("/api/bossing")
+def bossing():
+    return jsonify(_bossing())
+
+
+@app.put("/api/bossing/characters/<identifier>")
+def bossing_configure(identifier):
+    from bossing import tracker
+
+    characters.load(identifier)
+    body = request.get_json(silent=True) or {}
+    tracker.configure(identifier, **{key: body[key] for key in ("world", "bosses") if key in body})
+    return jsonify(_bossing())
+
+
+@app.put("/api/bossing/characters/<identifier>/clears")
+def bossing_clear(identifier):
+    from bossing import tracker
+
+    body = request.get_json(silent=True) or {}
+    tracker.set_clear(identifier, body.get("boss"), body.get("count"), characters.load(identifier))
+    return jsonify(_bossing())
+
+
+@app.post("/api/bossing/drops")
+def bossing_add_drop():
+    from bossing import tracker
+
+    tracker.add_drop(request.get_json(silent=True) or {}, {p["id"] for p in characters.listing()})
+    return jsonify(_bossing())
+
+
+@app.put("/api/bossing/drops/<identifier>")
+def bossing_update_drop(identifier):
+    from bossing import tracker
+
+    tracker.update_drop(identifier, request.get_json(silent=True) or {}, {p["id"] for p in characters.listing()})
+    return jsonify(_bossing())
+
+
+@app.delete("/api/bossing/drops/<identifier>")
+def bossing_delete_drop(identifier):
+    from bossing import tracker
+
+    tracker.delete_drop(identifier)
+    return jsonify(_bossing())
 
 
 @app.get("/api/characters/<identifier>/equipment/<slot>/icon")

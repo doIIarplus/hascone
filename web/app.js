@@ -11,6 +11,7 @@ import {api} from './api.js';
 import {escapeHtml as esc,toast} from './ui.js';
 import {mountScouter} from './pages/scouter.js';
 import {mountHexa} from './pages/hexa.js';
+import {mountBossing} from './pages/bossing.js';
 import {mountUpdates} from './updates.js';
 import {openGuide,openEquipmentGuide} from './guide.js';
 import {mountEnhancement,flameIcon} from './enhancement.js';
@@ -40,6 +41,12 @@ async function render(){
  localStorage.setItem('hascone.scouter.character',selected);
  if(page==='home'){const host=document.createElement('div');view.replaceChildren(host);await mountHome(host,id=>navigate('equipment',id),async()=>{await render();if(selected)localStorage.setItem('hascone.character',selected);else{localStorage.removeItem('hascone.character');localStorage.removeItem('hascone.scouter.character');}});return;}
  if(page==='scouter'){dispose=await mountScouter(view);return;}
+ if(page==='bossing'){
+  const host=document.createElement('div');view.replaceChildren(host);
+  const cleanup=await mountBossing(host,selected,id=>navigate('bossing',id).catch(toast));
+  if(epoch!==renderEpoch)cleanup();else dispose=cleanup;
+  return;
+ }
  if(page==='hexa'){
   const host=document.createElement('div');view.replaceChildren(host);
   const cleanup=await mountHexa(host,selected);

@@ -1,0 +1,298 @@
+{
+ "source": "Notable boss drops, following MapleHub's diary item list, with in-game names and icons from maplestory.io (GMS v270).",
+ "items": [
+  {
+   "name": "Berserked",
+   "id": 1012632,
+   "boss": "Lotus",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Total Control",
+   "id": 1672095,
+   "boss": "Lotus",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Commanding Force Earring",
+   "id": 1032316,
+   "boss": "Darknell",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Magic Eyepatch",
+   "id": 1022278,
+   "boss": "Damien",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Dreamy Belt",
+   "id": 1132308,
+   "boss": "Lucid",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Endless Terror",
+   "id": 1113306,
+   "boss": "Gloom",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Source of Suffering",
+   "id": 1122430,
+   "boss": "Verus Hilla",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Genesis Badge",
+   "id": 1182285,
+   "boss": "Black Mage",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Mitra's Rage: Warrior",
+   "id": 1190555,
+   "boss": "Chosen Seren",
+   "group": "Pitched & Brilliant",
+   "classes": [
+    "warrior"
+   ]
+  },
+  {
+   "name": "Mitra's Rage: Bowman",
+   "id": 1190556,
+   "boss": "Chosen Seren",
+   "group": "Pitched & Brilliant",
+   "classes": [
+    "bowman"
+   ]
+  },
+  {
+   "name": "Mitra's Rage: Pirate",
+   "id": 1190559,
+   "boss": "Chosen Seren",
+   "group": "Pitched & Brilliant",
+   "classes": [
+    "pirate"
+   ]
+  },
+  {
+   "name": "Mitra's Rage: Magician",
+   "id": 1190557,
+   "boss": "Chosen Seren",
+   "group": "Pitched & Brilliant",
+   "classes": [
+    "magician"
+   ]
+  },
+  {
+   "name": "Mitra's Rage: Thief",
+   "id": 1190558,
+   "boss": "Chosen Seren",
+   "group": "Pitched & Brilliant",
+   "classes": [
+    "thief"
+   ]
+  },
+  {
+   "name": "Cursed Red Spellbook",
+   "id": 1162080,
+   "boss": "Will",
+   "group": "Pitched & Brilliant",
+   "classes": [
+    "warrior",
+    "pirate"
+   ]
+  },
+  {
+   "name": "Cursed Green Spellbook",
+   "id": 1162082,
+   "boss": "Will",
+   "group": "Pitched & Brilliant",
+   "classes": [
+    "bowman",
+    "pirate"
+   ]
+  },
+  {
+   "name": "Cursed Blue Spellbook",
+   "id": 1162081,
+   "boss": "Will",
+   "group": "Pitched & Brilliant",
+   "classes": [
+    "magician"
+   ]
+  },
+  {
+   "name": "Cursed Yellow Spellbook",
+   "id": 1162083,
+   "boss": "Will",
+   "group": "Pitched & Brilliant",
+   "classes": [
+    "thief"
+   ]
+  },
+  {
+   "name": "Black Heart",
+   "id": 1672076,
+   "boss": "Lotus",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Whisper of the Source",
+   "id": 1113341,
+   "boss": "Limbo",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Oath of Death",
+   "id": 1122447,
+   "boss": "Baldrix",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Immortal Legacy",
+   "id": 1143471,
+   "boss": "First Adversary",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Blissful Nightmare",
+   "id": 1113360,
+   "boss": "Malefic Star",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Original Sin of Pride",
+   "id": 1012911,
+   "boss": "Jupiter",
+   "group": "Pitched & Brilliant",
+   "classes": []
+  },
+  {
+   "name": "Exceptional Hammer (Belt)",
+   "id": 2644204,
+   "boss": "Black Mage",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Exceptional Hammer (Earrings)",
+   "id": 2644207,
+   "boss": "Kaling",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Exceptional Hammer (Eye Acc)",
+   "id": 2644206,
+   "boss": "Kalos the Guardian",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Exceptional Hammer (Face Acc)",
+   "id": 2644205,
+   "boss": "Chosen Seren",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Exceptional Hammer (Medal)",
+   "id": 2644208,
+   "boss": "First Adversary",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Divine Eternal Armor Box",
+   "id": 2638064,
+   "boss": "Kalos the Guardian",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Ferocious Beast Eternal Armor Box",
+   "id": 2638065,
+   "boss": "Kaling",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Eternal Armor of Oaths Box",
+   "id": 2639253,
+   "boss": "Baldrix",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Eternal Armor of Desire Box",
+   "id": 2638066,
+   "boss": "Limbo",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Ancient Eternal Armor Box",
+   "id": 2830306,
+   "boss": "First Adversary",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Eternal Armor of Radiance Box",
+   "id": 2831105,
+   "boss": "Malefic Star",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Eternal Twisted Armor Box",
+   "id": 2831106,
+   "boss": "Jupiter",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Grindstone of Life",
+   "id": 2539001,
+   "boss": "",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Grindstone of Faith",
+   "id": 2539003,
+   "boss": "",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "Life Boss Ring Box",
+   "id": 2028430,
+   "boss": "",
+   "group": "Other",
+   "classes": []
+  },
+  {
+   "name": "White Jade Boss Ring Box",
+   "id": 2028410,
+   "boss": "",
+   "group": "Other",
+   "classes": []
+  }
+ ]
+}

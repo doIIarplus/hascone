@@ -1,0 +1,717 @@
+{
+ "source": "Intense Power Crystal values for GMS v270 (1 party member, Interactive worlds) from the MapleStory Wiki; Heroic worlds pay five times these values. Boss categories and party limits follow MapleHub's boss tracker. Boss portraits are the in-game Maple Guide art from the MapleStory Wiki.",
+ "heroic_multiplier": 5,
+ "bosses": [
+  {
+   "name": "Easy Zakum",
+   "base": "Zakum",
+   "difficulty": "Easy",
+   "category": "daily",
+   "mesos": 200000,
+   "party_max": 6,
+   "icon": "zakum"
+  },
+  {
+   "name": "Normal Zakum",
+   "base": "Zakum",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 612500,
+   "party_max": 6,
+   "icon": "zakum"
+  },
+  {
+   "name": "Easy Papulatus",
+   "base": "Papulatus",
+   "difficulty": "Easy",
+   "category": "daily",
+   "mesos": 684500,
+   "party_max": 6,
+   "icon": "papulatus"
+  },
+  {
+   "name": "Normal Papulatus",
+   "base": "Papulatus",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 2664500,
+   "party_max": 6,
+   "icon": "papulatus"
+  },
+  {
+   "name": "Easy Magnus",
+   "base": "Magnus",
+   "difficulty": "Easy",
+   "category": "daily",
+   "mesos": 722000,
+   "party_max": 6,
+   "icon": "magnus"
+  },
+  {
+   "name": "Normal Magnus",
+   "base": "Magnus",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 2592000,
+   "party_max": 6,
+   "icon": "magnus"
+  },
+  {
+   "name": "Normal Hilla",
+   "base": "Hilla",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 800000,
+   "party_max": 6,
+   "icon": "hilla"
+  },
+  {
+   "name": "Normal Mori Ranmaru",
+   "base": "Mori Ranmaru",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 840500,
+   "party_max": 6,
+   "icon": "mori-ranmaru"
+  },
+  {
+   "name": "Hard Mori Ranmaru",
+   "base": "Mori Ranmaru",
+   "difficulty": "Hard",
+   "category": "daily",
+   "mesos": 2664500,
+   "party_max": 6,
+   "icon": "mori-ranmaru"
+  },
+  {
+   "name": "Easy Horntail",
+   "base": "Horntail",
+   "difficulty": "Easy",
+   "category": "daily",
+   "mesos": 882000,
+   "party_max": 6,
+   "icon": "horntail"
+  },
+  {
+   "name": "Normal Horntail",
+   "base": "Horntail",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 1012500,
+   "party_max": 6,
+   "icon": "horntail"
+  },
+  {
+   "name": "Chaos Horntail",
+   "base": "Horntail",
+   "difficulty": "Chaos",
+   "category": "daily",
+   "mesos": 1352000,
+   "party_max": 6,
+   "icon": "horntail"
+  },
+  {
+   "name": "Normal Crimson Queen",
+   "base": "Crimson Queen",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 968000,
+   "party_max": 6,
+   "icon": "crimson-queen"
+  },
+  {
+   "name": "Normal Pierre",
+   "base": "Pierre",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 968000,
+   "party_max": 6,
+   "icon": "pierre"
+  },
+  {
+   "name": "Normal Vellum",
+   "base": "Vellum",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 968000,
+   "party_max": 6,
+   "icon": "vellum"
+  },
+  {
+   "name": "Normal Von Bon",
+   "base": "Von Bon",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 968000,
+   "party_max": 6,
+   "icon": "von-bon"
+  },
+  {
+   "name": "Easy Von Leon",
+   "base": "Von Leon",
+   "difficulty": "Easy",
+   "category": "daily",
+   "mesos": 1058000,
+   "party_max": 6,
+   "icon": "von-leon"
+  },
+  {
+   "name": "Normal Von Leon",
+   "base": "Von Leon",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 1458000,
+   "party_max": 6,
+   "icon": "von-leon"
+  },
+  {
+   "name": "Hard Von Leon",
+   "base": "Von Leon",
+   "difficulty": "Hard",
+   "category": "daily",
+   "mesos": 2450000,
+   "party_max": 6,
+   "icon": "von-leon"
+  },
+  {
+   "name": "Easy Arkarium",
+   "base": "Arkarium",
+   "difficulty": "Easy",
+   "category": "daily",
+   "mesos": 1152000,
+   "party_max": 6,
+   "icon": "arkarium"
+  },
+  {
+   "name": "Normal Arkarium",
+   "base": "Arkarium",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 2520500,
+   "party_max": 6,
+   "icon": "arkarium"
+  },
+  {
+   "name": "Normal Pink Bean",
+   "base": "Pink Bean",
+   "difficulty": "Normal",
+   "category": "daily",
+   "mesos": 1404500,
+   "party_max": 6,
+   "icon": "pink-bean"
+  },
+  {
+   "name": "Easy Cygnus",
+   "base": "Cygnus",
+   "difficulty": "Easy",
+   "category": "weekly",
+   "mesos": 9112500,
+   "party_max": 6,
+   "icon": "cygnus"
+  },
+  {
+   "name": "Normal Cygnus",
+   "base": "Cygnus",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 14450000,
+   "party_max": 6,
+   "icon": "cygnus"
+  },
+  {
+   "name": "Hard Hilla",
+   "base": "Hilla",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 11250000,
+   "party_max": 6,
+   "icon": "hilla"
+  },
+  {
+   "name": "Chaos Pink Bean",
+   "base": "Pink Bean",
+   "difficulty": "Chaos",
+   "category": "weekly",
+   "mesos": 12800000,
+   "party_max": 6,
+   "icon": "pink-bean"
+  },
+  {
+   "name": "Chaos Crimson Queen",
+   "base": "Crimson Queen",
+   "difficulty": "Chaos",
+   "category": "weekly",
+   "mesos": 16200000,
+   "party_max": 6,
+   "icon": "crimson-queen"
+  },
+  {
+   "name": "Chaos Pierre",
+   "base": "Pierre",
+   "difficulty": "Chaos",
+   "category": "weekly",
+   "mesos": 16200000,
+   "party_max": 6,
+   "icon": "pierre"
+  },
+  {
+   "name": "Normal Princess No",
+   "base": "Princess No",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 16200000,
+   "party_max": 6,
+   "icon": "princess-no"
+  },
+  {
+   "name": "Chaos Von Bon",
+   "base": "Von Bon",
+   "difficulty": "Chaos",
+   "category": "weekly",
+   "mesos": 16200000,
+   "party_max": 6,
+   "icon": "von-bon"
+  },
+  {
+   "name": "Chaos Zakum",
+   "base": "Zakum",
+   "difficulty": "Chaos",
+   "category": "weekly",
+   "mesos": 16200000,
+   "party_max": 6,
+   "icon": "zakum"
+  },
+  {
+   "name": "Hard Magnus",
+   "base": "Magnus",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 19012500,
+   "party_max": 6,
+   "icon": "magnus"
+  },
+  {
+   "name": "Chaos Vellum",
+   "base": "Vellum",
+   "difficulty": "Chaos",
+   "category": "weekly",
+   "mesos": 21012500,
+   "party_max": 6,
+   "icon": "vellum"
+  },
+  {
+   "name": "Chaos Papulatus",
+   "base": "Papulatus",
+   "difficulty": "Chaos",
+   "category": "weekly",
+   "mesos": 26450000,
+   "party_max": 6,
+   "icon": "papulatus"
+  },
+  {
+   "name": "Normal Akechi Mitsuhide",
+   "base": "Akechi Mitsuhide",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 28800000,
+   "party_max": 6,
+   "icon": "akechi-mitsuhide"
+  },
+  {
+   "name": "Normal Lotus",
+   "base": "Lotus",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 32512500,
+   "party_max": 6,
+   "icon": "lotus"
+  },
+  {
+   "name": "Hard Lotus",
+   "base": "Lotus",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 88935000,
+   "party_max": 6,
+   "icon": "lotus"
+  },
+  {
+   "name": "Extreme Lotus",
+   "base": "Lotus",
+   "difficulty": "Extreme",
+   "category": "weekly",
+   "mesos": 279500000,
+   "party_max": 2,
+   "icon": "lotus"
+  },
+  {
+   "name": "Normal Damien",
+   "base": "Damien",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 33800000,
+   "party_max": 6,
+   "icon": "damien"
+  },
+  {
+   "name": "Hard Damien",
+   "base": "Damien",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 84375000,
+   "party_max": 6,
+   "icon": "damien"
+  },
+  {
+   "name": "Normal Guardian Angel Slime",
+   "base": "Guardian Angel Slime",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 46334700,
+   "party_max": 6,
+   "icon": "guardian-angel-slime"
+  },
+  {
+   "name": "Chaos Guardian Angel Slime",
+   "base": "Guardian Angel Slime",
+   "difficulty": "Chaos",
+   "category": "weekly",
+   "mesos": 120115625,
+   "party_max": 6,
+   "icon": "guardian-angel-slime"
+  },
+  {
+   "name": "Easy Lucid",
+   "base": "Lucid",
+   "difficulty": "Easy",
+   "category": "weekly",
+   "mesos": 47401875,
+   "party_max": 6,
+   "icon": "lucid"
+  },
+  {
+   "name": "Normal Lucid",
+   "base": "Lucid",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 50765625,
+   "party_max": 6,
+   "icon": "lucid"
+  },
+  {
+   "name": "Hard Lucid",
+   "base": "Lucid",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 100800000,
+   "party_max": 6,
+   "icon": "lucid"
+  },
+  {
+   "name": "Easy Will",
+   "base": "Will",
+   "difficulty": "Easy",
+   "category": "weekly",
+   "mesos": 49348950,
+   "party_max": 6,
+   "icon": "will"
+  },
+  {
+   "name": "Normal Will",
+   "base": "Will",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 55815000,
+   "party_max": 6,
+   "icon": "will"
+  },
+  {
+   "name": "Hard Will",
+   "base": "Will",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 124362000,
+   "party_max": 6,
+   "icon": "will"
+  },
+  {
+   "name": "Normal Gloom",
+   "base": "Gloom",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 59535000,
+   "party_max": 6,
+   "icon": "gloom"
+  },
+  {
+   "name": "Chaos Gloom",
+   "base": "Gloom",
+   "difficulty": "Chaos",
+   "category": "weekly",
+   "mesos": 112789000,
+   "party_max": 6,
+   "icon": "gloom"
+  },
+  {
+   "name": "Normal Darknell",
+   "base": "Darknell",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 63375000,
+   "party_max": 6,
+   "icon": "darknell"
+  },
+  {
+   "name": "Hard Darknell",
+   "base": "Darknell",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 133584000,
+   "party_max": 6,
+   "icon": "darknell"
+  },
+  {
+   "name": "Normal Verus Hilla",
+   "base": "Verus Hilla",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 116376000,
+   "party_max": 6,
+   "icon": "verus-hilla"
+  },
+  {
+   "name": "Hard Verus Hilla",
+   "base": "Verus Hilla",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 152421000,
+   "party_max": 6,
+   "icon": "verus-hilla"
+  },
+  {
+   "name": "Normal Chosen Seren",
+   "base": "Chosen Seren",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 177804375,
+   "party_max": 6,
+   "icon": "chosen-seren"
+  },
+  {
+   "name": "Hard Chosen Seren",
+   "base": "Chosen Seren",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 219312000,
+   "party_max": 6,
+   "icon": "chosen-seren"
+  },
+  {
+   "name": "Extreme Chosen Seren",
+   "base": "Chosen Seren",
+   "difficulty": "Extreme",
+   "category": "weekly",
+   "mesos": 847000000,
+   "party_max": 6,
+   "icon": "chosen-seren"
+  },
+  {
+   "name": "Easy Kalos the Guardian",
+   "base": "Kalos the Guardian",
+   "difficulty": "Easy",
+   "category": "weekly",
+   "mesos": 187500000,
+   "party_max": 6,
+   "icon": "kalos-the-guardian"
+  },
+  {
+   "name": "Normal Kalos the Guardian",
+   "base": "Kalos the Guardian",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 260000000,
+   "party_max": 6,
+   "icon": "kalos-the-guardian"
+  },
+  {
+   "name": "Chaos Kalos the Guardian",
+   "base": "Kalos the Guardian",
+   "difficulty": "Chaos",
+   "category": "weekly",
+   "mesos": 520000000,
+   "party_max": 6,
+   "icon": "kalos-the-guardian"
+  },
+  {
+   "name": "Extreme Kalos the Guardian",
+   "base": "Kalos the Guardian",
+   "difficulty": "Extreme",
+   "category": "weekly",
+   "mesos": 1040000000,
+   "party_max": 6,
+   "icon": "kalos-the-guardian"
+  },
+  {
+   "name": "Easy First Adversary",
+   "base": "First Adversary",
+   "difficulty": "Easy",
+   "category": "weekly",
+   "mesos": 197000000,
+   "party_max": 3,
+   "icon": "first-adversary"
+  },
+  {
+   "name": "Normal First Adversary",
+   "base": "First Adversary",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 273000000,
+   "party_max": 3,
+   "icon": "first-adversary"
+  },
+  {
+   "name": "Hard First Adversary",
+   "base": "First Adversary",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 588000000,
+   "party_max": 3,
+   "icon": "first-adversary"
+  },
+  {
+   "name": "Extreme First Adversary",
+   "base": "First Adversary",
+   "difficulty": "Extreme",
+   "category": "weekly",
+   "mesos": 1176000000,
+   "party_max": 3,
+   "icon": "first-adversary"
+  },
+  {
+   "name": "Easy Kaling",
+   "base": "Kaling",
+   "difficulty": "Easy",
+   "category": "weekly",
+   "mesos": 206250000,
+   "party_max": 6,
+   "icon": "kaling"
+  },
+  {
+   "name": "Normal Kaling",
+   "base": "Kaling",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 301300000,
+   "party_max": 6,
+   "icon": "kaling"
+  },
+  {
+   "name": "Hard Kaling",
+   "base": "Kaling",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 598000000,
+   "party_max": 6,
+   "icon": "kaling"
+  },
+  {
+   "name": "Extreme Kaling",
+   "base": "Kaling",
+   "difficulty": "Extreme",
+   "category": "weekly",
+   "mesos": 1205200000,
+   "party_max": 6,
+   "icon": "kaling"
+  },
+  {
+   "name": "Normal Malefic Star",
+   "base": "Malefic Star",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 290400000,
+   "party_max": 3,
+   "icon": "malefic-star"
+  },
+  {
+   "name": "Hard Malefic Star",
+   "base": "Malefic Star",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 798000000,
+   "party_max": 3,
+   "icon": "malefic-star"
+  },
+  {
+   "name": "Normal Limbo",
+   "base": "Limbo",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 420000000,
+   "party_max": 3,
+   "icon": "limbo"
+  },
+  {
+   "name": "Hard Limbo",
+   "base": "Limbo",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 749000000,
+   "party_max": 3,
+   "icon": "limbo"
+  },
+  {
+   "name": "Normal Baldrix",
+   "base": "Baldrix",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 560000000,
+   "party_max": 3,
+   "icon": "baldrix"
+  },
+  {
+   "name": "Hard Baldrix",
+   "base": "Baldrix",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 840000000,
+   "party_max": 3,
+   "icon": "baldrix"
+  },
+  {
+   "name": "Normal Jupiter",
+   "base": "Jupiter",
+   "difficulty": "Normal",
+   "category": "weekly",
+   "mesos": 593000000,
+   "party_max": 3,
+   "icon": "jupiter"
+  },
+  {
+   "name": "Hard Jupiter",
+   "base": "Jupiter",
+   "difficulty": "Hard",
+   "category": "weekly",
+   "mesos": 1190600000,
+   "party_max": 3,
+   "icon": "jupiter"
+  },
+  {
+   "name": "Hard Black Mage",
+   "base": "Black Mage",
+   "difficulty": "Hard",
+   "category": "monthly",
+   "mesos": 900000000,
+   "party_max": 6,
+   "icon": "black-mage"
+  },
+  {
+   "name": "Extreme Black Mage",
+   "base": "Black Mage",
+   "difficulty": "Extreme",
+   "category": "monthly",
+   "mesos": 3600000000,
+   "party_max": 6,
+   "icon": "black-mage"
+  }
+ ]
+}

@@ -268,3 +268,63 @@ body{height:100vh;min-height:0;display:flex;flex-direction:column;overflow:hidde
 .home-totals{position:sticky;bottom:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;margin-top:auto;padding:10px 0 12px;background:var(--bg);border-top:1px solid var(--border);color:var(--text);font-size:15px;font-variant-numeric:tabular-nums}
 .home-zoom{margin-left:auto;color:var(--text-muted);font-size:11px}
 #view:has(>.home-page){padding-bottom:0}#page-scroll:has(>#view>.home-page)>.zoom-hint{display:none}
+/* Bossing: weekly clears, crystal income and the drop diary. */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.bossing-page .page-head{margin-bottom:12px}.bossing-page .page-head h1{margin:0 0 4px}
+.boss-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:16px}
+.boss-summary>div{display:grid;align-content:start;gap:6px;padding:14px 16px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.boss-summary strong{font-size:22px;font-variant-numeric:tabular-nums}.boss-summary small{font-size:13px;font-weight:500;color:var(--text-muted)}
+.boss-summary progress{width:100%;height:6px;accent-color:var(--accent)}
+.boss-worlds{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0;font-size:13px;color:var(--text-muted)}.boss-worlds strong{font-size:15px;color:var(--text)}
+.boss-worlds .boss-over{color:var(--warn)}
+.boss-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}
+.boss-character{padding:18px 20px}
+.boss-character>header{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.boss-character>header img{object-fit:contain}.boss-character>header h2{margin:0;font-size:18px}.boss-character>header p{margin:2px 0 0}
+.boss-world{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:12px;color:var(--text-muted)}.boss-world select{width:auto}
+.boss-progress{margin:14px 0 4px;font-size:14px}.boss-progress strong{font-size:20px;color:var(--accent);font-variant-numeric:tabular-nums}
+.boss-character h3{display:flex;align-items:baseline;gap:8px;margin:18px 0 6px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
+.boss-list{margin:0;padding:0;list-style:none;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.boss-row{display:grid;grid-template-columns:86px minmax(0,1fr) auto 76px;align-items:center;gap:12px;padding:7px 12px;border-top:1px solid var(--border)}
+.boss-row:first-child{border-top:0}.boss-row>input{justify-self:center;width:18px;height:18px;margin:0;accent-color:var(--accent)}
+.boss-row.is-done .boss-name strong{color:var(--text-muted)}.boss-row.is-done .boss-value{color:var(--accent)}
+.boss-name{display:flex;align-items:center;gap:10px;min-width:0}.boss-icon,.boss-item-icon{flex:none;object-fit:contain}.boss-icon{border-radius:8px}
+.boss-name strong{display:block;font-size:14px;font-weight:600}.boss-name small{display:block;font-size:11px;color:var(--text-muted)}
+.boss-party{display:flex;align-items:center;gap:6px;margin:0;font-size:11px;color:var(--text-muted)}.boss-party select{width:auto;height:26px;padding:2px 6px}
+.boss-value{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.boss-stepper{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-variant-numeric:tabular-nums}.boss-stepper .btn{display:grid;place-items:center;width:24px;height:24px;padding:0;border-radius:6px}
+.boss-actions{display:flex;gap:8px;margin-top:14px}
+.boss-empty{padding:28px;text-align:center}
+.boss-roster{padding:16px}.boss-roster h2{margin:0 0 10px;font-size:15px}
+.boss-roster h3{margin:18px 0 6px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
+.boss-roster ul{margin:0;padding:0;list-style:none}
+.boss-roster li button{display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;padding:6px 8px;border:1px solid transparent;border-radius:9px;background:none;color:var(--text);text-align:left}
+.boss-roster li button:hover{background:var(--hover)}.boss-roster li button.is-current{border-color:var(--accent);background:var(--surface-2)}
+.boss-roster li button img{object-fit:contain}.boss-roster strong{display:block;font-size:13px}.boss-roster small{display:block;font-size:11px;color:var(--text-muted)}
+.boss-roster .boss-value small{text-align:right;font-weight:400}
+.boss-history li{display:flex;justify-content:space-between;padding:3px 8px;font-size:12px;font-variant-numeric:tabular-nums;color:var(--text-muted)}.boss-history li:first-child{color:var(--text)}
+.boss-editor{width:min(720px,92vw)}
+.boss-choices{max-height:55vh;margin:0;padding:0;overflow:auto;list-style:none;border:1px solid var(--border);border-radius:10px}
+.boss-choices li{display:grid;grid-template-columns:minmax(0,1fr) 110px 120px 70px;align-items:center;gap:10px;padding:7px 12px;border-top:1px solid var(--border)}
+.boss-choices li:first-child{border-top:0}.boss-choices li:not(.is-on){color:var(--text-muted)}
+.boss-choices .boss-toggle{display:flex;align-items:center;gap:10px;margin:0;color:inherit}.boss-choices li:not(.is-on) .boss-icon{opacity:.55}.boss-choices input{accent-color:var(--accent)}
+.boss-diary{display:grid;grid-template-columns:352px minmax(0,1fr);gap:16px;align-items:start}
+.boss-log{display:grid;gap:10px;padding:16px}.boss-log h2{margin:0;font-size:15px}
+.boss-log label{display:grid;gap:4px;font-size:12px;color:var(--text-muted)}.boss-log label[hidden]{display:none}
+.boss-log footer{display:flex;justify-content:flex-end;gap:8px}
+.boss-items{min-width:0;margin:0;padding:0;border:0}.boss-items legend{margin-bottom:4px;padding:0;font-size:12px;color:var(--text-muted)}
+.boss-items .eyebrow{margin:10px 0 4px;font-size:10px}
+.boss-item-picked{display:flex;align-items:center;gap:10px;margin:0 0 4px;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:var(--bg-elev)}
+.boss-item-picked strong{display:block;font-size:13px}.boss-item-picked small{display:block;font-size:11px;color:var(--text-muted)}
+.boss-item-grid{display:grid;grid-template-columns:repeat(auto-fill,40px);gap:4px}
+.boss-item{display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid var(--border);border-radius:8px;background:var(--bg-elev)}
+.boss-item:hover{border-color:var(--border-strong);background:var(--hover)}.boss-item.is-selected{border:2px solid var(--accent);background:var(--surface-2)}
+.boss-drops{padding:16px}.boss-drops>header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.boss-drops h2{margin:0;font-size:15px}.boss-drops select{width:auto}
+.boss-counts{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.boss-counts span{display:inline-flex;align-items:center;gap:5px;padding:3px 9px 3px 5px;border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--text-muted)}.boss-counts strong{color:var(--text)}
+.boss-table{width:100%;border-collapse:collapse;font-size:13px}
+.boss-table th{padding:6px 8px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;letter-spacing:.8px;text-align:left;text-transform:uppercase;color:var(--text-muted)}
+.boss-table td{padding:8px;border-bottom:1px solid var(--border);vertical-align:middle}.boss-drop-item{display:flex;align-items:center;gap:10px}.boss-table td small{display:block;font-size:11px;color:var(--text-muted)}
+.boss-row-actions{text-align:right;white-space:nowrap}.boss-row-actions .btn{padding:3px 8px;font-size:12px}
+@media(max-width:1000px){.boss-layout,.boss-diary{grid-template-columns:1fr}}
+@media(max-width:600px){.boss-row{grid-template-columns:86px minmax(0,1fr) 70px}.boss-party{grid-column:2}.boss-choices li{grid-template-columns:1fr 1fr}}
