@@ -2,7 +2,7 @@ import pytest
 from test_app import ID, client, get, post  # noqa: F401
 
 from flaming import characters
-from starforce import cost
+from starforce import cost, stats
 from starforce.suggestions import suggestions
 
 SAFE = {"mode_15_17": "safeguard", "mode_18_21": 4}
@@ -33,6 +33,16 @@ def test_upgrade_order_uses_one_row_with_the_items_modes():
     assert [r["strategy"] for r in rows] == ["custom"]
     assert rows[0]["expected_booms"] == 0
     assert rows[0]["starforce_plan"][-1]["mode"] == "safeguard"
+
+
+def test_kanna_talisman_uses_weapon_star_gains():
+    # Live Thousand Soul Talisman: tooltip enhancement bonus at 21 stars, then the 22nd star.
+    meta = stats.metadata("secondary", {"name": "Thousand Soul Talisman", "required_level": 200})
+    assert stats.gains(meta, 0, 21) == {"INT": 130, "LUK": 130, "Max HP": 255, "Magic Attack": 153}
+    item = {"name": "Thousand Soul Talisman", "required_level": 200, "starforce": {"status": "scanned", "stars": 21, "max_stars": 26}}
+    gear = {"class": "Kanna", "equipment": {"secondary": item}}
+    weights = {"INT": 1, "LUK": 1, "Magic Attack": 1}
+    assert suggestions("secondary", item, weights, gear)[0]["stat_gains"] == {"INT": 15, "LUK": 15, "Magic Attack": 17}
 
 
 def test_modes_route_saves_and_clears(client):

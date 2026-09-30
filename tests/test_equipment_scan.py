@@ -76,6 +76,14 @@ def test_glove_prime_lines():
     assert result['potential']['lines'][:2]==['Critical Damage +8%']*2
 
 
+def test_kanna_talisman_reads_26_star_layout():
+    from starforce.vision import read
+
+    # A secondary whose read fails is silently recorded as having no stars.
+    result=read(frame('talisman'))
+    assert (result['stars'],result['max_stars'])==(21,26)
+
+
 @pytest.mark.parametrize('slot',['ring_4','badge','medal'])
 def test_live_non_enhanceable_items(slot):
     result=hover(frame(slot),replay,slot)

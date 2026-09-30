@@ -43,7 +43,9 @@ def metadata(slot, item):
         job = job.casefold()
     if part == "secondary" and "deimos shadow shield" in name.casefold():
         job = "thief"
-    kind = "weapon" if part == "weapon" or (part == "secondary" and "katara" in name.casefold()) else "armor"
+    # Kanna's Talismans gain weapon attack per star, like a Katara.
+    weapon_secondary = part == "secondary" and any(k in name.casefold() for k in ("katara", "talisman"))
+    kind = "weapon" if part == "weapon" or weapon_secondary else "armor"
     return {
         "level": level,
         "band": band,

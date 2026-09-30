@@ -49,7 +49,8 @@ def read(frame):
     filled = cv2.matchTemplate(gold(crop), full, cv2.TM_CCOEFF_NORMED)
     empty = cv2.matchTemplate(cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY), blank, cv2.TM_CCOEFF_NORMED)
     candidates = []
-    for cap in (5, 8, 10, 15, 20, 22, 25, 30):
+    # Caps are not only the level bands, e.g. a Thousand Soul Talisman draws 26 slots.
+    for cap in range(5, 31):
         points = positions(cap)
         height = filled.shape[0] - max(dy for _, dy in points)
         scores = np.array(

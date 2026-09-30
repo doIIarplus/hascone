@@ -69,6 +69,37 @@
         "tier_basis": "https://www.whackybeanz.com/api/getEquips/warrior/zero",
         "checked_at": "2026-09-20"
       }
+    },
+    {
+      "id": "gms_thousand_soul_talisman",
+      "source_id": "thousand-soul-talisman",
+      "name": "Thousand Soul Talisman",
+      "aliases": [],
+      "alias_evidence": null,
+      "slot": "secondary",
+      "job_group": "magician",
+      "source_classes": [
+        "kanna"
+      ],
+      "level": 200,
+      "source_level": 200,
+      "flameable": false,
+      "flame_advantaged": null,
+      "flame_category": null,
+      "rollable_line_pool": null,
+      "flame_models": [],
+      "base_attack": null,
+      "base_magic_attack": 175,
+      "source_region": "GMS",
+      "icon_url": "https://media.maplestorywiki.net/yetidb/Eqp_Thousand_Soul_Talisman.png",
+      "set": "none",
+      "classification_basis": "Kanna Talisman secondary: Bonus Stats Can't Enhance on the live tooltip; Star Force uses the weapon attack table.",
+      "metadata_status": "verified_supplement",
+      "metadata_evidence": {
+        "url": "https://maplestorywiki.net/w/Thousand_Soul_Talisman",
+        "star_force_basis": "Live tooltip: 26-star cap; 21->22 gave INT +15, LUK +15, Magic ATT +17.",
+        "checked_at": "2026-09-29"
+      }
     }
   ]
 }
