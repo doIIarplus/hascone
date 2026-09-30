@@ -6,7 +6,7 @@ A Windows app for scanning MapleStory equipment and comparing upgrades.
 
 Download the latest portable Windows .exe from the [Releases page](https://github.com/doIIarplus/hascone/releases), then follow the in-app guide.
 
-## Spinning Runes and Lie Detector reports
+## Note
 
 Some users have reported Spinning Runes and Lie Detector prompts while using Hascone. We are investigating these reports and looking into potential solutions; the cause has not yet been confirmed.
 
