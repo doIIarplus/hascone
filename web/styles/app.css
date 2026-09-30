@@ -312,7 +312,6 @@ input[type="checkbox"][role="switch"]:disabled { opacity: .4; cursor: not-allowe
 .scouter { max-width: 1600px; margin: 0 auto; }
 .scouter h2 { font-size: 16px; margin: 0; }
 .sc-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }
-.sc-toolbar > img { width: 84px; height: 84px; object-fit: contain; image-rendering: pixelated; }
 .sc-identity { flex: 1; min-width: 210px; max-width: 440px; display: grid; gap: 6px; }
 .sc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-left: auto; }
 .sc-help { border-radius: 50%; width: 30px; padding: 4px; cursor: help; }

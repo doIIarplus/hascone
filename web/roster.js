@@ -43,7 +43,7 @@ export function mountRoster(onSelect){
   return `<div class="roster-row ${current?'is-selected':''} ${busy?'is-busy':''}" role="listitem"><button class="roster-item" type="button" data-character="${esc(c.id)}" ${current?'aria-current="true"':''}>
    <span class="roster-avatar"><img src="/api/characters/${encodeURIComponent(c.id)}/portrait" alt="" loading="lazy"></span>
    <span class="roster-info"><span class="roster-name">${esc(c.name)}</span><span class="roster-meta">${esc(c.class)}${s.level?' · Lv. '+esc(s.level):''}</span>
-    <span class="roster-chips">${s.hexa!=null?`<span class="roster-chip is-hexa" title="HEXA score · 380 DEF${s.stale?' · inputs changed since':''}">${compact(s.hexa)}</span>`:''}<span class="roster-chip" title="Scanned Star Force">★ ${Number(s.stars??0).toLocaleString()}</span>${fragments}</span></span>
+    <span class="roster-chips">${s.hexa!=null?`<span class="roster-chip is-hexa" title="HEXA score · 380 DEF${s.stale?' · inputs changed since':''}">${compact(s.hexa)}</span>`:''}${fragments}</span></span>
    ${busy?'<span class="scan-spinner roster-state" aria-label="Processing"></span>':failed?`<span class="roster-state roster-alert" title="${failed} reading${failed>1?'s':''} to rescan">${failed}</span>`:''}
   </button>${status(q)}</div>`;
  }
@@ -57,9 +57,9 @@ export function mountRoster(onSelect){
   const shown=characters.filter(c=>!filter||`${c.name} ${c.class}`.toLowerCase().includes(filter));
   list.innerHTML=shown.map(row).join('')||`<p class="roster-empty">${characters.length?'No characters match.':'Add a character to begin.'}</p>`;
   // Roster totals; fragments are a lower bound when any character's HEXA is partial or unsupported.
-  const rows=characters.map(c=>stats[c.id]).filter(Boolean),stars=rows.reduce((n,s)=>n+(s.stars||0),0),fragments=rows.reduce((n,s)=>n+(s.fragments||0),0);
+  const rows=characters.map(c=>stats[c.id]).filter(Boolean),fragments=rows.reduce((n,s)=>n+(s.fragments||0),0);
   const lower=rows.some(s=>s.fragments==null||s.fragments_partial||s.fragments_minimum);
-  rail.querySelector('.roster-foot').innerHTML=rows.length?`<span class="eyebrow">Total</span><span class="roster-chip" title="Scanned Star Force across the roster">★ ${stars.toLocaleString()}</span>${fragments?`<span class="roster-chip" title="Sol Erda Fragments on HEXA across the roster${lower?' (at least)':''}">${HEXAGON}${lower?'≥':''}${compact(fragments)}</span>`:''}`:'';
+  rail.querySelector('.roster-foot').innerHTML=fragments?`<span class="eyebrow">Total</span><span class="roster-chip" title="Sol Erda Fragments on HEXA across the roster${lower?' (at least)':''}">${HEXAGON}${lower?'≥':''}${compact(fragments)}</span>`:'';
   list.querySelectorAll('[data-character]').forEach(b=>b.onclick=()=>{setOpen(false);onSelect(b.dataset.character).catch(toast);});
   if(focused)list.querySelector(`[data-character="${CSS.escape(focused)}"]`)?.focus({preventScroll:true});
  }

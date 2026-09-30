@@ -79,6 +79,30 @@ def test_accented_character_names_preserve_accents_and_avoid_duplicates(client, 
     assert post(client, "/api/characters", {"name": "Bumble"}).status_code == 400
 
 
+def test_refresh_portrait_fetches_latest_sprite_and_level(client, monkeypatch):
+    import io
+
+    from PIL import Image
+
+    sprite = io.BytesIO()
+    Image.new("RGBA", (96, 96), (255, 0, 0, 255)).save(sprite, "PNG")
+    name = characters.load(ID)["name"]
+    ranking = Mock()
+    ranking.json.return_value = {"ranks": [{"characterName": name, "jobName": "Ren", "level": 291,
+                                            "characterImgURL": "https://msavatar1.nexon.net/Character/new.png"}]}
+    image = Mock(content=sprite.getvalue())
+    lookup = Mock(side_effect=[ranking, image])
+    monkeypatch.setattr(characters.requests, "get", lookup)
+    result = post(client, f"/api/characters/{ID}/portrait")
+    assert result.status_code == 200, result.json
+    assert result.json["level"] == 291 and characters.load(ID)["level"] == 291
+    assert Image.open(characters.portrait_path(ID)).getpixel((0, 0)) == (255, 0, 0, 255)
+    # Only Nexon's avatar CDN is trusted for the image.
+    ranking.json.return_value["ranks"][0]["characterImgURL"] = "https://example.com/new.png"
+    monkeypatch.setattr(characters.requests, "get", Mock(return_value=ranking))
+    assert post(client, f"/api/characters/{ID}/portrait").status_code == 400
+
+
 @pytest.mark.parametrize("name", ["x", "a" * 17, "Bum ble", "../Bumblë", "Bumblë!"])
 def test_invalid_character_names_are_rejected_before_lookup(client, monkeypatch, name):
     lookup = Mock(side_effect=AssertionError("Invalid names must not reach Nexon"))

@@ -97,19 +97,7 @@ def add(name):
     name = unicodedata.normalize("NFC", str(name).strip())
     if not 2 <= len(name) <= 16 or not name.isalnum():
         raise ValueError("Enter a MapleStory character name (2–16 letters or numbers)")
-    response = requests.get(
-        "https://www.nexon.com/api/maplestory/no-auth/ranking/v2/na",
-        params={"type": "overall", "id": "weekly", "character_name": name},
-        timeout=(10, 20),
-    )
-    response.raise_for_status()
-    rows = response.json().get("ranks", [])
-    rows = [r for r in rows if unicodedata.normalize("NFC", r.get("characterName", "")).casefold() == name.casefold()]
-    if len(rows) != 1:
-        raise ValueError(
-            "Nexon did not return one exact character. Check the spelling and ranking availability."
-        )
-    row = rows[0]
+    row = _ranking(name)
 
     def key(v):
         return re.sub("[^a-z0-9]", "", v.casefold())
@@ -141,15 +129,52 @@ def add(name):
             "version": 1,
         }
         write(data)
-    url = row.get("characterImgURL", "")
+    try:
+        _save_portrait(row.get("characterImgURL", ""), data["id"])
+    except (requests.RequestException, OSError, ValueError):
+        pass  # The profile remains usable if the public avatar CDN is unavailable.
+    return data
+
+
+def _ranking(name):
+    """The one public ranking row for this exact character name."""
+    response = requests.get(
+        "https://www.nexon.com/api/maplestory/no-auth/ranking/v2/na",
+        params={"type": "overall", "id": "weekly", "character_name": name},
+        timeout=(10, 20),
+    )
+    response.raise_for_status()
+    rows = response.json().get("ranks", [])
+    rows = [r for r in rows if unicodedata.normalize("NFC", r.get("characterName", "")).casefold() == name.casefold()]
+    if len(rows) != 1:
+        raise ValueError(
+            "Nexon did not return one exact character. Check the spelling and ranking availability."
+        )
+    return rows[0]
+
+
+def _save_portrait(url, identifier):
     parsed = urlparse(url)
-    if parsed.scheme == "https" and re.fullmatch(r"msavatar\d+\.nexon\.net", parsed.hostname or ""):
-        try:
-            image = requests.get(url, timeout=(10, 20), allow_redirects=False)
-            image.raise_for_status()
-            if len(image.content) > 5_000_000:
-                raise ValueError("Portrait too large")
-            Image.open(io.BytesIO(image.content)).convert("RGBA").save(portrait_path(data["id"]))
-        except (requests.RequestException, OSError, ValueError):
-            pass  # The profile remains usable if the public avatar CDN is unavailable.
+    if parsed.scheme != "https" or not re.fullmatch(r"msavatar\d+\.nexon\.net", parsed.hostname or ""):
+        raise ValueError("Nexon did not provide a character image")
+    image = requests.get(url, timeout=(10, 20), allow_redirects=False)
+    image.raise_for_status()
+    if len(image.content) > 5_000_000:
+        raise ValueError("Portrait too large")
+    Image.open(io.BytesIO(image.content)).convert("RGBA").save(portrait_path(identifier))
+
+
+def refresh(identifier):
+    """Fetch the character's current sprite and level from Nexon's public rankings."""
+    name = load(identifier)["name"]
+    try:
+        row = _ranking(unicodedata.normalize("NFC", name))
+        _save_portrait(row.get("characterImgURL", ""), identifier)
+    except (requests.RequestException, OSError) as exc:
+        raise ValueError("Could not get the character image from Nexon. Try again later.") from exc
+    with lock:
+        data = load(identifier)
+        if isinstance(row.get("level"), int):
+            data["level"] = row["level"]
+        write(data)
     return data

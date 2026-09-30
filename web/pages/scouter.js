@@ -2,6 +2,7 @@ import {downloadScouterPreset} from '../scouter_export.js';
 import {revealSection} from '../sections.js';
 import {renderEfficiencies} from './scouter-efficiencies.js';
 import { api } from '../api.js';
+import { refreshButton } from '../portrait.js';
 import { escapeHtml as esc, toast } from '../ui.js';
 import { efficiencySummary } from './scouter-efficiency.js';
 import { createSuggestions } from './scouter-suggestions.js';
@@ -44,7 +45,7 @@ export async function mountScouter(view) {
   const selected = localStorage.getItem('hascone.scouter.character') || all.default_character;
   const characters = all.profiles || [];
   view.innerHTML = `<div class="page-head"><h1>Scouter</h1><div class="sc-scope"><span>GMS</span><span>Reboot</span><span class="sc-liberated">Liberated</span></div></div>
-    <section class="card sc-profile"><div class="card-body sc-toolbar"><img id="sc-portrait" alt="" hidden>
+    <section class="card sc-profile"><div class="card-body sc-toolbar"><span class="sc-portrait"><img id="sc-portrait" alt="" hidden>${selected?refreshButton(selected,characters.find(c=>c.id===selected)?.name||''):''}</span>
       <div class="sc-identity"><strong>${esc(characters.find(c=>c.id===selected)?.name||'')}</strong><select class="input" id="sc-character" hidden>${characters.map(c => `<option value="${esc(c.id)}" ${c.id===selected?'selected':''}>${esc(c.name)} · ${esc(human(c.class))}</option>`).join('')}</select><div class="sub" id="sc-scan-date">No scan yet</div></div>
       <div class="sc-actions"><button class="btn btn-primary" id="sc-scan" title="Use your bossing preset with 100% critical rate. Follow the panel and hover prompts, then review buffs, rings and Legion before calculating.">Scan stats from game</button><button class="btn" id="sc-preset-export">Export to MapleScouter</button><button class="btn btn-ghost sc-help" id="sc-prep" title="${esc(PREP)}" aria-label="How to prepare for scanning">?</button><button class="btn btn-danger" id="sc-stop">Stop</button></div>
     </div><div id="sc-progress" role="status" aria-live="polite"></div></section>
@@ -194,14 +195,19 @@ export async function mountScouter(view) {
     renderFields();renderResults();
     if(dirty) scheduleSave();
     status(data.scan?.errors?.join(' · ')||'Hover the ? for preparation instructions.');
+    await loadPortrait(target);
+  }
+  async function loadPortrait(target) {
     if (portrait) URL.revokeObjectURL(portrait);
     portrait=null;q('#sc-portrait').hidden=true;
     try {
-      const url = await api.blobUrl(`/api/characters/${encodeURIComponent(target)}/portrait`);
+      const url = await api.blobUrl(`/api/characters/${encodeURIComponent(target)}/portrait?v=${Date.now()}`);
       if (disposed || id()!==target) { URL.revokeObjectURL(url);return; }
       portrait=url;q('#sc-portrait').src=url;q('#sc-portrait').hidden=false;
     } catch { /* Portrait failure must never block stat entry. */ }
   }
+  const onPortrait = e => { if (!disposed && e.detail===id()) loadPortrait(id()); };
+  window.addEventListener('portrait-refreshed', onPortrait);
   function scheduleSave(delay=350) {
     clearTimeout(saveTimer);
     saveTimer=setTimeout(()=>save().catch(e=>{
@@ -398,9 +404,9 @@ export async function mountScouter(view) {
       if(!calc.active&&!dirty&&!pending)await api.post(`/api/characters/${id()}/progression`,{});
     }catch(e){if(!disposed)status(e.message);}finally{polling=false;}
   }
-  if(!characters.length){status('Add a character profile first.');q('#sc-scan').disabled=true;q('#sc-calculate').disabled=true;return ()=>{disposed=true;suggestions.dispose();disposeTooltips();};}
+  if(!characters.length){status('Add a character profile first.');q('#sc-scan').disabled=true;q('#sc-calculate').disabled=true;return ()=>{disposed=true;window.removeEventListener('portrait-refreshed',onPortrait);suggestions.dispose();disposeTooltips();};}
   await load();
   showTab(activeTab);
   const timer=setInterval(tick,1200);tick();
-  return ()=>{disposed=true;suggestions.dispose();disposeTooltips();clearInterval(timer);clearTimeout(saveTimer);if(dirty)void save().catch(()=>{});if(portrait)URL.revokeObjectURL(portrait);for(const u of urls.values())URL.revokeObjectURL(u);};
+  return ()=>{disposed=true;window.removeEventListener('portrait-refreshed',onPortrait);suggestions.dispose();disposeTooltips();clearInterval(timer);clearTimeout(saveTimer);if(dirty)void save().catch(()=>{});if(portrait)URL.revokeObjectURL(portrait);for(const u of urls.values())URL.revokeObjectURL(u);};
 }

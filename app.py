@@ -114,6 +114,12 @@ def portrait(identifier):
     return send_from_directory(path.parent.resolve(), path.name)
 
 
+@app.post("/api/characters/<identifier>/portrait")
+def refresh_portrait(identifier):
+    data = characters.refresh(identifier)
+    return jsonify(level=data.get("level"))
+
+
 @app.delete("/api/characters/<identifier>")
 def delete_character(identifier):
     import hover_queue
