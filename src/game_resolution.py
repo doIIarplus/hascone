@@ -7,7 +7,7 @@ import numpy as np
 from utils.payload_data import read_payload_bytes
 
 SUPPORTED_SIZES = ((2560, 1440), (1920, 1080), (1366, 768))
-RESOLUTION_HELP = "Use 2560 x 1440 with Default Ratio (Filter Applied), or a 1920 x 1080 or 1366 x 768 game client."
+RESOLUTION_HELP = "Use 2560 x 1440 with Default Ratio (Filter Applied), or 1920 x 1080 or 1366 x 768 with Ideal Ratio."
 
 
 def validate_frame(image):

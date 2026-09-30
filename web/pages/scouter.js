@@ -11,7 +11,7 @@ import { renderBossPanels } from './scouter-bosses.js';
 import { buffPreset, exclusiveBuffs, guildSkills } from './scouter-fields.js';
 import { renderInputs, updateDisplayStats, attachInputTooltips } from './scouter-inputs.js';
 
-const PREP = 'Prepare your character using MapleScouter’s class instructions. Use a bossing preset with 100% critical rate for HEXA calculation. Let temporary buffs settle. The guided scanner asks you to open each panel and hover relevant values yourself. Use a 2560 × 1440 game client with Default Ratio (Filter Applied), or 1920 × 1080 or 1366 × 768. Review buffs, rings and Legion manually before calculating.';
+const PREP = 'Prepare your character using MapleScouter’s class instructions. Use a bossing preset with 100% critical rate for HEXA calculation. Let temporary buffs settle. The guided scanner asks you to open each panel and hover relevant values yourself. Use a 2560 × 1440 game client with Default Ratio (Filter Applied), or 1920 × 1080 or 1366 × 768 with Ideal Ratio. Review buffs, rings and Legion manually before calculating.';
 const human = s => s.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
 const fmt = v => typeof v === 'number' && Number.isFinite(v) ? v.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—';
 const flat = (obj, p = '') => Object.fromEntries(Object.entries(obj).flatMap(([k,v]) => {
