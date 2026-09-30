@@ -22,6 +22,20 @@ def stop():
     return state()
 
 
+def delete_result(identifier, record):
+    """Remove a saved calculation, with its simulations; never while a job may read it."""
+    with _lock:
+        if _job["active"]:
+            raise ValueError("Wait for the running Scouter job to finish before deleting a calculation.")
+        with profiles.lock:
+            data = profiles.load(identifier)
+            kept = [row for row in data["history"] if row["id"] != record]
+            if len(kept) == len(data["history"]):
+                raise ValueError("Calculation not found")
+            data["history"] = kept
+            profiles.write(identifier, data)
+
+
 def start(identifier):
     global _cancelled, _job
     with _lock:

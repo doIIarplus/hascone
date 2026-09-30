@@ -50,3 +50,21 @@ def test_delete_requires_token_and_existing_identifier(client):
     assert remove(client, "not-a-character").status_code == 400
     assert remove(client, "d" * 32).status_code == 400
     assert characters.load(ID)["name"] == "Example"
+
+
+def test_delete_one_scouter_calculation(client, monkeypatch):
+    monkeypatch.setattr(service, "_job", {"active": False})
+    data = profiles.load(ID)
+    data["history"] = [{"id": "old", "created": "2026-09-01T00:00:00Z", "simulations": [{"id": "s"}]},
+                       {"id": "new", "created": "2026-09-02T00:00:00Z"}]
+    profiles.write(ID, data)
+    path = f"/api/scouter/characters/{ID}/history/"
+    headers = {"X-Hascone-Token": app.TOKEN}
+    assert client.delete(path + "old", base_url=BASE).status_code == 403
+    assert client.delete(path + "old", base_url=BASE, headers=headers).status_code == 200
+    assert [r["id"] for r in profiles.load(ID)["history"]] == ["new"]
+    assert client.delete(path + "old", base_url=BASE, headers=headers).status_code == 400
+    # A running calculation, simulation or comparison may still read saved results.
+    monkeypatch.setattr(service, "_job", {"active": True})
+    assert client.delete(path + "new", base_url=BASE, headers=headers).status_code == 400
+    assert [r["id"] for r in profiles.load(ID)["history"]] == ["new"]

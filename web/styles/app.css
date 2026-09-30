@@ -354,6 +354,7 @@ input[type="checkbox"][role="switch"]:disabled { opacity: .4; cursor: not-allowe
 .roster-tile.dragging { opacity:.45; outline:2px dashed var(--accent); border-radius:14px; }
 .delete-character-dialog { width:min(460px,90vw); }
 .delete-character-dialog .delete-confirm { color:#f28b82; border-color:#f28b8266; }
+.sc-delete-snapshot { color:#f28b82; border-color:#f28b8266; }
 .update-dialog { width:min(580px,90vw); }
 .update-notes { white-space:pre-wrap; overflow-wrap:anywhere; max-height:45vh; overflow:auto; line-height:1.6; }
 .update-dialog progress { width:100%; accent-color:var(--accent); }

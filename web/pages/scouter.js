@@ -51,7 +51,7 @@ export async function mountScouter(view) {
     <div id="sc-problem" class="sc-problem" role="alert"></div><nav class="fl-subtabs sc-tabs" role="tablist" aria-label="Scouter view"><button class="btn" id="sc-tab-inputs" role="tab" aria-controls="sc-panel-inputs" data-sc-tab="inputs">Inputs</button><button class="btn" id="sc-tab-results" role="tab" aria-controls="sc-panel-results" data-sc-tab="results">Results</button><button class="btn" id="sc-tab-simulator" role="tab" aria-controls="sc-panel-simulator" data-sc-tab="simulator">Simulator</button><button class="btn" id="sc-tab-suggestions" role="tab" aria-controls="sc-panel-suggestions" data-sc-tab="suggestions">Compare upgrades</button><button class="btn" id="sc-tab-efficiencies" role="tab" aria-controls="sc-panel-efficiencies" data-sc-tab="efficiencies">Efficiencies</button></nav><div class="sc-layout"><section class="sc-inputs" id="sc-panel-inputs" role="tabpanel" aria-labelledby="sc-tab-inputs"><div class="sc-section-title"><h2>Inputs</h2><span class="sub" id="sc-missing"></span><span class="sub sc-save-status" id="sc-save-status" role="status" aria-live="polite">Saved</span></div>
       <div id="sc-missing-links" class="sc-missing-links"></div><div id="sc-fields"></div></section><section class="sc-results" id="sc-panel-results" role="tabpanel" aria-labelledby="sc-tab-results"><div class="sc-section-title"><h2>Results</h2></div>
       <div class="sub sc-note">Scores come directly from MapleScouter. Calculations save a snapshot of these inputs.</div>
-      <div class="sc-snapshot-toolbar"><select class="input" id="sc-history" aria-label="Saved calculation"></select><form id="sc-name-form"><input class="input" id="sc-snapshot-name" aria-label="Snapshot name" maxlength="80" placeholder="Snapshot name (optional)"><button class="btn" type="submit">Save name</button></form></div><div id="sc-output"></div></section><section id="sc-panel-simulator" role="tabpanel" aria-labelledby="sc-tab-simulator"></section><section id="sc-panel-suggestions" role="tabpanel" aria-labelledby="sc-tab-suggestions"></section><section id="sc-panel-efficiencies" role="tabpanel" aria-labelledby="sc-tab-efficiencies"></section></div>
+      <div class="sc-snapshot-toolbar"><select class="input" id="sc-history" aria-label="Saved calculation"></select><form id="sc-name-form"><input class="input" id="sc-snapshot-name" aria-label="Snapshot name" maxlength="80" placeholder="Snapshot name (optional)"><button class="btn" type="submit">Save name</button></form><button class="btn sc-delete-snapshot" id="sc-delete-snapshot" type="button">Delete</button></div><div id="sc-output"></div></section><section id="sc-panel-simulator" role="tabpanel" aria-labelledby="sc-tab-simulator"></section><section id="sc-panel-suggestions" role="tabpanel" aria-labelledby="sc-tab-suggestions"></section><section id="sc-panel-efficiencies" role="tabpanel" aria-labelledby="sc-tab-efficiencies"></section></div>
     <div class="page-footer" role="region" aria-label="Calculate"><span class="sub" id="sc-footer-status"></span><button class="btn btn-primary" id="sc-calculate">Calculate</button></div>`;
   const q = s => view.querySelector(s);
   const disposeTooltips=attachInputTooltips(q('#sc-fields'));
@@ -146,6 +146,7 @@ export async function mountScouter(view) {
     suggestions.update(profile,dirty);
     const result = history.find(r=>r.id===selectedResult);
     q('#sc-name-form').hidden=!result;
+    q('#sc-delete-snapshot').hidden=!result;
     q('#sc-snapshot-name').value=result?.name||'';
     renderEfficiencies(q('#sc-panel-efficiencies'),result,dirty||result?.fingerprint!==profile.fingerprint);
     q('#sc-eff-preset')?.addEventListener('click',exportPreset);
@@ -352,6 +353,21 @@ export async function mountScouter(view) {
   q('#sc-prep').onclick=()=>window.open('https://maplescouter.com/en/input','_blank','noopener,noreferrer');
   q('#sc-name-form').onsubmit=e=>{e.preventDefault();action(async()=>{const record=selectedResult;const saved=await api.post(`${endpoint()}/history/${encodeURIComponent(record)}/name`,{name:q('#sc-snapshot-name').value});profile.history.find(r=>r.id===record).name=saved.name;renderResults();});};
   q('#sc-history').onchange=()=>{selectedResult=q('#sc-history').value;renderResults();};
+  // Delete the selected saved calculation, with its simulations, after confirmation.
+  q('#sc-delete-snapshot').onclick=()=>{
+    const record=profile.history.find(r=>r.id===selectedResult);if(!record)return;
+    const dialog=document.createElement('dialog');dialog.className='delete-character-dialog';
+    dialog.setAttribute('aria-label','Delete calculation');
+    dialog.innerHTML=`<h2>Delete this calculation?</h2><p>${esc(new Date(record.created).toLocaleString())}${record.name?' · '+esc(record.name):''}</p><p class="sub">Its results and simulations are removed. Your inputs and other calculations stay. This cannot be undone.</p><p class="warn" role="alert"></p><footer><button class="btn" data-cancel autofocus>Cancel</button><button class="btn delete-confirm">Delete calculation</button></footer>`;
+    document.body.append(dialog);dialog.showModal();
+    dialog.addEventListener('close',()=>dialog.remove(),{once:true});
+    dialog.querySelector('[data-cancel]').onclick=()=>dialog.close();
+    dialog.querySelector('.delete-confirm').onclick=async e=>{
+      const button=e.currentTarget;button.disabled=true;button.textContent='Deleting…';
+      try{await api.delete(`${endpoint()}/history/${encodeURIComponent(record.id)}`);dialog.close();selectedResult='';await load();toast('Calculation deleted.');}
+      catch(error){dialog.querySelector('[role="alert"]').textContent=error.message;button.disabled=false;button.textContent='Delete calculation';}
+    };
+  };
   async function tick() {
     if (disposed || polling || pending || saveFlight) return;polling=true;
     const generation=pollGeneration;

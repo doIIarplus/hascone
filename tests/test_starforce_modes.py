@@ -30,6 +30,18 @@ def test_each_star_uses_its_own_mode():
     ]
 
 
+def test_mode_table_lists_each_attempt_with_its_odds_and_cost():
+    # Level 200, no events: matches the in-game panel and other GMS planners.
+    table = cost.mode_table(200)
+    assert [row["star"] for row in table] == [15, 16, 17, 18, 19, 20, 21]
+    first, last = table[0]["choices"], table[-1]["choices"]
+    assert [c["mode"] for c in first] == [1, 2, 3, "safeguard"] and [c["mode"] for c in last] == [1, 2, 3, 4]
+    assert (first[0]["success"], first[0]["boom"], first[0]["cost"]) == (0.315, 0.02055, 71_316_500)
+    assert (last[0]["boom"], last[0]["cost"], last[3]["boom"]) == (0.126375, 269_601_800, 0)
+    assert first[3]["boom"] == 0 and first[3]["cost"] > first[0]["cost"]
+    # Items below 22★ only list the attempts they can make.
+    assert [row["star"] for row in cost.mode_table(130, cap=20)] == [15, 16, 17, 18, 19]
+
 def test_fixed_modes_are_used_at_every_star_and_avoid_booms():
     fixed = cost.optimize(150, 15, 22, modes=cost.item_modes(SAFE))
     assert [s["mode"] for s in fixed["starforce_plan"] if 15 <= s["star"] <= 17] == ["safeguard"] * 3

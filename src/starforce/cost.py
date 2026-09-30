@@ -73,6 +73,23 @@ def mode_summary(modes):
     )
 
 
+def mode_table(level, settings=None, cap=30):
+    """Each attempt from 15★ to 21★ below CAP, with every mode's success, boom and tap cost."""
+    cfg = options(settings)
+    table = []
+    for star in MODE_STARS:
+        if star >= cap:
+            break
+        key = "mode_15_17" if star <= 17 else "mode_18_21"
+        choices = []
+        for mode in [1, 2, 3, "safeguard"] if star <= 17 else [1, 2, 3, 4]:
+            chosen = {**cfg, key: mode}
+            success, _, boom = transition(star, chosen)
+            choices.append({"mode": mode, "success": success, "boom": boom, "cost": tap_cost(level, star, chosen)})
+        table.append({"star": star, "choices": choices})
+    return table
+
+
 def selection(star, cfg):
     if type(star) is not int or not 0 <= star < 30:
         raise ValueError("Invalid Star Force star")

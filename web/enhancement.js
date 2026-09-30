@@ -17,6 +17,13 @@ const modeName=m=>m==='safeguard'?'Safeguard':'Mode '+m;
 const perStarModes=m=>m&&'mode_15_17' in m?Object.fromEntries(MODE_STARS.map(star=>[star,star<=17?m.mode_15_17:m.mode_18_21])):m;
 // Runs of stars, e.g. "15–16★ Safeguard, 17–19★ Mode 1, 20–21★ Mode 4".
 const modeSummary=m=>MODE_STARS.reduce((runs,star)=>{const last=runs.at(-1);if(last&&last.mode===m[star])last.to=star;else runs.push({from:star,to:star,mode:m[star]});return runs;},[]).map(r=>`${r.from}${r.to!==r.from?'–'+r.to:''}★ ${modeName(r.mode)}`).join(', ');
+// Range presets for per-attempt modes, as on common Star Force planners.
+const PRESET_STARS={low:[15,16,17],high:[18,19,20,21]};
+const PRESETS={
+ low:[['1,1,1','111','Mode 1 for all three attempts'],['2,2,2','222','Mode 2 for all three attempts'],['3,3,3','333','Mode 3 for all three attempts'],['safeguard,safeguard,safeguard','Safeguard','Prevents destruction for all three attempts']],
+ high:[['1,1,1,1','1111','Mode 1 for all four attempts'],['1,1,4,4','1144','Mode 1 for 18★→20★, then Mode 4'],['4,4,4,4','4444','Prevents destruction for all four attempts']],
+};
+const chance=v=>(v*100).toLocaleString(undefined,{maximumFractionDigits:2})+'%';
 const flameBasis = 'Black Flame: 3M per roll. Upgrade order uses a strictly higher Flame Score; current cost matches or exceeds the saved score. These are expected costs, not guaranteed CP gains.';
 const cubeBasis = 'Bright: 22M; Glowing: 12M per cube. Match current main-stat or attack equivalent, retaining Crit Damage and cooldown. Drop, mesos, IED and other utility lines are excluded. Tier-up and reveal costs are excluded.';
 
@@ -91,20 +98,39 @@ export function mountEnhancement(root,{profile,page,slot,onSelect}) {
    panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.onclick=()=>onSelect(b.dataset.enhancementSlot));
   }else panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.classList.toggle('selected',b.dataset.enhancementSlot===slot));
  }
- // Per-item Star Force modes, one per star: saved on the item, then costs and the upgrade order refresh.
- function bindModes(){
+ // Per-item Star Force modes, one per attempt: sliders and range presets save on the item, then costs refresh.
+ function bindModes(table,saved){
   const own=root.querySelector('#sf-own-modes');if(!own)return;
-  const fields=root.querySelector('.sf-mode-fields'),selects=[...root.querySelectorAll('[data-mode-star]')];
-  const read=el=>el.value==='safeguard'?'safeguard':Number(el.value);
+  const fields=root.querySelector('.sf-mode-fields'),sliders=[...root.querySelectorAll('[data-mode-star]')];
+  const choice=el=>table.find(r=>r.star===Number(el.dataset.modeStar)).choices[Number(el.value)];
+  function show(el){
+   const row=el.closest('.sf-mode-row'),picked=choice(el);
+   el.setAttribute('aria-valuetext',modeName(picked.mode));
+   row.querySelectorAll('[data-stop]').forEach(stop=>stop.classList.toggle('is-on',stop.dataset.stop===el.value));
+   row.querySelector('[data-success]').textContent=chance(picked.success);
+   const boom=row.querySelector('[data-boom]');boom.textContent=chance(picked.boom);boom.classList.toggle('is-safe',!picked.boom);
+   row.querySelector('[data-cost]').textContent=cost(picked.cost);
+  }
   async function save(){
    const status=root.querySelector('#sf-modes-status');
-   const body={modes:own.checked?Object.fromEntries(selects.map(el=>[el.dataset.modeStar,read(el)])):null};
-   [own,...selects].forEach(el=>el.disabled=true);status.textContent='Saving…';
+   const chosen=Object.fromEntries(sliders.map(el=>[el.dataset.modeStar,choice(el).mode]));
+   // Stars above this item's limit keep their saved choice so the full set stays valid.
+   const body={modes:own.checked?Object.fromEntries(MODE_STARS.map(star=>[star,chosen[star]??saved?.[star]??1])):null};
+   root.querySelectorAll('.sf-item-modes input,.sf-item-modes select').forEach(el=>el.disabled=true);status.textContent='Saving…';
    try{const fresh=await api.post(`/api/characters/${profile.id}/equipment/${encodeURIComponent(slot)}/starforce-modes`,body);Object.assign(profile,fresh);await refresh();}
-   catch(e){status.textContent=e.message;[own,...selects].forEach(el=>el.disabled=false);}
+   catch(e){status.textContent=e.message;root.querySelectorAll('.sf-item-modes input,.sf-item-modes select').forEach(el=>el.disabled=false);}
   }
   own.onchange=()=>{fields.hidden=!own.checked;save();};
-  selects.forEach(el=>el.onchange=save);
+  sliders.forEach(el=>{el.oninput=()=>show(el);el.onchange=save;});
+  root.querySelectorAll('[data-stop]').forEach(stop=>stop.onclick=()=>{const el=stop.closest('.sf-mode-row').querySelector('[data-mode-star]');if(el.value===stop.dataset.stop)return;el.value=stop.dataset.stop;show(el);save();});
+  root.querySelectorAll('[data-preset]').forEach(select=>select.onchange=()=>{
+   const pattern=select.value.split(',');
+   sliders.filter(el=>PRESET_STARS[select.dataset.preset].includes(Number(el.dataset.modeStar))).forEach(el=>{
+    const star=Number(el.dataset.modeStar),mode=pattern[PRESET_STARS[select.dataset.preset].indexOf(star)];
+    el.value=String(table.find(r=>r.star===star).choices.findIndex(c=>String(c.mode)===mode));show(el);
+   });
+   save();
+  });
  }
  function drawStarForce(selectionOnly){
   const rows=model.starforce_costs||[],cfg=model.starforce_options||{};
@@ -112,10 +138,16 @@ export function mountEnhancement(root,{profile,page,slot,onSelect}) {
   totals.innerHTML=`<h3>Current Star Force cost</h3><div class="enhancement-totals">${totalValue('Total',model.totals['Star Force'],rows.length)}</div><p class="sub">${rows.length} items${model.unpriced.starforce.length?' &middot; Partial estimate':''}</p><p class="sub">${cfg.discount?'30% meso discount':'No meso discount'} &middot; ${cfg.boom_reduction?'30% boom reduction':'No boom reduction'}</p>`;
   const item=model.items[slot]||{},current=item.starforce_current,gear=profile.equipment[slot]||{},modes=perStarModes(gear.starforce_modes);
   const basisText=modes?`Expected cost from 0 stars to the scanned level using this item's modes (${modeSummary(modes)}), including recovery after destruction. Replacement items are excluded.`:basis;
-  const option=(value,label,chosen)=>`<option value="${value}" ${String(chosen)===String(value)?'selected':''}>${label}</option>`;
-  const modeControls=gear.starforce?.status==='scanned'&&!item.mirror?`<section class="sf-item-modes"><h3>Enhancement modes for this item</h3><label class="score-toggle"><input type="checkbox" role="switch" id="sf-own-modes" ${modes?'checked':''}> Use my own modes</label><div class="sf-mode-fields" ${modes?'':'hidden'}>${MODE_STARS.map(star=>`<label>${star}★<select class="input" data-mode-star="${star}">${(star<=17?[1,2,3,'safeguard']:[1,2,3,4]).map(m=>option(m,modeName(m),modes?.[star])).join('')}</select></label>`).join('')}<p class="sub">Safeguard (15–17★) and Mode 4 (18–21★) prevent destruction.</p></div><p class="sub" id="sf-modes-status">${modes?'The upgrade order and costs for this item use these modes.':'Off: each star uses whichever mode is cheapest, and the upgrade order also shows a fewest-booms plan.'}</p></section>`:'';
+  const table=item.starforce_mode_table||[],picked=modes||{};
+  const presetValue=range=>{const pattern=PRESET_STARS[range].map(star=>String(picked[star]??1)).join(',');return PRESETS[range].some(([value])=>value===pattern)?pattern:'custom';};
+  const presetSelect=range=>table.some(r=>PRESET_STARS[range].includes(r.star))?`<label>${range==='low'?'15→18':'18→22'}<select class="input" data-preset="${range}" aria-label="${range==='low'?'15 to 18':'18 to 22'} preset">${presetValue(range)==='custom'?'<option value="custom" selected disabled>Custom</option>':''}${PRESETS[range].map(([value,label,note])=>`<option value="${value}" ${presetValue(range)===value?'selected':''} title="${esc(note)}">${label}</option>`).join('')}</select></label>`:'';
+  const modeRow=r=>{
+   const index=Math.max(0,r.choices.findIndex(c=>String(c.mode)===String(picked[r.star]??1))),c=r.choices[index];
+   return `<div class="sf-mode-row"><span class="sf-mode-attempt">${r.star} → ${r.star+1}</span><div class="sf-mode-slider"><input class="sf-range" type="range" min="0" max="3" step="1" value="${index}" data-mode-star="${r.star}" aria-label="Strategy for ${r.star} stars" aria-valuetext="${modeName(c.mode)}"><div class="sf-mode-stops">${r.choices.map((choice,i)=>`<button type="button" data-stop="${i}" class="${i===index?'is-on':''}" style="--i:${i}" tabindex="-1">${modeName(choice.mode)}</button>`).join('')}</div></div><span class="sf-mode-num" data-success>${chance(c.success)}</span><span class="sf-mode-num is-boom ${c.boom?'':'is-safe'}" data-boom>${chance(c.boom)}</span><span class="sf-mode-num" data-cost>${cost(c.cost)}</span></div>`;
+  };
+  const modeControls=gear.starforce?.status==='scanned'&&!item.mirror&&table.length?`<section class="sf-item-modes"><h3>Enhancement modes for this item</h3><label class="score-toggle"><input type="checkbox" role="switch" id="sf-own-modes" ${modes?'checked':''}> Use my own modes</label><div class="sf-mode-fields" ${modes?'':'hidden'}><div class="sf-presets"><span><strong>Quick presets</strong><small>Apply a strategy to a range of stars</small></span>${presetSelect('low')}${presetSelect('high')}</div><div class="sf-modes-table"><div class="sf-mode-row is-head"><span>Attempt</span><span>Strategy</span><span>Success</span><span>Boom</span><span>Cost</span></div>${table.map(modeRow).join('')}</div><p class="sub">Safeguard (15–17★) and Mode 4 (18–21★) prevent destruction. Success, boom and cost are per attempt, with your event settings.</p></div><p class="sub" id="sf-modes-status">${modes?'The upgrade order and costs for this item use these modes.':'Off: each star uses whichever mode is cheapest, and the upgrade order also shows a fewest-booms plan.'}</p></section>`:'';
   root.querySelector('#enhancement-selected').innerHTML=(current?`<section><h3>Current Star Force cost</h3><div class="enhancement-totals">${totalValue('0 to '+current.stars+' stars',current.expected_mesos,1)}</div><p class="sub">${number(current.expected_booms)} expected booms &middot; Level ${current.level}</p><p class="sub">${basisText}</p></section>`:`<p class="sub">${esc(item.mirror||item.starforce_error||'Hover this item to scan its stars.')}</p>`)+modeControls;
-  bindModes();
+  bindModes(table,modes);
   if(!selectionOnly){
    panels.innerHTML=`<section class="analysis-panel"><h2>Current Star Force costs</h2><p class="sub">Cost to reach scanned stars &middot; Lowest cost first.</p><div class="enhancement-grid">${rows.map(r=>`<div class="enhancement-step"><button class="enhancement-item ${slot===r.slot?'selected':''}" data-enhancement-slot="${esc(r.slot)}">${art(r)}<span class="enhancement-name">${esc(r.name)}</span><strong>${r.stars}&#9733;</strong><strong class="enhancement-price">${cost(r.expected_mesos)}</strong><span class="sub">${number(r.expected_booms)} expected booms</span></button></div>`).join('')||'<p class="sub">Scan Star Force equipment to see costs.</p>'}</div>${unpriced('starforce')}<details><summary>How costs are calculated</summary><p class="sub">${basis}</p><p class="sub">Uses the discount and boom-reduction options above. These are modeled costs.</p></details></section>`;
    panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.onclick=()=>onSelect(b.dataset.enhancementSlot));

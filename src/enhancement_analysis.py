@@ -50,6 +50,8 @@ def _add_starforce_row(result, detail, common, slot, item, options_config):
         if reading.get("status") != "scanned":
             raise ValueError("Hover this item to scan its stars first.")
         meta = sf_stats.metadata(slot, item)
+        cap = min(meta["cap"], reading.get("max_stars") or meta["cap"])
+        detail["starforce_mode_table"] = sf_cost.mode_table(meta["level"], options_config, cap)
         stars = reading.get("stars")
         if type(stars) is not int or not 0 <= stars <= meta["cap"]:
             raise ValueError("Invalid or unsupported scanned star count.")

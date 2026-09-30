@@ -335,6 +335,12 @@ def name_snapshot(identifier, record):
     return jsonify(name=saved["name"])
 
 
+@app.delete("/api/scouter/characters/<identifier>/history/<record>")
+def delete_snapshot(identifier, record):
+    service.delete_result(identifier, record)
+    return jsonify(deleted=record)
+
+
 @app.get("/api/scouter/icons/<name>")
 def scouter_icon(name):
     return send_from_directory(ROOT / "src/scouter/data/icons", name)
@@ -352,10 +358,15 @@ def cancel_calculation():
 
 @app.get("/api/summary")
 def summary():
+    from scouter.hexa_costs import fragments
+
     rows=[]
     for character in characters.listing():
         data=profiles.load(character["id"])
-        digest=profiles.fingerprint(profiles.effective(data))
+        user=profiles.effective(data)
+        digest=profiles.fingerprint(user)
+        # Only saved levels count; the form's placeholder defaults are not scans.
+        spent,partial,minimum=fragments(data["inputs"],data["class_info"])
         latest=next(iter(reversed(data["history"])),None)
         current=next((r for r in reversed(data["history"]) if r.get("fingerprint")==digest),None)
         result=current or latest
@@ -364,7 +375,8 @@ def summary():
         rows.append({"id":character["id"],"name":character["name"],"class":character["class"],"level":character.get("level"),
             "hexa":calculated.get("boss380_hexaStat"),"result_created":(result or {}).get("created"),"stale":bool(result and not current),
             "scanned":sum(bool(item.get("hover_scanned")) for item in equipment.values()),"equipped":len(equipment),
-            "stars":sum(item.get("starforce",{}).get("stars",0) for item in equipment.values() if item.get("starforce",{}).get("status")=="scanned")})
+            "stars":sum(item.get("starforce",{}).get("stars",0) for item in equipment.values() if item.get("starforce",{}).get("status")=="scanned"),
+            "fragments":spent,"fragments_partial":partial,"fragments_minimum":minimum})
     return jsonify(profiles=rows)
 
 

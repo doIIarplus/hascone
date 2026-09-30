@@ -37,6 +37,8 @@ def test_real_scans_have_consistent_upgrade_odds_and_current_costs():
         assert current['probability'] >= row['probability']
         assert current['expected_mesos'] <= row['expected_mesos']
     assert data['items']['weapon']['catalog']['level'] == 200
+    # Each Star Force item lists its attempts from 15★ with every mode's odds and cost.
+    assert [row['star'] for row in data['items']['hat']['starforce_mode_table']] == [15, 16, 17, 18, 19, 20, 21]
 
 
 def test_zero_partner_sword_is_priced_with_the_weapon():
