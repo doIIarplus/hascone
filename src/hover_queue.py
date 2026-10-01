@@ -33,7 +33,7 @@ def status(character):
 
 
 def submit(character, slot, frame, save):
-    """Queue FRAME for reading; SAVE(character, result, frame) stores a clean result."""
+    """Queue FRAME for reading; SAVE(character, result) stores a clean result."""
     with _lock:
         entry = _entry(character)
         if slot in entry["pending"]:
@@ -97,7 +97,7 @@ def _read(character, slot, frame, save):
             error = result["errors"][0]
         else:
             result["slot_verified"] = True
-            save(character, result, frame)
+            save(character, result)
     except Exception as exc:  # reported to the guide per item
         error = str(exc)
     with _lock:

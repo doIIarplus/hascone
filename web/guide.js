@@ -35,8 +35,9 @@ export async function openGuide(character,steps,onSaved,equipmentFlow=false){
  await api.post('/api/scan/cancel');
  dialog.showModal();
  function clear(){epoch++;if(timer)clearTimeout(timer);timer=null;}
- async function stop(){clear();await api.post('/api/scan/cancel');}
- async function close(){disposed=true;await stop();dialog.close();dialog.oncancel=null;if(changed)await onSaved();}
+ async function stop(release=false){clear();await api.post('/api/scan/cancel',{release});}
+ // Closing the guide also closes the scan processes once their work is done.
+ async function close(){disposed=true;await stop(true);dialog.close();dialog.oncancel=null;if(changed)await onSaved();}
  dialog.oncancel=e=>{e.preventDefault();close().catch(toast);};
  function fail(e){if(disposed)return;clear();content.querySelector('.scan-spinner')?.setAttribute('hidden','');content.querySelector('#scan-status').textContent=e.message;const b=content.querySelector('#watch');if(b){b.disabled=false;b.textContent='Try again';}}
  function miniGrid(step){

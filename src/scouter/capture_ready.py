@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 from game_resolution import validate_frame
 from scouter.vision import _overview_crops, anchor, applied_anchor, origin, verify_hover
 

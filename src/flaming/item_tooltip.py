@@ -5,7 +5,7 @@ import re
 import cv2
 import numpy as np
 
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 from utils.payload_data import read_payload_bytes
 
 

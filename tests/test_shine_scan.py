@@ -13,11 +13,12 @@ from test_app import ID, client, get
 
 import app
 from flaming import characters
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 from game_resolution import normalize_scan
 from scouter import profiles
 from scouter.capture_ready import regions
-from scouter.shine_scan import aliases, merge_pages, panel, prepare_save, read_page, skill_name
+from scouter.shine_levels import aliases, merge_pages, prepare_save
+from scouter.shine_scan import panel, read_page, skill_name
 
 FIXTURES = Path(__file__).parent / "fixtures/shine"
 

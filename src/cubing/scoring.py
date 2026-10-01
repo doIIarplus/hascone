@@ -6,7 +6,7 @@ from cubing.lines import parse_line
 from cubing.probability import family
 from cubing.targets import validate_spec
 from flaming.profiles import classes
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 
 
 def _weighted_value(metric, config, parsed):

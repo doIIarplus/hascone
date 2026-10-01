@@ -13,7 +13,7 @@ from flaming.breakdown import legacy as legacy_flame
 from flaming.character_score import character_score
 from flaming.probability import improvement
 from flaming.score import flame_score
-from flaming.vision import Stat
+from flaming.stats import Stat
 from utils.payload_data import read_payload_json
 
 PRICES = {"Bright": 22_000_000, "Glowing": 12_000_000}

@@ -8,7 +8,7 @@ import re
 
 import cv2
 
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 from ocr_confidence import verify
 from scouter.vision import anchor
 

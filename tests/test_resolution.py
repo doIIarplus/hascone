@@ -8,7 +8,7 @@ import numpy as np
 import pytest
 
 from equipment_scan import grid, hover, tooltip_bounds
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 from game_resolution import normalize_scan, scan_point, validate_frame
 
 FIXTURES = Path(__file__).parent / "fixtures/resolution_1366"
@@ -168,6 +168,7 @@ def test_live_and_uploaded_1440p_capture_use_same_reader_coordinates(monkeypatch
 
     import app
     import capture
+    import scan_steps
 
     image = filtered_frame("grid")
     point = (int(775.5 * 2560 / 1366), int(166.5 * 1440 / 768))
@@ -175,9 +176,9 @@ def test_live_and_uploaded_1440p_capture_use_same_reader_coordinates(monkeypatch
     monkeypatch.setattr(capture, "pointer", lambda window: point)
     body = {"window": 1, "mode": "hover:hat"}
     live, before = app._acquire_scan_image(body)
-    assert before == app._scan_pointer(body)
+    assert before == scan_steps._pointer(body, body["_scan_scale"])
     assert before == (775, 166)
-    app._verify_hover_settled("hover:hat", body, live)
+    scan_steps.verify(body, live, before, None)
 
     encoded = base64.b64encode(cv2.imencode(".png", image)[1]).decode("ascii")
     uploaded, pointer = app._acquire_scan_image({"image": encoded, "mode": "hover:hat"})

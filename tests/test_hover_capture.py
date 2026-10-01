@@ -7,7 +7,7 @@ import pytest
 
 import hover_queue
 from equipment_scan import hover_capture_ready, hover_target, tooltip_bounds
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 
 FIXTURES = Path(__file__).parent / "fixtures/equipment_hover"
 HAT = (1175, 240)
@@ -77,7 +77,7 @@ def test_queue_saves_clean_reads_and_reports_failures(monkeypatch):
     monkeypatch.setattr(reader, "read", read)
     hover_queue.reset("c1")
     for slot in ("hat", "top", "shoes"):
-        hover_queue.submit("c1", slot, None, lambda c, r, f: saved.append((c, r["item"], r["slot_verified"])))
+        hover_queue.submit("c1", slot, None, lambda c, r: saved.append((c, r["item"], r["slot_verified"])))
     state = _wait("c1")
     assert saved == [("c1", "Hat", True)]
     assert state["done"] == ["hat"]

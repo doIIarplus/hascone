@@ -4,7 +4,8 @@ import pytest
 from test_app import ID, client, get
 from test_resolution import frame, replay
 
-from equipment_scan import grid, hover, save
+from equipment_save import save
+from equipment_scan import grid, hover, icons
 from flaming import characters
 from utils.image_files import write_png
 
@@ -27,7 +28,7 @@ def test_missing_image_placeholder_is_not_cached(client):
 def test_direct_hover_captures_missing_icon_and_serves_it(client):
     image=frame("hat")
     result=hover(image,replay,"hat")
-    save(characters.load(ID),result,image)
+    save(characters.load(ID),result,icons(image,result))
     response=get(client,f"/api/characters/{ID}/equipment/hat/icon")
     assert response.status_code == 200
     assert response.mimetype == "image/png"
@@ -39,7 +40,8 @@ def test_direct_hover_captures_missing_icon_and_serves_it(client):
 def test_failed_icon_write_does_not_save_successful_equipment_scan(client,monkeypatch):
     def fail(*args):
         raise OSError("Disk full")
-    monkeypatch.setattr("utils.image_files.write_png",fail)
+    monkeypatch.setattr("utils.image_files.write_bytes",fail)
     with pytest.raises(OSError,match="Disk full"):
-        save(characters.load(ID),grid(frame("grid")),frame("grid"))
+        result=grid(frame("grid"))
+        save(characters.load(ID),result,icons(frame("grid"),result))
     assert not characters.load(ID)["equipment"]

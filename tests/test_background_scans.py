@@ -10,7 +10,7 @@ from test_resolution import frame
 import app
 import hover_queue
 from flaming import characters
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 from scouter import profiles
 from scouter.capture_ready import regions, stable
 

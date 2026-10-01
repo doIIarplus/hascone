@@ -6,7 +6,7 @@ from functools import lru_cache
 import cv2
 import numpy as np
 
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 from ocr_confidence import verify
 from scouter.vision import anchor
 from utils.payload_data import read_payload_bytes, read_payload_json

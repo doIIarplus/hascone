@@ -8,9 +8,10 @@ import numpy as np
 import pytest
 from test_app import ID, client
 
-from equipment_scan import capabilities, grid, hover, hovered_slot, save, tooltip_bounds
+from equipment_save import save
+from equipment_scan import capabilities, grid, hover, hovered_slot, icons, tooltip_bounds
 from flaming import characters
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 from scouter import profiles
 
 FIXTURES = Path(__file__).parent / 'fixtures/equipment_hover'
@@ -131,13 +132,14 @@ def test_clipped_tooltip_rejected():
 
 def test_save_equipment_then_hover_and_ring(client):
     profile=characters.load(ID)
-    save(profile,grid(frame('grid')),frame('grid'))
+    result=grid(frame('grid'))
+    save(profile,result,icons(frame('grid'),result))
     assert len(characters.load(ID)['equipment'])==25
     result=hover(frame('hat'),replay,'hat')
-    save(characters.load(ID),result,frame('hat'))
+    save(characters.load(ID),result,icons(frame('hat'),result))
     assert characters.load(ID)['equipment']['hat']['starforce']['stars']==22
     result=hover(frame('ring_4'),replay,'ring_4')
-    save(characters.load(ID),result,frame('ring_4'))
+    save(characters.load(ID),result,icons(frame('ring_4'),result))
     assert profiles.load(ID)['inputs']['special.continuosRing']=='4'
 
 

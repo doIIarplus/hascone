@@ -2,7 +2,7 @@
 
 import re
 
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 
 LABELS = {
     **{s: s + " %" for s in ("STR", "DEX", "INT", "LUK")},

@@ -4,7 +4,7 @@ import re
 
 import cv2
 
-from flaming.vision import ReadError
+from flaming.stats import ReadError
 
 AUTO_CONFIDENCE = 0.97
 AGREEMENT_CONFIDENCE = 0.90

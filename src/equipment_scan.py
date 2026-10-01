@@ -8,7 +8,7 @@ from functools import lru_cache
 import cv2
 import numpy as np
 
-from flaming.vision import ReadError, parse_stat
+from flaming.stats import ReadError, parse_stat
 from ocr_confidence import verify
 from utils.payload_data import read_payload_bytes, read_payload_json
 
@@ -439,91 +439,23 @@ def hover(frame, reader, slot=None):
     return result
 
 
-def _save_equipment_grid(profile, result, frame, folder):
-    from scouter import profiles
-    from utils.image_files import write_png
+def hover_icon(frame):
+    """The hovered item's 34 x 34 icon from its tooltip, as PNG bytes."""
+    from utils.image_files import encode_png
 
-    old, equipment = profile["equipment"], {}
-    for slot, reading in result["slots"].items():
-        x, y, w, h = reading["icon_box"]
-        icon = frame[y : y + h, x : x + w]
-        prior = old.get(slot, {})
-        equipment[slot] = dict(prior) if prior.get("icon_hash") == reading["icon_hash"] else {}
-        equipment[slot].update(occupied=True, icon_hash=reading["icon_hash"])
-        write_png(folder / (slot + ".png"), icon)
-    profile.update(equipment=equipment, equipment_captured=profiles.now())
+    x, ay, _ = tooltip_bounds(frame, allow_clipped_footer=True)
+    icon = frame[ay - 27 : ay + 49, x + 19 : x + 95]
+    return encode_png(cv2.resize(icon, (34, 34), interpolation=cv2.INTER_AREA))
 
 
-def _save_hover_item(profile, result, frame, folder):
-    from scouter import profiles
-    from utils.image_files import write_png
+def icons(frame, result):
+    """PNG icons that equipment_save.save stores for RESULT, cut from its frame."""
+    from utils.image_files import encode_png
 
-    slot = result["slot"]
-    prior = profile["equipment"].get(slot, {})
-    icon_path = folder / (slot + ".png")
-    if not icon_path.exists() or prior.get("name", result["item"]) != result["item"]:
-        x, ay, _ = tooltip_bounds(frame, allow_clipped_footer=True)
-        icon = frame[ay - 27 : ay + 49, x + 19 : x + 95]
-        write_png(icon_path, cv2.resize(icon, (34, 34), interpolation=cv2.INTER_AREA))
-    item = (
-        dict(prior)
-        if prior.get("name", result["item"]) == result["item"]
-        else {k: v for k, v in prior.items() if k in ("occupied", "icon_hash")}
-    )
-    item.update({k: v for k, v in result.items() if k not in ("kind", "errors", "slot", "slot_verified", "readings", "item")})
-    item.update(name=result["item"], updated=profiles.now(), hover_scanned=True)
-    if result.get("flameable") is False:
-        item.pop("stats", None)
-    if result.get("cubeable") is False:
-        item.pop("potential", None)
-    if item.get("potential"):
-        item["potential"]["scanned_at"] = profiles.now()
-    if not item.get("required_level"):
-        from cubing.item_database import metadata
-
-        meta = metadata(item["name"], slot)
-        if meta:
-            item["required_level"] = meta["level"]
-    if "stats" in item and item.get("flameable") is not False:
-        item["status"] = "scanned"
-    profile["equipment"][slot] = item
-
-
-def _save_weapon_attack(profile, result):
-    from scouter import profiles
-
-    info = profiles.load(profile["id"])["class_info"]
-    value = result["weapon_attack"].get("MATT" if info["main"] == "INT" else "ATT")
-    if value is not None:
-        profiles.save_scan(
-            profile["id"], {"stat.weaponAtk": {"value": str(value), "confidence": 1}}, [], profiles.now()
-        )
-
-
-def _save_ring_level(profile, result):
-    from scouter import profiles
-
-    key = {
-        "Continuous Ring": "continuosRing",
-        "Ring of Restraint": "restraintRing",
-        "Weapon Jump Ring": "weaponRing",
-    }[result["item"]]
-    profiles.save_scan(
-        profile["id"], {"special." + key: {"value": str(result["ring_level"]), "confidence": 1}}, [], profiles.now()
-    )
-
-
-def save(profile, result, frame):
-    from flaming import characters
-
-    folder = characters.PROFILE_DIR / profile["id"]
-    folder.mkdir(parents=True, exist_ok=True)
     if result["kind"] == "equipment":
-        _save_equipment_grid(profile, result, frame, folder)
-    else:
-        _save_hover_item(profile, result, frame, folder)
-    characters.write(profile)
-    if result.get("weapon_attack"):
-        _save_weapon_attack(profile, result)
-    if result.get("ring_level"):
-        _save_ring_level(profile, result)
+        return {
+            slot: encode_png(frame[y : y + h, x : x + w])
+            for slot, reading in result["slots"].items()
+            for x, y, w, h in [reading["icon_box"]]
+        }
+    return {result["slot"]: hover_icon(frame)}

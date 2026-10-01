@@ -12,6 +12,7 @@ logs/
 dist/
 Hascone-data/
 # Desktop app data when the repo root is the data directory (start.bat)
+/cache/
 /runtime/
 /webview2/
 

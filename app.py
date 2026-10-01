@@ -1,6 +1,5 @@
 """Hascone: MapleStory equipment scanning and Scouter."""
 
-import base64
 import copy
 import io
 import os
@@ -20,8 +19,6 @@ os.chdir(DATA_ROOT)
 SERVER_PORT = int(os.environ.get("HASCONE_PORT", "5001"))
 sys.path.insert(0, str(ROOT / "src"))
 
-import cv2
-import numpy as np
 from flask import Flask, jsonify, request, send_from_directory
 from werkzeug.exceptions import HTTPException
 
@@ -227,7 +224,7 @@ def character(identifier):
     from cubing.scoring import current_score
     from flaming.character_score import scoring
     from flaming.score import flame_score
-    from flaming.vision import Stat
+    from flaming.stats import Stat
 
     data = characters.load(identifier)
     score, data["flame_scoring"] = scoring(data)
@@ -259,7 +256,7 @@ def flame_tiers(identifier, slot):
 
 @app.post("/api/characters/<identifier>/equipment/<slot>/flame")
 def edit_flame(identifier, slot):
-    from flaming.vision import PERCENT_STATS, STAT_NAMES
+    from flaming.stats import PERCENT_STATS, STAT_NAMES
     if slot not in LAYOUT["slots"]:
         raise ValueError("Unknown equipment slot")
     body = request.get_json() or {}
@@ -616,15 +613,30 @@ def hover_queue_reset(identifier):
 
 @app.post("/api/scan/cancel")
 def cancel_scan():
+    """Stop the current scan. With "release" (the guide closed), also close the scan processes."""
     global generation, preview, job
-    import capture
+    import scan_worker
 
     with job_lock:
         generation += 1
-        capture.stop()
+        scan_worker.stop()
         preview = None
         job = {"active": False, "status": "cancelled", "message": "Capture discarded."}
-        return jsonify(job)
+        state = dict(job)
+    if (request.get_json(silent=True) or {}).get("release"):
+        _release_scan_processes()
+    return jsonify(state)
+
+
+def _release_scan_processes():
+    """Close the scanner; close OCR too unless background reads still need it."""
+    import hover_queue
+    import ocr_worker
+    import scan_worker
+
+    scan_worker.release()
+    if not any(state["pending"] for state in hover_queue.all_status().values()):
+        ocr_worker.release()
 
 
 @app.post("/api/scan")
@@ -671,7 +683,12 @@ def start_scan():
             "message": "Watching for the requested panel..." if body.get("watch") else f"Capturing in {delay:g} seconds. Follow the prompt in game.",
         }
         scan_executor.submit(perform, copy.deepcopy(body), token, stamp, delay)
-        return jsonify(job)
+        state = dict(job)
+    import ocr_worker
+
+    # Load OCR while the player lines up the first panel or item.
+    ocr_worker.warm()
+    return jsonify(state)
 
 
 @dataclass
@@ -723,11 +740,14 @@ def _finish_stable_scan(body, result, current):
         job = {"active": False, "status": "error", "message": str(exc)}
 
 
-def _save_hover_capture(character, result, frame):
-    from equipment_scan import save
+def _hover_saver(icons):
+    """Save a clean background read, with the icon cut when its tooltip was captured."""
+    from equipment_save import save
 
-    with characters.lock, profiles.lock:
-        save(characters.load(character), result, frame)
+    def store(character, result):
+        with characters.lock, profiles.lock:
+            save(characters.load(character), result, icons)
+    return store
 
 
 def _hover_watch(body, token):
@@ -736,25 +756,15 @@ def _hover_watch(body, token):
     "hover:any" accepts whichever of body["slots"] is hovered, in any order.
     """
     global job
-    import capture
     import hover_queue
-    from equipment_scan import hover_capture_ready, hover_target
+    import scan_worker
 
-    requested = body["mode"].split(":")[1]
-    slots = body["slots"] if requested == "any" else [requested]
     while True:
         with job_lock:
             if token != generation:
                 return
         try:
-            # Check one frame cheaply; only a promising one gets a second frame.
-            raw_pointer = capture.pointer(body["window"])
-            first = _scan_frame(body)
-            from game_resolution import scan_point
-            pointer = scan_point(raw_pointer, body.get("_scan_scale", 1))
-            slot, origin, bounds = hover_target(first, pointer, slots)
-            second = _scan_frame(body)
-            hover_capture_ready(first, second, slot, origin, bounds, _scan_pointer(body))
+            slot, second, icons = scan_worker.call("hover_step", body)
         except (ImportError, AttributeError, TypeError) as exc:
             with job_lock:
                 if token == generation:
@@ -771,7 +781,7 @@ def _hover_watch(body, token):
         with job_lock:
             if token != generation:
                 return
-            hover_queue.submit(body["character"], slot, second, _save_hover_capture)
+            hover_queue.submit(body["character"], slot, second, _hover_saver(icons))
             job = {
                 "active": False,
                 "status": "captured",
@@ -802,7 +812,7 @@ def _save_character_result(body, result, baseline=None):
             baseline = copy.deepcopy(current.get("manual_versions", {}))
         values, shine = result.get("values", {}), None
         if result.get("shine_page"):
-            from scouter.shine_scan import prepare_save
+            from scouter.shine_levels import prepare_save
             values, shine = prepare_save(current, result["shine_page"], body.get("session"), baseline)
         if any(current.get("manual_versions", {}).get(key) != baseline.get(key) for key in values):
             raise ValueError("These inputs changed during processing. Scan this step again.")
@@ -813,7 +823,7 @@ def _save_character_result(body, result, baseline=None):
 def _character_watch(body, token):
     global job
     import hover_queue
-    from scouter.capture_ready import regions, stable
+    import scan_worker
 
     while True:
         with job_lock:
@@ -821,15 +831,7 @@ def _character_watch(body, token):
                 return
         try:
             profile = profiles.load(body["character"])
-            first = _scan_frame(body)
-            crops = regions(first, body["mode"], _scan_pointer(body), profile["class_info"])
-            time.sleep(0.15)
-            second = _scan_frame(body)
-            stable(crops, regions(second, body["mode"], _scan_pointer(body), profile["class_info"]))
-            result = None
-            if body["mode"] == "hexa":
-                from scouter.hexa_scan import read_matrix
-                result = read_matrix(second)
+            second, result = scan_worker.call("character_step", body, profile["class_info"])
             with job_lock:
                 if token != generation:
                     return
@@ -850,10 +852,18 @@ def _character_watch(body, token):
 
 
 def perform(body, token, stamp, delay):
-    import capture
+    global job
+    import scan_worker
 
-    with capture.session():
-        _perform(body, token, stamp, delay)
+    try:
+        with scan_worker.session():
+            _perform(body, token, stamp, delay)
+    except Exception as exc:
+        # The scanner failed to start or stopped; don't leave the job looking active.
+        with job_lock:
+            if token == generation and job.get("active"):
+                job = {"active": False, "status": "error", "message": str(exc)}
+        raise
 
 
 def _perform(body, token, stamp, delay):
@@ -907,65 +917,12 @@ def _wait_out_delay(token, delay):
     return False
 
 
-def _scan_frame(body):
-    import capture
-    from game_resolution import normalize_scan
-
-    image, scale = normalize_scan(capture.frame(body["window"]), body["mode"])
-    body["_scan_scale"] = scale
-    return image
-
-
-def _scan_pointer(body):
-    import capture
-    from game_resolution import scan_point
-
-    return scan_point(capture.pointer(body["window"]), body.get("_scan_scale", 1))
-
-
 def _acquire_scan_image(body):
     """Capture or decode the source frame, verifying the expected hover slot stayed put."""
-    if body.get("image"):
-        from game_resolution import normalize_scan
-        image = cv2.imdecode(
-            np.frombuffer(base64.b64decode(body["image"], validate=True), dtype=np.uint8),
-            cv2.IMREAD_COLOR,
-        )
-        image, body["_scan_scale"] = normalize_scan(image, body["mode"])
-        return image, None
-    import capture
+    import scan_worker
 
-    mode = body["mode"]
-    from game_resolution import scan_point
-    raw_pointer = capture.pointer(body["window"]) if mode.startswith(("hover:", "tooltip:")) else None
-    image = _scan_frame(body)
-    before_pointer = scan_point(raw_pointer, body.get("_scan_scale", 1))
-    if mode.startswith("hover:"):
-        from equipment_scan import hovered_slot
-
-        expected = mode.split(":")[1]
-        if hovered_slot(image, before_pointer) != expected or hovered_slot(image, _scan_pointer(body)) != expected:
-            raise ValueError("Hover your " + expected.replace("_", " ") + " in Equipment.")
+    image, before_pointer, body["_scan_scale"] = scan_worker.call("acquire", body)
     return image, before_pointer
-
-
-def _verify_hover_settled(mode, body, image):
-    from equipment_scan import hovered_slot
-
-    expected = mode.split(":")[1]
-    if hovered_slot(image, _scan_pointer(body)) != expected:
-        raise ValueError("The cursor moved before the reading finished. Hold it over " + expected + ".")
-
-
-def _verify_tooltip_hover(mode, body, image, before_pointer):
-    from scouter.vision import verify_hover
-
-    info = profiles.load(body["character"])["class_info"]
-    key = mode.split(":")[1]
-    stat = {"mainStat": info["main"], "subStat": info["sub"], "ssubStat": info.get("sub2"),
-            "atk": "MATT" if info["main"] == "INT" else "ATT"}[key]
-    verify_hover(image, before_pointer, stat)
-    verify_hover(image, _scan_pointer(body), stat)
 
 
 def _tooltip_values(mode, values):
@@ -979,13 +936,6 @@ def _tooltip_values(mode, values):
         ]
         if source in values
     }
-
-
-def _verify_weapon_hover(body, image):
-    from equipment_scan import hovered_slot
-
-    if hovered_slot(image, _scan_pointer(body)) != "weapon":
-        raise ValueError("Hover your equipped weapon.")
 
 
 def _weapon_values(body, values):
@@ -1003,18 +953,14 @@ def _hexa_values(body, values):
 
 def _finalize_result(mode, body, image, before_pointer, result):
     """Apply mode-specific hover verification and value reshaping to a raw read()."""
-    live = not body.get("image")
-    if mode.startswith("hover:") and live:
-        _verify_hover_settled(mode, body, image)
-        result["slot_verified"] = True
-    if mode.startswith("tooltip:") and live:
-        _verify_tooltip_hover(mode, body, image, before_pointer)
+    if not body.get("image") and (mode.startswith(("hover:", "tooltip:")) or mode == "weapon"):
+        import scan_worker
+
+        info = profiles.load(body["character"])["class_info"] if mode.startswith("tooltip:") else None
+        scan_worker.call("verify", body, image, before_pointer, info)
         result["slot_verified"] = True
     if mode.startswith("tooltip:"):
         result["values"] = _tooltip_values(mode, result["values"])
-    if mode == "weapon" and live:
-        _verify_weapon_hover(body, image)
-        result["slot_verified"] = True
     if mode == "weapon":
         result["values"] = _weapon_values(body, result["values"])
     if mode == "hexa" or mode.startswith(("hexa_hover:", "shine:")):
@@ -1035,16 +981,17 @@ def perform_once(body, token, stamp, delay):
                 status="reading",
                 message="Reading cropped regions. First use loads the OCR model and takes longer.",
             )
+        import scan_worker
         from ocr_worker import read
 
         mode = body["mode"]
         result = read(image, "tooltip" if mode.startswith("tooltip:") else mode)
         result = _finalize_result(mode, body, image, before_pointer, result)
-        png = cv2.imencode(".png", image)[1].tobytes()
+        png, icons = scan_worker.call("render", image, mode, result)
         with job_lock:
             if token != generation:
                 return
-            preview = {"body": body, "result": result, "stamp": stamp, "png": png}
+            preview = {"body": body, "result": result, "stamp": stamp, "png": png, "icons": icons}
             job.update(
                 active=bool(body.get("watch")),
                 status="reading" if body.get("watch") else "review",
@@ -1073,10 +1020,9 @@ def save_scan():
         if profiles.fingerprint(current) != preview["stamp"]:
             raise ValueError("Profile changed after capture. Capture again before saving.")
         if gear:
-            from equipment_scan import save
+            from equipment_save import save
 
-            frame = cv2.imdecode(np.frombuffer(preview["png"], np.uint8), cv2.IMREAD_COLOR)
-            save(current, result, frame)
+            save(current, result, preview.get("icons"))
             message = "Equipment readings saved."
         else:
             _save_character_result(body, result)
@@ -1095,9 +1041,12 @@ if __name__ == "__main__":
         from werkzeug.serving import make_server
 
         import ocr_worker
+        import scan_worker
 
-        # OCR runs in its own lower-priority process; capture stays responsive.
+        # Capture and OCR each run in their own process, started for a scan and
+        # closed after it; OCR runs at lower priority so capture stays responsive.
         ocr_worker.enable()
+        scan_worker.enable()
 
         server = make_server("127.0.0.1", SERVER_PORT, app, threaded=True)
         SERVER_PORT = server.server_port
