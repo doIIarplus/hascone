@@ -469,7 +469,8 @@ def summary():
             "hexa":calculated.get("boss380_hexaStat"),"result_created":(result or {}).get("created"),"stale":bool(result and not current),
             "scanned":sum(bool(item.get("hover_scanned")) for item in equipment.values()),"equipped":len(equipment),
             "stars":sum(item.get("starforce",{}).get("stars",0) for item in equipment.values() if item.get("starforce",{}).get("status")=="scanned"),
-            "fragments":spent,"fragments_partial":partial,"fragments_minimum":minimum,"cp":_combat_power(user)})
+            "fragments":spent,"fragments_partial":partial,"fragments_minimum":minimum,
+            "erda_link":bool(data["class_info"].get("shine")),"cp":_combat_power(user)})
     return jsonify(profiles=rows)
 
 
