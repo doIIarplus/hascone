@@ -381,6 +381,9 @@ input[type="checkbox"][role="switch"]:disabled { opacity: .4; cursor: not-allowe
 .sc-identity select { max-width:100%; }
 .scouter .sc-group > summary { border-bottom:1px solid transparent; padding:14px 16px; }
 .scouter .sc-group[open] > summary { border-color:var(--border); margin-bottom:16px; }
+.sc-connection { margin-top:12px; }
+.sc-connection-row { display:flex; gap:8px; align-items:center; }
+.sc-connection-row .input { flex:1; min-width:0; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:12px; }
 .sc-field > label { display:flex; align-items:center; flex-wrap:wrap; gap:5px; }
 .sc-field > label > img { width:22px; height:22px; object-fit:contain; image-rendering:pixelated; }
 .scouter .sc-stats-group { display:flex; flex-direction:column; gap:16px; }

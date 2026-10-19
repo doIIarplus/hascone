@@ -49,6 +49,10 @@ export async function mountScouter(view) {
       <div class="sc-identity"><strong>${esc(characters.find(c=>c.id===selected)?.name||'')}</strong><select class="input" id="sc-character" hidden>${characters.map(c => `<option value="${esc(c.id)}" ${c.id===selected?'selected':''}>${esc(c.name)} · ${esc(human(c.class))}</option>`).join('')}</select><div class="sub" id="sc-scan-date">No scan yet</div></div>
       <div class="sc-actions"><button class="btn btn-primary" id="sc-scan" title="Use your bossing preset with 100% critical rate. Follow the panel and hover prompts, then review buffs, rings and Legion before calculating.">Scan stats from game</button><button class="btn" id="sc-preset-export">Export to MapleScouter</button><button class="btn btn-ghost sc-help" id="sc-prep" title="${esc(PREP)}" aria-label="How to prepare for scanning">?</button><button class="btn btn-danger" id="sc-stop">Stop</button></div>
     </div><div id="sc-progress" role="status" aria-live="polite"></div></section>
+    <details class="card sc-group sc-connection"><summary>MapleScouter connection</summary><div class="card-body">
+      <p class="sub">Optional. If Calculate is blocked by Cloudflare, open <a href="https://maplescouter.com/en/input" target="_blank" rel="noopener noreferrer">maplescouter.com</a> in Chrome, open DevTools (F12) → Network, run a calculation there, then copy the <code>cookie</code> value from the <code>calc/dmg</code> request headers and paste it below. Cookies can expire; copy a fresh one if Calculate starts failing again.</p>
+      <div class="sc-connection-row"><input class="input" id="sc-cookie" type="text" spellcheck="false" autocomplete="off" aria-label="MapleScouter browser cookie" placeholder="Paste the cookie request header from your browser"><button class="btn" id="sc-cookie-save">Save</button></div>
+    </div></details>
     <div id="sc-problem" class="sc-problem" role="alert"></div><nav class="fl-subtabs sc-tabs" role="tablist" aria-label="Scouter view"><button class="btn" id="sc-tab-inputs" role="tab" aria-controls="sc-panel-inputs" data-sc-tab="inputs">Inputs</button><button class="btn" id="sc-tab-results" role="tab" aria-controls="sc-panel-results" data-sc-tab="results">Results</button><button class="btn" id="sc-tab-simulator" role="tab" aria-controls="sc-panel-simulator" data-sc-tab="simulator">Simulator</button><button class="btn" id="sc-tab-suggestions" role="tab" aria-controls="sc-panel-suggestions" data-sc-tab="suggestions">Compare upgrades</button><button class="btn" id="sc-tab-efficiencies" role="tab" aria-controls="sc-panel-efficiencies" data-sc-tab="efficiencies">Efficiencies</button></nav><div class="sc-layout"><section class="sc-inputs" id="sc-panel-inputs" role="tabpanel" aria-labelledby="sc-tab-inputs"><div class="sc-section-title"><h2>Inputs</h2><span class="sub" id="sc-missing"></span><span class="sub sc-save-status" id="sc-save-status" role="status" aria-live="polite">Saved</span></div>
       <div id="sc-missing-links" class="sc-missing-links"></div><div id="sc-fields"></div></section><section class="sc-results" id="sc-panel-results" role="tabpanel" aria-labelledby="sc-tab-results"><div class="sc-section-title"><h2>Results</h2></div>
       <div class="sub sc-note">Scores come directly from MapleScouter. Calculations save a snapshot of these inputs.</div>
@@ -357,6 +361,13 @@ export async function mountScouter(view) {
   q('#sc-stop').onclick=async()=>{try {await api.post('/api/scouter/cancel',{});status('Stop requested.');}catch(e){toast(e.message,'danger');}};
   q('#sc-preset-export').onclick=exportPreset;
   q('#sc-prep').onclick=()=>window.open('https://maplescouter.com/en/input','_blank','noopener,noreferrer');
+  api.get('/api/scouter/settings').then(s=>{if(!disposed)q('#sc-cookie').value=s.cookie||'';}).catch(()=>{});
+  q('#sc-cookie-save').onclick=async()=>{
+    const button=q('#sc-cookie-save');button.disabled=true;
+    try{await api.post('/api/scouter/settings',{cookie:q('#sc-cookie').value.trim()});toast('MapleScouter cookie saved.');}
+    catch(e){toast(e.message,'danger');}
+    finally{if(!disposed)button.disabled=false;}
+  };
   q('#sc-name-form').onsubmit=e=>{e.preventDefault();action(async()=>{const record=selectedResult;const saved=await api.post(`${endpoint()}/history/${encodeURIComponent(record)}/name`,{name:q('#sc-snapshot-name').value});profile.history.find(r=>r.id===record).name=saved.name;renderResults();});};
   q('#sc-history').onchange=()=>{selectedResult=q('#sc-history').value;renderResults();};
   // Delete the selected saved calculation, with its simulations, after confirmation.
@@ -404,7 +415,7 @@ export async function mountScouter(view) {
       if(!calc.active&&!dirty&&!pending)await api.post(`/api/characters/${id()}/progression`,{});
     }catch(e){if(!disposed)status(e.message);}finally{polling=false;}
   }
-  if(!characters.length){status('Add a character profile first.');q('#sc-scan').disabled=true;q('#sc-calculate').disabled=true;return ()=>{disposed=true;window.removeEventListener('portrait-refreshed',onPortrait);suggestions.dispose();disposeTooltips();};}
+  if(!characters.length){status('Add a character profile first.');q('#sc-cookie-save').disabled=true;q('#sc-scan').disabled=true;q('#sc-calculate').disabled=true;return ()=>{disposed=true;window.removeEventListener('portrait-refreshed',onPortrait);suggestions.dispose();disposeTooltips();};}
   await load();
   showTab(activeTab);
   const timer=setInterval(tick,1200);tick();

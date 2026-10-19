@@ -239,3 +239,59 @@ def test_required_inputs_follow_website_class_conditions(name):
     assert ("linkSkill.kaiser" in paths) == (name == "Kaiser")
     assert "linkSkill.hayato" not in paths
     assert "special.ringOfSum" not in paths
+
+
+def test_scouter_settings_cookie_roundtrip_and_validation(tmp_path, monkeypatch):
+    from scouter import settings
+
+    monkeypatch.setattr(settings, "PATH", tmp_path / "scouter_settings.json")
+    assert settings.read() == {"cookie": ""}
+    settings.save("cf_clearance=abc; __cfwaitingroom=xyz")
+    assert settings.read() == {"cookie": "cf_clearance=abc; __cfwaitingroom=xyz"}
+    settings.save("  ")
+    assert settings.read() == {"cookie": ""}
+    with pytest.raises(ValueError, match="8192"):
+        settings.save("x" * 8193)
+
+
+def test_post_sends_saved_cookie(tmp_path, monkeypatch):
+    from scouter import settings
+
+    monkeypatch.setattr(settings, "PATH", tmp_path / "scouter_settings.json")
+    settings.save("__cfwaitingroom=abc")
+
+    captured = {}
+
+    class Response:
+        status_code = 201
+
+        def json(self):
+            return {"ok": True}
+
+    def post(url, json=None, headers=None, timeout=None, allow_redirects=False):
+        captured.update(headers)
+        return Response()
+
+    monkeypatch.setattr(client.requests, "post", post)
+    client._post("/api/calc/dmg", {"userStat": {}}, {"api-key": "k"}, threading.Event())
+    assert captured["cookie"] == "__cfwaitingroom=abc"
+    assert captured["api-key"] == "k"
+
+
+def test_post_without_saved_cookie_sends_no_cookie_header(tmp_path, monkeypatch):
+    from scouter import settings
+
+    monkeypatch.setattr(settings, "PATH", tmp_path / "scouter_settings.json")
+    settings.save("")
+
+    captured = {}
+
+    class Response:
+        status_code = 201
+
+        def json(self):
+            return {"ok": True}
+
+    monkeypatch.setattr(client.requests, "post", lambda url, json=None, headers=None, timeout=None, allow_redirects=False: captured.update(headers) or Response())
+    client._post("/api/calc/dmg", {"userStat": {}}, {"api-key": "k"}, threading.Event())
+    assert "cookie" not in captured

@@ -430,6 +430,20 @@ def scouter_icon(name):
     return send_from_directory(ROOT / "src/scouter/data/icons", name)
 
 
+@app.get("/api/scouter/settings")
+def scouter_settings():
+    from scouter import settings
+
+    return jsonify(settings.read())
+
+
+@app.post("/api/scouter/settings")
+def scouter_settings_save():
+    from scouter import settings
+
+    return jsonify(settings.save((request.get_json(silent=True) or {}).get("cookie", "")))
+
+
 @app.get("/api/scouter/state")
 def calculation_state():
     return jsonify(service.state())

@@ -9,8 +9,34 @@ from urllib.parse import quote
 
 import requests
 
+from scouter import settings
+
 SITE = "https://maplescouter.com"
 API = "https://api.maplescouter.com"
+
+# api.maplescouter.com sits behind a Cloudflare WAF that answers bare HTTP
+# clients (e.g. python-requests) with a 403 challenge page. These headers are
+# captured from the site's own browser traffic; with them the same requests
+# reach the API. Keep them in sync with a real Chrome request to
+# maplescouter.com if the WAF starts blocking again.
+_BROWSER_HEADERS = {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9",
+    "cache-control": "public, max-age=300",
+    "origin": SITE,
+    "priority": "u=1, i",
+    "referer": SITE + "/",
+    "sec-ch-ua": '"Google Chrome";v="155", "Chromium";v="155", "Not(A:Brand";v="24"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Windows"',
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "user-agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+    ),
+}
 _lock = threading.Lock()
 _headers = None
 _headers_at = 0
@@ -47,7 +73,7 @@ def public_headers(cancelled):
     def download(url):
         if cancelled.is_set():
             raise ValueError("Calculation cancelled")
-        response = requests.get(url, timeout=(10, 20), allow_redirects=False)
+        response = requests.get(url, headers=cookie_headers(), timeout=(10, 20), allow_redirects=False)
         if response.status_code != 200:
             raise ValueError(f"Could not read MapleScouter client (HTTP {response.status_code})")
         return response.text
@@ -59,9 +85,8 @@ def public_headers(cancelled):
         match = re.search(r'"api-key"\s*:\s*"([^"\n]+)"', content)
         if match and API in content:
             _headers = {
-                "Content-Type": "application/json",
-                "Origin": SITE,
-                "Referer": SITE + "/",
+                **_BROWSER_HEADERS,
+                "content-type": "application/json",
                 "api-key": match[1],
             }
             _headers_at = time.monotonic()
@@ -96,6 +121,16 @@ def optimizer_body(user, result):
     }
 
 
+def cookie_headers():
+    """Optional browser cookie from the Scouter settings, if the user saved one.
+
+    Read on every request: a pasted cookie can expire and be replaced, and it
+    must not wait out the one-hour api-key header cache.
+    """
+    cookie = settings.read()["cookie"]
+    return {"cookie": cookie} if cookie else {}
+
+
 def _post(endpoint, body, headers, cancelled):
     global _previous, _headers
     if cancelled.wait(max(0, 6 - (time.monotonic() - _previous))):
@@ -103,7 +138,11 @@ def _post(endpoint, body, headers, cancelled):
     _previous = time.monotonic()
     try:
         response = requests.post(
-            API + endpoint, json=body, headers=headers, timeout=(10, 45), allow_redirects=False
+            API + endpoint,
+            json=body,
+            headers={**headers, **cookie_headers()},
+            timeout=(10, 45),
+            allow_redirects=False,
         )
     except requests.RequestException as exc:
         raise ValueError("Could not reach MapleScouter. Your inputs are saved; try again later.") from exc
