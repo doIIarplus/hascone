@@ -22,13 +22,14 @@ const EFF = {dmgeff1:'Damage +1%', atkeff1:'Attack +1', atkPereff1:'Attack +1%',
   igreff1_380:'IED +1% · 380 DEF', mainStateff1:'Main stat +1', mainStatPereff1:'Main stat +1%',
   subStateff1:'Secondary stat +1', subStatPereff1:'Secondary stat +1%', allStatEff:'All stat +1%'};
 
-export async function mountScouter(view) {
+export async function mountScouter(view,{resultId=null}={}) {
   view.classList.add('scouter');
-  let profile, draft = {}, dirty = false, disposed = false, pending = false, selectedResult = '', polling = false;
+  let profile, draft = {}, dirty = false, disposed = false, pending = false, selectedResult = resultId || '', polling = false;
   let activeTab = ['results','simulator','suggestions','efficiencies'].includes(localStorage.getItem('hascone.scouter.tab')) ? localStorage.getItem('hascone.scouter.tab') : 'inputs';
+  if(resultId)activeTab='results';
   let lastSimulation=false, lastSuggestions=false, pollGeneration=0;
   let bossFilter = 'relevant';
-  let lastCalculation = false, portrait = null;
+  let lastCalculation = false, lastConnection = false, portrait = null;
   const urls = new Map();
   let saveTimer=null, saveFlight=null, editSerial=0;
   const edits=new Map();
@@ -49,10 +50,6 @@ export async function mountScouter(view) {
       <div class="sc-identity"><strong>${esc(characters.find(c=>c.id===selected)?.name||'')}</strong><select class="input" id="sc-character" hidden>${characters.map(c => `<option value="${esc(c.id)}" ${c.id===selected?'selected':''}>${esc(c.name)} · ${esc(human(c.class))}</option>`).join('')}</select><div class="sub" id="sc-scan-date">No scan yet</div></div>
       <div class="sc-actions"><button class="btn btn-primary" id="sc-scan" title="Use your bossing preset with 100% critical rate. Follow the panel and hover prompts, then review buffs, rings and Legion before calculating.">Scan stats from game</button><button class="btn" id="sc-preset-export">Export to MapleScouter</button><button class="btn btn-ghost sc-help" id="sc-prep" title="${esc(PREP)}" aria-label="How to prepare for scanning">?</button><button class="btn btn-danger" id="sc-stop">Stop</button></div>
     </div><div id="sc-progress" role="status" aria-live="polite"></div></section>
-    <details class="card sc-group sc-connection"><summary>MapleScouter connection</summary><div class="card-body">
-      <p class="sub">Optional. If Calculate is blocked by Cloudflare, open <a href="https://maplescouter.com/en/input" target="_blank" rel="noopener noreferrer">maplescouter.com</a> in Chrome, open DevTools (F12) → Network, run a calculation there, then copy the <code>cookie</code> value from the <code>calc/dmg</code> request headers and paste it below. Cookies can expire; copy a fresh one if Calculate starts failing again.</p>
-      <div class="sc-connection-row"><input class="input" id="sc-cookie" type="text" spellcheck="false" autocomplete="off" aria-label="MapleScouter browser cookie" placeholder="Paste the cookie request header from your browser"><button class="btn" id="sc-cookie-save">Save</button></div>
-    </div></details>
     <div id="sc-problem" class="sc-problem" role="alert"></div><nav class="fl-subtabs sc-tabs" role="tablist" aria-label="Scouter view"><button class="btn" id="sc-tab-inputs" role="tab" aria-controls="sc-panel-inputs" data-sc-tab="inputs">Inputs</button><button class="btn" id="sc-tab-results" role="tab" aria-controls="sc-panel-results" data-sc-tab="results">Results</button><button class="btn" id="sc-tab-simulator" role="tab" aria-controls="sc-panel-simulator" data-sc-tab="simulator">Simulator</button><button class="btn" id="sc-tab-suggestions" role="tab" aria-controls="sc-panel-suggestions" data-sc-tab="suggestions">Compare upgrades</button><button class="btn" id="sc-tab-efficiencies" role="tab" aria-controls="sc-panel-efficiencies" data-sc-tab="efficiencies">Efficiencies</button></nav><div class="sc-layout"><section class="sc-inputs" id="sc-panel-inputs" role="tabpanel" aria-labelledby="sc-tab-inputs"><div class="sc-section-title"><h2>Inputs</h2><span class="sub" id="sc-missing"></span><span class="sub sc-save-status" id="sc-save-status" role="status" aria-live="polite">Saved</span></div>
       <div id="sc-missing-links" class="sc-missing-links"></div><div id="sc-fields"></div></section><section class="sc-results" id="sc-panel-results" role="tabpanel" aria-labelledby="sc-tab-results"><div class="sc-section-title"><h2>Results</h2></div>
       <div class="sub sc-note">Scores come directly from MapleScouter. Calculations save a snapshot of these inputs.</div>
@@ -83,9 +80,11 @@ export async function mountScouter(view) {
     q('#sc-progress').textContent=message;
     const text=String(message||'');
     const target=/critical/i.test(text)?'stat.critical':/HEXA.*(invalid|input)|invalid.*HEXA/i.test(text)?'hexa.hexaStat':null;
-    const error=/failed|error|invalid|rejected|impossible|could not|unavailable|requires.*100|100% critical|timed out|timeout|connection|HTTP [45]/i.test(text);
+    const error=/failed|error|invalid|rejected|impossible|could not|unavailable|requires.*100|100% critical|timed out|timeout|disconnected|verification window closed|still requires|HTTP [4-9]/i.test(text);
     const network=/HTTP|network|connect|timed out|API|client configuration/i.test(text);
-    q('#sc-problem').innerHTML=error?`<strong>Check this before retrying</strong><p>${esc(text)}</p>${network?'<p>Check your connection and whether MapleScouter opens in your browser. Retry Calculate after the service is available.</p><a class="btn" href="https://maplescouter.com/en/input" target="_blank" rel="noopener noreferrer">Open MapleScouter</a>':''}<button class="btn" id="sc-fix-input">${target?'Go to '+esc(target==='stat.critical'?'Critical Rate':'HEXA inputs'):'Review inputs and highlighted fields'}</button>`:'';
+    const verification=/HTTP 403|verification|browser.*(closed|disconnected)|disconnected.*browser/i.test(text);
+    q('#sc-problem').innerHTML=error?`<strong>Check this before retrying</strong><p>${esc(text)}</p>${verification?'<p>Complete verification in the browser, then retry Calculate. You can also export your inputs to MapleScouter.</p><button class="btn" id="sc-verify">Verify in browser</button>':network?'<p>Check your connection and whether MapleScouter opens in your browser. Retry Calculate after the service is available.</p><a class="btn" href="https://maplescouter.com/en/input" target="_blank" rel="noopener noreferrer">Open MapleScouter</a>':''}${!network&&!verification?`<button class="btn" id="sc-fix-input">${target?'Go to '+esc(target==='stat.critical'?'Critical Rate':'HEXA inputs'):'Review inputs and highlighted fields'}</button>`:''}`:'';
+    q('#sc-verify')?.addEventListener('click',verifyConnection);
     q('#sc-fix-input')?.addEventListener('click',()=>{showTab('inputs');const field=target?(q(`[data-path="${target}"]`)||(target.startsWith('hexa.')?q('[data-path^="hexa."]'):null)):q('[aria-invalid="true"]');revealSection(field);field?.scrollIntoView({block:'center'});field?.focus({preventScroll:true});});
   };
   const simulator=createSimulator(q('#sc-panel-simulator'),{
@@ -357,17 +356,24 @@ export async function mountScouter(view) {
     localStorage.setItem('hascone.scouter.character',next);window.dispatchEvent(new CustomEvent('character-selected',{detail:next}));selectedResult='';lastSimulation=false;lastSuggestions=false;await load();
   });
   q('#sc-scan').onclick=()=>action(async()=>{await save();window.dispatchEvent(new CustomEvent('scouter-guide',{detail:id()}));});
-  q('#sc-calculate').onclick=()=>action(async()=>{await save();showTab('results');const s=await api.post(`${endpoint()}/calculate`,{});lastCalculation=s.active;status(s.message);if(!s.active)await load();});
+  q('#sc-calculate').onclick=()=>action(async()=>{
+    await save();showTab('results');
+    const target=id(), s=await api.post(`${endpoint()}/calculate`,{});
+    window.dispatchEvent(new CustomEvent('scouter-calculated',{detail:s}));
+    if(disposed||target!==id())return;
+    lastCalculation=s.active;status(s.message);
+    if(!s.active){
+      if(s.status==='complete'&&s.result_id)selectedResult=s.result_id;
+      await load();
+    }
+  });
   q('#sc-stop').onclick=async()=>{try {await api.post('/api/scouter/cancel',{});status('Stop requested.');}catch(e){toast(e.message,'danger');}};
   q('#sc-preset-export').onclick=exportPreset;
   q('#sc-prep').onclick=()=>window.open('https://maplescouter.com/en/input','_blank','noopener,noreferrer');
-  api.get('/api/scouter/settings').then(s=>{if(!disposed)q('#sc-cookie').value=s.cookie||'';}).catch(()=>{});
-  q('#sc-cookie-save').onclick=async()=>{
-    const button=q('#sc-cookie-save');button.disabled=true;
-    try{await api.post('/api/scouter/settings',{cookie:q('#sc-cookie').value.trim()});toast('MapleScouter cookie saved.');}
-    catch(e){toast(e.message,'danger');}
-    finally{if(!disposed)button.disabled=false;}
-  };
+  function verifyConnection(){return action(async()=>{
+    await save();const state=await api.post('/api/scouter/connect',{});
+    lastConnection=state.active;status(state.message);
+  });}
   q('#sc-name-form').onsubmit=e=>{e.preventDefault();action(async()=>{const record=selectedResult;const saved=await api.post(`${endpoint()}/history/${encodeURIComponent(record)}/name`,{name:q('#sc-snapshot-name').value});profile.history.find(r=>r.id===record).name=saved.name;renderResults();});};
   q('#sc-history').onchange=()=>{selectedResult=q('#sc-history').value;renderResults();};
   // Delete the selected saved calculation, with its simulations, after confirmation.
@@ -391,6 +397,9 @@ export async function mountScouter(view) {
     try {
       const calc=await api.get('/api/scouter/state');
       if(disposed||generation!==pollGeneration)return;
+      const connecting=calc.active&&calc.kind==='connection';
+      if(connecting||lastConnection)status(calc.message);
+      lastConnection=connecting;
       const simulating=calc.active&&calc.kind==='simulation'&&calc.profile===id();
       const suggesting=calc.active&&calc.kind==='suggestions'&&calc.profile===id();
       const calculating=calc.active&&!['simulation','suggestions'].includes(calc.kind)&&calc.profile===id();
@@ -408,16 +417,28 @@ export async function mountScouter(view) {
       lastSimulation=simulating;
       if(calculating)status(calc.message);
       if(lastCalculation&&!calculating){
-        await save();await load();status(calc.message);
+        const target=id();
+        await save();
+        if(disposed||target!==id())return;
+        if(calc.profile===target&&calc.status==='complete'&&calc.result_id){
+          selectedResult=calc.result_id;showTab('results');
+        }
+        await load();status(calc.message);
       }
       lastCalculation=calculating;
       q('#sc-calculate').disabled=!!calc.active||missingCount()>0;
       if(!calc.active&&!dirty&&!pending)await api.post(`/api/characters/${id()}/progression`,{});
     }catch(e){if(!disposed)status(e.message);}finally{polling=false;}
   }
-  if(!characters.length){status('Add a character profile first.');q('#sc-cookie-save').disabled=true;q('#sc-scan').disabled=true;q('#sc-calculate').disabled=true;return ()=>{disposed=true;window.removeEventListener('portrait-refreshed',onPortrait);suggestions.dispose();disposeTooltips();};}
+  if(!characters.length){status('Add a character profile first.');q('#sc-scan').disabled=true;q('#sc-calculate').disabled=true;return ()=>{disposed=true;window.removeEventListener('portrait-refreshed',onPortrait);suggestions.dispose();disposeTooltips();};}
   await load();
   showTab(activeTab);
   const timer=setInterval(tick,1200);tick();
-  return ()=>{disposed=true;window.removeEventListener('portrait-refreshed',onPortrait);suggestions.dispose();disposeTooltips();clearInterval(timer);clearTimeout(saveTimer);if(dirty)void save().catch(()=>{});if(portrait)URL.revokeObjectURL(portrait);for(const u of urls.values())URL.revokeObjectURL(u);};
+  const cleanup=()=>{disposed=true;window.removeEventListener('portrait-refreshed',onPortrait);suggestions.dispose();disposeTooltips();clearInterval(timer);clearTimeout(saveTimer);if(dirty)void save().catch(()=>{});if(portrait)URL.revokeObjectURL(portrait);for(const u of urls.values())URL.revokeObjectURL(u);};
+  cleanup.showResult=async result=>{
+    await save();if(disposed)return false;
+    selectedResult=result;await load();if(disposed)return false;
+    showTab('results');
+  };
+  return cleanup;
 }

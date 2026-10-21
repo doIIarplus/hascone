@@ -9,7 +9,7 @@ from urllib.parse import quote
 
 import requests
 
-from scouter import settings
+from scouter import browser, settings
 
 SITE = "https://maplescouter.com"
 API = "https://api.maplescouter.com"
@@ -59,6 +59,16 @@ def public_headers(cancelled):
     global _headers, _headers_at
     if _headers and time.monotonic() - _headers_at < 3600:
         return _headers
+    browser.ensure_network_allowed()
+
+    if browser.enabled():
+        response = browser.request("CONFIG", SITE + "/en/input", {}, cancelled)
+        key = get_json(response).get("api_key")
+        if not isinstance(key, str) or not key or len(key) > 1000 or "\r" in key or "\n" in key:
+            raise ValueError("MapleScouter client configuration changed; the integration needs an update")
+        _headers = {**_BROWSER_HEADERS, "content-type": "application/json", "api-key": key}
+        _headers_at = time.monotonic()
+        return _headers
 
     class Scripts(HTMLParser):
         def __init__(self):
@@ -67,13 +77,18 @@ def public_headers(cancelled):
 
         def handle_starttag(self, tag, attrs):
             src = dict(attrs).get("src", "")
-            if tag == "script" and re.fullmatch(r"/_next/static/chunks/[A-Za-z0-9_./%\-]+\.js", src):
+            if tag == "script" and re.fullmatch(r"/_next/static/chunks/[A-Za-z0-9_./%()\-]+\.js", src):
                 self.paths.append(src)
 
     def download(url):
         if cancelled.is_set():
             raise ValueError("Calculation cancelled")
-        response = requests.get(url, headers=cookie_headers(), timeout=(10, 20), allow_redirects=False)
+        if browser.enabled():
+            response = browser.request("GET", url, {}, cancelled)
+        else:
+            response = requests.get(url, headers=cookie_headers(), timeout=(10, 20), allow_redirects=False)
+            if response.headers.get("cf-mitigated") == "challenge":
+                response = browser.request("GET", url, {}, cancelled)
         if response.status_code != 200:
             raise ValueError(f"Could not read MapleScouter client (HTTP {response.status_code})")
         return response.text
@@ -84,6 +99,8 @@ def public_headers(cancelled):
         content = download(SITE + path)
         match = re.search(r'"api-key"\s*:\s*"([^"\n]+)"', content)
         if match and API in content:
+            if browser.enabled():
+                browser.finish_client(cancelled)
             _headers = {
                 **_BROWSER_HEADERS,
                 "content-type": "application/json",
@@ -133,17 +150,23 @@ def cookie_headers():
 
 def _post(endpoint, body, headers, cancelled):
     global _previous, _headers
+    browser.ensure_network_allowed()
     if cancelled.wait(max(0, 6 - (time.monotonic() - _previous))):
         raise ValueError("Calculation cancelled")
     _previous = time.monotonic()
     try:
-        response = requests.post(
-            API + endpoint,
-            json=body,
-            headers={**headers, **cookie_headers()},
-            timeout=(10, 45),
-            allow_redirects=False,
-        )
+        if browser.enabled():
+            response = browser.request("POST", API + endpoint, headers, cancelled, body)
+        else:
+            response = requests.post(
+                API + endpoint,
+                json=body,
+                headers={**headers, **cookie_headers()},
+                timeout=(10, 45),
+                allow_redirects=False,
+            )
+            if response.headers.get("cf-mitigated") == "challenge":
+                response = browser.request("POST", API + endpoint, headers, cancelled, body)
     except requests.RequestException as exc:
         raise ValueError("Could not reach MapleScouter. Your inputs are saved; try again later.") from exc
     if cancelled.is_set():

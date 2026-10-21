@@ -4,7 +4,7 @@ import copy
 import threading
 import uuid
 
-from scouter import client, profiles
+from scouter import browser, client, profiles
 from scouter.boss_cuts import with_boss_cuts
 
 _lock = threading.RLock()
@@ -14,7 +14,35 @@ _cancelled = threading.Event()
 
 def state():
     with _lock:
-        return copy.deepcopy(_job)
+        result = copy.deepcopy(_job)
+        if result["active"] and browser.status():
+            result["message"] = browser.status()
+        return result
+
+
+def connect():
+    global _cancelled, _job
+    with _lock:
+        if _job["active"]:
+            raise ValueError("Wait for the running Scouter job to finish, or stop it first.")
+        _cancelled = threading.Event()
+        _job = {"active": True, "status": "connecting", "kind": "connection",
+                "message": "Opening the MapleScouter verification browser..."}
+        threading.Thread(target=_connect, args=(_cancelled,), daemon=True, name="ScouterBrowser").start()
+        return state()
+
+
+def _connect(cancelled):
+    try:
+        browser.verify(cancelled)
+        with _lock:
+            _job.update(status="complete", message="MapleScouter is connected. You can calculate now.")
+    except Exception as exc:
+        with _lock:
+            _job.update(status="stopped" if cancelled.is_set() else "error", message=str(exc))
+    finally:
+        with _lock:
+            _job["active"] = False
 
 
 def stop():

@@ -52,6 +52,39 @@ def test_host_and_cross_origin_write_protection(client):
     assert client.post("/api/scan/cancel", base_url=BASE).status_code == 403
 
 
+def test_scouter_bridge_token_is_scoped(client, monkeypatch):
+    from scouter import browser
+
+    monkeypatch.setattr(browser, "poll", lambda **kwargs: None)
+    monkeypatch.setattr(browser, "_consumer", "test-connection-12345")
+    path = "/api/scouter/browser/jobs"
+    assert get(client, path).status_code == 403
+    assert client.get(path, base_url=BASE, headers={"X-Hascone-Browser-Token": "wrong"}).status_code == 403
+    headers = {"X-Hascone-Browser-Token": browser.TOKEN, "X-Hascone-Browser-Client": browser._consumer}
+    result = client.get(path, base_url=BASE, headers=headers).json
+    assert result["job"] is None and isinstance(result["busy"], bool)
+    assert client.post("/api/scouter/cancel", base_url=BASE, headers=headers).status_code == 403
+    assert client.get(path, base_url="http://evil.test:5001", headers=headers).status_code == 403
+
+
+def test_scouter_session_handoff_is_scoped_and_not_echoed(client, monkeypatch):
+    from scouter import browser, session
+
+    monkeypatch.setattr(browser, "_consumer", "test-session-connection")
+    monkeypatch.setattr(session, "_credentials", None)
+    path = "/api/scouter/browser/session"
+    body = {"user_agent": "test-agent", "cookies": [{"name": "session", "value": "private", "domain": ".maplescouter.com", "path": "/"}]}
+    assert post(client, path, body).status_code == 403
+    headers = {"X-Hascone-Browser-Token": browser.TOKEN, "X-Hascone-Browser-Client": browser._consumer}
+    result = client.post(path, json=body, base_url=BASE, headers=headers)
+    assert result.status_code == 200 and result.json == {"ok": True}
+    assert session.available()
+    assert client.get(path, base_url=BASE, headers=headers).status_code == 405
+    headers["X-Hascone-Browser-Client"] = "stale-connection"
+    assert client.post(path, json=body, base_url=BASE, headers=headers).status_code == 403
+
+
+
 def test_new_character_from_public_rankings(client, monkeypatch):
     response = Mock()
     response.json.return_value = {

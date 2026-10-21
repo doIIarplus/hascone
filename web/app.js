@@ -10,6 +10,7 @@ import {mountPotentialWeights} from './potential_weights.js';
 import {api} from './api.js';
 import {escapeHtml as esc,toast} from './ui.js';
 import {mountScouter} from './pages/scouter.js';
+import {watchScouterCompletion} from './scouter_completion.js';
 import {mountHexa} from './pages/hexa.js';
 import {mountBossing} from './pages/bossing.js';
 import {mountUpdates} from './updates.js';
@@ -24,6 +25,7 @@ import {refreshButton} from './portrait.js';
 let renderEpoch=0;
 const view=document.querySelector('#view');
 let page='home',dispose=null,slot='hat',selected=localStorage.getItem('hascone.character');
+let scouterResult=null;
 const human=s=>s.replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase());
 async function render(){
  const epoch=++renderEpoch;
@@ -40,7 +42,12 @@ async function render(){
  if(!selected){view.innerHTML='<section class="empty"><h1>Your characters, clearly measured.</h1><p class="sub">Scan flames, potentials and character stats. Compare gains with Scouter.</p><p>Add your first character to begin.</p><button class="btn btn-primary" id="first-add">+ Add character</button></section>';document.querySelector('#first-add').onclick=()=>document.querySelector('#add-dialog').showModal();return;}
  localStorage.setItem('hascone.scouter.character',selected);
  if(page==='home'){const host=document.createElement('div');view.replaceChildren(host);await mountHome(host,id=>navigate('equipment',id),async()=>{await render();if(selected)localStorage.setItem('hascone.character',selected);else{localStorage.removeItem('hascone.character');localStorage.removeItem('hascone.scouter.character');}});return;}
- if(page==='scouter'){dispose=await mountScouter(view);return;}
+ if(page==='scouter'){
+  const resultId=scouterResult;scouterResult=null;
+  const cleanup=await mountScouter(view,{resultId});
+  if(epoch!==renderEpoch)cleanup();else dispose=cleanup;
+  return;
+ }
  if(page==='bossing'){
   const host=document.createElement('div');view.replaceChildren(host);
   const cleanup=await mountBossing(host,selected,id=>navigate('bossing',id).catch(toast));
@@ -99,9 +106,9 @@ async function render(){
  }
  bindDetail();
 }
-async function navigate(nextPage,nextCharacter=selected){
- if(view.beforeLeave&&!(await view.beforeLeave())){document.querySelector('#character').value=selected;return;}
- view.beforeLeave=null;selected=nextCharacter;page=nextPage;localStorage.setItem('hascone.character',selected);await render();pageScroller().scrollTo({top:0,behavior:'instant'});
+async function navigate(nextPage,nextCharacter=selected,resultId=null){
+ if(view.beforeLeave&&!(await view.beforeLeave())){document.querySelector('#character').value=selected;return false;}
+ view.beforeLeave=null;selected=nextCharacter;page=nextPage;scouterResult=resultId;localStorage.setItem('hascone.character',selected);await render();pageScroller().scrollTo({top:0,behavior:'instant'});
 }
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>navigate(b.dataset.page).catch(toast));
 document.querySelector('#character').onchange=e=>navigate(page==='home'?'equipment':page,e.target.value).catch(toast);
@@ -118,7 +125,12 @@ document.querySelector('#add-form').onsubmit=async e=>{e.preventDefault();const 
 window.addEventListener('scouter-guide',async e=>{try{page='scouter';await render();await openGuide(e.detail,await api.get('/api/characters/'+e.detail+'/steps'),render);}catch(e){toast(e.message);}});
 window.addEventListener('character-selected',e=>{selected=e.detail;localStorage.setItem('hascone.character',selected);});
 const roster=mountRoster(id=>navigate(page==='home'?'equipment':page,id));
-render().catch(toast);
+render().then(()=>watchScouterCompletion(async(character,resultId)=>{
+ if(page==='scouter'&&selected===character&&dispose?.showResult){
+  return dispose.showResult(resultId);
+ }
+ return navigate('scouter',character,resultId);
+})).catch(toast);
 
 mountHeader();
 mountUpdates();

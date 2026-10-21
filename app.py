@@ -41,6 +41,14 @@ LAYOUT = read_payload_json("src/flaming_data/equipment_layout.json")
 def local_only():
     if request.host not in (f"127.0.0.1:{SERVER_PORT}", f"localhost:{SERVER_PORT}"):
         return jsonify(error="Invalid local host"), 403
+    if request.path.startswith("/api/scouter/browser/"):
+        from scouter import browser
+
+        if not browser.authorized(request.headers.get("X-Hascone-Browser-Token")):
+            return jsonify(error="Retry to reconnect the MapleScouter verification window."), 403
+        if request.path != "/api/scouter/browser/connect" and not browser.connected(request.headers.get("X-Hascone-Browser-Client")):
+            return jsonify(error="Retry to reconnect the MapleScouter verification window."), 403
+        return None
     if request.method not in ("GET", "HEAD", "OPTIONS") and request.headers.get("X-Hascone-Token") != TOKEN:
         return jsonify(error="Refresh the app to reconnect"), 403
 
@@ -435,6 +443,61 @@ def scouter_settings():
     from scouter import settings
 
     return jsonify(settings.read())
+
+
+@app.post("/api/scouter/connect")
+def scouter_connect():
+    return jsonify(service.connect())
+
+
+@app.get("/api/scouter/browser/jobs")
+def scouter_browser_jobs():
+    from scouter import browser
+
+    job = browser.poll(timeout=20 if request.args.get("idle") == "1" else 1,
+                       consumer=request.headers.get("X-Hascone-Browser-Client"))
+    return jsonify(job=job, busy=service.state()["active"])
+
+
+@app.post("/api/scouter/browser/connect")
+def scouter_browser_connect():
+    from scouter import browser
+
+    browser.connect((request.get_json(silent=True) or {}).get("client"))
+    return jsonify(connected=True)
+
+
+@app.post("/api/scouter/browser/disconnect")
+def scouter_browser_disconnect():
+    from scouter import browser
+
+    browser.disconnect()
+    return jsonify(connected=False)
+
+
+@app.post("/api/scouter/browser/jobs/<identifier>/progress")
+def scouter_browser_progress(identifier):
+    from scouter import browser
+
+    body = request.get_json(silent=True) or {}
+    return jsonify(active=browser.progress(identifier, body.get("verifying") is True,
+                                          request.headers.get("X-Hascone-Browser-Client")))
+
+
+@app.post("/api/scouter/browser/session")
+def scouter_browser_session():
+    from scouter import session
+
+    session.install(request.get_json())
+    return jsonify(ok=True)
+
+
+@app.post("/api/scouter/browser/jobs/<identifier>/result")
+def scouter_browser_result(identifier):
+    from scouter import browser
+
+    return jsonify(accepted=browser.complete(identifier, request.get_json(silent=True),
+                                            request.headers.get("X-Hascone-Browser-Client")))
 
 
 @app.post("/api/scouter/settings")
@@ -1065,6 +1128,9 @@ if __name__ == "__main__":
 
         server = make_server("127.0.0.1", SERVER_PORT, app, threaded=True)
         SERVER_PORT = server.server_port
+        from scouter import browser
+
+        browser.configure(f"http://127.0.0.1:{SERVER_PORT}")
         threading.Thread(target=_warm_gear_values, daemon=True).start()
         print(f"HASCONE_READY {SERVER_PORT}", flush=True)
         server.serve_forever()
@@ -1086,4 +1152,7 @@ if __name__ == "__main__":
 
         threading.Timer(1, lambda: webbrowser.open("http://127.0.0.1:5001")).start()
     threading.Thread(target=_warm_gear_values, daemon=True).start()
+    from scouter import browser
+
+    browser.configure("http://127.0.0.1:5001")
     app.run(host="127.0.0.1", port=5001, debug=False, threaded=True)

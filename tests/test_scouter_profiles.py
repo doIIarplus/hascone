@@ -264,6 +264,7 @@ def test_post_sends_saved_cookie(tmp_path, monkeypatch):
 
     class Response:
         status_code = 201
+        headers = {}
 
         def json(self):
             return {"ok": True}
@@ -288,6 +289,7 @@ def test_post_without_saved_cookie_sends_no_cookie_header(tmp_path, monkeypatch)
 
     class Response:
         status_code = 201
+        headers = {}
 
         def json(self):
             return {"ok": True}

@@ -69,7 +69,7 @@ internal static class Program {
 internal sealed class Launcher : Form {
     Panel splash=new Panel(); Label title=new Label(); Label detail=new Label(); Label elapsed=new Label();
     ProgressBar progress=new ProgressBar(); Button retry=new Button();Button logs=new Button();Button install=new Button();
-    WebView2 web;Process backend;ProcessJob processJob;CancellationTokenSource cancel=new CancellationTokenSource();
+    WebView2 web;ScouterBrowser scouter;Process backend;ProcessJob processJob;CancellationTokenSource cancel=new CancellationTokenSource();
     string logPath;string root;string origin;bool running;bool missingWebView;bool cached;bool repair;
     long shownMs;long readyMs;bool failed;System.Windows.Forms.Timer timer=new System.Windows.Forms.Timer();
     readonly object logLock=new object();
@@ -144,6 +144,10 @@ internal sealed class Launcher : Form {
         if(running)return;running=true;failed=false;missingWebView=false;
         retry.Visible=logs.Visible=install.Visible=false;progress.Visible=true;title.Text="Starting Hascone";
         try {
+            // This pause must precede environment creation: the reported local
+            // Windows logon failure occurs inside browser startup, before HTTP.
+            if(File.Exists(Path.Combine(Program.Data,"configs","scouter_network_paused")))
+                throw new Exception("Browser startup is paused while the Windows account lockout is investigated. No WebView will be started.");
             Status("Checking the Windows web display...");
             await Task.Delay(100);
             string loader=Path.Combine(Program.Data,"runtime","webview2");Directory.CreateDirectory(loader);
@@ -163,7 +167,12 @@ internal sealed class Launcher : Form {
             origin=await StartBackend(root);
             readyMs=Program.Clock.ElapsedMilliseconds;Log("BACKEND_READY "+readyMs+"ms");
             Status("Opening your character scanner...");
-            var options=new CoreWebView2EnvironmentOptions();
+            var options=new CoreWebView2EnvironmentOptions {
+                AllowSingleSignOnUsingOSPrimaryAccount=false,
+                // Work around the startup Windows logon regression tracked in
+                // WebView2Feedback #5722.
+                AdditionalBrowserArguments="--disable-features=AutofillAiWalletPrivatePasses"
+            };
             var environment=await CoreWebView2Environment.CreateAsync(null,Path.Combine(Program.Data,"webview2"),options);
             if(web!=null){Controls.Remove(web);web.Dispose();}
             web=new WebView2{Dock=DockStyle.Fill,Visible=false};Controls.Add(web);web.BringToFront();MainMenuStrip.BringToFront();
@@ -171,6 +180,7 @@ internal sealed class Launcher : Form {
             web.CoreWebView2.Settings.IsStatusBarEnabled=false;
             web.CoreWebView2.Settings.AreHostObjectsAllowed=false;
             web.CoreWebView2.Settings.IsWebMessageEnabled=true;
+            web.CoreWebView2.BasicAuthenticationRequested+=(s,e)=>{e.Cancel=true;Log("Blocked an HTTP authentication request.");};
             web.CoreWebView2.WebMessageReceived+=async(s,e)=>{
                 Uri source;
                 if(!Uri.TryCreate(e.Source,UriKind.Absolute,out source)||source.GetLeftPart(UriPartial.Authority)!=origin)return;
@@ -280,7 +290,20 @@ internal sealed class Launcher : Form {
             WorkingDirectory=directory,UseShellExecute=false,CreateNoWindow=true,RedirectStandardOutput=true,RedirectStandardError=true};
         foreach(var pair in new Dictionary<string,string>{{"HASCONE_DATA_DIR",Program.Data},{"HASCONE_PORT","0"},{"PYTHONUTF8","1"},{"PYTHONNOUSERSITE","1"},{"PADDLE_PDX_CACHE_HOME",Path.Combine(Program.Data,"cache","paddlex")},{"HF_HOME",Path.Combine(Program.Data,"cache","huggingface")},{"MODELSCOPE_CACHE",Path.Combine(Program.Data,"cache","modelscope")}})info.EnvironmentVariables[pair.Key]=pair.Value;
         backend=new Process{StartInfo=info,EnableRaisingEvents=true};
-        backend.OutputDataReceived+=(s,e)=>{if(e.Data==null)return;if(e.Data.StartsWith("HASCONE_READY ")){int port;if(Int32.TryParse(e.Data.Substring("HASCONE_READY ".Length),out port)&&port>0&&port<65536)ready.TrySetResult("http://127.0.0.1:"+port);}else if(!e.Data.StartsWith("INFO:"))Log(e.Data);};
+        info.EnvironmentVariables["HASCONE_NATIVE_SCOUTER"]="1";
+        backend.OutputDataReceived+=(s,e)=>{
+            if(e.Data==null)return;
+            if(e.Data.StartsWith("HASCONE_SCOUTER_CONNECT ")){
+                string bridgeToken=e.Data.Substring("HASCONE_SCOUTER_CONNECT ".Length);
+                if(!IsDisposed&&!cancel.IsCancellationRequested&&System.Text.RegularExpressions.Regex.IsMatch(bridgeToken,@"^[A-Za-z0-9_-]{40,64}$"))
+                    BeginInvoke((Action)(()=>{
+                        if(origin==null||File.Exists(Path.Combine(Program.Data,"configs","scouter_network_paused")))return;
+                        if(scouter==null||scouter.IsDisposed)scouter=new ScouterBrowser(this,origin,bridgeToken,Path.Combine(Program.Data,"cache","scouter-webview"),null,Log);
+                        scouter.Connect();
+                    }));
+            }else if(e.Data.StartsWith("HASCONE_READY ")){int port;if(Int32.TryParse(e.Data.Substring("HASCONE_READY ".Length),out port)&&port>0&&port<65536)ready.TrySetResult("http://127.0.0.1:"+port);}
+            else if(!e.Data.StartsWith("INFO:"))Log(e.Data);
+        };
         backend.ErrorDataReceived+=(s,e)=>{if(e.Data!=null&&!e.Data.StartsWith("INFO:"))Log(e.Data);};
         backend.Exited+=(s,e)=>{
             Log("BACKEND_EXIT " + ((Process)s).ExitCode);
@@ -291,7 +314,7 @@ internal sealed class Launcher : Form {
         if(await Task.WhenAny(ready.Task,Task.Delay(60000,cancel.Token))!=ready.Task){cancel.Token.ThrowIfCancellationRequested();throw new Exception("The scanner took too long to start. Choose Try again or open logs.");}
         return await ready.Task;
     }
-    void StopBackend(){if(processJob!=null){processJob.Dispose();processJob=null;}if(backend!=null){try{if(!backend.HasExited)backend.Kill();}catch{}backend=null;}}
+    void StopBackend(){if(scouter!=null){scouter.Close();scouter=null;}if(processJob!=null){processJob.Dispose();processJob=null;}if(backend!=null){try{if(!backend.HasExited)backend.Kill();}catch{}backend=null;}}
     static void OpenFolder(string path){Process.Start(new ProcessStartInfo(path){UseShellExecute=true});}
     static void OpenExternal(string value){Uri uri;if(Uri.TryCreate(value,UriKind.Absolute,out uri)&&uri.Scheme=="https")Process.Start(new ProcessStartInfo(uri.AbsoluteUri){UseShellExecute=true});}
 }
