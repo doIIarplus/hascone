@@ -20,6 +20,8 @@ Data sources retained in the individual catalog files:
 
 Equipment reader templates were captured from GMS. Per-character flame weights can use MapleScouter stat efficiencies.
 
+MapleScouter's `calculatedData.bossCuts` response format was observed on 2026-10-22. Current boss cards display the API's precomputed rates and scores; the archived boss catalog supplies names, portraits, and entry levels. Older responses retain the local damage/spline calculation. Compatibility tests use synthetic data rather than saved user calculations.
+
 HEXA Stat I, II, and III icons (`src/scouter/data/icons/hexa-stat-*.png`) were cropped from the user's GMS HEXA Matrix window on 2026-09-28. MapleStory game artwork belongs to Nexon.
 
 The Demon Slayer HEXA regression image (`tests/fixtures/demon_slayer_hexa.png`) is a cropped user-provided game window. Level 4 and 6 badge glyphs were extracted from the existing GMS 1366x768 HEXA fixture.

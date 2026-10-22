@@ -1,5 +1,6 @@
-"""GMS Reboot boss percentages ported from the public result-page client."""
+"""GMS Reboot boss cards from current API responses and the legacy client port."""
 
+import hashlib
 import math
 from decimal import ROUND_HALF_UP, Decimal
 from functools import lru_cache
@@ -257,14 +258,89 @@ def _boss_rate(boss, adjusted, calculated):
     return curve, rate
 
 
+def _api_boss_cuts(user, calculated, *, minutes, view, include_quests, sacred_bonus):
+    """Adapt current API cards; their rates already include boss corrections.
+
+    New responses no longer expose the splines or defense constants needed by
+    the older client port. Never try to reconstruct those from a displayed score.
+    """
+    options = calculated.get("bossCutsOpts") or {}
+    if not isinstance(options, dict):
+        raise ValueError("Invalid API boss settings")
+    timer = options.get("bossTime", 20)
+    if timer != minutes or sacred_bonus is not None:
+        raise ValueError("Saved API boss estimates cannot be recalculated with different boss settings")
+    data = catalog()
+    metadata = {}
+    for boss in data["bosses"]:
+        for name in (boss["boss"], boss["name"], NAMES.get(boss["name"], "")):
+            metadata[(name.casefold(), boss["difficulty"])] = boss
+    level = int(float(user["stat"]["level"]))
+    result = {
+        "available": True, "source": "maplescouter_api", "region": "gms", "server": "reboot",
+        "snapshot": None, "minutes": timer, "view": view, "bosses": [],
+    }
+    seen = set()
+    for row in calculated["bossCuts"]:
+        name, difficulty = row["boss"], row["difficulty"]
+        if not isinstance(name, str) or not name or difficulty not in {
+            "Easy", "Normal", "Hard", "Chaos", "Extreme", "Destiny", "Champion",
+        }:
+            raise ValueError("Unsupported API boss identity")
+        if (name.casefold(), difficulty) in seen:
+            raise ValueError("Duplicate API boss estimate")
+        seen.add((name.casefold(), difficulty))
+        rate, score = row["clearRate"], row["bossStat"]
+        if any(type(v) not in (int, float) or not math.isfinite(v) or v < 0 for v in (rate, score)):
+            raise ValueError("Invalid API boss estimate")
+        party, limit = row["isPartyBoss"], row["isPartyLimit"]
+        if type(party) is not bool or type(limit) is not int or limit < 1:
+            raise ValueError("Invalid API boss party size")
+        if not include_quests and difficulty in {"Destiny", "Champion"}:
+            continue
+        relevant = not (rate / limit > 10 or rate < 0.85 / limit) if party else 0.15 <= rate <= 10
+        if view == "relevant" and not relevant:
+            continue
+        boss = metadata.get((name.casefold(), difficulty))
+        entry = boss["entry_level"] if boss else None
+        category = data["labels"].get(row.get("analytics"))
+        can_enter = (entry is None or level >= entry) and category != "Can't Enter"
+        category = (category or data["labels"][classify(rate, party, limit)]) if can_enter else "Can't Enter"
+        if boss:
+            identifier = f"{boss['name']}_{difficulty.lower()}"
+            icon = f"boss_{difficulty.lower()}_{boss['name']}.png"
+            title = NAMES.get(boss["name"], name)
+        else:
+            # Keep new bosses usable before the bundled portrait catalog is
+            # updated. Their API percentages need no local damage model.
+            identifier = "api_" + hashlib.sha256((name + "|" + difficulty).encode()).hexdigest()[:16]
+            icon, title = None, name
+        result["bosses"].append({
+            "id": identifier, "boss": title, "difficulty": difficulty, "icon": icon,
+            "percent": rate * 100, "display_percent": display_percent(rate, party), "category": category,
+            "reference": "party" if party else "solo", "party_limit": limit, "boss_hexa_score": score,
+            "can_enter": can_enter, "entry_level": entry, "relevant": relevant,
+            "thresholds": [{"percent": point, "category": data["labels"][label]}
+                           for point, label in thresholds(party, limit)],
+        })
+    return result
+
+
 def calculate(user, calculated, *, minutes=20, view="all", include_quests=True, sacred_bonus=None):
     """Calculate the website's manual-input boss cards from damage and metadata.
 
-    `calculated` can be an API calculatedData object or the offline adapter's
-    equivalent. No network calls are made. Default settings match the manual
-    page except `view=all` retains bosses hidden by its relevance filter.
+    Current API responses contain precomputed boss cards. Older responses use
+    the archived damage/spline port. No network calls are made. `view=all`
+    retains bosses hidden by the manual page's relevance filter.
     """
     _validate_calculate_args(user, minutes, view)
+    if not isinstance(calculated, dict):
+        raise ValueError("Invalid boss-calculation data")
+    if calculated.get("bossCuts"):
+        if not isinstance(calculated["bossCuts"], list):
+            raise ValueError("Invalid API boss estimates")
+        return _api_boss_cuts(user, calculated, minutes=minutes, view=view,
+                             include_quests=include_quests, sacred_bonus=sacred_bonus)
     result = {
         "source": "maplescouter_client_port",
         "region": "gms",
@@ -337,17 +413,33 @@ def calculate(user, calculated, *, minutes=20, view="all", include_quests=True, 
 def with_boss_cuts(record: dict[str, Any]) -> dict[str, Any]:
     """Add boss cards to legacy history using that record's exact saved inputs.
 
-    Preserve already-saved estimates and their catalog snapshot. An unavailable
-    estimate must never discard a successful API score or upgrade order.
+    Preserve successful estimates and their catalog snapshot. Retry failed
+    estimates locally so a saved failure doesn't survive a compatibility fix.
+    An unavailable estimate must never discard a successful score or order.
     """
-    if "boss_cuts" in record:
+    saved = record.get("boss_cuts")
+    if isinstance(saved, dict) and saved.get("available") is not False:
         return record
     try:
-        cuts = calculate(record["input"], record["damage"]["calculatedData"])
+        user, calculated = record["input"], record["damage"]["calculatedData"]
     except (KeyError, ValueError, TypeError, ArithmeticError, OSError):
         cuts = {
             "available": False,
             "reason": "This saved result lacks supported boss-calculation data. Calculate again to refresh it.",
             "bosses": [],
         }
+    else:
+        try:
+            cuts = calculate(user, calculated)
+        except (KeyError, ValueError, TypeError, ArithmeticError, OSError) as exc:
+            cuts = {
+                "available": False,
+                "reason": "Boss estimates could not be calculated from MapleScouter's returned data. Your HEXA score and upgrade order are saved.",
+                "bosses": [],
+                # Keep diagnostics in exported results without exposing inputs
+                # or claiming that repeating the request will fix a port error.
+                "error": {"type": type(exc).__name__},
+            }
+            if isinstance(exc, KeyError) and exc.args and isinstance(exc.args[0], str):
+                cuts["error"]["field"] = exc.args[0]
     return {**record, "boss_cuts": cuts}

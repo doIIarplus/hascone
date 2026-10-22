@@ -75,7 +75,10 @@ def start(identifier):
         cached = next(
             (r for r in reversed(data["history"]) if r["fingerprint"] == digest and r.get("order")), None
         )
-        if cached:
+        # Failed boss estimates must not trap Calculate in the same cached
+        # response. First attempt local recovery with the current client port;
+        # fetch a fresh result only when that saved data still cannot be used.
+        if cached and with_boss_cuts(cached)["boss_cuts"].get("available") is not False:
             _job = {
                 "active": False,
                 "status": "complete",
