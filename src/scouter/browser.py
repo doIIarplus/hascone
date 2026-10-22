@@ -1,9 +1,10 @@
-"""Scoped request bridge to the app's human-verified WebView2 session.
+"""Scoped requests using the app's human-verified browser session.
 
 The visible browser loads public client files and hands its same-site session
 to the in-memory HTTP transport before closing. No hidden browser stays open.
 """
 
+import json
 import os
 import re
 import secrets
@@ -172,6 +173,8 @@ def complete(identifier, result, consumer=None):
 
 def request(method, url, headers, cancelled, body=None, force_connect=False):
     ensure_network_allowed()
+    if method in {"CONFIG", "SESSION"}:
+        return _desktop_request(method, url, cancelled, body)
     if method != "POST":
         return _browser_request(method, url, headers, cancelled, body, force_connect)
     from scouter import session
@@ -193,7 +196,28 @@ def request(method, url, headers, cancelled, body=None, force_connect=False):
 
 def finish_client(cancelled, renew=False):
     """Close the browser once public configuration and the session are ready."""
-    _browser_request("SESSION", SITE + "/en/input", {}, cancelled, {"renew": renew})
+    request("SESSION", SITE + "/en/input", {}, cancelled, {"renew": renew})
+
+
+def _desktop_request(method, url, cancelled, body):
+    from scouter import desktop_browser
+    global _message
+    if not allowed(method, url):
+        raise ValueError("Unsupported MapleScouter browser request")
+    if _origin is None or not _native:
+        raise ValueError("Open the Hascone Windows app to verify MapleScouter, or use Export to MapleScouter.")
+    with _condition:
+        _message = "Complete verification in the MapleScouter browser. Close it to cancel; Hascone will continue automatically."
+    try:
+        configuration = desktop_browser.capture(cancelled, renew=bool(body and body.get("renew")))
+        response = requests.Response()
+        response.status_code = 200
+        response._content = json.dumps(configuration if method == "CONFIG" else {"ok": True}).encode("utf-8")
+        response.encoding = "utf-8"
+        return response
+    finally:
+        with _condition:
+            _message = ""
 
 
 def _browser_request(method, url, headers, cancelled, body=None, force_connect=False):
@@ -246,7 +270,4 @@ def _browser_request(method, url, headers, cancelled, body=None, force_connect=F
 
 
 def verify(cancelled):
-    response = request("GET", SITE + "/en/input", {}, cancelled, force_connect=True)
-    if response.status_code != 200:
-        raise ValueError(f"MapleScouter returned HTTP {response.status_code} after browser verification.")
-    finish_client(cancelled)
+    finish_client(cancelled, renew=True)

@@ -3,10 +3,10 @@ from unittest.mock import Mock
 
 import pytest
 
-from scouter import browser, client, session
+from scouter import browser, client, desktop_browser, session
 
 
-@pytest.mark.parametrize("entry", ["configuration", "calculation", "browser", "session", "launch"])
+@pytest.mark.parametrize("entry", ["configuration", "calculation", "browser", "desktop", "session", "launch"])
 def test_paused_integration_never_starts_network_or_browser(tmp_path, monkeypatch, entry):
     marker = tmp_path / "paused"
     marker.write_text("Investigating account lockout")
@@ -28,6 +28,8 @@ def test_paused_integration_never_starts_network_or_browser(tmp_path, monkeypatc
             client._post("/api/calc/dmg", {}, {}, cancelled)
         elif entry == "browser":
             browser.request("GET", browser.SITE + "/en/input", {}, cancelled)
+        elif entry == "desktop":
+            desktop_browser.capture(cancelled)
         elif entry == "session":
             session.post(browser.API + "/api/calc/dmg", {}, {}, cancelled)
         else:

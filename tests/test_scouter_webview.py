@@ -1,4 +1,4 @@
-"""Run the production WebView2 bridge against intercepted, local fake responses."""
+"""Exercise the legacy WebView2 broker against intercepted local responses."""
 import os
 import shutil
 import subprocess
@@ -70,6 +70,10 @@ def test_webview_session_and_window_lifecycle(harness, tmp_path, monkeypatch, mo
     monkeypatch.setattr(browser, "_last_seen", 0)
     monkeypatch.setattr(browser, "_consumer", None)
     monkeypatch.setattr(browser, "_native", True)
+    # Production CONFIG/SESSION now use the installed browser. Keep this
+    # harness explicitly exercising only the older native broker.
+    monkeypatch.setattr(browser, "_desktop_request", lambda method, url, cancelled, body:
+                        browser._browser_request(method, url, {}, cancelled, body))
     monkeypatch.setattr(browser, "_enabled", True)
     monkeypatch.setattr(browser, "_launch", Mock())
     monkeypatch.setattr(browser, "TIMEOUT", 35)
