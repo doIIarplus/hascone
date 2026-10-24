@@ -22,6 +22,7 @@ from scouter import cooldown, profiles
 from scouter.flame_examples import examples as flame_examples
 from starforce.cost import options as starforce_options
 from starforce.suggestions import suggestions as starforce_suggestions
+import upgrade_skips
 from utils.payload_data import read_payload_json
 
 PROTECTED = {"Critical Damage %", "Skill Cooldown Reduction", "Item Drop Rate %", "Meso Amount %"}
@@ -351,6 +352,8 @@ def _item_choices(kind, slot, item, gear, data, flat, pot, ied, attack, checkpoi
 
 def _slot_kinds(slot, item, layout):
     for kind in ("flame", "cube", "starforce"):
+        if upgrade_skips.skipped(item, kind):
+            continue
         if kind == "flame" and layout.get(slot, {}).get("flameable") is False:
             continue
         if kind == "cube" and slot not in SLOTS:
