@@ -5,6 +5,13 @@ in the scanner process from the frame that was read.
 """
 
 
+def _kept(prior, *extra):
+    """What a new item in a slot inherits: the player's slot settings, plus EXTRA keys."""
+    from upgrade_skips import PRESERVED
+
+    return {k: v for k, v in prior.items() if k in (*PRESERVED, *extra)}
+
+
 def _save_equipment_grid(profile, result, icons, folder):
     from scouter import profiles
     from utils.image_files import write_bytes
@@ -12,7 +19,7 @@ def _save_equipment_grid(profile, result, icons, folder):
     old, equipment = profile["equipment"], {}
     for slot, reading in result["slots"].items():
         prior = old.get(slot, {})
-        equipment[slot] = dict(prior) if prior.get("icon_hash") == reading["icon_hash"] else {}
+        equipment[slot] = dict(prior) if prior.get("icon_hash") == reading["icon_hash"] else _kept(prior)
         equipment[slot].update(occupied=True, icon_hash=reading["icon_hash"])
         if slot in icons:
             write_bytes(folder / (slot + ".png"), icons[slot])
@@ -31,7 +38,7 @@ def _save_hover_item(profile, result, icons, folder):
     item = (
         dict(prior)
         if prior.get("name", result["item"]) == result["item"]
-        else {k: v for k, v in prior.items() if k in ("occupied", "icon_hash")}
+        else _kept(prior, "occupied", "icon_hash")
     )
     item.update({k: v for k, v in result.items() if k not in ("kind", "errors", "slot", "slot_verified", "readings", "item")})
     item.update(name=result["item"], updated=profiles.now(), hover_scanned=True)

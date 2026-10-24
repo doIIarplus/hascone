@@ -11,6 +11,8 @@ const score = v => Number(v).toFixed(1);
 const cost = v => v == null ? 'Unavailable' : compactCost(v);
 const percent = v => (v*100).toLocaleString(undefined,{maximumFractionDigits:3})+'%';
 const exact = v => v == null ? 'No matching outcome in the published table' : Math.round(v).toLocaleString()+' mesos';
+// Upgrade kinds each page can rank; pages other than these list flames and potentials.
+const PAGE_KINDS={flame:['flame'],potential:['cube'],starforce:['starforce'],equipment:['flame','cube','starforce']};
 const MODE_STARS=[15,16,17,18,19,20,21];
 const modeName=m=>m==='safeguard'?'Safeguard':'Mode '+m;
 // Older saves chose one mode for 15–17★ and one for 18–21★.
@@ -53,6 +55,26 @@ export function mountEnhancement(root,{profile,page,slot,onSelect}) {
    </button>${upgrade&&index<rows.length-1?'<span class="upgrade-arrow" aria-hidden="true">&rarr;</span>':''}</div>`;
   }).join('')}</div>`;
  }
+ // Per-slot switches that keep an item out of the upgrade recommendations (cost totals are unchanged).
+ const SKIP_KINDS=[['flame','Flame','flame_upgrade','flame_error'],['cube','Potential','cube_current','cube_error'],['starforce','Star Force','starforce_current','starforce_error']];
+ function skipControls(){
+  const item=model.items[slot]||{},gear=profile.equipment[slot]||{},skipped=gear.skip_upgrades||[];
+  if(item.mirror)return '';
+  const rows=SKIP_KINDS.filter(([kind,,ok,err])=>(PAGE_KINDS[page]||['flame','cube']).includes(kind)&&(item[ok]||item[err]));
+  if(!rows.length)return '';
+  return `<section class="skip-upgrades"><h3>Recommendations for this item</h3>${rows.map(([kind,label])=>`<label class="score-toggle"><input type="checkbox" role="switch" data-skip-kind="${kind}" ${skipped.includes(kind)?'':'checked'}> Include ${label} in the upgrade order</label>`).join('')}<p class="sub" id="skip-status">Turn off to leave this item out of the ranking. Cost totals still include it.</p></section>`;
+ }
+ function bindSkips(){
+  const inputs=[...root.querySelectorAll('[data-skip-kind]')];
+  inputs.forEach(el=>el.onchange=async()=>{
+   // Kinds this page doesn't show keep their saved choice.
+   const shown=inputs.map(i=>i.dataset.skipKind),kept=(profile.equipment[slot]?.skip_upgrades||[]).filter(kind=>!shown.includes(kind));
+   const skip=[...kept,...inputs.filter(i=>!i.checked).map(i=>i.dataset.skipKind)];
+   const status=root.querySelector('#skip-status');inputs.forEach(i=>i.disabled=true);status.textContent='Saving…';
+   try{const fresh=await api.post(`/api/characters/${profile.id}/equipment/${encodeURIComponent(slot)}/skip-upgrades`,{skip});Object.assign(profile,fresh);await refresh();}
+   catch(e){status.textContent=e.message;inputs.forEach(i=>i.disabled=false);}
+  });
+ }
  function totalValue(name,value,count) {return `<div><span>${esc(name)}</span><strong title="${esc(exact(value))}">${count?cost(value):'—'}</strong></div>`;}
  function draw(selectionOnly=false) {return keepViewport(panels,()=>drawContents(selectionOnly));}
  function drawContents(selectionOnly=false) {
@@ -68,7 +90,8 @@ export function mountEnhancement(root,{profile,page,slot,onSelect}) {
   else if(page!=='potential'&&item.flame_error)details+=`<p class="sub">Flame cost: ${esc(item.flame_error)}</p>`;
   if(page!=='flame'&&item.cube_current)details+=`<section><h3>Current potential cost</h3><div class="enhancement-totals">${item.cube_current.map(c=>`<div><span>${c.cube}</span><strong title="${esc(exact(c.expected_mesos))}">${cost(c.expected_mesos)}</strong><small>${c.expected_cubes==null?'Unavailable':number(c.expected_cubes)+' expected cubes'}</small></div>`).join('')}</div></section>`;
   else if(page!=='flame'&&item.cube_error)details+=`<p class="sub">Potential cost: ${esc(item.cube_error)}</p>`;
-  selected.innerHTML=details;
+  selected.innerHTML=details+skipControls();
+  bindSkips();
   if(selectionOnly){
    panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.classList.toggle('selected',b.dataset.enhancementSlot===slot));
    return;
@@ -93,6 +116,8 @@ export function mountEnhancement(root,{profile,page,slot,onSelect}) {
   totals.innerHTML=`<h3>Combined expected cost</h3><div class="enhancement-totals">${totalValue('Star Force',t['Star Force'],model.starforce_costs.length)}${totalValue('Flames',t['Black Flame'],model.flame_costs.length)}${totalValue('Cubes',cubes,model.cube_costs.length)}${totalValue('Total',t.Combined,rows.length)}</div><p class="sub">${rows.length} items${partial?' &middot; Partial estimate':''}</p><p class="sub">Expected cost to rebuild your current gear: Star Force from 0 stars, flames and cubes (the cheaper of Bright and Glowing) to match what you have.</p>`;
   const combined=model.items[slot]?.combined;
   root.querySelector('#enhancement-selected').innerHTML=combined?`<section><h3>Expected cost for this item</h3><div class="enhancement-totals">${orderedParts(combined).map(([name,mesos])=>totalValue(name+(name==='Cubes'&&model.items[slot].cube_cheapest?' ('+model.items[slot].cube_cheapest+')':''),mesos,1)).join('')}${totalValue('Combined',combined.expected_mesos,1)}</div>${combined.missing.map(m=>`<p class="sub">Not included &middot; ${esc(m)}</p>`).join('')}</section>`:`<p class="sub">${esc(model.items[slot]?.mirror||'Hover this item in the scan guide to price it.')}</p>`;
+  root.querySelector('#enhancement-selected').insertAdjacentHTML('beforeend',skipControls());
+  bindSkips();
   if(!selectionOnly){
    panels.innerHTML=`<section class="analysis-panel"><h2>Combined cost per item</h2><p class="sub">Star Force + flames + cubes &middot; Lowest cost first.</p><div class="enhancement-grid">${rows.map(r=>`<div class="enhancement-step"><button class="enhancement-item ${slot===r.slot?'selected':''}" data-enhancement-slot="${esc(r.slot)}" title="${esc(breakdown(r))}">${art(r)}<span class="enhancement-name">${esc(r.name)}</span><strong class="enhancement-price">${cost(r.expected_mesos)}</strong><span class="sub">${esc(breakdown(r))}${r.missing.length?' &middot; partial':''}</span></button></div>`).join('')||'<p class="sub">Scan your equipment to see costs.</p>'}</div></section>`;
    panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.onclick=()=>onSelect(b.dataset.enhancementSlot));
@@ -146,8 +171,8 @@ export function mountEnhancement(root,{profile,page,slot,onSelect}) {
    return `<div class="sf-mode-row"><span class="sf-mode-attempt">${r.star} → ${r.star+1}</span><div class="sf-mode-slider"><input class="sf-range" type="range" min="0" max="3" step="1" value="${index}" data-mode-star="${r.star}" aria-label="Strategy for ${r.star} stars" aria-valuetext="${modeName(c.mode)}"><div class="sf-mode-stops">${r.choices.map((choice,i)=>`<button type="button" data-stop="${i}" class="${i===index?'is-on':''}" style="--i:${i}" tabindex="-1">${modeName(choice.mode)}</button>`).join('')}</div></div><span class="sf-mode-num" data-success>${chance(c.success)}</span><span class="sf-mode-num is-boom ${c.boom?'':'is-safe'}" data-boom>${chance(c.boom)}</span><span class="sf-mode-num" data-cost>${cost(c.cost)}</span></div>`;
   };
   const modeControls=gear.starforce?.status==='scanned'&&!item.mirror&&table.length?`<section class="sf-item-modes"><h3>Enhancement modes for this item</h3><label class="score-toggle"><input type="checkbox" role="switch" id="sf-own-modes" ${modes?'checked':''}> Use my own modes</label><div class="sf-mode-fields" ${modes?'':'hidden'}><div class="sf-presets"><span><strong>Quick presets</strong><small>Apply a strategy to a range of stars</small></span>${presetSelect('low')}${presetSelect('high')}</div><div class="sf-modes-table"><div class="sf-mode-row is-head"><span>Attempt</span><span>Strategy</span><span>Success</span><span>Boom</span><span>Cost</span></div>${table.map(modeRow).join('')}</div><p class="sub">Safeguard (15–17★) and Mode 4 (18–21★) prevent destruction. Success, boom and cost are per attempt, with your event settings.</p></div><p class="sub" id="sf-modes-status">${modes?'The upgrade order and costs for this item use these modes.':'Off: each star uses whichever mode is cheapest, and the upgrade order also shows a fewest-booms plan.'}</p></section>`:'';
-  root.querySelector('#enhancement-selected').innerHTML=(current?`<section><h3>Current Star Force cost</h3><div class="enhancement-totals">${totalValue('0 to '+current.stars+' stars',current.expected_mesos,1)}</div><p class="sub">${number(current.expected_booms)} expected booms &middot; Level ${current.level}</p><p class="sub">${basisText}</p></section>`:`<p class="sub">${esc(item.mirror||item.starforce_error||'Hover this item to scan its stars.')}</p>`)+modeControls;
-  bindModes(table,modes);
+  root.querySelector('#enhancement-selected').innerHTML=(current?`<section><h3>Current Star Force cost</h3><div class="enhancement-totals">${totalValue('0 to '+current.stars+' stars',current.expected_mesos,1)}</div><p class="sub">${number(current.expected_booms)} expected booms &middot; Level ${current.level}</p><p class="sub">${basisText}</p></section>`:`<p class="sub">${esc(item.mirror||item.starforce_error||'Hover this item to scan its stars.')}</p>`)+modeControls+skipControls();
+  bindModes(table,modes);bindSkips();
   if(!selectionOnly){
    panels.innerHTML=`<section class="analysis-panel"><h2>Current Star Force costs</h2><p class="sub">Cost to reach scanned stars &middot; Lowest cost first.</p><div class="enhancement-grid">${rows.map(r=>`<div class="enhancement-step"><button class="enhancement-item ${slot===r.slot?'selected':''}" data-enhancement-slot="${esc(r.slot)}">${art(r)}<span class="enhancement-name">${esc(r.name)}</span><strong>${r.stars}&#9733;</strong><strong class="enhancement-price">${cost(r.expected_mesos)}</strong><span class="sub">${number(r.expected_booms)} expected booms</span></button></div>`).join('')||'<p class="sub">Scan Star Force equipment to see costs.</p>'}</div>${unpriced('starforce')}<details><summary>How costs are calculated</summary><p class="sub">${basis}</p><p class="sub">Uses the discount and boom-reduction options above. These are modeled costs.</p></details></section>`;
    panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.onclick=()=>onSelect(b.dataset.enhancementSlot));
