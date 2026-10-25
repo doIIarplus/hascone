@@ -14,6 +14,7 @@ from flaming.character_score import character_score
 from flaming.probability import improvement
 from flaming.score import flame_score
 from flaming.stats import Stat
+from upgrade_skips import skipped
 from utils.payload_data import read_payload_json
 
 PRICES = {"Bright": 22_000_000, "Glowing": 12_000_000}
@@ -105,7 +106,8 @@ def _add_flame_row(result, detail, common, slot, item, layout, flame_weights):
         upgrade = improvement(catalog, baseline, flame_weights)
         current = improvement(catalog, baseline, flame_weights, inclusive=True)
         detail.update(flame_upgrade=upgrade, flame_current=current)
-        result["flame_order"].append({**common, "score": float(baseline), **detail["catalog"], **upgrade})
+        if not skipped(item, "flame"):
+            result["flame_order"].append({**common, "score": float(baseline), **detail["catalog"], **upgrade})
         if current["expected_mesos"] is None:
             raise ValueError("Current flame is outside the published roll table.")
         result["flame_costs"].append({**common, "score": float(baseline), **current})

@@ -312,6 +312,25 @@ def item_starforce_modes(identifier, slot):
     return character(identifier)
 
 
+@app.post("/api/characters/<identifier>/equipment/<slot>/skip-upgrades")
+def item_skip_upgrades(identifier, slot):
+    """Leave flame, cube or starforce upgrades for this slot out of the recommendations."""
+    from upgrade_skips import normalize
+
+    skip = normalize((request.get_json(silent=True) or {}).get("skip"))
+    with characters.lock:
+        data = characters.load(identifier)
+        item = data["equipment"].get(slot)
+        if slot not in LAYOUT["slots"] or not isinstance(item, dict):
+            raise ValueError("Scan this item first")
+        if skip:
+            item["skip_upgrades"] = skip
+        else:
+            item.pop("skip_upgrades", None)
+        characters.write(data)
+    return character(identifier)
+
+
 @app.post("/api/characters/<identifier>/scoring")
 def character_scoring(identifier):
     from flaming.character_score import scoring
