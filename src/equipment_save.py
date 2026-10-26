@@ -17,13 +17,21 @@ def _save_equipment_grid(profile, result, icons, folder):
     from utils.image_files import write_bytes
 
     old, equipment = profile["equipment"], {}
+    settings = dict(profile.get("equipment_slot_settings", {}))
+    for slot, prior in old.items():
+        if kept := _kept(prior):
+            settings[slot] = kept
+        else:
+            settings.pop(slot, None)
     for slot, reading in result["slots"].items():
-        prior = old.get(slot, {})
+        prior = old.get(slot, settings.get(slot, {}))
         equipment[slot] = dict(prior) if prior.get("icon_hash") == reading["icon_hash"] else _kept(prior)
         equipment[slot].update(occupied=True, icon_hash=reading["icon_hash"])
         if slot in icons:
             write_bytes(folder / (slot + ".png"), icons[slot])
     profile.update(equipment=equipment, equipment_captured=profiles.now())
+    # Empty slots retain only preferences, never stale readings or occupied flags.
+    profile["equipment_slot_settings"] = {slot: value for slot, value in settings.items() if slot not in equipment}
 
 
 def _save_hover_item(profile, result, icons, folder):
@@ -31,7 +39,8 @@ def _save_hover_item(profile, result, icons, folder):
     from utils.image_files import write_bytes
 
     slot = result["slot"]
-    prior = profile["equipment"].get(slot, {})
+    settings = profile.get("equipment_slot_settings", {})
+    prior = profile["equipment"].get(slot, settings.get(slot, {}))
     icon_path = folder / (slot + ".png")
     if slot in icons and (not icon_path.exists() or prior.get("name", result["item"]) != result["item"]):
         write_bytes(icon_path, icons[slot])
@@ -57,6 +66,7 @@ def _save_hover_item(profile, result, icons, folder):
     if "stats" in item and item.get("flameable") is not False:
         item["status"] = "scanned"
     profile["equipment"][slot] = item
+    settings.pop(slot, None)
 
 
 def _save_weapon_attack(profile, result):

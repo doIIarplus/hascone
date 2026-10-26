@@ -74,3 +74,38 @@ def test_flame_order_drops_skipped_flame_but_costs_keep_it(client):
     assert all(r["slot"] != "hat" for r in skipped["flame_order"])
     assert [r["slot"] for r in skipped["flame_costs"]] == [r["slot"] for r in plain["flame_costs"]]
     assert skipped["totals"] == plain["totals"]
+
+
+@pytest.mark.parametrize("return_scan", ["equipment", "hover"])
+def test_slot_settings_survive_empty_grid_scans(client, return_scan):
+    settings = {"skip_upgrades": ["flame", "cube"], "starforce_modes": {str(s): 1 for s in range(15, 22)}}
+    profile = characters.load(ID)
+    profile["equipment"] = {
+        "hat": {"name": "Old Hat", "icon_hash": "old", "occupied": True, **settings},
+        "eye": {"name": "Old Eye", "icon_hash": "eye", "occupied": True},
+    }
+    characters.write(profile)
+    empty_hat = {"kind": "equipment", "slots": {"eye": {"icon_hash": "eye"}}}
+    # Multiple scans while unequipped must retain preferences without retaining the item.
+    for _ in range(2):
+        save(characters.load(ID), empty_hat, {})
+        profile = characters.load(ID)
+        assert "hat" not in profile["equipment"]
+        assert profile["equipment_slot_settings"] == {"hat": settings}
+        assert "hat" not in enhancement_analysis.snapshot(profile)["items"]
+    if return_scan == "equipment":
+        save(profile, {"kind": "equipment", "slots": {"hat": {"icon_hash": "new"}}}, {})
+        profile = characters.load(ID)
+        assert "name" not in profile["equipment"]["hat"]
+    save(characters.load(ID), {"kind": "hover", "slot": "hat", "item": "New Hat"}, {})
+    profile = characters.load(ID)
+    assert profile["equipment"]["hat"]["name"] == "New Hat"
+    assert {k: profile["equipment"]["hat"][k] for k in settings} == settings
+    assert "hat" not in profile["equipment_slot_settings"]
+    # Clearing preferences after re-equipping must not resurrect the archived choices.
+    assert post(client, f"/api/characters/{ID}/equipment/hat/skip-upgrades", {"skip": []}).status_code == 200
+    profile = characters.load(ID)
+    profile["equipment"]["hat"].pop("starforce_modes")
+    characters.write(profile)
+    save(profile, empty_hat, {})
+    assert characters.load(ID)["equipment_slot_settings"] == {}

@@ -10,6 +10,7 @@ from decimal import Decimal
 
 import numpy as np
 
+import upgrade_skips
 import zero
 from cubing import probability as cubes
 from cubing.item_database import item_metadata
@@ -22,7 +23,6 @@ from scouter import cooldown, profiles
 from scouter.flame_examples import examples as flame_examples
 from starforce.cost import options as starforce_options
 from starforce.suggestions import suggestions as starforce_suggestions
-import upgrade_skips
 from utils.payload_data import read_payload_json
 
 PROTECTED = {"Critical Damage %", "Skill Cooldown Reduction", "Item Drop Rate %", "Meso Amount %"}
