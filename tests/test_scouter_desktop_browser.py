@@ -98,11 +98,13 @@ def test_capture_closes_owned_browser_before_install_and_cleans_up_errors(tmp_pa
 
 
 class FakeProtocol:
-    def __init__(self, cookies, resources=None):
+    def __init__(self, cookies, resources=None, page_url=desktop.PAGE, frame_url=None):
         self.cookies = iter(cookies)
         self.calls = []
         self.resources = resources or []
         self.tree_count = 0
+        self.page_url = page_url
+        self.frame_url = frame_url or page_url
 
     async def call(self, method, params=None, target=None):
         self.calls.append((method, params, target))
@@ -111,33 +113,58 @@ class FakeProtocol:
         if method == "Storage.getCookies":
             return {"cookies": next(self.cookies)}
         if method == "Target.getTargets":
-            return {"targetInfos": [{"type": "page", "url": desktop.PAGE, "targetId": "own-page"}]}
+            return {"targetInfos": [
+                {"type": "page", "url": "https://maplescouter.com.evil.test/en/manual/input", "targetId": "unrelated"},
+                {"type": "page", "url": self.page_url, "targetId": "own-page"},
+            ]}
         if method == "Target.attachToTarget":
             return {"sessionId": "own-session"}
         if method == "Page.getResourceTree":
             self.tree_count += 1
             # The site token may be present before its client scripts load.
-            return {"frameTree": {"frame": {"id": "frame", "url": desktop.PAGE},
+            return {"frameTree": {"frame": {"id": "frame", "url": self.frame_url},
                                   "resources": [] if self.tree_count == 1 else self.resources}}
         if method == "Page.getResourceContent":
             return {"content": '"api-key":"public";"https://api.maplescouter.com"'}
         return {}
 
 
-def test_cold_profile_waits_for_human_session_then_loaded_configuration():
+@pytest.mark.parametrize("page_url,frame_url", [
+    (desktop.PAGE, desktop.PAGE),
+    (desktop.SITE + "/en/manual/input", desktop.SITE + "/en/manual/input"),
+    (desktop.PAGE, desktop.SITE + "/en/manual/input"),
+    (desktop.SITE + "/en/manual/input#google_vignette", desktop.SITE + "/en/manual/input"),
+    (desktop.SITE + "/en/manual/input?mode=manual", desktop.SITE + "/en/manual/input#input"),
+])
+def test_cold_profile_waits_for_human_session_then_loaded_configuration(page_url, frame_url):
     protocol = FakeProtocol([[], [cookie()], [cookie(), cookie(domain="unrelated.test")]], [
         {"url": "https://unrelated.test/_next/static/chunks/secret.js"},
         {"url": desktop.SITE + "/_next/static/chunks/8153-public.js"},
-    ])
+    ], page_url=page_url, frame_url=frame_url)
     config, credentials = run(desktop._read_session(protocol, False))
     assert config == {"api_key": "public"}
     assert len(credentials["cookies"]) == 1
     methods = [c[0] for c in protocol.calls]
     assert methods.index("Target.attachToTarget") > methods.index("Storage.getCookies") + 1
     assert methods.index("Page.enable") < methods.index("Page.getResourceTree")
+    attach = next(params for method, params, _ in protocol.calls if method == "Target.attachToTarget")
+    assert attach["targetId"] == "own-page"
     assert all("Runtime" not in method for method in methods)
     reads = [params["url"] for method, params, _ in protocol.calls if method == "Page.getResourceContent"]
     assert reads == [desktop.SITE + "/_next/static/chunks/8153-public.js"]
+
+
+@pytest.mark.parametrize("url", [
+    "https://maplescouter.com.evil.test/en/manual/input",
+    "https://user@maplescouter.com/en/manual/input",
+    "http://maplescouter.com/en/manual/input",
+    desktop.SITE + ":444/en/manual/input",
+    desktop.SITE + "/en/manual/results",
+])
+def test_configuration_ignores_frames_outside_supported_input_pages(url):
+    protocol = FakeProtocol([], frame_url=url)
+    assert run(desktop._configuration_from_page(protocol, "own-session")) is None
+    assert [method for method, _, _ in protocol.calls] == ["Page.getResourceTree"]
 
 
 def test_renewal_deletes_only_site_token_and_waits_for_new_session():

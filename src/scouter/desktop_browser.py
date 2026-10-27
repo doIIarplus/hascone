@@ -26,6 +26,8 @@ from scouter import session
 
 SITE = "https://maplescouter.com"
 PAGE = SITE + "/en/input"
+# MapleScouter redirects the legacy input page to its manual-input route.
+INPUT_PAGES = frozenset({PAGE, SITE + "/en/manual/input"})
 TIMEOUT = 280
 _lock = threading.Lock()
 _configuration = None
@@ -178,10 +180,15 @@ def _verified(cookies):
                and c.get("expires", 0) > time.time() + 60 for c in cookies)
 
 
+def _input_page(url):
+    # Anchors and query parameters don't change the page's trusted origin/path.
+    return urlsplit(url)._replace(query="", fragment="").geturl() in INPUT_PAGES
+
+
 async def _configuration_from_page(protocol, target):
     from scouter.browser import allowed
     tree = (await protocol.call("Page.getResourceTree", target=target))["frameTree"]
-    if tree.get("frame", {}).get("url") != PAGE:
+    if not _input_page(tree.get("frame", {}).get("url", "")):
         return None
     resources = {r["url"] for r in tree.get("resources", []) if allowed("GET", r["url"])
                  and urlsplit(r["url"]).path.endswith(".js")}
@@ -214,7 +221,7 @@ async def _read_session(protocol, renew):
         cookies = _cookies((await protocol.call("Storage.getCookies")).get("cookies", []))
         if not target and _verified(cookies):
             pages = (await protocol.call("Target.getTargets")).get("targetInfos", [])
-            page = next((p for p in pages if p.get("type") == "page" and p.get("url") == PAGE), None)
+            page = next((p for p in pages if p.get("type") == "page" and _input_page(p.get("url", ""))), None)
             if page:
                 target = (await protocol.call("Target.attachToTarget", {
                     "targetId": page["targetId"], "flatten": True,
