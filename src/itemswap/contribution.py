@@ -12,6 +12,8 @@ POTENTIAL_KEYS = ("mainStatPer", "subStatPer", "ssubStatPer", "allStatPer", "atk
 CUSTOM_KEYS = ("str", "dex", "int", "luk", "att", "bossDmg", "ignoreGuard", "criDmg")
 STATS = ("str", "dex", "int", "luk")
 ROLES = (("main", "mainStat"), ("sub", "subStat"), ("sub2", "ssubStat"))
+# Each IED or final damage value is one source; sources multiply instead of adding up.
+STACKED = ("ignoreGuard", "finalDmg")
 
 
 def number(value, label):
@@ -40,9 +42,44 @@ def stat_field(stat, class_info):
     return None
 
 
+def _scale(key, value):
+    """IED: the share of enemy defense left. Final damage: the damage multiplier."""
+    if key == "ignoreGuard":
+        if value >= 100:
+            raise ValueError("IED must be below 100%")
+        return 1 - value / 100
+    if value <= -100:
+        raise ValueError("Final damage must be above -100%")
+    return 1 + value / 100
+
+
+def _percent(key, scale):
+    return (1 - scale) * 100 if key == "ignoreGuard" else (scale - 1) * 100
+
+
+def stack(key, total, value):
+    """Add a stat to a running total: two 40% IED sources give 64%, not 80%."""
+    if key in STACKED:
+        return _percent(key, _scale(key, total) * _scale(key, value))
+    return total + value
+
+
+def replace(key, old, new):
+    """The change that turns `old` into `new`: 10% -> 15% IED is one extra 5.556% source, and
+    removing x1.10 final damage is -9.091%."""
+    if key in STACKED:
+        return _percent(key, _scale(key, new) / _scale(key, old))
+    return new - old
+
+
+def remove(key, value):
+    """The change that takes away a source worth `value`."""
+    return replace(key, value, 0.0)
+
+
 def _add(result, field, value):
     if field and value:
-        result[field] = result.get(field, 0.0) + value
+        result[field] = stack(field, result.get(field, 0.0), value)
 
 
 def _add_stats(result, flat, class_info):
@@ -136,7 +173,6 @@ def contribution(class_info, slot, side, parts=None):
         flat["matt" if uses_magic(class_info) else "att"] = base.get("att", 0)
         flat["att" if uses_magic(class_info) else "matt"] = 0
     _add_stats(parts["base"], flat, class_info)
-    # Final damage is summed with the other sources as entered (the player's rule).
     for key in ("bossDmg", "ignoreGuard", "criDmg", "finalDmg"):
         _add(parts["base"], key, base.get(key, 0))
     if not (record and record.get("unmodifiable")):
@@ -183,7 +219,8 @@ def _upgrades(parts, record, base, level, cap, weapon_like, class_info, slot, si
         allstat = addon["per"].get("allstat", 0) * count
         attack = addon["per"].get("att", 0) * count
         _add_stats(parts["addons"], {**dict.fromkeys(STATS, allstat), "att": attack, "matt": attack}, class_info)
-        _add(parts["addons"], "finalDmg", addon["per"].get("finalDmg", 0) * count)
+        for _ in range(int(count)):
+            _add(parts["addons"], "finalDmg", addon["per"].get("finalDmg", 0))
     allowed = {f["key"]: f for f in simulator_fields()}
     for key, value in (side.get("other") or {}).items():
         if key not in allowed:

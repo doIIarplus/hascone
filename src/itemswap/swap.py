@@ -1,7 +1,7 @@
 """Combine enabled slot swaps and custom stat groups into one Simulator stat delta."""
 
 from itemswap import catalog
-from itemswap.contribution import contribution, number
+from itemswap.contribution import STACKED, contribution, number, remove, replace, stack
 from scouter import simulator
 
 DUPLICATE_SLOTS = ("ring", "pendant")
@@ -42,9 +42,19 @@ def validate_config(config):
     return config
 
 
-def _add(total, part, sign=1):
+def _add(total, part):
     for key, value in part.items():
-        total[key] = total.get(key, 0.0) + sign * value
+        total[key] = stack(key, total.get(key, 0.0), value)
+
+
+def _difference(candidate, current):
+    return {k: replace(k, current.get(k, 0.0), candidate.get(k, 0.0)) for k in set(candidate) | set(current)}
+
+
+def _signed_group(values, sign):
+    """A negative IED or final damage value in a group is a source the player loses."""
+    signed = {k: sign * v for k, v in values.items()}
+    return {k: remove(k, -v) if k in STACKED and v < 0 else v for k, v in signed.items()}
 
 
 def _clean(values):
@@ -106,8 +116,8 @@ def _duplicates(slots):
 def compute(class_info, config):
     """Per-slot and per-group deltas, the combined `changes`, blockers and warnings. Never calls Scouter."""
     validate_config(config)
-    result = {"slots": {}, "groups": [], "delta": {}, "changes": {}, "blockers": [], "warnings": [],
-              "errors": {}, "set_hint": []}
+    result = {"slots": {}, "groups": [], "group_total": {}, "delta": {}, "changes": {}, "blockers": [],
+              "warnings": [], "errors": {}, "set_hint": []}
     reason = blocked(class_info)
     if reason:
         result["blockers"].append(reason)
@@ -125,10 +135,7 @@ def compute(class_info, config):
             if entry.get("enabled"):
                 result["blockers"].append(f"{slot}: {exc}")
             continue
-        delta = {}
-        if candidate is not None:
-            _add(delta, candidate)
-            _add(delta, current, -1)
+        delta = _difference(candidate, current) if candidate is not None else {}
         result["slots"][slot] = {"enabled": bool(entry.get("enabled")), "current": current,
                                  "candidate": candidate, "delta": _clean(delta),
                                  "parts": {"current": current_parts, "candidate": candidate_parts or None}}
@@ -142,6 +149,7 @@ def compute(class_info, config):
                 "“Continue without base stats”; otherwise the new item's whole base counts as a gain."
             )
         _add(total, delta)
+    group_total = {}
     for group in config.get("groups", []):
         sign = -1 if group.get("mode") == "lose" else 1
         try:
@@ -151,16 +159,25 @@ def compute(class_info, config):
             if group.get("enabled"):
                 result["blockers"].append(str(exc))
             continue
-        signed = _clean({k: sign * v for k, v in values.items()})
+        signed = _clean(_signed_group(values, sign))
         result["groups"].append({"id": group.get("id"), "name": group.get("name", ""),
                                  "enabled": bool(group.get("enabled")), "delta": signed})
         if group.get("enabled"):
+            _add(group_total, signed)
             _add(total, signed)
+    result["group_total"] = _clean(group_total)
     result["delta"] = _clean(total)
-    try:
-        result["changes"] = simulator.validate(result["delta"])
-    except ValueError as exc:
-        result["blockers"].append(f"Combined change: {exc}")
+    ied = {f["key"]: f for f in simulator.fields()}["ignoreGuard"]
+    if result["delta"].get("ignoreGuard", 0) < ied["min"]:
+        result["blockers"].append(
+            f"These swaps remove more IED than the Simulator can express: they need "
+            f"{result['delta']['ignoreGuard']:.2f}% Additional IED and the field goes down to {ied['min']}%."
+        )
+    else:
+        try:
+            result["changes"] = simulator.validate(result["delta"])
+        except ValueError as exc:
+            result["blockers"].append(f"Combined change: {exc}")
     if not any(e.get("enabled") for e in slots.values()) and not any(g.get("enabled") for g in config.get("groups", [])):
         result["blockers"].append("Turn on at least one slot swap or custom stat group.")
     result["warnings"] = _duplicates(slots)

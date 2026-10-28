@@ -113,7 +113,7 @@ export function createSwap(view,{onRun,onBaseline,onDeleteRun,loadIcons}) {
     const cap=capOf(record,side), parts=preview?.slots?.[slot]?.parts?.[which];
     if(cap||custom)html+=`<div class="sc-swap-stars">${box(which,'stars','Stars',side.stars,`min="0" max="${cap||30}" step="1"`)}<small data-parts="${which}:starforce">${parts?.starforce?esc(describe(parts.starforce)):''}</small></div>`;
     if(!record||record.flame)html+=`<fieldset class="sc-swap-boxes"><legend>Flame</legend>${STATS.map(k=>box(which,`flame.${k}`,k.toUpperCase(),side.flame?.[k])).join('')}${box(which,'flame.att','ATT',side.flame?.att)}${box(which,'flame.matt','MATT',side.flame?.matt)}${box(which,'flame.allStatPer','All stat %',side.flame?.allStatPer)}</fieldset>`;
-    if(!record||record.potential)html+=`<fieldset class="sc-swap-boxes"><legend>Potential <small>main + bonus, summed</small></legend>${POTENTIAL.filter(k=>k!=='ssubStatPer'||cls().sub2).map(k=>box(which,`potential.${k}`,short(k),side.potential?.[k])).join('')}</fieldset>`;
+    if(!record||record.potential)html+=`<fieldset class="sc-swap-boxes"><legend>Potential <small>main + bonus, summed; IED lines combine (40% and 40% make 64%)</small></legend>${POTENTIAL.filter(k=>k!=='ssubStatPer'||cls().sub2).map(k=>box(which,`potential.${k}`,short(k),side.potential?.[k])).join('')}</fieldset>`;
     for(const addon of record?.addons||[])html+=addon.max===1
       ?`<label class="sc-swap-check"><input type="checkbox" data-side="${which}" data-path="addons.${esc(addon.id)}" ${Number(side.addons?.[addon.id])?'checked':''}> ${esc(addon.label)} <small>${esc(addonText(addon.per))}${which==='current'?' · tick if your current item has it':''}</small></label>`
       :`<div class="sc-swap-boxes">${box(which,`addons.${addon.id}`,`${addon.label} (0–${addon.max})`,side.addons?.[addon.id],`min="0" max="${addon.max}" step="1"`)}<small>Each ${esc(addonText(addon.per))}${which==='current'?' · enter what your current item has':''}</small></div>`;
@@ -155,7 +155,7 @@ export function createSwap(view,{onRun,onBaseline,onDeleteRun,loadIcons}) {
       <div class="sc-swap-group-head"><label><span>Name</span><input class="input" data-gpath="name" maxlength="80" placeholder="e.g. Pitched Boss 3 → 2 pieces" value="${esc(g.name||'')}"></label>
       <label class="sc-swap-check"><input type="checkbox" data-gpath="enabled" ${g.enabled?'checked':''}> Count this group</label>
       <span class="sc-actions"><button class="btn btn-sm" data-gaction="duplicate">Duplicate</button><button class="btn btn-sm btn-ghost" data-gaction="delete">Delete</button></span></div>
-      <p class="sub">Enter bonuses you gain as positive numbers and bonuses you lose as negative ones (for example −10 boss damage for a set effect you give up).</p>
+      <p class="sub">Enter bonuses you gain as positive numbers and bonuses you lose as negative ones (for example −10 boss damage for a set effect you give up). A negative IED or final damage value removes that source, so −10 IED is sent as about −11.1%.</p>
       <div class="sc-sim-groups">${['Damage','Stats','Other'].map(group=>`<fieldset><legend>${group}</legend><div class="sc-sim-fields">${fields.filter(f=>f.group===group).map(f=>`<label><span>${esc(fieldLabel(f))}<small>${esc(f.unit)}</small></span><input class="input" type="number" data-gfield="${f.key}" min="${f.min}" max="${f.max}" step="${f.step}" placeholder="0" value="${esc(g.fields?.[f.key]??'')}"></label>`).join('')}</div></fieldset>`).join('')}</div></details>`;
   }
   function renderGroups(){
@@ -169,11 +169,10 @@ export function createSwap(view,{onRun,onBaseline,onDeleteRun,loadIcons}) {
       for(const [slot,row] of Object.entries(p.slots))if(row.enabled){const e=config.slots[slot]||{};rows.push(`<li><span>${esc(slotLabel(slot))}: ${esc(itemLabel(e.current))} → ${esc(itemLabel(e.candidate))}</span><strong>${esc(describe(row.delta))}</strong></li>`);}
       for(const g of p.groups)if(g.enabled)rows.push(`<li><span>${esc(g.name||'Untitled group')}</span><strong>${esc(describe(g.delta))}</strong></li>`);
     }
-    const groupTotal={};for(const g of p?.groups||[])if(g.enabled)for(const [k,v] of Object.entries(g.delta))groupTotal[k]=(groupTotal[k]||0)+v;
     const hints=(p?.set_hint||[]).map(h=>`${h.set} pieces ${h.before} → ${h.after}`);
     const blockers=p?.blockers||[];
     host.innerHTML=`<h3>Swap total</h3>${rows.length?`<ul class="sc-swap-rows">${rows.join('')}</ul>`:'<p class="sub">Turn on a slot swap or a custom stat group.</p>'}
-      ${config.groups.some(g=>g.enabled)?`<p class="sub">Custom groups total: ${esc(describe(Object.fromEntries(Object.entries(groupTotal).filter(([,v])=>Math.round(v*1e6)))))}</p>`:''}
+      ${config.groups.some(g=>g.enabled)?`<p class="sub">Custom groups total: ${esc(describe(p?.group_total))}</p>`:''}
       <p class="sc-swap-grand">Sent to MapleScouter: <strong>${p?esc(describe(p.delta)):'…'}</strong></p>
       ${hints.length?`<p class="sub">Set pieces (hint): ${esc(hints.join(' · '))}. Add a custom group for any set effect that changes.</p>`:''}
       ${(p?.warnings||[]).map(w=>`<p class="sc-warning">${esc(w)}</p>`).join('')}
@@ -359,10 +358,13 @@ export function createSwap(view,{onRun,onBaseline,onDeleteRun,loadIcons}) {
     profile=p;baseline=p.history.find(r=>r.id===id);
     if(characterChanged){data=null;dataKey='';preview=null;}
     const nextKey=`${p.character.id}:${id}`, records=baseline?.swap_runs||[];
-    if(runKey!==nextKey){runKey=nextKey;selected=records.at(-1)?.id||'';count=records.length;}
+    // A new baseline shows its own latest run, so the editor must hold that run's inputs too.
+    const switched=runKey!==nextKey;
+    if(switched){runKey=nextKey;selected=records.at(-1)?.id||'';count=records.length;}
     else if(records.length!==count){selected=records.at(-1)?.id||'';count=records.length;}
     if(baseline&&!data){render();loadData();return;}
     if(baseline&&data&&dataKey!==`${p.character.id}:${p.gear_fingerprint||''}`){loadData();}
+    if(switched&&baseline&&data){config=restoreConfig(records.at(-1)?.config,data);preview=null;render();schedulePreview(0);return;}
     render();
   }
   function dispose(){clearTimeout(timer);serial++;}

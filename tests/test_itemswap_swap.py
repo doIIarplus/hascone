@@ -52,8 +52,10 @@ def test_custom_groups_take_signed_values_and_skip_disabled_groups():
         {"id": "c", "name": "Ignored", "enabled": False, "fields": {"mainStat": 100}},
     ]
     result = swap.compute(HERO, {"slots": {}, "groups": groups})
-    assert result["delta"] == {"atk": 5, "finalDmg": -2.5}
-    assert [g["delta"] for g in result["groups"]] == [{"atk": 5, "bossDmg": -10}, {"bossDmg": 10, "finalDmg": -2.5},
+    # Losing x1.025 final damage is 1 / 1.025 - 1.
+    assert result["delta"] == {"atk": 5, "finalDmg": -2.439024}
+    assert result["group_total"] == result["delta"]
+    assert [g["delta"] for g in result["groups"]] == [{"atk": 5, "bossDmg": -10}, {"bossDmg": 10, "finalDmg": -2.439024},
                                                       {"mainStat": 100}]
 
 
@@ -141,6 +143,12 @@ def test_prefill_reads_scanned_potential_flames_and_stars():
     assert notes == ["Not counted: Mystery line"]
 
 
+def test_prefill_combines_ied_lines():
+    lines = ["Ignore Enemy Defense: +40%", "Ignore Enemy Defense: +40%", "Ignore Enemy Defense: +30%"]
+    side, _ = prefill.side("hat", {"name": "Eternal Knight Helm", "potential": {"lines": lines}}, HERO)
+    assert side["potential"] == {"ignoreGuard": 74.8}
+
+
 def test_prefill_flags_unlisted_items_and_astra_stage():
     side, notes = prefill.side("ring_4", {"name": "Ring of Restraint", "required_level": 110}, HERO)
     assert side == {"item": "custom", "scanned_name": "Ring of Restraint", "stars": 0, "unlisted": True,
@@ -192,7 +200,8 @@ def test_swap_simulation_makes_one_call_and_saves_the_full_config(monkeypatch):
     run = saved["swap_runs"][0]
     assert run["config"] == cfg and run["config"]["slots"]["ring_2"]["candidate"] == {"item": "whisper-of-the-source"}
     assert run["enabled_slots"] == ["hat", "ring_1"]
-    assert run["changes"] == {"atk": "9", "bossDmg": "-10", "ignoreGuard": "5", "mainStat": "45", "subStat": "45"}
+    assert run["changes"] == {"atk": "9", "bossDmg": "-10", "ignoreGuard": "5.555556", "mainStat": "45",
+                              "subStat": "45"}
     assert set(run["breakdown"]["slots"]) == {"hat", "ring_1"} and run["breakdown"]["groups"][0]["id"] == "g"
     assert run["baseline_id"] == "original" and "380" in run["scores"]
     assert service.state()["status"] == "complete"
@@ -224,12 +233,12 @@ def test_deleting_a_saved_swap_keeps_the_others_and_the_calculation(monkeypatch)
             service.delete_swap_run("x", *missing)
 
 
-def test_ruin_force_shield_final_damage_adds_as_entered():
+def test_ruin_force_shield_final_damage_is_a_multiplier():
     ds = profiles.class_info("Demon Slayer")
     rfs = {"item": "warrior:ruin-force-shield"}
     astra = {"item": "warrior:astra-force-shield", "variant": {"stage": 3, "version": 1}}
     lost = swap.compute(ds, config(secondary={"enabled": True, "current": rfs, "candidate": astra}))
-    assert lost["delta"]["finalDmg"] == -10 and lost["changes"]["finalDmg"] == "-10"
+    assert lost["delta"]["finalDmg"] == -9.090909 and lost["changes"]["finalDmg"] == "-9.090909"
     infused = swap.compute(ds, config(secondary={"enabled": True, "current": rfs,
                                                  "candidate": {**astra, "addons": {"rfs_infused": 1}}}))
     assert "finalDmg" not in infused["delta"]
@@ -237,4 +246,39 @@ def test_ruin_force_shield_final_damage_adds_as_entered():
     both = swap.compute(ds, {"slots": {"secondary": {"enabled": True, "current": astra,
                                                      "candidate": {**astra, "addons": {"rfs_infused": 1}}}},
                              "groups": groups})
-    assert both["delta"] == {"finalDmg": 20}
+    assert both["delta"] == {"finalDmg": 21}
+
+
+def test_ied_sources_combine_and_a_swap_sends_the_replacement_ratio():
+    eternal = {"item": "warrior:eternal-warrior-hat"}
+    lines = {**eternal, "potential": {"ignoreGuard": 64}}
+    # 15% base and 64% potential leave 0.85 * 0.36 of the defense.
+    result = swap.compute(HERO, config(hat={"enabled": True, "current": eternal, "candidate": lines}))
+    assert result["slots"]["hat"]["candidate"]["ignoreGuard"] == 69.4
+    assert result["delta"]["ignoreGuard"] == 64 and result["changes"]["ignoreGuard"] == "64"
+    faf = {"item": "warrior:faf-warrior-hat"}
+    upgrade = swap.compute(HERO, config(hat={"enabled": True, "current": faf, "candidate": eternal}))
+    assert upgrade["delta"]["ignoreGuard"] == 5.555556 and upgrade["blockers"] == []
+
+
+def test_groups_lose_ied_sources_and_combine_with_slots():
+    groups = [{"id": "g", "name": "Lose set", "enabled": True, "fields": {"ignoreGuard": -10}},
+              {"id": "h", "name": "Gain set", "enabled": True, "fields": {"ignoreGuard": 10}}]
+    result = swap.compute(HERO, {"slots": {}, "groups": groups})
+    assert result["groups"][0]["delta"] == {"ignoreGuard": -11.111111}
+    assert result["delta"] == {} and result["group_total"] == {}
+
+
+def test_removing_more_ied_than_the_field_allows_blocks_with_a_reason():
+    eternal = {"item": "warrior:eternal-warrior-hat"}
+    # 0.85 * 0.6 * 0.6 left; removing it all needs 1 / 0.306 - 1 = +226.8% more defense.
+    lines = {**eternal, "potential": {"ignoreGuard": 64}}
+    result = swap.compute(HERO, config(hat={"enabled": True, "current": lines, "candidate": {"item": "custom"}}))
+    assert result["changes"] == {}
+    assert any("remove more IED" in b and "-226.80%" in b for b in result["blockers"])
+
+
+def test_items_cannot_ignore_all_defense():
+    side = {"item": "custom", "custom_base": {"ignoreGuard": 100}}
+    result = swap.compute(HERO, config(ring_1={"enabled": True, "current": {"item": "giant-fear"}, "candidate": side}))
+    assert "below 100%" in result["errors"]["ring_1"]

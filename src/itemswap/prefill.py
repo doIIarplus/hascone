@@ -5,7 +5,7 @@ import re
 from cubing.lines import parse_line
 from flaming.stats import ReadError
 from itemswap import catalog
-from itemswap.contribution import stat_field, uses_magic
+from itemswap.contribution import stack, stat_field, uses_magic
 
 FLAME_NAMES = {"STR": "str", "DEX": "dex", "INT": "int", "LUK": "luk", "Attack Power": "att", "Magic Attack": "matt"}
 ROLE_PERCENT = {"mainStat": "mainStatPer", "subStat": "subStatPer", "ssubStat": "ssubStatPer"}
@@ -15,7 +15,7 @@ DAMAGE = re.compile(r"\s*DAMAGE\s*:?\s*\+?\s*(\d+(?:\.\d+)?)\s*%\s*", re.I)
 
 def _total(values, key, amount):
     if amount:
-        values[key] = values.get(key, 0) + amount
+        values[key] = stack(key, values.get(key, 0), amount)
 
 
 def potential(lines, class_info):
@@ -64,6 +64,7 @@ def flame(stats):
 
 
 def _number(value):
+    value = round(value, 6)
     return int(value) if float(value).is_integer() else value
 
 
