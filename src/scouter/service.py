@@ -64,6 +64,19 @@ def delete_result(identifier, record):
             profiles.write(identifier, data)
 
 
+def delete_swap_run(identifier, record, run):
+    """Remove one saved item swap from a calculation; its other swaps and simulations stay."""
+    with profiles.lock:
+        data = profiles.load(identifier)
+        baseline = next((row for row in data["history"] if row["id"] == record), None)
+        runs = (baseline or {}).get("swap_runs", [])
+        kept = [row for row in runs if row["id"] != run]
+        if len(kept) == len(runs):
+            raise ValueError("Saved item swap not found")
+        baseline["swap_runs"] = kept
+        profiles.write(identifier, data)
+
+
 def start(identifier):
     global _cancelled, _job
     with _lock:
@@ -130,17 +143,44 @@ def _run(identifier, user, digest, cancelled):
 
 
 def start_simulation(identifier, request):
-    global _cancelled, _job
     from scouter import simulator
 
     if not isinstance(request, dict) or set(request) != {"result_id", "changes"}:
         raise ValueError("Choose a saved calculation and enter stat changes")
     changes = simulator.validate(request["changes"])
+    return _start_simulation(identifier, request["result_id"], changes, "simulations", {},
+                             "Simulating stat changes…")
+
+
+def start_swap_simulation(identifier, request):
+    """One MapleScouter call for all enabled slot swaps and custom stat groups, saved as a swap run."""
+    from itemswap import swap
+
+    if not isinstance(request, dict) or set(request) != {"result_id", "config"}:
+        raise ValueError("Choose a saved calculation and set up the item swap")
+    config = copy.deepcopy(request["config"])
+    computed = swap.compute(profiles.load(identifier)["class_info"], config)
+    if computed["blockers"]:
+        raise ValueError(computed["blockers"][0])
+    extra = {
+        "config": config,
+        "enabled_slots": swap.enabled_slots(config),
+        "breakdown": {"slots": {k: v["delta"] for k, v in computed["slots"].items() if v["enabled"]},
+                      "groups": [g for g in computed["groups"] if g["enabled"]]},
+    }
+    return _start_simulation(identifier, request["result_id"], computed["changes"], "swap_runs", extra,
+                             "Simulating item swap…")
+
+
+def _start_simulation(identifier, result_id, changes, bucket, extra, message):
+    global _cancelled, _job
+    from scouter import simulator
+
     with _lock:
         if _job["active"]:
             raise ValueError("A Scouter calculation is already running")
         data = profiles.load(identifier)
-        record = next((r for r in data["history"] if r["id"] == request["result_id"]), None)
+        record = next((r for r in data["history"] if r["id"] == result_id), None)
         if record is None or "input" not in record:
             raise ValueError("Choose an existing saved calculation")
         baseline = {k: copy.deepcopy(record[k]) for k in ("id", "input", "damage")}
@@ -152,18 +192,18 @@ def start_simulation(identifier, request):
             "kind": "simulation",
             "profile": identifier,
             "result_id": record["id"],
-            "message": "Simulating stat changes…",
+            "message": message,
         }
         threading.Thread(
             target=_run_simulation,
-            args=(identifier, baseline, changes, payload, _cancelled),
+            args=(identifier, baseline, changes, payload, _cancelled, bucket, extra),
             daemon=True,
             name="ScouterSimulator",
         ).start()
         return state()
 
 
-def _run_simulation(identifier, baseline, changes, payload, cancelled):
+def _run_simulation(identifier, baseline, changes, payload, cancelled, bucket="simulations", extra=None):
     from scouter import simulator
 
     try:
@@ -174,6 +214,7 @@ def _run_simulation(identifier, baseline, changes, payload, cancelled):
             "changes": changes,
             "baseline_id": baseline["id"],
             "calculatedData": calculated,
+            **(extra or {}),
             **simulator.comparison(baseline, calculated),
         }
         if cancelled.is_set():
@@ -183,7 +224,7 @@ def _run_simulation(identifier, baseline, changes, payload, cancelled):
             record = next((r for r in data["history"] if r["id"] == baseline["id"]), None)
             if record is None:
                 raise ValueError("The original calculation is no longer available")
-            record.setdefault("simulations", []).append(result)
+            record.setdefault(bucket, []).append(result)
             profiles.write(identifier, data)
         with _lock:
             _job.update(status="complete", message="Simulation saved.", simulation_id=result["id"])

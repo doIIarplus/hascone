@@ -7,6 +7,7 @@ import { escapeHtml as esc, toast } from '../ui.js';
 import { efficiencySummary } from './scouter-efficiency.js';
 import { createSuggestions } from './scouter-suggestions.js';
 import { createSimulator } from './scouter-simulator.js';
+import { createSwap } from './scouter-swap.js';
 import { renderBossPanels } from './scouter-bosses.js';
 import { buffPreset, exclusiveBuffs, guildSkills } from './scouter-fields.js';
 import { renderInputs, updateDisplayStats, attachInputTooltips } from './scouter-inputs.js';
@@ -25,7 +26,7 @@ const EFF = {dmgeff1:'Damage +1%', atkeff1:'Attack +1', atkPereff1:'Attack +1%',
 export async function mountScouter(view,{resultId=null}={}) {
   view.classList.add('scouter');
   let profile, draft = {}, dirty = false, disposed = false, pending = false, selectedResult = resultId || '', polling = false;
-  let activeTab = ['results','simulator','suggestions','efficiencies'].includes(localStorage.getItem('hascone.scouter.tab')) ? localStorage.getItem('hascone.scouter.tab') : 'inputs';
+  let activeTab = ['results','simulator','swap','suggestions','efficiencies'].includes(localStorage.getItem('hascone.scouter.tab')) ? localStorage.getItem('hascone.scouter.tab') : 'inputs';
   if(resultId)activeTab='results';
   let lastSimulation=false, lastSuggestions=false, pollGeneration=0;
   let bossFilter = 'relevant';
@@ -50,17 +51,17 @@ export async function mountScouter(view,{resultId=null}={}) {
       <div class="sc-identity"><strong>${esc(characters.find(c=>c.id===selected)?.name||'')}</strong><select class="input" id="sc-character" hidden>${characters.map(c => `<option value="${esc(c.id)}" ${c.id===selected?'selected':''}>${esc(c.name)} · ${esc(human(c.class))}</option>`).join('')}</select><div class="sub" id="sc-scan-date">No scan yet</div></div>
       <div class="sc-actions"><button class="btn btn-primary" id="sc-scan" title="Use your bossing preset with 100% critical rate. Follow the panel and hover prompts, then review buffs, rings and Legion before calculating.">Scan stats from game</button><button class="btn" id="sc-preset-export">Export to MapleScouter</button><button class="btn btn-ghost sc-help" id="sc-prep" title="${esc(PREP)}" aria-label="How to prepare for scanning">?</button><button class="btn btn-danger" id="sc-stop">Stop</button></div>
     </div><div id="sc-progress" role="status" aria-live="polite"></div></section>
-    <div id="sc-problem" class="sc-problem" role="alert"></div><nav class="fl-subtabs sc-tabs" role="tablist" aria-label="Scouter view"><button class="btn" id="sc-tab-inputs" role="tab" aria-controls="sc-panel-inputs" data-sc-tab="inputs">Inputs</button><button class="btn" id="sc-tab-results" role="tab" aria-controls="sc-panel-results" data-sc-tab="results">Results</button><button class="btn" id="sc-tab-simulator" role="tab" aria-controls="sc-panel-simulator" data-sc-tab="simulator">Simulator</button><button class="btn" id="sc-tab-suggestions" role="tab" aria-controls="sc-panel-suggestions" data-sc-tab="suggestions">Compare upgrades</button><button class="btn" id="sc-tab-efficiencies" role="tab" aria-controls="sc-panel-efficiencies" data-sc-tab="efficiencies">Efficiencies</button></nav><div class="sc-layout"><section class="sc-inputs" id="sc-panel-inputs" role="tabpanel" aria-labelledby="sc-tab-inputs"><div class="sc-section-title"><h2>Inputs</h2><span class="sub" id="sc-missing"></span><span class="sub sc-save-status" id="sc-save-status" role="status" aria-live="polite">Saved</span></div>
+    <div id="sc-problem" class="sc-problem" role="alert"></div><nav class="fl-subtabs sc-tabs" role="tablist" aria-label="Scouter view"><button class="btn" id="sc-tab-inputs" role="tab" aria-controls="sc-panel-inputs" data-sc-tab="inputs">Inputs</button><button class="btn" id="sc-tab-results" role="tab" aria-controls="sc-panel-results" data-sc-tab="results">Results</button><button class="btn" id="sc-tab-simulator" role="tab" aria-controls="sc-panel-simulator" data-sc-tab="simulator">Simulator</button><button class="btn" id="sc-tab-swap" role="tab" aria-controls="sc-panel-swap" data-sc-tab="swap">Item swap</button><button class="btn" id="sc-tab-suggestions" role="tab" aria-controls="sc-panel-suggestions" data-sc-tab="suggestions">Compare upgrades</button><button class="btn" id="sc-tab-efficiencies" role="tab" aria-controls="sc-panel-efficiencies" data-sc-tab="efficiencies">Efficiencies</button></nav><div class="sc-layout"><section class="sc-inputs" id="sc-panel-inputs" role="tabpanel" aria-labelledby="sc-tab-inputs"><div class="sc-section-title"><h2>Inputs</h2><span class="sub" id="sc-missing"></span><span class="sub sc-save-status" id="sc-save-status" role="status" aria-live="polite">Saved</span></div>
       <div id="sc-missing-links" class="sc-missing-links"></div><div id="sc-fields"></div></section><section class="sc-results" id="sc-panel-results" role="tabpanel" aria-labelledby="sc-tab-results"><div class="sc-section-title"><h2>Results</h2></div>
       <div class="sub sc-note">Scores come directly from MapleScouter. Calculations save a snapshot of these inputs.</div>
-      <div class="sc-snapshot-toolbar"><select class="input" id="sc-history" aria-label="Saved calculation"></select><form id="sc-name-form"><input class="input" id="sc-snapshot-name" aria-label="Snapshot name" maxlength="80" placeholder="Snapshot name (optional)"><button class="btn" type="submit">Save name</button></form><button class="btn sc-delete-snapshot" id="sc-delete-snapshot" type="button">Delete</button></div><div id="sc-output"></div></section><section id="sc-panel-simulator" role="tabpanel" aria-labelledby="sc-tab-simulator"></section><section id="sc-panel-suggestions" role="tabpanel" aria-labelledby="sc-tab-suggestions"></section><section id="sc-panel-efficiencies" role="tabpanel" aria-labelledby="sc-tab-efficiencies"></section></div>
+      <div class="sc-snapshot-toolbar"><select class="input" id="sc-history" aria-label="Saved calculation"></select><form id="sc-name-form"><input class="input" id="sc-snapshot-name" aria-label="Snapshot name" maxlength="80" placeholder="Snapshot name (optional)"><button class="btn" type="submit">Save name</button></form><button class="btn sc-delete-snapshot" id="sc-delete-snapshot" type="button">Delete</button></div><div id="sc-output"></div></section><section id="sc-panel-simulator" role="tabpanel" aria-labelledby="sc-tab-simulator"></section><section id="sc-panel-swap" role="tabpanel" aria-labelledby="sc-tab-swap"></section><section id="sc-panel-suggestions" role="tabpanel" aria-labelledby="sc-tab-suggestions"></section><section id="sc-panel-efficiencies" role="tabpanel" aria-labelledby="sc-tab-efficiencies"></section></div>
     <div class="page-footer" role="region" aria-label="Calculate"><span class="sub" id="sc-footer-status"></span><button class="btn btn-primary" id="sc-calculate">Calculate</button></div>`;
   const q = s => view.querySelector(s);
   const disposeTooltips=attachInputTooltips(q('#sc-fields'));
   function showTab(name) {
     activeTab = name;
     localStorage.setItem('hascone.scouter.tab',name);
-    for (const tab of ['inputs','results','simulator','suggestions','efficiencies']) {
+    for (const tab of ['inputs','results','simulator','swap','suggestions','efficiencies']) {
       q(`#sc-panel-${tab}`).hidden = tab !== name;
       q(`#sc-tab-${tab}`).setAttribute('aria-selected',String(tab===name));
       q(`#sc-tab-${tab}`).tabIndex = tab === name ? 0 : -1;
@@ -70,7 +71,7 @@ export async function mountScouter(view,{resultId=null}={}) {
   q('.sc-tabs').onclick = e => { const tab = e.target.closest('[data-sc-tab]'); if(tab) showTab(tab.dataset.scTab); };
   q('.sc-tabs').onkeydown = e => {
     if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
-    e.preventDefault();const tabs=['inputs','results','simulator','suggestions','efficiencies'];showTab(e.key==='Home'?tabs[0]:e.key==='End'?tabs.at(-1):tabs[(tabs.indexOf(activeTab)+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length]);
+    e.preventDefault();const tabs=['inputs','results','simulator','swap','suggestions','efficiencies'];showTab(e.key==='Home'?tabs[0]:e.key==='End'?tabs.at(-1):tabs[(tabs.indexOf(activeTab)+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length]);
     q(`#sc-tab-${activeTab}`).focus({preventScroll:true});
   };
   const id = () => q('#sc-character').value;
@@ -92,6 +93,18 @@ export async function mountScouter(view,{resultId=null}={}) {
     onBaseline:resultId=>{selectedResult=resultId;renderResults();},
     onRun:async(resultId,changes)=>{
       const state=await api.post(`${endpoint()}/simulate`,{result_id:resultId,changes});
+      lastSimulation=state.active;status(state.message);
+    },
+  });
+  const swap=createSwap(q('#sc-panel-swap'),{
+    loadIcons,
+    onBaseline:resultId=>{selectedResult=resultId;renderResults();},
+    onDeleteRun:async(resultId,runId)=>{
+      await api.delete(`${endpoint()}/history/${encodeURIComponent(resultId)}/swaps/${encodeURIComponent(runId)}`);
+      await load();
+    },
+    onRun:async(resultId,config)=>{
+      const state=await api.post(`${endpoint()}/swap/simulate`,{result_id:resultId,config});
       lastSimulation=state.active;status(state.message);
     },
   });
@@ -147,6 +160,7 @@ export async function mountScouter(view,{resultId=null}={}) {
     if (!history.some(r=>r.id===selectedResult)) selectedResult = history[0]?.id || '';
     q('#sc-history').value = selectedResult;
     simulator.update(profile,selectedResult);
+    swap.update(profile,selectedResult);
     suggestions.update(profile,dirty);
     const result = history.find(r=>r.id===selectedResult);
     q('#sc-name-form').hidden=!result;
@@ -405,6 +419,7 @@ export async function mountScouter(view,{resultId=null}={}) {
       const calculating=calc.active&&!['simulation','suggestions'].includes(calc.kind)&&calc.profile===id();
       suggestions.setBusy(!!calc.active);
       simulator.setBusy(!!calc.active);
+      swap.setBusy(!!calc.active);
       if(q('#sc-quick-fd-run'))q('#sc-quick-fd-run').disabled=!!calc.active;
       if(simulating||suggesting)status(calc.message);
       if(lastSuggestions&&!suggesting){await save();await load();status(calc.message);}
@@ -434,7 +449,7 @@ export async function mountScouter(view,{resultId=null}={}) {
   await load();
   showTab(activeTab);
   const timer=setInterval(tick,1200);tick();
-  const cleanup=()=>{disposed=true;window.removeEventListener('portrait-refreshed',onPortrait);suggestions.dispose();disposeTooltips();clearInterval(timer);clearTimeout(saveTimer);if(dirty)void save().catch(()=>{});if(portrait)URL.revokeObjectURL(portrait);for(const u of urls.values())URL.revokeObjectURL(u);};
+  const cleanup=()=>{disposed=true;swap.dispose();window.removeEventListener('portrait-refreshed',onPortrait);suggestions.dispose();disposeTooltips();clearInterval(timer);clearTimeout(saveTimer);if(dirty)void save().catch(()=>{});if(portrait)URL.revokeObjectURL(portrait);for(const u of urls.values())URL.revokeObjectURL(u);};
   cleanup.showResult=async result=>{
     await save();if(disposed)return false;
     selectedResult=result;await load();if(disposed)return false;

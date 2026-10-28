@@ -414,6 +414,31 @@ def simulate(identifier):
     return jsonify(service.start_simulation(identifier, request.json))
 
 
+@app.get("/api/scouter/characters/<identifier>/swap/catalog")
+def swap_catalog(identifier):
+    from itemswap.service import catalog_payload
+
+    return jsonify(catalog_payload(identifier))
+
+
+@app.post("/api/scouter/characters/<identifier>/swap/preview")
+def swap_preview(identifier):
+    from itemswap.service import preview
+
+    return jsonify(preview(identifier, request.json))
+
+
+@app.post("/api/scouter/characters/<identifier>/swap/simulate")
+def swap_simulate(identifier):
+    return jsonify(service.start_swap_simulation(identifier, request.json))
+
+
+@app.delete("/api/scouter/characters/<identifier>/history/<record>/swaps/<run>")
+def delete_swap_run(identifier, record, run):
+    service.delete_swap_run(identifier, record, run)
+    return jsonify(deleted=run)
+
+
 @app.post("/api/scouter/characters/<identifier>/suggestions")
 def suggestions(identifier):
     return jsonify(service.start_suggestions(identifier))

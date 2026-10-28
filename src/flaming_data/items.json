@@ -18035,18 +18035,25 @@
       "source_classes": [],
       "level": 250,
       "source_level": 250,
-      "flameable": false,
-      "flame_advantaged": null,
-      "flame_category": null,
-      "rollable_line_pool": null,
-      "flame_models": [],
+      "flameable": true,
+      "flame_advantaged": true,
+      "flame_category": "advantaged",
+      "rollable_line_pool": "armor",
+      "flame_models": [
+        "brf"
+      ],
       "base_attack": 10,
       "base_magic_attack": 10,
       "source_region": "SEA-oriented catalog",
       "icon_url": "https://pub-37581592c5a045f3ad8b1881608a2769.r2.dev/images/equips/medal/immortal-legacy.png",
       "set": "radiantBossAcc",
-      "classification_basis": "Whackybeanz slot eligibility rule",
-      "metadata_status": "source_catalog"
+      "classification_basis": "Player-confirmed exception to the source's no-flame medal rule; boss-reward Brilliant Boss item, classified like Oath of Death",
+      "metadata_status": "source_catalog",
+      "metadata_evidence": {
+        "url": "https://maplestorywiki.net/w/Immortal_Legacy",
+        "cross_check": "Player in-game confirmation",
+        "checked_at": "2026-10-28"
+      }
     },
     {
       "id": "wb_68c97e276d8e661f64dd51b2",
