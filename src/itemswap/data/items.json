@@ -1,0 +1,8826 @@
+{
+ "version": 1,
+ "generated_by": "tools/build_swap_items.py",
+ "fetched": "2026-10-28",
+ "sources": [
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Arcane_Shield?action=raw",
+   "sha256": "a0458b306eec61ebf8831498569793a335598ee4490137b7c73babf640b715b1"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Bane_Shield?action=raw",
+   "sha256": "3394937654b8d7900b511fbffef59c28ae2b719dad3ea2ebf7cd58000b13d8dd"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Bladebinder?action=raw",
+   "sha256": "7cb673435e85cef7ca280e471e7445d38cd9c34a9e99eae1aac73e80437f01e4"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Brace_Band?action=raw",
+   "sha256": "c5e85e8a1ffd45a857277cfc2caa954e9cbd2f7851a36734945c5d830f88b948"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Bullseye?action=raw",
+   "sha256": "10a108e89be72428f78ca31e092a1cf4f82b8c635d7867fc9ac4368000fdd17c"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Carte?action=raw",
+   "sha256": "460988173dddd0c7eb7972987b3d7d6b8a71628c3fd68ada89849aadc2f1d591"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Chain?action=raw",
+   "sha256": "a1c8df3624733d1812fdb3d5a2f2dc924f51253bdcb8998bdbd0e4fea83fdb04"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Charges?action=raw",
+   "sha256": "4f9aa0de24efea655ec1ca6eec8bb46bd0b31e6ce99c0fd60343057a1f34da82"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Charm?action=raw",
+   "sha256": "d7dd857b511f8b8d0cd806f63371b7be1f469980001940aa62a74bd61de2564c"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Compass?action=raw",
+   "sha256": "8086ad2d3d7117647908f851ef8df0e463b3f5c91305840086e12eb43b3feec2"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Deca_Core_Controller?action=raw",
+   "sha256": "443425fe6cccc8dc0b5f2c409362ea19cb3d5083a7d6ac759a12354b1dcde67a"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Diamond_Fan_Tassel?action=raw",
+   "sha256": "5571651e5169cf17084cd89007a0b87ec6c7ec6f569e255a0d35e02a331f8398"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Emerald?action=raw",
+   "sha256": "e54ad6386ed8edaf5ff79c27cc2f79116dee86f548a1f60a3983d84e19988e2d"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Feather?action=raw",
+   "sha256": "25e24ae7289c7e19dba92bf2256668f667552a0f56c9c45730cecd53f03c9dd1"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Force_Shield?action=raw",
+   "sha256": "793a340fe932cd3ea73e23c057cbed4a83c7f11b95ace69b0a5f906b7bd01bba"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Four-Jade_Ornament?action=raw",
+   "sha256": "59b89469db2380eb8968ca3d7c7bf579dbe1dde17984e908307aac2fd043dcd5"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Fox_Marble?action=raw",
+   "sha256": "ed8e2f7c03f9290f4465cd361a268b4cdb79e9f1a4c43987f9a06590d4494c19"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Hex_Seeker?action=raw",
+   "sha256": "dd31d1a63201b600d392e74aadb0a58c106429598f77cd35b272b0d8787eb815"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Honor_Shield?action=raw",
+   "sha256": "e217763b9f644dc3855546587c95dcd7448587fbbcd3669113020c18b5d0d091"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Hourglass?action=raw",
+   "sha256": "f8cf357944cfa349bfdf26cdcd90bc6be492c3cf85b4be01e0a9f8b580ab0ad3"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Imugi_Gem?action=raw",
+   "sha256": "26432c4769bb5f112fe6e68735dda26868c2483932e5d3f006971aac718f35e2"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Incendiary?action=raw",
+   "sha256": "c29191b25ea262a3cf390f3af66b414e3b0fb16ed68942698a38409847f48119"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Katara?action=raw",
+   "sha256": "d657a6a4d42e4b7d7c660f6947b48d059eb13f1ac3d7849b979e4eafe1117e47"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Keir?action=raw",
+   "sha256": "f204e662a1b91e13404991f6b4b14c83cd2109df19b39b569a34329c410de1ae"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_King_Chess_Piece?action=raw",
+   "sha256": "46f5da2728049dc7f91aa850065ce78514ce9a03588ebdc00c1c26217cbed133"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Kodachi?action=raw",
+   "sha256": "b11ff58627babaef77f1698dc38a61deecf08f6173d75c5d1b7e5e705658df2a"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Leaf_Shield?action=raw",
+   "sha256": "9c957c3c541a91d37a0649ce489ff168ec82efbb9a15a1bce37a77fccc837f13"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Lucent_Wings?action=raw",
+   "sha256": "9fbb002c7ff76375fbb8e64c1e657a4bb385f17e139bde26bb2dbafaa21b37e0"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Magic_Arrows?action=raw",
+   "sha256": "de85149321fe33698152c8f34b469d928de1b6730d0abee3f57af93fe28269ee"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Magnum?action=raw",
+   "sha256": "2d0bd2ca261c1c8abc37b44846ad4b23dd28df363e76af55d78f4f500051f1f0"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Medallion?action=raw",
+   "sha256": "2123eb4465b97beb226e4049c921c8938b94c72d8a9e28b2d60c61c2ff08b1a0"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Nova_Essence?action=raw",
+   "sha256": "ae8073a78272e10d6ddc6d2ff00c2b1f3cb571baaafaa9667e63e84b6c771352"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Obsidian?action=raw",
+   "sha256": "f26d3647263339791bcc0eead34008c2b66368a8d973f2b605078ac1b7af3daf"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Orb?action=raw",
+   "sha256": "fc2abe8fab72c43822a5cf9c8b3421f7002b792f63327066f95c625b8a58a58a"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Path?action=raw",
+   "sha256": "7f8d7f2dab7410bf1958eb8fe67b11590f11876a6f459b4f467d9fd793f6ce70"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Raven_Eye?action=raw",
+   "sha256": "d3b817f5297649b7a7f0df8f8565b9baa83c3c27c2bbea56e4d1f9762ed6d593"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Relic?action=raw",
+   "sha256": "0bdf52c10931cf714ce26295b43ab1d283833889fc101d1c5483eeab59b55ce4"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Rosary?action=raw",
+   "sha256": "8cb844726c78c69a2d45e88f63ca34c818bab43d46becc7e77fa97d7e12668a6"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Ruby_Shield?action=raw",
+   "sha256": "339763b4c62ceb3c96d9c6d9e7141a1eb34a24d8b6d701b9f5840d2eef4fb098"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Sacred_Aegis?action=raw",
+   "sha256": "b8ead9c71a09021e1dbdc1dd51d52ee500df715fa4100251891825bb37f28a7a"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Sapphire?action=raw",
+   "sha256": "7cabf50316de82a753361a180fad9f3771d91eac2880c612c75970508e08b02c"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Soul_Ring?action=raw",
+   "sha256": "e90bf625a34c02085e6d0b00f210df05fca93e99c507b370361dc72d4c9ef9cd"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Soul_Shield?action=raw",
+   "sha256": "3a4296a9c78bb155c0bf0a2445578ae17c01252da8b1d0ae4870da8012255d58"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Talisman?action=raw",
+   "sha256": "8350b1864fbd390743bff07d66fe5ca092460013126e02cca04d43e30c026668"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Topaz?action=raw",
+   "sha256": "9bdc1cd1cd958672159b7ddb11f310f087ba7be20d4611179facdac2acb75501"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Topaz_Aegis?action=raw",
+   "sha256": "513b6d28dbf0048ddc125d5fef154e44ad61469444a3d5cb3b332b0f8e1691ae"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Transmitter?action=raw",
+   "sha256": "5aa27683617edd8e3c0b996c5cc7c199746bd94462c5c296b0126d75fcffa315"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Umbral_Shield?action=raw",
+   "sha256": "609c811d6a5269c3a54320ee1f01f6f9db7ea8b7a7341a6bd83310cb0f03ab59"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Weapon_Belt?action=raw",
+   "sha256": "a76f9858554f7cf16887cbb75b15a2f71e09de63e982aa69f8dba381d53a2301"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_White_Tiger_Pendulum?action=raw",
+   "sha256": "5b3c4e25338f261e098fc58a8ccabaac2759ff3983d38737dfb036271751da1e"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Wild_Tusk?action=raw",
+   "sha256": "7347740c838e974937b8e0d46a4c29508f7b15a843de4b40ba7112b552a9c7d2"
+  },
+  {
+   "url": "https://maplestorywiki.net/w/Astra_Wrist_Band?action=raw",
+   "sha256": "aadc7c5f97cb9e07b149ef8ed2807b9a1bec9d0a8c6c44e7d0811d528f5b4402"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/archer/bm",
+   "sha256": "7e8fd0a4c5107c89aa00aa9c442c4665bfb8e44cdf3059295771645189a19c9c"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/archer/kain",
+   "sha256": "b71020ed9682d68778cc77dc4ae5caaf9b66d5099960e3c8c6bf32a6f4610d6b"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/archer/merc",
+   "sha256": "2086d83aeb29201b205b27398abd950dbabd77cb985d15f7008e49a802b89117"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/archer/pf",
+   "sha256": "9b23afaac1548d168cf055dbe8b4309920f7a25f0297e609a992ed8c6d891fb5"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/archer/wb",
+   "sha256": "194839b7e44f44a490bf73ffb06ae225b62ce21f8a3eb333b5c7c1b96d7ee96a"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/archer/wh",
+   "sha256": "0c1d8a2312d52dfccfd7bf5b34ae5f51db44f52b87f76c0b98543b4c20230d3a"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/archer/xbm",
+   "sha256": "4d1c9b9959ac38448eee6f1a548553af9eff957158d5a4d4c7d0153e471e0a8b"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/bam",
+   "sha256": "d3120e8f7332cd3aab5f616cb810ecb9808bb9928fff134236ccfb496ee24fdd"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/bs",
+   "sha256": "53f9a6a977c8e1348e0c8e5da15f5401a7f9359ea8800bd569c06b9082d9841b"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/evan",
+   "sha256": "9ba8a58448fdbb42a893bc4f15a61e141b19e270b36e522b03212d52eee6336a"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/fp",
+   "sha256": "bbe0bfcb5fe3c052d6a202def304b344150186b0c2cd9f26e0cf410fd17f2429"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/fw",
+   "sha256": "159f83a48e1381670444dcea88648e67a7ef3e2ec3bf824c79637702998cff50"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/il",
+   "sha256": "ee7cd31a755c82c8afe108d8fe58a98e9272f9708bf8278ba82cda1c702d6ad9"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/illium",
+   "sha256": "3ba718a7f93b663b428896cd12d185f05c2c09526bdd6fbf2b0d16cb32601440"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/kanna",
+   "sha256": "7f5af6da93104cff2f172261db1eda1d9f5519606aa548e384df85f2b81069d2"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/kinesis",
+   "sha256": "fc57b95b657c6fe5c4001e89d6e87f785957b78eafcc9597a8784d3051760e19"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/lara",
+   "sha256": "9fcf4f44a4f1475bc09dc213cd895293bdb2ac9d47d9376c0ea09840668aaeff"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/lumi",
+   "sha256": "8113053e39712f35d714200c5935f56ebd378c40ea6a1cc8b46ea4c8d5de7f58"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/lynn",
+   "sha256": "c95e7bef4b61bcaf8fc68dd50a316c6d8c081bf43ca174876b44c2d9d653200f"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/magician/sia",
+   "sha256": "5ca47fc84a8407a1493f7fa3c576bcd35f42742455f697221c041d7cbd3cab9a"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/pirate/ab",
+   "sha256": "4b075c0c2ce6c77dc5a4e0655d842ef553191b32db0b9f159bb54c01e8b17c7e"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/pirate/ark",
+   "sha256": "b56629d56f56600431627e08363b03ef0b4374961d7728869ef5779260bb40d8"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/pirate/captain",
+   "sha256": "78a4c84ec0b99b72670471ac9f141eab879f762817e08b09fe3ed7485b9165af"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/pirate/cm",
+   "sha256": "1672054cfe92302548b996f3c774956b2a42d627583f2fc027438b99d1a084c7"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/pirate/eunwol",
+   "sha256": "8651a19910ba13b95b53e26d05b257d88f4c6f0c4d8d428b3a8cbacdc6d3ceeb"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/pirate/mech",
+   "sha256": "9023368d80e4c75b1fc6d1c3e4992cf608213a392a67941db7e9a90a1b286102"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/pirate/mx",
+   "sha256": "fe4fc312a84e6089addd13cf58d523d47ef51667a9242cb2637206c91f84a657"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/pirate/striker",
+   "sha256": "780d72ae5d912e7a728caeafed2a468b1724ec38c572f4407613c3a84697b54c"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/pirate/viper",
+   "sha256": "701400bf4c977dd89a2b411a6d26a01395353421b24eb11c7a71bbae0037eae4"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/pirate/xenon",
+   "sha256": "bf537a3a07765ec32b1c327557c184f8bd257bfe29b77bec6875863d238a9a29"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/thief/cadena",
+   "sha256": "03d97ded6d12499f6ca2b206955eed8162ce23acbac4464bac8db61364dbd395"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/thief/db",
+   "sha256": "d3d294a41fb61a1d8353e037df24b67c6f889160be24e1cbf6cb2ca4557f5509"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/thief/hy",
+   "sha256": "01c0a967d6184f3cab5b6b9a67ae9fbb93a56dbcd2af85890166350bf475739c"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/thief/khali",
+   "sha256": "94f3e9ec793ae3220ef7416cf689df363558494d1e4dc40df872b28ce58cdd03"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/thief/nl",
+   "sha256": "1da26580cebcf44f2f0e09b40e26e2daade6d03809d0fb814702b2225e748d8e"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/thief/nw",
+   "sha256": "4eb193b35141fea9814a516c790b403bd2d800f92c054bffc004a67eb04f13c0"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/thief/phantom",
+   "sha256": "73ee9f92edb347a4daf89ae1c2517a49443248097e6c9654dcdbd41bdd9530e3"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/thief/sdw",
+   "sha256": "c7926c13164ee2431e82daa2ab8a14d2703617af329bf0e428b3494eee55033e"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/thief/xenon",
+   "sha256": "873d36720a62a1a48e7e272f3e387e4c916d53737533edf5ae5cc77f9623e27d"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/adele",
+   "sha256": "f73b98b176bed9a108f05c449af21ac4a80844c59257f07fdc5f51e676b1381d"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/aran",
+   "sha256": "2976abd98e09bed75ec4b7a22076a637f5bac5e90f16b1e4e0fc12a1feb656c7"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/blaster",
+   "sha256": "5afda175b1dea453a3a1d253687aa4feaac5a4a203c9997d8161c5d5c7dd206e"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/da",
+   "sha256": "a4f325075074f8b5d77e74e93c225012fc174b7ac821d1833d4b2dbd29cf0055"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/dk",
+   "sha256": "013043b782a0c62cb10e11ddd19b1eae034e7c294e5b300e57d79187306c13cd"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/ds",
+   "sha256": "2a48a258a7652e22d3d2bcd6a35ffd328dc22bf40ee49995dacc4db1147a5f3e"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/hayato",
+   "sha256": "f678b7e3ff86d37fed7036186489aab98008b09e482e7d27f2c8be9423961be4"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/hero",
+   "sha256": "1a6bd2f6b7491d3bd7f2f6380111422bda2a99edb560ece58f1781f337ad2685"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/kaiser",
+   "sha256": "4da575f4c786edb0f8b86d8f4c12edd4a3762c18be6fb163acc2b48afa20042b"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/len",
+   "sha256": "5b0653f87dc8a40ac0869d4cec58eb7dd6691718256163d0f1070584f3326bf0"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/mihile",
+   "sha256": "e90a2f567c78aa962cff04ad0d79d63d8cd73651767ede33192ea2fb25e12908"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/paladin",
+   "sha256": "d9e0605afa525437460b77132ee7267ecebfabcc97038c1ba1b548bed14def6d"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/sm",
+   "sha256": "7b50053733f276ea979f1ef33edc8e75c0cc4bd93651450ca682d3ddfcf1d626"
+  },
+  {
+   "url": "https://www.whackybeanz.com/api/getEquips/warrior/zero",
+   "sha256": "cdbdb35e5b82b2422f705ea55692870a6d02541c6c918dcf96b9ebda1e3e9515"
+  }
+ ],
+ "items": [
+  {
+   "id": "seven-day-badge",
+   "source_id": "seven-day-badge",
+   "name": "Seven Days Badge",
+   "aliases": [
+    "Seven-day Badge"
+   ],
+   "slot": "badge",
+   "level": 100,
+   "set": "monsterPark",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 7,
+    "dex": 7,
+    "int": 7,
+    "luk": 7,
+    "att": 7,
+    "matt": 7,
+    "ignoreGuard": 10
+   },
+   "flame": false,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": null,
+   "set_label": "Seven Days (Monster Park)"
+  },
+  {
+   "id": "ventus-badge",
+   "source_id": "ventus-badge",
+   "name": "Crystal Ventus Badge",
+   "aliases": [],
+   "slot": "badge",
+   "level": 130,
+   "set": "bossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": false,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": null,
+   "set_label": "Boss Accessory"
+  },
+  {
+   "id": "ghost-ship-exorcist",
+   "source_id": null,
+   "name": "Ghost Ship Exorcist",
+   "aliases": [],
+   "slot": "badge",
+   "level": 150,
+   "set": null,
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 3,
+    "dex": 3,
+    "int": 3,
+    "luk": 3,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "max_stars": 22,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Ghost_Ship_Exorcist"
+  },
+  {
+   "id": "sengoku-hakase-badge",
+   "source_id": null,
+   "name": "Sengoku Hakase Badge",
+   "aliases": [],
+   "slot": "badge",
+   "level": 160,
+   "set": null,
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "max_stars": 22,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Sengoku_Hakase_Badge"
+  },
+  {
+   "id": "genesis-badge",
+   "source_id": "genesis-badge",
+   "name": "Genesis Badge",
+   "aliases": [
+    "Badge in the Beginning"
+   ],
+   "slot": "badge",
+   "level": 200,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "int": 15,
+    "luk": 15,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": false,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": null,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "superior-gollux-belt",
+   "source_id": "superior-gollux-belt",
+   "name": "Superior Engraved Gollux Belt",
+   "aliases": [],
+   "slot": "belt",
+   "level": 150,
+   "set": "superiorGollux",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 60,
+    "dex": 60,
+    "int": 60,
+    "luk": 60,
+    "att": 35,
+    "matt": 35
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": false,
+   "set_label": "Superior Gollux"
+  },
+  {
+   "id": "fantasy-belt",
+   "source_id": "fantasy-belt",
+   "name": "Dreamy Belt",
+   "aliases": [
+    "Fantasy Belt"
+   ],
+   "slot": "belt",
+   "level": 200,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "int": 50,
+    "luk": 50,
+    "att": 6,
+    "matt": 6
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Pitched Boss",
+   "addons": [
+    {
+     "id": "exceptional",
+     "label": "Exceptional enhancement",
+     "max": 1,
+     "per": {
+      "allstat": 20,
+      "att": 15
+     }
+    }
+   ]
+  },
+  {
+   "id": "thief:faf-thief-bottom",
+   "source_id": "faf-thief-bottom",
+   "name": "Trixter Assassin Pants",
+   "aliases": [
+    "Trickster Assassin Pants"
+   ],
+   "slot": "bottom",
+   "level": 150,
+   "set": "faf",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 30,
+    "luk": 30,
+    "att": 2,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "magician:faf-mage-bottom",
+   "source_id": "faf-mage-bottom",
+   "name": "Trixter Dunwitch Pants",
+   "aliases": [
+    "Trickster Dunwitch Pants"
+   ],
+   "slot": "bottom",
+   "level": 150,
+   "set": "faf",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 30,
+    "luk": 30,
+    "matt": 2,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "archer:faf-archer-bottom",
+   "source_id": "faf-archer-bottom",
+   "name": "Trixter Ranger Pants",
+   "aliases": [
+    "Trickster Ranger Pants"
+   ],
+   "slot": "bottom",
+   "level": 150,
+   "set": "faf",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 30,
+    "dex": 30,
+    "att": 2,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "pirate:faf-pirate-bottom",
+   "source_id": "faf-pirate-bottom",
+   "name": "Trixter Wanderer Pants",
+   "aliases": [
+    "Trickster Wanderer Pants"
+   ],
+   "slot": "bottom",
+   "level": 150,
+   "set": "faf",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 30,
+    "dex": 30,
+    "att": 2,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "warrior:faf-warrior-bottom",
+   "source_id": "faf-warrior-bottom",
+   "name": "Trixter Warrior Pants",
+   "aliases": [
+    "Trickster Warrior Pants"
+   ],
+   "slot": "bottom",
+   "level": 150,
+   "set": "faf",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 30,
+    "dex": 30,
+    "att": 2,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "archer:eternal-archer-bottom",
+   "source_id": "eternal-archer-bottom",
+   "name": "Eternal Archer Pants",
+   "aliases": [],
+   "slot": "bottom",
+   "level": 250,
+   "set": "eternal",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "att": 6,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "warrior:eternal-warrior-bottom",
+   "source_id": "eternal-warrior-bottom",
+   "name": "Eternal Knight Pants",
+   "aliases": [],
+   "slot": "bottom",
+   "level": 250,
+   "set": "eternal",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "att": 6,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "magician:eternal-mage-bottom",
+   "source_id": "eternal-mage-bottom",
+   "name": "Eternal Mage Pants",
+   "aliases": [],
+   "slot": "bottom",
+   "level": 250,
+   "set": "eternal",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 50,
+    "luk": 50,
+    "matt": 6,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "pirate:eternal-pirate-bottom",
+   "source_id": "eternal-pirate-bottom",
+   "name": "Eternal Pirate Pants",
+   "aliases": [],
+   "slot": "bottom",
+   "level": 250,
+   "set": "eternal",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "att": 6,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "thief:eternal-thief-bottom",
+   "source_id": "eternal-thief-bottom",
+   "name": "Eternal Thief Pants",
+   "aliases": [],
+   "slot": "bottom",
+   "level": 250,
+   "set": "eternal",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 50,
+    "luk": 50,
+    "att": 6,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "archer:abs-cape",
+   "source_id": "abs-cape",
+   "name": "AbsoLab Archer Cape",
+   "aliases": [
+    "Absolabs Trueshot Cloak"
+   ],
+   "slot": "cape",
+   "level": 160,
+   "set": "abs",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "int": 15,
+    "luk": 15,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "thief:abs-cape",
+   "source_id": "abs-cape",
+   "name": "AbsoLab Bandit Cape",
+   "aliases": [
+    "Absolabs Shadow Cloak"
+   ],
+   "slot": "cape",
+   "level": 160,
+   "set": "abs",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "int": 15,
+    "luk": 15,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "warrior:abs-cape",
+   "source_id": "abs-cape",
+   "name": "AbsoLab Knight Cape",
+   "aliases": [
+    "Absolabs Bastion Cloak"
+   ],
+   "slot": "cape",
+   "level": 160,
+   "set": "abs",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "int": 15,
+    "luk": 15,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "magician:abs-cape",
+   "source_id": "abs-cape",
+   "name": "AbsoLab Mage Cape",
+   "aliases": [
+    "Absolabs Cabalist Cloak"
+   ],
+   "slot": "cape",
+   "level": 160,
+   "set": "abs",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "int": 15,
+    "luk": 15,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "pirate:abs-cape",
+   "source_id": "abs-cape",
+   "name": "AbsoLab Pirate Cape",
+   "aliases": [
+    "Absolabs Brigadier Cloak"
+   ],
+   "slot": "cape",
+   "level": 160,
+   "set": "abs",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "int": 15,
+    "luk": 15,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "archer:acs-cape",
+   "source_id": "acs-cape",
+   "name": "Arcane Umbra Archer Cape",
+   "aliases": [
+    "Arcaneshade Archer Cape"
+   ],
+   "slot": "cape",
+   "level": 200,
+   "set": "acs",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 35,
+    "dex": 35,
+    "int": 35,
+    "luk": 35,
+    "att": 6,
+    "matt": 6
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "warrior:acs-cape",
+   "source_id": "acs-cape",
+   "name": "Arcane Umbra Knight Cape",
+   "aliases": [
+    "Arcaneshade Knight Cape"
+   ],
+   "slot": "cape",
+   "level": 200,
+   "set": "acs",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 35,
+    "dex": 35,
+    "int": 35,
+    "luk": 35,
+    "att": 6,
+    "matt": 6
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "magician:acs-cape",
+   "source_id": "acs-cape",
+   "name": "Arcane Umbra Mage Cape",
+   "aliases": [
+    "Arcaneshade Mage Cape"
+   ],
+   "slot": "cape",
+   "level": 200,
+   "set": "acs",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "str": 35,
+    "dex": 35,
+    "int": 35,
+    "luk": 35,
+    "att": 6,
+    "matt": 6
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "pirate:acs-cape",
+   "source_id": "acs-cape",
+   "name": "Arcane Umbra Pirate Cape",
+   "aliases": [
+    "Arcaneshade Pirate Cape"
+   ],
+   "slot": "cape",
+   "level": 200,
+   "set": "acs",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 35,
+    "dex": 35,
+    "int": 35,
+    "luk": 35,
+    "att": 6,
+    "matt": 6
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "thief:acs-cape",
+   "source_id": "acs-cape",
+   "name": "Arcane Umbra Thief Cape",
+   "aliases": [
+    "Arcaneshade Bandit Cape"
+   ],
+   "slot": "cape",
+   "level": 200,
+   "set": "acs",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "str": 35,
+    "dex": 35,
+    "int": 35,
+    "luk": 35,
+    "att": 6,
+    "matt": 6
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "archer:eternal-archer-cape",
+   "source_id": "eternal-archer-cape",
+   "name": "Eternal Archer Cape",
+   "aliases": [],
+   "slot": "cape",
+   "level": 250,
+   "set": "eternal",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "int": 50,
+    "luk": 50,
+    "att": 9,
+    "matt": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "warrior:eternal-warrior-cape",
+   "source_id": "eternal-warrior-cape",
+   "name": "Eternal Knight Cape",
+   "aliases": [
+    "Eternal Warrior Cape"
+   ],
+   "slot": "cape",
+   "level": 250,
+   "set": "eternal",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "int": 50,
+    "luk": 50,
+    "att": 9,
+    "matt": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "magician:eternal-mage-cape",
+   "source_id": "eternal-mage-cape",
+   "name": "Eternal Mage Cape",
+   "aliases": [],
+   "slot": "cape",
+   "level": 250,
+   "set": "eternal",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "int": 50,
+    "luk": 50,
+    "att": 9,
+    "matt": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "pirate:eternal-pirate-cape",
+   "source_id": "eternal-pirate-cape",
+   "name": "Eternal Pirate Cape",
+   "aliases": [],
+   "slot": "cape",
+   "level": 250,
+   "set": "eternal",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "int": 50,
+    "luk": 50,
+    "att": 9,
+    "matt": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "thief:eternal-thief-cape",
+   "source_id": "eternal-thief-cape",
+   "name": "Eternal Thief Cape",
+   "aliases": [],
+   "slot": "cape",
+   "level": 250,
+   "set": "eternal",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "int": 50,
+    "luk": 50,
+    "att": 9,
+    "matt": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "superior-gollux-earrings",
+   "source_id": "superior-gollux-earrings",
+   "name": "Superior Gollux Earrings",
+   "aliases": [],
+   "slot": "earring",
+   "level": 150,
+   "set": "superiorGollux",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "int": 15,
+    "luk": 15,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": false,
+   "set_label": "Superior Gollux"
+  },
+  {
+   "id": "estella-earrings",
+   "source_id": "estella-earrings",
+   "name": "Estella Earrings",
+   "aliases": [],
+   "slot": "earring",
+   "level": 160,
+   "set": "dawnBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 7,
+    "dex": 7,
+    "int": 7,
+    "luk": 7,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Dawn Boss"
+  },
+  {
+   "id": "commander-force-earrings",
+   "source_id": "commander-force-earrings",
+   "name": "Commanding Force Earring",
+   "aliases": [
+    "Commander Force Earrings"
+   ],
+   "slot": "earring",
+   "level": 200,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 7,
+    "dex": 7,
+    "int": 7,
+    "luk": 7,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Pitched Boss",
+   "addons": [
+    {
+     "id": "exceptional",
+     "label": "Exceptional enhancement",
+     "max": 1,
+     "per": {
+      "allstat": 20,
+      "att": 15
+     }
+    }
+   ]
+  },
+  {
+   "id": "archer:gold-maple-leaf-emblem",
+   "source_id": "gold-maple-leaf-emblem",
+   "name": "Gold Maple Leaf Emblem",
+   "aliases": [],
+   "slot": "emblem",
+   "level": 100,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "bm",
+    "pf",
+    "xbm"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": false,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:gold-maple-leaf-emblem",
+   "source_id": "gold-maple-leaf-emblem",
+   "name": "Gold Maple Leaf Emblem",
+   "aliases": [],
+   "slot": "emblem",
+   "level": 100,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "bs",
+    "fp",
+    "il"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": false,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:gold-maple-leaf-emblem",
+   "source_id": "gold-maple-leaf-emblem",
+   "name": "Gold Maple Leaf Emblem",
+   "aliases": [],
+   "slot": "emblem",
+   "level": 100,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "captain",
+    "cm",
+    "viper"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": false,
+   "flame_advantaged": null
+  },
+  {
+   "id": "thief:gold-maple-leaf-emblem",
+   "source_id": "gold-maple-leaf-emblem",
+   "name": "Gold Maple Leaf Emblem",
+   "aliases": [],
+   "slot": "emblem",
+   "level": 100,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "db",
+    "nl",
+    "sdw"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": false,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:gold-maple-leaf-emblem",
+   "source_id": "gold-maple-leaf-emblem",
+   "name": "Gold Maple Leaf Emblem",
+   "aliases": [],
+   "slot": "emblem",
+   "level": 100,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "dk",
+    "hero",
+    "paladin"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": false,
+   "flame_advantaged": null
+  },
+  {
+   "id": "archer:mithra-rage-archer",
+   "source_id": "mithra-rage-archer",
+   "name": "Mitra's Rage: Archer",
+   "aliases": [
+    "Mithra's Rage: Bowman",
+    "Mitra's Rage: Bowman"
+   ],
+   "slot": "emblem",
+   "level": 200,
+   "set": "hardBossAcc",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": false,
+   "flame_advantaged": null,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "magician:mithra-rage-mage",
+   "source_id": "mithra-rage-mage",
+   "name": "Mitra's Rage: Magician",
+   "aliases": [
+    "Mithra's Rage: Magician",
+    "Mitra's Rage: Mage"
+   ],
+   "slot": "emblem",
+   "level": 200,
+   "set": "hardBossAcc",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 40,
+    "luk": 40,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": false,
+   "flame_advantaged": null,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "pirate:mithra-rage-pirate",
+   "source_id": "mithra-rage-pirate",
+   "name": "Mitra's Rage: Pirate",
+   "aliases": [
+    "Mithra's Rage: Pirate"
+   ],
+   "slot": "emblem",
+   "level": 200,
+   "set": "hardBossAcc",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": false,
+   "flame_advantaged": null,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "thief:mithra-rage-thief",
+   "source_id": "mithra-rage-thief",
+   "name": "Mitra's Rage: Thief",
+   "aliases": [
+    "Mithra's Rage: Thief"
+   ],
+   "slot": "emblem",
+   "level": 200,
+   "set": "hardBossAcc",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 40,
+    "luk": 40,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": false,
+   "flame_advantaged": null,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "warrior:mithra-rage-warrior",
+   "source_id": "mithra-rage-warrior",
+   "name": "Mitra's Rage: Warrior",
+   "aliases": [
+    "Mithra's Rage: Warrior"
+   ],
+   "slot": "emblem",
+   "level": 200,
+   "set": "hardBossAcc",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": false,
+   "flame_advantaged": null,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "black-bean-mark",
+   "source_id": "black-bean-mark",
+   "name": "Black Bean Mark",
+   "aliases": [],
+   "slot": "eye",
+   "level": 135,
+   "set": "bossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 7,
+    "dex": 7,
+    "int": 7,
+    "luk": 7,
+    "att": 1,
+    "matt": 1
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Boss Accessory"
+  },
+  {
+   "id": "papulatus-mark",
+   "source_id": "papulatus-mark",
+   "name": "Papulatus Mark",
+   "aliases": [],
+   "slot": "eye",
+   "level": 145,
+   "set": "bossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 8,
+    "dex": 8,
+    "int": 8,
+    "luk": 8,
+    "att": 1,
+    "matt": 1
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Boss Accessory"
+  },
+  {
+   "id": "damien-eye",
+   "source_id": "damien-eye",
+   "name": "Magic Eyepatch",
+   "aliases": [
+    "Magical Eye Patch"
+   ],
+   "slot": "eye",
+   "level": 160,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "int": 15,
+    "luk": 15,
+    "att": 3,
+    "matt": 3
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Pitched Boss",
+   "addons": [
+    {
+     "id": "exceptional",
+     "label": "Exceptional enhancement",
+     "max": 1,
+     "per": {
+      "allstat": 15,
+      "att": 10
+     }
+    }
+   ]
+  },
+  {
+   "id": "sweetwater-monocle",
+   "source_id": "sweetwater-monocle",
+   "name": "Sweetwater Monocle",
+   "aliases": [],
+   "slot": "eye",
+   "level": 160,
+   "set": null,
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": false,
+   "addons": [
+    {
+     "id": "transposed",
+     "label": "Transposed 16★",
+     "max": 1,
+     "per": {
+      "allstat": 9,
+      "att": 8
+     }
+    }
+   ]
+  },
+  {
+   "id": "twilight-mark",
+   "source_id": "twilight-mark",
+   "name": "Twilight Mark",
+   "aliases": [
+    "Penombre Mark"
+   ],
+   "slot": "face",
+   "level": 140,
+   "set": "dawnBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 5,
+    "dex": 5,
+    "int": 5,
+    "luk": 5,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Dawn Boss"
+  },
+  {
+   "id": "lotus-mark",
+   "source_id": "lotus-mark",
+   "name": "Berserked",
+   "aliases": [
+    "Loose Control Machine Mark"
+   ],
+   "slot": "face",
+   "level": 160,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Pitched Boss",
+   "addons": [
+    {
+     "id": "exceptional",
+     "label": "Exceptional enhancement",
+     "max": 1,
+     "per": {
+      "allstat": 15,
+      "att": 10
+     }
+    }
+   ]
+  },
+  {
+   "id": "original-sin-of-pride",
+   "source_id": "original-sin-of-pride",
+   "name": "Original Sin of Pride",
+   "aliases": [],
+   "slot": "face",
+   "level": 250,
+   "set": "radiantBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "int": 15,
+    "luk": 15,
+    "att": 15,
+    "matt": 15
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Brilliant Boss",
+   "addons": [
+    {
+     "id": "exceptional",
+     "label": "Exceptional enhancements",
+     "max": 3,
+     "per": {
+      "allstat": 15,
+      "att": 10
+     }
+    }
+   ]
+  },
+  {
+   "id": "archer:abs-gloves",
+   "source_id": "abs-gloves",
+   "name": "AbsoLab Archer Gloves",
+   "aliases": [
+    "Absolabs Trueshot Gloves"
+   ],
+   "slot": "gloves",
+   "level": 160,
+   "set": "abs",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "thief:abs-gloves",
+   "source_id": "abs-gloves",
+   "name": "AbsoLab Bandit Gloves",
+   "aliases": [
+    "Absolabs Shadow Vambracers"
+   ],
+   "slot": "gloves",
+   "level": 160,
+   "set": "abs",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 20,
+    "luk": 20,
+    "att": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab",
+   "note": "API lists STR/DEX; the wiki's AbsoLab Bandit Gloves give DEX/LUK."
+  },
+  {
+   "id": "warrior:abs-gloves",
+   "source_id": "abs-gloves",
+   "name": "AbsoLab Knight Gloves",
+   "aliases": [
+    "Absolabs Bastion Gauntlets"
+   ],
+   "slot": "gloves",
+   "level": 160,
+   "set": "abs",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "magician:abs-gloves",
+   "source_id": "abs-gloves",
+   "name": "AbsoLab Mage Gloves",
+   "aliases": [
+    "Absolabs Cabalist Gloves"
+   ],
+   "slot": "gloves",
+   "level": 160,
+   "set": "abs",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 20,
+    "luk": 20,
+    "matt": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "pirate:abs-gloves",
+   "source_id": "abs-gloves",
+   "name": "AbsoLab Pirate Gloves",
+   "aliases": [
+    "Absolabs Brigadier Clench"
+   ],
+   "slot": "gloves",
+   "level": 160,
+   "set": "abs",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "archer:acs-gloves",
+   "source_id": "acs-gloves",
+   "name": "Arcane Umbra Archer Gloves",
+   "aliases": [
+    "Arcaneshade Archer Mitts"
+   ],
+   "slot": "gloves",
+   "level": 200,
+   "set": "acs",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "warrior:acs-gloves",
+   "source_id": "acs-gloves",
+   "name": "Arcane Umbra Knight Gloves",
+   "aliases": [
+    "Arcaneshade Knight Mitts"
+   ],
+   "slot": "gloves",
+   "level": 200,
+   "set": "acs",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "magician:acs-gloves",
+   "source_id": "acs-gloves",
+   "name": "Arcane Umbra Mage Gloves",
+   "aliases": [
+    "Arcaneshade Mage Mitts"
+   ],
+   "slot": "gloves",
+   "level": 200,
+   "set": "acs",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 40,
+    "luk": 40,
+    "matt": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "pirate:acs-gloves",
+   "source_id": "acs-gloves",
+   "name": "Arcane Umbra Pirate Gloves",
+   "aliases": [
+    "Arcaneshade Pirate Mitts"
+   ],
+   "slot": "gloves",
+   "level": 200,
+   "set": "acs",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "thief:acs-gloves",
+   "source_id": "acs-gloves",
+   "name": "Arcane Umbra Thief Gloves",
+   "aliases": [
+    "Arcaneshade Bandit Mitts"
+   ],
+   "slot": "gloves",
+   "level": 200,
+   "set": "acs",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 40,
+    "luk": 40,
+    "att": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "archer:eternal-archer-gloves",
+   "source_id": "eternal-archer-gloves",
+   "name": "Eternal Archer Gloves",
+   "aliases": [],
+   "slot": "gloves",
+   "level": 250,
+   "set": "eternal",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 55,
+    "dex": 55,
+    "att": 12
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "warrior:eternal-warrior-gloves",
+   "source_id": "eternal-warrior-gloves",
+   "name": "Eternal Knight Gloves",
+   "aliases": [
+    "Eternal Warrior Gloves"
+   ],
+   "slot": "gloves",
+   "level": 250,
+   "set": "eternal",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 55,
+    "dex": 55,
+    "att": 12
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "magician:eternal-mage-gloves",
+   "source_id": "eternal-mage-gloves",
+   "name": "Eternal Mage Gloves",
+   "aliases": [],
+   "slot": "gloves",
+   "level": 250,
+   "set": "eternal",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 55,
+    "luk": 55,
+    "matt": 12
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "pirate:eternal-pirate-gloves",
+   "source_id": "eternal-pirate-gloves",
+   "name": "Eternal Pirate Gloves",
+   "aliases": [],
+   "slot": "gloves",
+   "level": 250,
+   "set": "eternal",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 55,
+    "dex": 55,
+    "att": 12
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "thief:eternal-thief-gloves",
+   "source_id": "eternal-thief-gloves",
+   "name": "Eternal Thief Gloves",
+   "aliases": [],
+   "slot": "gloves",
+   "level": 250,
+   "set": "eternal",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 55,
+    "luk": 55,
+    "att": 12
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "thief:faf-thief-hat",
+   "source_id": "faf-thief-hat",
+   "name": "Royal Assassin Hood",
+   "aliases": [
+    "Highness Assassin Bonnet"
+   ],
+   "slot": "hat",
+   "level": 150,
+   "set": "faf",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 40,
+    "luk": 40,
+    "att": 2,
+    "ignoreGuard": 10
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "magician:faf-mage-hat",
+   "source_id": "faf-mage-hat",
+   "name": "Royal Dunwitch Hat",
+   "aliases": [
+    "Highness Dunwitch Hat"
+   ],
+   "slot": "hat",
+   "level": 150,
+   "set": "faf",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 40,
+    "luk": 40,
+    "matt": 2,
+    "ignoreGuard": 10
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "archer:faf-archer-hat",
+   "source_id": "faf-archer-hat",
+   "name": "Royal Ranger Beret",
+   "aliases": [
+    "Highness Ranger Beret"
+   ],
+   "slot": "hat",
+   "level": 150,
+   "set": "faf",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 2,
+    "ignoreGuard": 10
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "pirate:faf-pirate-hat",
+   "source_id": "faf-pirate-hat",
+   "name": "Royal Wanderer Hat",
+   "aliases": [
+    "Highness Wanderer Hat"
+   ],
+   "slot": "hat",
+   "level": 150,
+   "set": "faf",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 2,
+    "ignoreGuard": 10
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "warrior:faf-warrior-hat",
+   "source_id": "faf-warrior-hat",
+   "name": "Royal Warrior Helm",
+   "aliases": [
+    "Highness Warrior Helm"
+   ],
+   "slot": "hat",
+   "level": 150,
+   "set": "faf",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 2,
+    "ignoreGuard": 10
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "archer:eternal-archer-hat",
+   "source_id": "eternal-archer-hat",
+   "name": "Eternal Archer Hat",
+   "aliases": [],
+   "slot": "hat",
+   "level": 250,
+   "set": "eternal",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 80,
+    "dex": 80,
+    "att": 10,
+    "ignoreGuard": 15
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "warrior:eternal-warrior-hat",
+   "source_id": "eternal-warrior-hat",
+   "name": "Eternal Knight Helm",
+   "aliases": [],
+   "slot": "hat",
+   "level": 250,
+   "set": "eternal",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 80,
+    "dex": 80,
+    "att": 10,
+    "ignoreGuard": 15
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "magician:eternal-mage-hat",
+   "source_id": "eternal-mage-hat",
+   "name": "Eternal Mage Hat",
+   "aliases": [],
+   "slot": "hat",
+   "level": 250,
+   "set": "eternal",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 80,
+    "luk": 80,
+    "matt": 10,
+    "ignoreGuard": 15
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "pirate:eternal-pirate-hat",
+   "source_id": "eternal-pirate-hat",
+   "name": "Eternal Pirate Hat",
+   "aliases": [],
+   "slot": "hat",
+   "level": 250,
+   "set": "eternal",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 80,
+    "dex": 80,
+    "att": 10,
+    "ignoreGuard": 15
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "thief:eternal-thief-hat",
+   "source_id": "eternal-thief-hat",
+   "name": "Eternal Thief Bandana",
+   "aliases": [],
+   "slot": "hat",
+   "level": 250,
+   "set": "eternal",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 80,
+    "luk": 80,
+    "att": 10,
+    "ignoreGuard": 15
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "black-heart",
+   "source_id": "black-heart",
+   "name": "Black Heart",
+   "aliases": [],
+   "slot": "heart",
+   "level": 120,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "int": 50,
+    "luk": 50,
+    "att": 77,
+    "matt": 77,
+    "bossDmg": 30,
+    "ignoreGuard": 30
+   },
+   "flame": false,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": null,
+   "set_label": "Pitched Boss",
+   "max_stars": 0,
+   "unmodifiable": true,
+   "note": "Base 10 + 40 additional all stats; +30% boss damage and +30% IED are fixed potential lines."
+  },
+  {
+   "id": "plasma-heart",
+   "source_id": "plasma-heart",
+   "name": "Plasma Heart",
+   "aliases": [],
+   "slot": "heart",
+   "level": 130,
+   "set": null,
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 5,
+    "matt": 5,
+    "ignoreGuard": 15
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "complete-under-control",
+   "source_id": "complete-under-control",
+   "name": "Total Control",
+   "aliases": [
+    "Complete Under Control"
+   ],
+   "slot": "heart",
+   "level": 200,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 25,
+    "dex": 25,
+    "int": 25,
+    "luk": 25,
+    "att": 15,
+    "matt": 15,
+    "ignoreGuard": 30
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "chaos-vellum-crusher",
+   "source_id": null,
+   "name": "Chaos Vellum Crusher",
+   "aliases": [],
+   "slot": "medal",
+   "level": null,
+   "set": null,
+   "job": "common",
+   "classes": [],
+   "base": {
+    "bossDmg": 5
+   },
+   "flame": false,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Chaos_Vellum_Crusher"
+  },
+  {
+   "id": "the-red",
+   "source_id": null,
+   "name": "THE RED",
+   "aliases": [],
+   "slot": "medal",
+   "level": null,
+   "set": null,
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 7,
+    "dex": 7,
+    "int": 7,
+    "luk": 7,
+    "att": 7,
+    "matt": 7,
+    "bossDmg": 5
+   },
+   "flame": false,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": null,
+   "note": "MVP medal; values from the player's list (no wiki page)."
+  },
+  {
+   "id": "seven-day-monster-parker",
+   "source_id": "seven-day-monster-parker",
+   "name": "Seven Day Monster Parker",
+   "aliases": [
+    "Seven-day Monster Parker"
+   ],
+   "slot": "medal",
+   "level": 100,
+   "set": "monsterPark",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 7,
+    "dex": 7,
+    "int": 7,
+    "luk": 7,
+    "att": 7,
+    "matt": 7,
+    "ignoreGuard": 10
+   },
+   "flame": false,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": null,
+   "set_label": "Seven Days (Monster Park)"
+  },
+  {
+   "id": "immortal-legacy",
+   "source_id": "immortal-legacy",
+   "name": "Immortal Legacy",
+   "aliases": [],
+   "slot": "medal",
+   "level": 250,
+   "set": "radiantBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 10,
+    "matt": 10,
+    "bossDmg": 10
+   },
+   "flame": true,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": true,
+   "set_label": "Brilliant Boss",
+   "note": "Flameable, unlike other medals."
+  },
+  {
+   "id": "daybreak-pendant",
+   "source_id": "daybreak-pendant",
+   "name": "Daybreak Pendant",
+   "aliases": [],
+   "slot": "pendant",
+   "level": 140,
+   "set": "dawnBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 8,
+    "dex": 8,
+    "int": 8,
+    "luk": 8,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Dawn Boss"
+  },
+  {
+   "id": "dom-pendant",
+   "source_id": "dom-pendant",
+   "name": "Dominator Pendant",
+   "aliases": [],
+   "slot": "pendant",
+   "level": 140,
+   "set": "bossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "int": 20,
+    "luk": 20,
+    "att": 3,
+    "matt": 3
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Boss Accessory"
+  },
+  {
+   "id": "superior-gollux-pendant",
+   "source_id": "superior-gollux-pendant",
+   "name": "Superior Engraved Gollux Pendant",
+   "aliases": [],
+   "slot": "pendant",
+   "level": 150,
+   "set": "superiorGollux",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 28,
+    "dex": 28,
+    "int": 28,
+    "luk": 28,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": false,
+   "set_label": "Superior Gollux"
+  },
+  {
+   "id": "hilla-pendant",
+   "source_id": "hilla-pendant",
+   "name": "Source of Suffering",
+   "aliases": [
+    "Source of Pain"
+   ],
+   "slot": "pendant",
+   "level": 160,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 3,
+    "matt": 3
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "sweetwater-pendant",
+   "source_id": "sweetwater-pendant",
+   "name": "Sweetwater Pendant",
+   "aliases": [],
+   "slot": "pendant",
+   "level": 160,
+   "set": null,
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 34,
+    "dex": 34,
+    "int": 34,
+    "luk": 34
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": false,
+   "addons": [
+    {
+     "id": "transposed",
+     "label": "Transposed 16★",
+     "max": 1,
+     "per": {
+      "allstat": 9,
+      "att": 8
+     }
+    }
+   ]
+  },
+  {
+   "id": "oath-of-death",
+   "source_id": "oath-of-death",
+   "name": "Oath of Death",
+   "aliases": [],
+   "slot": "pendant",
+   "level": 250,
+   "set": "radiantBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "int": 15,
+    "luk": 15,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Brilliant Boss"
+  },
+  {
+   "id": "phg",
+   "source_id": "phg",
+   "name": "Pink Holy Cup",
+   "aliases": [
+    "Pink Holy Grail"
+   ],
+   "slot": "pocket",
+   "level": 140,
+   "set": "bossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 5,
+    "dex": 5,
+    "int": 5,
+    "luk": 5,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": true,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": true,
+   "set_label": "Boss Accessory"
+  },
+  {
+   "id": "will-blue-book",
+   "source_id": "will-blue-book",
+   "name": "Cursed Blue Spellbook",
+   "aliases": [
+    "Cursed Blue Magic Book"
+   ],
+   "slot": "pocket",
+   "level": 160,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 20,
+    "luk": 10,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": true,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": true,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "will-green-book",
+   "source_id": "will-green-book",
+   "name": "Cursed Green Spellbook",
+   "aliases": [
+    "Cursed Green Magic Book"
+   ],
+   "slot": "pocket",
+   "level": 160,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 20,
+    "int": 10,
+    "luk": 10,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": true,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": true,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "will-red-book",
+   "source_id": "will-red-book",
+   "name": "Cursed Red Spellbook",
+   "aliases": [
+    "Cursed Red Magic Book"
+   ],
+   "slot": "pocket",
+   "level": 160,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 20,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": true,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": true,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "will-yellow-book",
+   "source_id": "will-yellow-book",
+   "name": "Cursed Yellow Spellbook",
+   "aliases": [
+    "Cursed Yellow Magic Book"
+   ],
+   "slot": "pocket",
+   "level": 160,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 20,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": true,
+   "potential": false,
+   "starforce": false,
+   "flame_advantaged": true,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "kanna-ring",
+   "source_id": "kanna-ring",
+   "name": "Kanna's Treasure",
+   "aliases": [],
+   "slot": "ring",
+   "level": 140,
+   "set": "sengoku",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 5,
+    "dex": 5,
+    "int": 5,
+    "luk": 5,
+    "att": 1,
+    "matt": 1
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Sengoku"
+  },
+  {
+   "id": "meister-signet",
+   "source_id": "meister-signet",
+   "name": "Meister Ring",
+   "aliases": [
+    "Meister Signet"
+   ],
+   "slot": "ring",
+   "level": 140,
+   "set": "meister",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 5,
+    "dex": 5,
+    "int": 5,
+    "luk": 5,
+    "att": 1,
+    "matt": 1
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Meister"
+  },
+  {
+   "id": "reinforced-gollux-ring",
+   "source_id": "reinforced-gollux-ring",
+   "name": "Reinforced Gollux Ring",
+   "aliases": [],
+   "slot": "ring",
+   "level": 140,
+   "set": "reinforcedGollux",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 8,
+    "dex": 8,
+    "int": 8,
+    "luk": 8,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Reinforced Gollux"
+  },
+  {
+   "id": "superior-gollux-ring",
+   "source_id": "superior-gollux-ring",
+   "name": "Superior Gollux Ring",
+   "aliases": [],
+   "slot": "ring",
+   "level": 150,
+   "set": "superiorGollux",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 8,
+    "matt": 8
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Superior Gollux"
+  },
+  {
+   "id": "dawn-guardian-angel-ring",
+   "source_id": "dawn-guardian-angel-ring",
+   "name": "Dawn Guardian Angel Ring",
+   "aliases": [
+    "Divine King Ring of Dawn"
+   ],
+   "slot": "ring",
+   "level": 160,
+   "set": "dawnBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 5,
+    "dex": 5,
+    "int": 5,
+    "luk": 5,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Dawn Boss"
+  },
+  {
+   "id": "guardian-angel-ring",
+   "source_id": "guardian-angel-ring",
+   "name": "Guardian Angel Ring",
+   "aliases": [
+    "Divine King Ring"
+   ],
+   "slot": "ring",
+   "level": 160,
+   "set": "bossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 5,
+    "dex": 5,
+    "int": 5,
+    "luk": 5,
+    "att": 2,
+    "matt": 2
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Boss Accessory"
+  },
+  {
+   "id": "giant-fear",
+   "source_id": "giant-fear",
+   "name": "Endless Terror",
+   "aliases": [
+    "Giant Fear"
+   ],
+   "slot": "ring",
+   "level": 200,
+   "set": "hardBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 5,
+    "dex": 5,
+    "int": 5,
+    "luk": 5,
+    "att": 4,
+    "matt": 4
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Pitched Boss"
+  },
+  {
+   "id": "entrancing-nightmare",
+   "source_id": "entrancing-nightmare",
+   "name": "Blissful Nightmare",
+   "aliases": [
+    "Entrancing Nightmare"
+   ],
+   "slot": "ring",
+   "level": 250,
+   "set": "radiantBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Brilliant Boss"
+  },
+  {
+   "id": "whisper-of-the-source",
+   "source_id": "whisper-of-the-source",
+   "name": "Whisper of the Source",
+   "aliases": [],
+   "slot": "ring",
+   "level": 250,
+   "set": "radiantBossAcc",
+   "job": "common",
+   "classes": [],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 5,
+    "matt": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Brilliant Boss"
+  },
+  {
+   "id": "erel_light:evolving-keir",
+   "source_id": null,
+   "name": "Evolving Keir",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 100,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "erel_light"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "att": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Keir"
+  },
+  {
+   "id": "pirate:evolving-controller",
+   "source_id": "evolving-controller",
+   "name": "Evolving Octo Core Controller",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 100,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "xenon"
+   ],
+   "base": {
+    "str": 2,
+    "dex": 2,
+    "int": 2,
+    "luk": 2,
+    "att": 2
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "ren:evolving-violet-imugi-gem",
+   "source_id": null,
+   "name": "Evolving Violet Imugi Gem",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 100,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "ren"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "att": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Imugi_Gem"
+  },
+  {
+   "id": "ren:frozen-imugi-gem",
+   "source_id": null,
+   "name": "Frozen Imugi Gem",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 100,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "ren"
+   ],
+   "base": {
+    "str": 8,
+    "dex": 8,
+    "att": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Imugi_Gem"
+  },
+  {
+   "id": "erel_light:frozen-keir",
+   "source_id": null,
+   "name": "Frozen Keir",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 100,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "erel_light"
+   ],
+   "base": {
+    "str": 8,
+    "dex": 8,
+    "att": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Keir"
+  },
+  {
+   "id": "erel_light:imper-keir",
+   "source_id": null,
+   "name": "Imper Keir",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 100,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "erel_light"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "att": 3
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Keir"
+  },
+  {
+   "id": "ren:onyx-imugi-gem",
+   "source_id": null,
+   "name": "Onyx Imugi Gem",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 100,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "ren"
+   ],
+   "base": {
+    "str": 8,
+    "dex": 8,
+    "att": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Imugi_Gem"
+  },
+  {
+   "id": "erel_light:onyx-maple-keir",
+   "source_id": null,
+   "name": "Onyx Maple Keir",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 100,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "erel_light"
+   ],
+   "base": {
+    "str": 8,
+    "dex": 8,
+    "att": 5
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Keir"
+  },
+  {
+   "id": "warrior:ruin-force-shield",
+   "source_id": "ruin-force-shield",
+   "name": "Ruin Force Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 100,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "da",
+    "ds"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "finalDmg": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "note": "Innate +10% final damage line."
+  },
+  {
+   "id": "ren:violet-imugi-gem",
+   "source_id": null,
+   "name": "Violet Imugi Gem",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 100,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "ren"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "att": 3
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Imugi_Gem"
+  },
+  {
+   "id": "erel_light:maple-treasure-keir",
+   "source_id": null,
+   "name": "Maple Treasure Keir",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 110,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "erel_light"
+   ],
+   "base": {
+    "str": 9,
+    "dex": 9,
+    "att": 6
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Keir"
+  },
+  {
+   "id": "thief:dragon-khanjar",
+   "source_id": "dragon-khanjar",
+   "name": "Dragon Khanjar",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 120,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "sdw"
+   ],
+   "base": {
+    "luk": 2,
+    "att": 15
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "thief:deimos-darkness-shield",
+   "source_id": "deimos-darkness-shield",
+   "name": "Deimos Darkness Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 130,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "sdw"
+   ],
+   "base": {
+    "luk": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:deimos-sage-shield",
+   "source_id": "deimos-sage-shield",
+   "name": "Deimos Sage Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 130,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "bam",
+    "bs",
+    "evan",
+    "fp",
+    "fw",
+    "il"
+   ],
+   "base": {
+    "int": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:deimos-warrior-shield",
+   "source_id": "deimos-warrior-shield",
+   "name": "Deimos Warrior Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 130,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "hero",
+    "paladin",
+    "sm"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-accursed-marble",
+   "source_id": "pnou-accursed-marble",
+   "name": "Princess Nou's Accursed Marble",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "bam"
+   ],
+   "base": {
+    "int": 14,
+    "luk": 14,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "archer:pnou-arrowhead",
+   "source_id": "pnou-arrowhead",
+   "name": "Princess Nou's Arrowhead",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "wh"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "archer:pnou-arrow",
+   "source_id": "pnou-arrow",
+   "name": "Princess Nou's Black Magic Arrow",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "merc"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:pnou-mx",
+   "source_id": "pnou-mx",
+   "name": "Princess Nou's Brace Band",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "mx"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-bracelet",
+   "source_id": "pnou-bracelet",
+   "name": "Princess Nou's Bracelet",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "adele"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "thief:pnou-tassel",
+   "source_id": "pnou-tassel",
+   "name": "Princess Nou's Buchae Tassel",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "hy"
+   ],
+   "base": {
+    "dex": 14,
+    "luk": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "thief:pnou-carte",
+   "source_id": "pnou-carte",
+   "name": "Princess Nou's Carte",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "phantom"
+   ],
+   "base": {
+    "dex": 14,
+    "luk": 14
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "thief:pnou-charm",
+   "source_id": "pnou-charm",
+   "name": "Princess Nou's Charm",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "nl"
+   ],
+   "base": {
+    "dex": 14,
+    "luk": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-sia",
+   "source_id": "pnou-sia",
+   "name": "Princess Nou's Compass",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "sia"
+   ],
+   "base": {
+    "int": 14,
+    "luk": 14,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:pnou-controller",
+   "source_id": "pnou-controller",
+   "name": "Princess Nou's Controller",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "xenon"
+   ],
+   "base": {
+    "str": 4,
+    "dex": 4,
+    "int": 4,
+    "luk": 4
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-damp-book",
+   "source_id": "pnou-damp-book",
+   "name": "Princess Nou's Damp Book",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "il"
+   ],
+   "base": {
+    "int": 14,
+    "luk": 14,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-demon-aegis",
+   "source_id": "pnou-demon-aegis",
+   "name": "Princess Nou's Demon Aegis",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "da",
+    "ds"
+   ],
+   "base": {
+    "str": 17
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-dragon-essence",
+   "source_id": "pnou-dragon-essence",
+   "name": "Princess Nou's Dragon Essence",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "kaiser"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-dragon-legacy",
+   "source_id": "pnou-dragon-legacy",
+   "name": "Princess Nou's Dragon Legacy",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "evan"
+   ],
+   "base": {
+    "int": 14,
+    "luk": 14,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:pnou-falcon-eye",
+   "source_id": "pnou-falcon-eye",
+   "name": "Princess Nou's Falcon Eye",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "captain"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "archer:pnou-feather",
+   "source_id": "pnou-feather",
+   "name": "Princess Nou's Feather",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "bm"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:pnou-fire-bomb",
+   "source_id": "pnou-fire-bomb",
+   "name": "Princess Nou's Fire Bomb",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "cm"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-flaming-book",
+   "source_id": "pnou-flaming-book",
+   "name": "Princess Nou's Flaming Book",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "fp"
+   ],
+   "base": {
+    "int": 14,
+    "luk": 14,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "archer:pnou-floral-jewel",
+   "source_id": "pnou-floral-jewel",
+   "name": "Princess Nou's Floral Jewel",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "wb"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14,
+    "att": 9,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-floral-jewel",
+   "source_id": "pnou-floral-jewel",
+   "name": "Princess Nou's Floral Jewel",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "fw"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14,
+    "att": 9,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:pnou-floral-jewel",
+   "source_id": "pnou-floral-jewel",
+   "name": "Princess Nou's Floral Jewel",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "striker"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14,
+    "att": 9,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "thief:pnou-floral-jewel",
+   "source_id": "pnou-floral-jewel",
+   "name": "Princess Nou's Floral Jewel",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "nw"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14,
+    "att": 9,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-floral-jewel",
+   "source_id": "pnou-floral-jewel",
+   "name": "Princess Nou's Floral Jewel",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "sm"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14,
+    "att": 9,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-flower-chain",
+   "source_id": "pnou-flower-chain",
+   "name": "Princess Nou's Flower Chain",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "dk"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-lara",
+   "source_id": "pnou-lara",
+   "name": "Princess Nou's Four-jade Ornament",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "lara"
+   ],
+   "base": {
+    "int": 14,
+    "luk": 14,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:pnou-fox-marble",
+   "source_id": "pnou-fox-marble",
+   "name": "Princess Nou's Fox Marble",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "eunwol"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-golden-book",
+   "source_id": "pnou-golden-book",
+   "name": "Princess Nou's Golden Book",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "bs"
+   ],
+   "base": {
+    "int": 14,
+    "luk": 14,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "thief:pnou-hexseeker",
+   "source_id": "pnou-hexseeker",
+   "name": "Princess Nou's Hexseeker",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "khali"
+   ],
+   "base": {
+    "dex": 14,
+    "luk": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "ren:princess-nou-imugi-gem",
+   "source_id": null,
+   "name": "Princess Nou's Imugi Gem",
+   "aliases": [
+    "Princess No's Imugi Gem"
+   ],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "ren"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Imugi_Gem"
+  },
+  {
+   "id": "erel_light:princess-nou-keir",
+   "source_id": null,
+   "name": "Princess Nou's Keir",
+   "aliases": [
+    "Princess No's Keir"
+   ],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "erel_light"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "wiki": "https://maplestorywiki.net/w/Keir"
+  },
+  {
+   "id": "magician:pnou-lynn",
+   "source_id": "pnou-lynn",
+   "name": "Princess Nou's Leaf",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "lynn"
+   ],
+   "base": {
+    "int": 17,
+    "luk": 17,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-lucent-wings",
+   "source_id": "pnou-lucent-wings",
+   "name": "Princess Nou's Lucent Wings",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "illium"
+   ],
+   "base": {
+    "int": 14,
+    "luk": 14,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:pnou-magnum",
+   "source_id": "pnou-magnum",
+   "name": "Princess Nou's Magnum",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "mech"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-medal",
+   "source_id": "pnou-medal",
+   "name": "Princess Nou's Medal",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "hero"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-megaton-charges",
+   "source_id": "pnou-megaton-charges",
+   "name": "Princess Nou's Megaton Charges",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "blaster"
+   ],
+   "base": {
+    "str": 15,
+    "dex": 15,
+    "att": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-kinesis",
+   "source_id": "pnou-kinesis",
+   "name": "Princess Nou's Oriental King Chess Piece",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "kinesis"
+   ],
+   "base": {
+    "int": 14,
+    "luk": 14,
+    "matt": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:pnou-path",
+   "source_id": "pnou-path",
+   "name": "Princess Nou's Path",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "ark"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-pendulum",
+   "source_id": "pnou-pendulum",
+   "name": "Princess Nou's Pendulum",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "aran"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "thief:pnou-katara",
+   "source_id": "pnou-katara",
+   "name": "Princess Nou's Poisoned Sword",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "db"
+   ],
+   "base": {
+    "att": 93
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "weapon_like": true
+  },
+  {
+   "id": "thief:pnou-purple-shadow",
+   "source_id": "pnou-purple-shadow",
+   "name": "Princess Nou's Purple Shadow",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "sdw"
+   ],
+   "base": {
+    "dex": 14,
+    "luk": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "archer:pnou-relic",
+   "source_id": "pnou-relic",
+   "name": "Princess Nou's Relic",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "pf"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-rosario",
+   "source_id": "pnou-rosario",
+   "name": "Princess Nou's Rosario",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "paladin"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:pnou-skull-armor",
+   "source_id": "pnou-skull-armor",
+   "name": "Princess Nou's Skull Armor",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "viper"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:pnou-soul-orb",
+   "source_id": "pnou-soul-orb",
+   "name": "Princess Nou's Soul Orb",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "lumi"
+   ],
+   "base": {
+    "int": 14,
+    "luk": 14
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "pirate:pnou-soul-ring",
+   "source_id": "pnou-soul-ring",
+   "name": "Princess Nou's Soul Ring",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "ab"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-soul-shield",
+   "source_id": "pnou-soul-shield",
+   "name": "Princess Nou's Soul Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "mihile"
+   ],
+   "base": {
+    "str": 18,
+    "dex": 18
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "thief:pnou-transmitter",
+   "source_id": "pnou-transmitter",
+   "name": "Princess Nou's Transmitter",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "cadena"
+   ],
+   "base": {
+    "dex": 14,
+    "luk": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-wakizashi",
+   "source_id": "pnou-wakizashi",
+   "name": "Princess Nou's Wakizashi",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "hayato"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "archer:pnou-weapon-belt",
+   "source_id": "pnou-weapon-belt",
+   "name": "Princess Nou's Weapon Belt",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "kain"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "archer:pnou-wreath",
+   "source_id": "pnou-wreath",
+   "name": "Princess Nou's Wreath",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "xbm"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "warrior:pnou-dragon-crystal",
+   "source_id": "pnou-dragon-crystal",
+   "name": "The Immortal Dragon Crystal",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 140,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "len"
+   ],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "att": 9
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "thief:meister-katara",
+   "source_id": "meister-katara",
+   "name": "Meister Katara",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 145,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "db"
+   ],
+   "base": {
+    "luk": 15,
+    "att": 76
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "weapon_like": true
+  },
+  {
+   "id": "thief:faf-katara",
+   "source_id": "faf-katara",
+   "name": "Fafnir Rapid Edge",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 150,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "db"
+   ],
+   "base": {
+    "luk": 30,
+    "att": 81
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "weapon_like": true
+  },
+  {
+   "id": "magician:faf-fan",
+   "source_id": "faf-fan",
+   "name": "Fafnir Spirit Walker Fan",
+   "aliases": [
+    "Fafnir Yin-Yang Fan"
+   ],
+   "slot": "secondary",
+   "level": 150,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "kanna"
+   ],
+   "base": {
+    "int": 40,
+    "luk": 40,
+    "att": 126,
+    "matt": 204
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "weapon_like": true
+  },
+  {
+   "id": "thief:abs-katara",
+   "source_id": "abs-katara",
+   "name": "AbsoLab Katara",
+   "aliases": [
+    "Absolabs Katara"
+   ],
+   "slot": "secondary",
+   "level": 160,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "db"
+   ],
+   "base": {
+    "luk": 40,
+    "att": 97
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "weapon_like": true
+  },
+  {
+   "id": "magician:abs-fan",
+   "source_id": "abs-fan",
+   "name": "AbsoLab Spirit Walker Fan",
+   "aliases": [
+    "Absolabs Yin-Yang Fan"
+   ],
+   "slot": "secondary",
+   "level": 160,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "kanna"
+   ],
+   "base": {
+    "int": 60,
+    "luk": 60,
+    "att": 143,
+    "matt": 241
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "weapon_like": true
+  },
+  {
+   "id": "warrior:terminus-defender",
+   "source_id": "terminus-defender",
+   "name": "Terminus Defender",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 160,
+   "set": null,
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 13,
+    "dex": 13
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null
+  },
+  {
+   "id": "magician:acs-fan",
+   "source_id": "acs-fan",
+   "name": "Arcane Umbra Fan",
+   "aliases": [
+    "Arcaneshade Fan"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "kanna"
+   ],
+   "base": {
+    "int": 100,
+    "luk": 100,
+    "att": 206,
+    "matt": 347
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "weapon_like": true
+  },
+  {
+   "id": "thief:acs-katara",
+   "source_id": "acs-katara",
+   "name": "Arcane Umbra Katara",
+   "aliases": [
+    "Arcaneshade Blade"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "db"
+   ],
+   "base": {
+    "luk": 65,
+    "att": 140
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "weapon_like": true
+  },
+  {
+   "id": "magician:astra-arcane-shield",
+   "source_id": "astra-arcane-shield",
+   "name": "Astra Arcane Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "bs",
+    "fp",
+    "il"
+   ],
+   "base": {
+    "int": 50,
+    "luk": 20,
+    "matt": 47
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 40,
+      "luk": 10,
+      "matt": 47
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 45,
+      "luk": 15,
+      "matt": 47
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 50,
+      "luk": 20,
+      "matt": 47
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Arcane_Shield?action=raw"
+  },
+  {
+   "id": "thief:astra-bane-shield",
+   "source_id": "astra-bane-shield",
+   "name": "Astra Bane Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "sdw"
+   ],
+   "base": {
+    "dex": 20,
+    "luk": 50,
+    "att": 47
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "dex": 10,
+      "luk": 40,
+      "att": 47
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "dex": 15,
+      "luk": 45,
+      "att": 47
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "dex": 20,
+      "luk": 50,
+      "att": 47
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Bane_Shield?action=raw"
+  },
+  {
+   "id": "warrior:astra-bracelet",
+   "source_id": "astra-bracelet",
+   "name": "Astra Bladebinder",
+   "aliases": [
+    "Astra Bracelet"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "adele"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Bladebinder?action=raw"
+  },
+  {
+   "id": "pirate:astra-brace-band",
+   "source_id": null,
+   "name": "Astra Brace Band",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "mx"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Brace_Band?action=raw"
+  },
+  {
+   "id": "archer:astra-bullseye",
+   "source_id": "astra-bullseye",
+   "name": "Astra Bullseye",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "xbm"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Bullseye?action=raw"
+  },
+  {
+   "id": "thief:astra-carte",
+   "source_id": "astra-carte",
+   "name": "Astra Carte",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "phantom"
+   ],
+   "base": {
+    "dex": 20,
+    "luk": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "dex": 10,
+      "luk": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "dex": 15,
+      "luk": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "dex": 20,
+      "luk": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Carte?action=raw"
+  },
+  {
+   "id": "warrior:astra-chain",
+   "source_id": "astra-chain",
+   "name": "Astra Chain",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "dk"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Chain?action=raw"
+  },
+  {
+   "id": "warrior:astra-explosive-pill",
+   "source_id": "astra-explosive-pill",
+   "name": "Astra Charges",
+   "aliases": [
+    "Astra Explosive Pill"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "blaster"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Charges?action=raw"
+  },
+  {
+   "id": "thief:astra-talisman",
+   "source_id": "astra-talisman",
+   "name": "Astra Charm",
+   "aliases": [
+    "Astra Talisman"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "nl"
+   ],
+   "base": {
+    "dex": 20,
+    "luk": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "dex": 10,
+      "luk": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "dex": 15,
+      "luk": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "dex": 20,
+      "luk": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Charm?action=raw"
+  },
+  {
+   "id": "magician:astra-compass",
+   "source_id": null,
+   "name": "Astra Compass",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "sia"
+   ],
+   "base": {
+    "int": 20,
+    "luk": 20,
+    "matt": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 10,
+      "luk": 10,
+      "matt": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 15,
+      "luk": 15,
+      "matt": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 20,
+      "luk": 20,
+      "matt": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Compass?action=raw"
+  },
+  {
+   "id": "pirate:astra-decacore-controller",
+   "source_id": "astra-decacore-controller",
+   "name": "Astra Deca Core Controller",
+   "aliases": [
+    "Astra Decacore Controller"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "xenon"
+   ],
+   "base": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "luk": 10,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 5,
+      "dex": 5,
+      "int": 5,
+      "luk": 5,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 7,
+      "dex": 7,
+      "int": 7,
+      "luk": 7,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "int": 10,
+      "luk": 10,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Deca_Core_Controller?action=raw"
+  },
+  {
+   "id": "thief:astra-diamond-fan-tassel",
+   "source_id": "astra-diamond-fan-tassel",
+   "name": "Astra Diamond Fan Tassel",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "hy"
+   ],
+   "base": {
+    "dex": 20,
+    "luk": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "dex": 10,
+      "luk": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "dex": 15,
+      "luk": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "dex": 20,
+      "luk": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Diamond_Fan_Tassel?action=raw"
+  },
+  {
+   "id": "archer:astra-emerald",
+   "source_id": "astra-emerald",
+   "name": "Astra Emerald",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "wb"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Emerald?action=raw"
+  },
+  {
+   "id": "archer:astra-feather",
+   "source_id": "astra-feather",
+   "name": "Astra Feather",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "bm"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Feather?action=raw"
+  },
+  {
+   "id": "warrior:astra-force-shield",
+   "source_id": "astra-force-shield",
+   "name": "Astra Force Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "ds"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Force_Shield?action=raw",
+   "addons": [
+    {
+     "id": "rfs_infused",
+     "label": "RFS infused (Astra Infusion skill)",
+     "max": 1,
+     "per": {
+      "finalDmg": 10
+     }
+    }
+   ]
+  },
+  {
+   "id": "magician:astra-four-jade-ornament",
+   "source_id": "astra-four-jade-ornament",
+   "name": "Astra Four-Jade Ornament",
+   "aliases": [
+    "Astra Four Jade Ornament"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "lara"
+   ],
+   "base": {
+    "int": 20,
+    "luk": 20,
+    "matt": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 10,
+      "luk": 10,
+      "matt": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 15,
+      "luk": 15,
+      "matt": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 20,
+      "luk": 20,
+      "matt": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Four-Jade_Ornament?action=raw"
+  },
+  {
+   "id": "pirate:astra-fox-marble",
+   "source_id": "astra-fox-marble",
+   "name": "Astra Fox Marble",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "eunwol"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Fox_Marble?action=raw"
+  },
+  {
+   "id": "thief:astra-hexseeker",
+   "source_id": "astra-hexseeker",
+   "name": "Astra Hex Seeker",
+   "aliases": [
+    "Astra Hexseeker"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "khali"
+   ],
+   "base": {
+    "dex": 20,
+    "luk": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "dex": 10,
+      "luk": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "dex": 15,
+      "luk": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "dex": 20,
+      "luk": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Hex_Seeker?action=raw"
+  },
+  {
+   "id": "magician:astra-prominent-shield",
+   "source_id": "astra-prominent-shield",
+   "name": "Astra Honor Shield",
+   "aliases": [
+    "Astra Prominent Shield"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "evan"
+   ],
+   "base": {
+    "int": 50,
+    "luk": 20,
+    "matt": 47
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 40,
+      "luk": 10,
+      "matt": 47
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 45,
+      "luk": 15,
+      "matt": 47
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 50,
+      "luk": 20,
+      "matt": 47
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Honor_Shield?action=raw"
+  },
+  {
+   "id": "warrior:astra-hourglass",
+   "source_id": "astra-hourglass",
+   "name": "Astra Hourglass",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "zero"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7,
+    "bossDmg": 45,
+    "ignoreGuard": 20
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7,
+      "bossDmg": 45,
+      "ignoreGuard": 20
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7,
+      "bossDmg": 45,
+      "ignoreGuard": 20
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7,
+      "bossDmg": 45,
+      "ignoreGuard": 20
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Hourglass?action=raw"
+  },
+  {
+   "id": "ren:astra-imugi-gem",
+   "source_id": null,
+   "name": "Astra Imugi Gem",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "ren"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Imugi_Gem?action=raw"
+  },
+  {
+   "id": "pirate:astra-rimless",
+   "source_id": "astra-rimless",
+   "name": "Astra Incendiary",
+   "aliases": [
+    "Astra Rimless"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "cm"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Incendiary?action=raw"
+  },
+  {
+   "id": "thief:astra-blade",
+   "source_id": "astra-blade",
+   "name": "Astra Katara",
+   "aliases": [
+    "Astra Blade"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "db"
+   ],
+   "base": {
+    "str": 30,
+    "dex": 30,
+    "luk": 100,
+    "att": 225
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "luk": 80,
+      "att": 225
+     },
+     "max_stars": 30,
+     "label": "Stage 1 · Version 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "luk": 90,
+      "att": 225
+     },
+     "max_stars": 30,
+     "label": "Stage 2 · Version 1"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 30,
+      "dex": 30,
+      "luk": 100,
+      "att": 225
+     },
+     "max_stars": 30,
+     "label": "Stage 3 · Version 1"
+    },
+    {
+     "stage": 1,
+     "version": 2,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "luk": 15,
+      "att": 171,
+      "bossDmg": 30,
+      "ignoreGuard": 10
+     },
+     "max_stars": 30,
+     "label": "Stage 1 · Version 2"
+    },
+    {
+     "stage": 2,
+     "version": 2,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "luk": 25,
+      "att": 171,
+      "bossDmg": 30,
+      "ignoreGuard": 10
+     },
+     "max_stars": 30,
+     "label": "Stage 2 · Version 2"
+    },
+    {
+     "stage": 3,
+     "version": 2,
+     "base": {
+      "str": 30,
+      "dex": 30,
+      "luk": 35,
+      "att": 171,
+      "bossDmg": 30,
+      "ignoreGuard": 10
+     },
+     "max_stars": 30,
+     "label": "Stage 3 · Version 2"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Katara?action=raw",
+   "weapon_like": true
+  },
+  {
+   "id": "erel_light:astra-keir",
+   "source_id": null,
+   "name": "Astra Keir",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "erel_light"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Keir?action=raw"
+  },
+  {
+   "id": "magician:astra-king-chess-piece",
+   "source_id": "astra-king-chess-piece",
+   "name": "Astra King Chess Piece",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "kinesis"
+   ],
+   "base": {
+    "int": 20,
+    "luk": 20,
+    "matt": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 10,
+      "luk": 10,
+      "matt": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 15,
+      "luk": 15,
+      "matt": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 20,
+      "luk": 20,
+      "matt": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_King_Chess_Piece?action=raw"
+  },
+  {
+   "id": "warrior:astra-kodachi",
+   "source_id": null,
+   "name": "Astra Kodachi",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "hayato"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Kodachi?action=raw"
+  },
+  {
+   "id": "magician:astra-leaf-shield",
+   "source_id": null,
+   "name": "Astra Leaf Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "lynn"
+   ],
+   "base": {
+    "int": 50,
+    "luk": 20,
+    "matt": 47
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 40,
+      "luk": 10,
+      "matt": 47
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 45,
+      "luk": 15,
+      "matt": 47
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 50,
+      "luk": 20,
+      "matt": 47
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Leaf_Shield?action=raw"
+  },
+  {
+   "id": "magician:astra-magic-wing",
+   "source_id": "astra-magic-wing",
+   "name": "Astra Lucent Wings",
+   "aliases": [
+    "Astra Magic Wing"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "illium"
+   ],
+   "base": {
+    "int": 20,
+    "luk": 20,
+    "matt": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 10,
+      "luk": 10,
+      "matt": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 15,
+      "luk": 15,
+      "matt": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 20,
+      "luk": 20,
+      "matt": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Lucent_Wings?action=raw"
+  },
+  {
+   "id": "archer:astra-magic-arrow",
+   "source_id": "astra-magic-arrow",
+   "name": "Astra Magic Arrows",
+   "aliases": [
+    "Astra Magic Arrow"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "merc"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Magic_Arrows?action=raw"
+  },
+  {
+   "id": "pirate:astra-magnum",
+   "source_id": "astra-magnum",
+   "name": "Astra Magnum",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "mech"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Magnum?action=raw"
+  },
+  {
+   "id": "warrior:astra-medal",
+   "source_id": "astra-medal",
+   "name": "Astra Medallion",
+   "aliases": [
+    "Astra Medal"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "hero"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Medallion?action=raw"
+  },
+  {
+   "id": "warrior:astra-nova-essence",
+   "source_id": "astra-nova-essence",
+   "name": "Astra Nova Essence",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "kaiser"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Nova_Essence?action=raw"
+  },
+  {
+   "id": "thief:astra-obsidian",
+   "source_id": "astra-obsidian",
+   "name": "Astra Obsidian",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "nw"
+   ],
+   "base": {
+    "dex": 20,
+    "luk": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "dex": 10,
+      "luk": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "dex": 15,
+      "luk": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "dex": 20,
+      "luk": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Obsidian?action=raw"
+  },
+  {
+   "id": "magician:astra-orb",
+   "source_id": "astra-orb",
+   "name": "Astra Orb",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "lumi"
+   ],
+   "base": {
+    "int": 20,
+    "luk": 20,
+    "matt": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 10,
+      "luk": 10,
+      "matt": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 15,
+      "luk": 15,
+      "matt": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 20,
+      "luk": 20,
+      "matt": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Orb?action=raw"
+  },
+  {
+   "id": "pirate:astra-path",
+   "source_id": "astra-path",
+   "name": "Astra Path",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "ark"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Path?action=raw"
+  },
+  {
+   "id": "pirate:astra-raveneye",
+   "source_id": "astra-raveneye",
+   "name": "Astra Raven Eye",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "captain"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Raven_Eye?action=raw"
+  },
+  {
+   "id": "archer:astra-relic",
+   "source_id": "astra-relic",
+   "name": "Astra Relic",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "pf"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Relic?action=raw"
+  },
+  {
+   "id": "warrior:astra-rosario",
+   "source_id": "astra-rosario",
+   "name": "Astra Rosary",
+   "aliases": [
+    "Astra Rosario"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "paladin"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Rosary?action=raw"
+  },
+  {
+   "id": "magician:astra-ruby-shield",
+   "source_id": "astra-ruby-shield",
+   "name": "Astra Ruby Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "fw"
+   ],
+   "base": {
+    "int": 50,
+    "luk": 20,
+    "matt": 47
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 40,
+      "luk": 10,
+      "matt": 47
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 45,
+      "luk": 15,
+      "matt": 47
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 50,
+      "luk": 20,
+      "matt": 47
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Ruby_Shield?action=raw"
+  },
+  {
+   "id": "warrior:astra-sacred-aegis",
+   "source_id": null,
+   "name": "Astra Sacred Aegis",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "hero",
+    "paladin"
+   ],
+   "base": {
+    "str": 50,
+    "dex": 20,
+    "att": 47
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 40,
+      "dex": 10,
+      "att": 47
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 45,
+      "dex": 15,
+      "att": 47
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 50,
+      "dex": 20,
+      "att": 47
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Sacred_Aegis?action=raw"
+  },
+  {
+   "id": "pirate:astra-sapphire",
+   "source_id": "astra-sapphire",
+   "name": "Astra Sapphire",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "striker"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Sapphire?action=raw"
+  },
+  {
+   "id": "pirate:astra-soul-ring",
+   "source_id": "astra-soul-ring",
+   "name": "Astra Soul Ring",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "ab"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Soul_Ring?action=raw"
+  },
+  {
+   "id": "warrior:astra-soul-shield",
+   "source_id": "astra-soul-shield",
+   "name": "Astra Soul Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "mihile"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Soul_Shield?action=raw"
+  },
+  {
+   "id": "magician:astra-kanna-talisman",
+   "source_id": null,
+   "name": "Astra Talisman",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "kanna"
+   ],
+   "base": {
+    "int": 95,
+    "luk": 95,
+    "matt": 260
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 75,
+      "luk": 75,
+      "matt": 260
+     },
+     "max_stars": 30,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 85,
+      "luk": 85,
+      "matt": 260
+     },
+     "max_stars": 30,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 95,
+      "luk": 95,
+      "matt": 260
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Talisman?action=raw",
+   "weapon_like": true
+  },
+  {
+   "id": "warrior:astra-topaz",
+   "source_id": "astra-topaz",
+   "name": "Astra Topaz",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "sm"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Topaz?action=raw"
+  },
+  {
+   "id": "warrior:astra-topaz-aegis",
+   "source_id": "astra-topaz-aegis",
+   "name": "Astra Topaz Aegis",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "sm"
+   ],
+   "base": {
+    "str": 50,
+    "dex": 20,
+    "att": 47
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 40,
+      "dex": 10,
+      "att": 47
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 45,
+      "dex": 15,
+      "att": 47
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 50,
+      "dex": 20,
+      "att": 47
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Topaz_Aegis?action=raw"
+  },
+  {
+   "id": "thief:astra-transmitter",
+   "source_id": "astra-transmitter",
+   "name": "Astra Transmitter",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "thief",
+   "classes": [
+    "cadena"
+   ],
+   "base": {
+    "dex": 20,
+    "luk": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "dex": 10,
+      "luk": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "dex": 15,
+      "luk": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "dex": 20,
+      "luk": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Transmitter?action=raw"
+  },
+  {
+   "id": "magician:astra-umbral-shield",
+   "source_id": "astra-umbral-shield",
+   "name": "Astra Umbral Shield",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "magician",
+   "classes": [
+    "bam"
+   ],
+   "base": {
+    "int": 50,
+    "luk": 20,
+    "matt": 47
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "int": 40,
+      "luk": 10,
+      "matt": 47
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "int": 45,
+      "luk": 15,
+      "matt": 47
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "int": 50,
+      "luk": 20,
+      "matt": 47
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Umbral_Shield?action=raw"
+  },
+  {
+   "id": "archer:astra-weapon-belt",
+   "source_id": "astra-weapon-belt",
+   "name": "Astra Weapon Belt",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "kain"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Weapon_Belt?action=raw"
+  },
+  {
+   "id": "warrior:astra-baekhochu",
+   "source_id": "astra-baekhochu",
+   "name": "Astra White Tiger Pendulum",
+   "aliases": [
+    "Astra White Tiger Mass"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "warrior",
+   "classes": [
+    "aran"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_White_Tiger_Pendulum?action=raw"
+  },
+  {
+   "id": "archer:astra-wild-tusk",
+   "source_id": "astra-wild-tusk",
+   "name": "Astra Wild Tusk",
+   "aliases": [],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "archer",
+   "classes": [
+    "wh"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Wild_Tusk?action=raw"
+  },
+  {
+   "id": "pirate:astra-wristband",
+   "source_id": "astra-wristband",
+   "name": "Astra Wrist Band",
+   "aliases": [
+    "Astra Wristband"
+   ],
+   "slot": "secondary",
+   "level": 200,
+   "set": null,
+   "job": "pirate",
+   "classes": [
+    "viper"
+   ],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 7
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "max_stars": 30,
+   "variants": [
+    {
+     "stage": 1,
+     "version": 1,
+     "base": {
+      "str": 10,
+      "dex": 10,
+      "att": 7
+     },
+     "max_stars": 15,
+     "label": "Stage 1"
+    },
+    {
+     "stage": 2,
+     "version": 1,
+     "base": {
+      "str": 15,
+      "dex": 15,
+      "att": 7
+     },
+     "max_stars": 20,
+     "label": "Stage 2"
+    },
+    {
+     "stage": 3,
+     "version": 1,
+     "base": {
+      "str": 20,
+      "dex": 20,
+      "att": 7
+     },
+     "max_stars": 30,
+     "label": "Stage 3"
+    }
+   ],
+   "wiki": "https://maplestorywiki.net/w/Astra_Wrist_Band?action=raw"
+  },
+  {
+   "id": "archer:abs-shoes",
+   "source_id": "abs-shoes",
+   "name": "AbsoLab Archer Shoes",
+   "aliases": [
+    "Absolabs Trueshot Boots"
+   ],
+   "slot": "shoes",
+   "level": 160,
+   "set": "abs",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "thief:abs-shoes",
+   "source_id": "abs-shoes",
+   "name": "AbsoLab Bandit Shoes",
+   "aliases": [
+    "Absolabs Shadow Boots"
+   ],
+   "slot": "shoes",
+   "level": 160,
+   "set": "abs",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 20,
+    "luk": 20,
+    "att": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "warrior:abs-shoes",
+   "source_id": "abs-shoes",
+   "name": "AbsoLab Knight Shoes",
+   "aliases": [
+    "Absolabs Bastion Greaves"
+   ],
+   "slot": "shoes",
+   "level": 160,
+   "set": "abs",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "magician:abs-shoes",
+   "source_id": "abs-shoes",
+   "name": "AbsoLab Mage Shoes",
+   "aliases": [
+    "Absolabs Cabalist Shoes"
+   ],
+   "slot": "shoes",
+   "level": 160,
+   "set": "abs",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 20,
+    "luk": 20,
+    "matt": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "pirate:abs-shoes",
+   "source_id": "abs-shoes",
+   "name": "AbsoLab Pirate Shoes",
+   "aliases": [
+    "Absolabs Brigadier Sabatons"
+   ],
+   "slot": "shoes",
+   "level": 160,
+   "set": "abs",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 20,
+    "dex": 20,
+    "att": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "archer:acs-shoes",
+   "source_id": "acs-shoes",
+   "name": "Arcane Umbra Archer Shoes",
+   "aliases": [
+    "Arcaneshade Archer Shoes"
+   ],
+   "slot": "shoes",
+   "level": 200,
+   "set": "acs",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "warrior:acs-shoes",
+   "source_id": "acs-shoes",
+   "name": "Arcane Umbra Knight Shoes",
+   "aliases": [
+    "Arcaneshade Knight Shoes"
+   ],
+   "slot": "shoes",
+   "level": 200,
+   "set": "acs",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "magician:acs-shoes",
+   "source_id": "acs-shoes",
+   "name": "Arcane Umbra Mage Shoes",
+   "aliases": [
+    "Arcaneshade Mage Shoes"
+   ],
+   "slot": "shoes",
+   "level": 200,
+   "set": "acs",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 40,
+    "luk": 40,
+    "matt": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "pirate:acs-shoes",
+   "source_id": "acs-shoes",
+   "name": "Arcane Umbra Pirate Shoes",
+   "aliases": [
+    "Arcaneshade Pirate Shoes"
+   ],
+   "slot": "shoes",
+   "level": 200,
+   "set": "acs",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 40,
+    "dex": 40,
+    "att": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "thief:acs-shoes",
+   "source_id": "acs-shoes",
+   "name": "Arcane Umbra Thief Shoes",
+   "aliases": [
+    "Arcaneshade Bandit Shoes"
+   ],
+   "slot": "shoes",
+   "level": 200,
+   "set": "acs",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 40,
+    "luk": 40,
+    "att": 9
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "archer:eternal-archer-shoes",
+   "source_id": "eternal-archer-shoes",
+   "name": "Eternal Archer Shoes",
+   "aliases": [],
+   "slot": "shoes",
+   "level": 250,
+   "set": "eternal",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 55,
+    "dex": 55,
+    "att": 12
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "warrior:eternal-warrior-shoes",
+   "source_id": "eternal-warrior-shoes",
+   "name": "Eternal Knight Shoes",
+   "aliases": [
+    "Eternal Warrior Shoes"
+   ],
+   "slot": "shoes",
+   "level": 250,
+   "set": "eternal",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 55,
+    "dex": 55,
+    "att": 12
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "magician:eternal-mage-shoes",
+   "source_id": "eternal-mage-shoes",
+   "name": "Eternal Mage Shoes",
+   "aliases": [],
+   "slot": "shoes",
+   "level": 250,
+   "set": "eternal",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 55,
+    "luk": 55,
+    "matt": 12
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "pirate:eternal-pirate-shoes",
+   "source_id": "eternal-pirate-shoes",
+   "name": "Eternal Pirate Shoes",
+   "aliases": [],
+   "slot": "shoes",
+   "level": 250,
+   "set": "eternal",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 55,
+    "dex": 55,
+    "att": 12
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "thief:eternal-thief-shoes",
+   "source_id": "eternal-thief-shoes",
+   "name": "Eternal Thief Shoes",
+   "aliases": [],
+   "slot": "shoes",
+   "level": 250,
+   "set": "eternal",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 55,
+    "luk": 55,
+    "att": 12
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "archer:abs-shoulder",
+   "source_id": "abs-shoulder",
+   "name": "AbsoLab Archer Shoulder",
+   "aliases": [
+    "Absolabs Trueshot Pauldron"
+   ],
+   "slot": "shoulder",
+   "level": 160,
+   "set": "abs",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "thief:abs-shoulder",
+   "source_id": "abs-shoulder",
+   "name": "AbsoLab Bandit Shoulder",
+   "aliases": [
+    "Absolabs Shadow Pauldron"
+   ],
+   "slot": "shoulder",
+   "level": 160,
+   "set": "abs",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "warrior:abs-shoulder",
+   "source_id": "abs-shoulder",
+   "name": "AbsoLab Knight Shoulder",
+   "aliases": [
+    "Absolabs Bastion Pauldron"
+   ],
+   "slot": "shoulder",
+   "level": 160,
+   "set": "abs",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "magician:abs-shoulder",
+   "source_id": "abs-shoulder",
+   "name": "AbsoLab Mage Shoulder",
+   "aliases": [
+    "Absolabs Cabalist Pauldron"
+   ],
+   "slot": "shoulder",
+   "level": 160,
+   "set": "abs",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "pirate:abs-shoulder",
+   "source_id": "abs-shoulder",
+   "name": "AbsoLab Pirate Shoulder",
+   "aliases": [
+    "Absolabs Brigadier Pauldron"
+   ],
+   "slot": "shoulder",
+   "level": 160,
+   "set": "abs",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 14,
+    "dex": 14,
+    "int": 14,
+    "luk": 14,
+    "att": 10,
+    "matt": 10
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "AbsoLab"
+  },
+  {
+   "id": "archer:acs-shoulder",
+   "source_id": "acs-shoulder",
+   "name": "Arcane Umbra Archer Shoulder",
+   "aliases": [
+    "Arcaneshade Archer Shoulder"
+   ],
+   "slot": "shoulder",
+   "level": 200,
+   "set": "acs",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 35,
+    "dex": 35,
+    "int": 35,
+    "luk": 35,
+    "att": 20,
+    "matt": 20
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "warrior:acs-shoulder",
+   "source_id": "acs-shoulder",
+   "name": "Arcane Umbra Knight Shoulder",
+   "aliases": [
+    "Arcaneshade Knight Shoulder"
+   ],
+   "slot": "shoulder",
+   "level": 200,
+   "set": "acs",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 35,
+    "dex": 35,
+    "int": 35,
+    "luk": 35,
+    "att": 20,
+    "matt": 20
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "magician:acs-shoulder",
+   "source_id": "acs-shoulder",
+   "name": "Arcane Umbra Mage Shoulder",
+   "aliases": [
+    "Arcaneshade Mage Shoulder"
+   ],
+   "slot": "shoulder",
+   "level": 200,
+   "set": "acs",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "str": 35,
+    "dex": 35,
+    "int": 35,
+    "luk": 35,
+    "att": 20,
+    "matt": 20
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "pirate:acs-shoulder",
+   "source_id": "acs-shoulder",
+   "name": "Arcane Umbra Pirate Shoulder",
+   "aliases": [
+    "Arcaneshade Pirate Shoulder"
+   ],
+   "slot": "shoulder",
+   "level": 200,
+   "set": "acs",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 35,
+    "dex": 35,
+    "int": 35,
+    "luk": 35,
+    "att": 20,
+    "matt": 20
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "thief:acs-shoulder",
+   "source_id": "acs-shoulder",
+   "name": "Arcane Umbra Thief Shoulder",
+   "aliases": [
+    "Arcaneshade Bandit Shoulder"
+   ],
+   "slot": "shoulder",
+   "level": 200,
+   "set": "acs",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "str": 35,
+    "dex": 35,
+    "int": 35,
+    "luk": 35,
+    "att": 20,
+    "matt": 20
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Arcane Umbra"
+  },
+  {
+   "id": "archer:eternal-shoulder",
+   "source_id": "eternal-shoulder",
+   "name": "Eternal Archer Shoulder",
+   "aliases": [],
+   "slot": "shoulder",
+   "level": 250,
+   "set": "eternal",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 51,
+    "dex": 51,
+    "int": 51,
+    "luk": 51,
+    "att": 28,
+    "matt": 28
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "warrior:eternal-shoulder",
+   "source_id": "eternal-shoulder",
+   "name": "Eternal Knight Shoulder",
+   "aliases": [],
+   "slot": "shoulder",
+   "level": 250,
+   "set": "eternal",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 51,
+    "dex": 51,
+    "int": 51,
+    "luk": 51,
+    "att": 28,
+    "matt": 28
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "magician:eternal-shoulder",
+   "source_id": "eternal-shoulder",
+   "name": "Eternal Mage Shoulder",
+   "aliases": [],
+   "slot": "shoulder",
+   "level": 250,
+   "set": "eternal",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "str": 51,
+    "dex": 51,
+    "int": 51,
+    "luk": 51,
+    "att": 28,
+    "matt": 28
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "pirate:eternal-shoulder",
+   "source_id": "eternal-shoulder",
+   "name": "Eternal Pirate Shoulder",
+   "aliases": [],
+   "slot": "shoulder",
+   "level": 250,
+   "set": "eternal",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 51,
+    "dex": 51,
+    "int": 51,
+    "luk": 51,
+    "att": 28,
+    "matt": 28
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "thief:eternal-shoulder",
+   "source_id": "eternal-shoulder",
+   "name": "Eternal Thief Shoulder",
+   "aliases": [],
+   "slot": "shoulder",
+   "level": 250,
+   "set": "eternal",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "str": 51,
+    "dex": 51,
+    "int": 51,
+    "luk": 51,
+    "att": 28,
+    "matt": 28
+   },
+   "flame": false,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": null,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "thief:faf-thief-top",
+   "source_id": "faf-thief-top",
+   "name": "Eagle Eye Assassin Shirt",
+   "aliases": [],
+   "slot": "top",
+   "level": 150,
+   "set": "faf",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 30,
+    "luk": 30,
+    "att": 2,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "magician:faf-mage-top",
+   "source_id": "faf-mage-top",
+   "name": "Eagle Eye Dunwitch Robe",
+   "aliases": [],
+   "slot": "top",
+   "level": 150,
+   "set": "faf",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 30,
+    "luk": 30,
+    "matt": 2,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "archer:faf-archer-top",
+   "source_id": "faf-archer-top",
+   "name": "Eagle Eye Ranger Cowl",
+   "aliases": [
+    "Eagle Eye Ranger Hood"
+   ],
+   "slot": "top",
+   "level": 150,
+   "set": "faf",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 30,
+    "dex": 30,
+    "att": 2,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "pirate:faf-pirate-top",
+   "source_id": "faf-pirate-top",
+   "name": "Eagle Eye Wanderer Coat",
+   "aliases": [],
+   "slot": "top",
+   "level": 150,
+   "set": "faf",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 30,
+    "dex": 30,
+    "att": 2,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "warrior:faf-warrior-top",
+   "source_id": "faf-warrior-top",
+   "name": "Eagle Eye Warrior Armor",
+   "aliases": [],
+   "slot": "top",
+   "level": 150,
+   "set": "faf",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 30,
+    "dex": 30,
+    "att": 2,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Root Abyss"
+  },
+  {
+   "id": "archer:eternal-archer-top",
+   "source_id": "eternal-archer-top",
+   "name": "Eternal Archer Hood",
+   "aliases": [],
+   "slot": "top",
+   "level": 250,
+   "set": "eternal",
+   "job": "archer",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "att": 6,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "warrior:eternal-warrior-top",
+   "source_id": "eternal-warrior-top",
+   "name": "Eternal Knight Armor",
+   "aliases": [],
+   "slot": "top",
+   "level": 250,
+   "set": "eternal",
+   "job": "warrior",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "att": 6,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "magician:eternal-mage-top",
+   "source_id": "eternal-mage-top",
+   "name": "Eternal Mage Robe",
+   "aliases": [],
+   "slot": "top",
+   "level": 250,
+   "set": "eternal",
+   "job": "magician",
+   "classes": [],
+   "base": {
+    "int": 50,
+    "luk": 50,
+    "matt": 6,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "pirate:eternal-pirate-top",
+   "source_id": "eternal-pirate-top",
+   "name": "Eternal Pirate Coat",
+   "aliases": [],
+   "slot": "top",
+   "level": 250,
+   "set": "eternal",
+   "job": "pirate",
+   "classes": [],
+   "base": {
+    "str": 50,
+    "dex": 50,
+    "att": 6,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  },
+  {
+   "id": "thief:eternal-thief-top",
+   "source_id": "eternal-thief-top",
+   "name": "Eternal Thief Shirt",
+   "aliases": [],
+   "slot": "top",
+   "level": 250,
+   "set": "eternal",
+   "job": "thief",
+   "classes": [],
+   "base": {
+    "dex": 50,
+    "luk": 50,
+    "att": 6,
+    "ignoreGuard": 5
+   },
+   "flame": true,
+   "potential": true,
+   "starforce": true,
+   "flame_advantaged": true,
+   "set_label": "Eternal"
+  }
+ ]
+}

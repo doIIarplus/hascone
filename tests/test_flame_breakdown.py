@@ -36,3 +36,12 @@ def test_transposed_flame_above_current_tiers_is_legacy():
     assert legacy(item, "pendant_1") == result["message"]
     ordinary = {"name": "Sweetwater Pendant", "stats": [{"name": "STR", "value": 45, "percent": False}]}
     assert legacy(ordinary, "pendant_1") is None
+
+
+def test_immortal_legacy_is_the_one_flameable_medal():
+    lines = [("STR", 60, False), ("DEX", 48, False), ("LUK", 48, False), ("All Stats", 5, True)]
+    stats = [{"name": n, "value": v, "percent": p} for n, v, p in lines]
+    result = breakdown({"name": "Immortal Legacy", "stats": stats}, "medal")
+    assert [[line["tier"] for line in option] for option in result["options"]] == [[5, 4, 4, 5]]
+    other = breakdown({"name": "Seven-day Monster Parker", "stats": stats[:1]}, "medal")
+    assert other["options"] == [] and "unavailable" in other["message"]
