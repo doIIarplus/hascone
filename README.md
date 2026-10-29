@@ -10,26 +10,5 @@ Download the latest portable Windows .exe from the [Releases page](https://githu
 
 Install Python 3.12, run `setup.ps1`, then `start.bat`.
 
-## MapleScouter browser verification
-
-Browser launches include the
-`AutofillAiWalletPrivatePasses` workaround for
-[WebView2Feedback #5722](https://github.com/MicrosoftEdge/WebView2Feedback/issues/5722).
-An isolated launch and actual app startup were checked against the Windows
-Security log without new failed logons. Creating `configs/scouter_network_paused`
-pauses browser startup and MapleScouter requests during investigation. HTTP
-authentication cancellation alone does not address that startup issue.
-
-The Windows app opens installed Chrome or Microsoft Edge in a visible, muted
-window when verification is needed. It prefers your default browser when it is
-Chrome or Edge and uses a separate Hascone profile. It closes completely once
-the session and configuration are ready, before calculations run. Close it to cancel verification.
-Calculations reuse the verified session through HTTP; no hidden webpage remains
-running. An expired session opens a visible verification window again.
-
-Verification starts automatically when needed. The Hascone browser profile is saved;
-its MapleScouter cookies are handed to the app's HTTP client in memory only.
-**Stop** also cancels a pending request. If verification fails, use
-**Export to MapleScouter** to calculate on the site.
 
 [^Note]: Some users have reported Spinning Runes and Lie Detector prompts while using Hascone; I'm looking into it, but it's unclear whether the app is the cause. Hascone only takes screenshots of the game window and never touches the game's process or memory, but that doesn't guarantee MapleStory's anti-cheat won't flag it.
