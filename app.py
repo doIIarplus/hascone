@@ -439,6 +439,31 @@ def delete_swap_run(identifier, record, run):
     return jsonify(deleted=run)
 
 
+@app.get("/api/scouter/characters/<identifier>/hyper")
+def hyper_payload(identifier):
+    from hyperstats.service import payload
+
+    return jsonify(payload(identifier))
+
+
+@app.post("/api/scouter/characters/<identifier>/hyper/optimize")
+def hyper_optimize(identifier):
+    from hyperstats.service import optimize
+
+    return jsonify(optimize(identifier, request.json))
+
+
+@app.post("/api/scouter/characters/<identifier>/hyper/verify")
+def hyper_verify(identifier):
+    return jsonify(service.start_hyper_verification(identifier, request.json))
+
+
+@app.delete("/api/scouter/characters/<identifier>/history/<record>/hyper/<run>")
+def delete_hyper_run(identifier, record, run):
+    service.delete_hyper_run(identifier, record, run)
+    return jsonify(deleted=run)
+
+
 @app.post("/api/scouter/characters/<identifier>/suggestions")
 def suggestions(identifier):
     return jsonify(service.start_suggestions(identifier))
