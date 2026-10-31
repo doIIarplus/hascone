@@ -186,13 +186,9 @@ def start_hyper_verification(identifier, request):
     from hyperstats import optimizer
     from hyperstats import service as hyper
 
-    if not isinstance(request, dict) or set(request) != {"result_id", "settings"} or not isinstance(
-        request["settings"], dict
-    ):
-        raise ValueError("Choose a saved calculation and enter your hyper stats")
-    settings = hyper.stored(request["settings"])
+    result_id, settings = hyper.parse(request)
     data = profiles.load(identifier)
-    record = hyper.record(data, request["result_id"])
+    record = hyper.record(data, result_id)
     result = hyper.evaluate(data["class_info"], record, settings)
     if result["blockers"]:
         raise ValueError(result["blockers"][0])
@@ -213,7 +209,7 @@ def start_hyper_verification(identifier, request):
         client.validate_score(calculated)
         return calculated
 
-    return _start_simulation(identifier, request["result_id"], changes, "hyper_runs", extra,
+    return _start_simulation(identifier, result_id, changes, "hyper_runs", extra,
                              "Checking hyper stats with MapleScouter…", fetch)
 
 
