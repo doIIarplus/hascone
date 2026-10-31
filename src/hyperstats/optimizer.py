@@ -77,21 +77,10 @@ def default_keep(info):
     return ["crit_rate"]
 
 
-def defaults(info, user):
-    return {
-        "stats": table()["stats"],
-        "keep": default_keep(info),
-        "crit_rate": number(user["stat"].get("critical")),
-        "archer": info["name"] in ARCHERS,
-        "blocked": blocked(info),
-        "budget": total_points(user["stat"]["level"]),
-    }
-
-
 def number(raw):
     try:
         number = float(raw)
-    except (TypeError, ValueError):
+    except (TypeError, ValueError, OverflowError):
         return None
     return number if math.isfinite(number) else None
 
@@ -291,18 +280,27 @@ def optimize(info, user, calculated, request):
         return result
 
     groups = []
-    for keys, factor in _factors(co, table_, current, req["defense"]):
+    factors = _factors(co, table_, current, req["defense"])
+    for keys, factor in factors:
         free = [k for k in keys if k not in fixed]
         if free:
             groups.append(_options(free, factor, current, table_, costs))
-    valued = {k for keys, _ in _factors(co, table_, current, req["defense"]) for k in keys}
+    valued = {k for keys, _ in factors for k in keys}
     for key in table_:
         if key not in fixed and key not in valued:
             groups.append(_options([key], lambda lv: 1.0, current, table_, costs))
     suggested = {**current, **fixed, **_knapsack(groups, free_budget)}
 
     gain = fd_percent(co, current, suggested, req["defense"])
-    if suggested["crit_rate"] == current["crit_rate"] and gain <= 1e-10:
+    # A suggestion that raises Critical Rate is a fix, so it stays even with no FD gain; one that only
+    # lowers it frees points with nothing worth spending them on, so that's "already optimized".
+    if suggested["crit_rate"] <= current["crit_rate"] and gain <= 1e-10:
+        if suggested["crit_rate"] < current["crit_rate"]:
+            freed = spent(current) - spent({**current, "crit_rate": suggested["crit_rate"]})
+            result["warnings"].append(
+                f"Critical Rate level {suggested['crit_rate']} would still keep you at 100% and free "
+                f"{freed:,} points, but nothing here improves FD."
+            )
         suggested = dict(current)
     result.update(
         suggested={"levels": suggested, "cost": spent(suggested)},
@@ -325,5 +323,8 @@ def apply(info, user, current, suggested):
             updated = 100 - (100 - scanned) * (1 - new / 100) / (1 - old / 100)
         else:
             updated = scanned + new - old
+        if key == "crit_rate":
+            # The in-combat rate may exceed the scan, but MapleScouter rejects an input under 100%.
+            updated = max(updated, min(scanned, 100))
         user["stat"][field] = format(round(updated, 10), ".12g")
     return user

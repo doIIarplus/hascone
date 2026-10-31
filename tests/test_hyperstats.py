@@ -153,6 +153,20 @@ def test_unreachable_crit_floor_warns_at_max_level():
     assert "under 100%" in result["warnings"][0]
 
 
+VALUED = ("str", "dex", "luk", "crit_damage", "ied", "damage", "boss_damage", "attack")
+
+
+def test_lowering_crit_with_nothing_to_spend_the_points_on_is_already_optimized():
+    result = run(keep=list(VALUED), combat_crit=111, crit_rate=8, **dict.fromkeys(VALUED, 5))
+    assert result["already_optimized"] and result["suggested"]["levels"] == result["current"]["levels"]
+    assert "would still keep you at 100%" in result["warnings"][0]
+
+
+def test_raising_crit_to_reach_100_percent_is_still_suggested_without_an_fd_gain():
+    result = run(keep=list(VALUED), combat_crit=95, crit_rate=0, **dict.fromkeys(VALUED, 5))
+    assert not result["already_optimized"] and result["suggested"]["levels"]["crit_rate"] == 5  # 95% + 5
+
+
 def test_only_critical_rate_is_kept_by_default_for_every_class():
     for name in ("Shadower", "Bowmaster", "Xenon", "Kanna"):
         assert hyper.default_keep(profiles.class_info(name)) == ["crit_rate"]
@@ -215,6 +229,13 @@ def test_unkept_crit_rate_needs_the_in_combat_rate():
         hyper.clean({"levels": {}, "keep": []})
 
 
+def test_oversized_integers_are_rejected_not_crashed():
+    with pytest.raises(ValueError, match="whole number"):
+        hyper.clean({"levels": {"luk": 10**400}, "keep": ["crit_rate"]})
+    with pytest.raises(ValueError, match="in-combat Critical Rate"):
+        hyper.clean({"levels": {}, "keep": [], "crit_rate": 10**400})
+
+
 def test_apply_swaps_hyper_stats_in_the_scouter_input():
     current = levels(luk=10, ied=10, damage=10, crit_rate=5)
     suggested = levels(luk=4, ied=12, damage=13, crit_rate=0)
@@ -222,8 +243,15 @@ def test_apply_swaps_hyper_stats_in_the_scouter_input():
     stat = user["stat"]
     assert stat["mainStatAbs"] == str(20000 - 300 + 120)
     assert stat["dmg"] == str(80 - 30 + 39)
-    assert stat["critical"] == str(100 - 5)
+    assert stat["critical"] == "100"  # 95 after the swap, held at MapleScouter's 100% minimum
     # 95% total with 30% from hyper: the rest is 1 - 0.05 / 0.7; then add 36%.
     assert float(stat["ignoreDef"]) == pytest.approx(100 - 5 / 0.7 * 0.64)
     assert stat["bossDmg"] == CASE["user"]["stat"]["bossDmg"]
     assert CASE["user"]["stat"]["mainStatAbs"] == "20000"
+
+
+def test_apply_never_sends_a_critical_rate_under_100_percent():
+    lowered = hyper.apply(SHADOWER, CASE["user"], levels(crit_rate=5), levels(crit_rate=0))
+    assert lowered["stat"]["critical"] == "100"
+    raised = hyper.apply(SHADOWER, CASE["user"], levels(crit_rate=0), levels(crit_rate=8))
+    assert raised["stat"]["critical"] == str(100 + 11)
