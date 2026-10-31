@@ -73,6 +73,16 @@ def test_an_entered_crit_rate_overrides_the_scan(saved):
     assert profiles.load(ID)["hyper_stats"]["crit_rate"] == 130
 
 
+@pytest.mark.parametrize("endpoint", ["optimize", "verify"])
+@pytest.mark.parametrize(
+    "body",
+    [[], {"result_id": "base"}, {"result_id": "base", "settings": []}, {"result_id": "base", "settings": {}, "x": 1}],
+)
+def test_both_endpoints_reject_malformed_requests(saved, endpoint, body):
+    response = post(saved, f"/api/scouter/characters/{ID}/hyper/{endpoint}", body)
+    assert response.status_code == 400 and "saved calculation" in response.json["error"]
+
+
 def test_invalid_settings_are_rejected_and_not_saved(saved):
     bad = settings()
     bad["levels"]["ied"] = 16

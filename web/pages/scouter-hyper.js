@@ -173,6 +173,7 @@ export function createHyper(view,{onRun,onBaseline,onDeleteRun,loadIcons}) {
   function schedule(delay=200){
     clearTimeout(timer);previewing=true;
     timer=setTimeout(async()=>{
+      if(!baseline){previewing=false;return;}
       const mine=++serial, target=characterId(), base=baseline.id;
       try{
         const fresh=await api.post(`${endpoint()}/hyper/optimize`,{result_id:base,settings:clone(settings)});
@@ -228,6 +229,7 @@ export function createHyper(view,{onRun,onBaseline,onDeleteRun,loadIcons}) {
   function update(p,id){
     const characterChanged=profile?.character.id!==p.character.id;
     profile=p;baseline=p.history.find(r=>r.id===id);
+    if(!baseline){clearTimeout(timer);serial++;previewing=false;}
     if(characterChanged){data=null;result=null;loading='';}
     const nextKey=`${p.character.id}:${id}`, records=baseline?.hyper_runs||[];
     const switched=runKey!==nextKey;

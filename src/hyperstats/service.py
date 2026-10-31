@@ -46,17 +46,24 @@ def payload(identifier):
     }
 
 
-def optimize(identifier, request):
-    """The suggestion for one saved calculation; valid settings are kept for the character."""
+def parse(request):
+    """(result id, normalized settings) from a suggestion or verify request body."""
     if not isinstance(request, dict) or set(request) != {"result_id", "settings"} or not isinstance(
         request["settings"], dict
     ):
         raise ValueError("Choose a saved calculation and enter your hyper stats")
-    settings = stored(request["settings"])
-    with profiles.lock:
-        data = profiles.load(identifier)
-        result = evaluate(data["class_info"], record(data, request["result_id"]), settings)
-        if data.get("hyper_stats") != settings:
+    return request["result_id"], stored(request["settings"])
+
+
+def optimize(identifier, request):
+    """The suggestion for one saved calculation; valid settings are kept for the character."""
+    result_id, settings = parse(request)
+    data = profiles.load(identifier)
+    result = evaluate(data["class_info"], record(data, result_id), settings)
+    if data.get("hyper_stats") != settings:
+        # The search runs on a snapshot; only the save holds the profile lock.
+        with profiles.lock:
+            data = profiles.load(identifier)
             data["hyper_stats"] = settings
             profiles.write(identifier, data)
     return result
