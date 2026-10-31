@@ -15,6 +15,12 @@ test('the Hyper stats tab sits after Item swap and is wired like it',()=>{
  assert.match(scouter,/\/hyper\/verify`,\{result_id:resultId,settings\}/);
 });
 
+test('a pending preview is dropped, not run, once the baseline calculation is gone',()=>{
+ const source=fs.readFileSync(path.join(__dirname,'../../web/pages/scouter-hyper.js'),'utf8');
+ assert.match(source,/if\(!baseline\)\{previewing=false;return;\}\s*const mine=\+\+serial/);
+ assert.ok(source.includes('if(!baseline){clearTimeout(timer);serial++;previewing=false;}'));
+});
+
 test('level boxes take whole numbers within the in-game maximum and are never clamped',async()=>{
  const {parseLevel}=await hyper();
  assert.deepEqual(parseLevel('0',stat('luk')),{level:0});
