@@ -6,8 +6,8 @@ const path=require('node:path');
 const scouter=fs.readFileSync(path.join(__dirname,'../../web/pages/scouter.js'),'utf8');
 
 test('the Item swap tab is registered everywhere the Scouter tabs are listed',()=>{
- assert.match(scouter,/\['results','simulator','swap','suggestions','efficiencies'\]\.includes\(/);
- assert.equal(scouter.match(/\['inputs','results','simulator','swap','suggestions','efficiencies'\]/g).length,2);
+ assert.match(scouter,/\['results','simulator','swap','hyper','suggestions','efficiencies'\]\.includes\(/);
+ assert.equal(scouter.match(/\['inputs','results','simulator','swap','hyper','suggestions','efficiencies'\]/g).length,2);
  assert.match(scouter,/id="sc-tab-swap" role="tab" aria-controls="sc-panel-swap" data-sc-tab="swap">Item swap</);
  assert.match(scouter,/<section id="sc-panel-swap" role="tabpanel" aria-labelledby="sc-tab-swap">/);
  assert.match(scouter,/swap\.setBusy\(!!calc\.active\)/);

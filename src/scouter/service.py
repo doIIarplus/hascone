@@ -66,14 +66,23 @@ def delete_result(identifier, record):
 
 def delete_swap_run(identifier, record, run):
     """Remove one saved item swap from a calculation; its other swaps and simulations stay."""
+    _delete_run(identifier, record, run, "swap_runs", "Saved item swap not found")
+
+
+def delete_hyper_run(identifier, record, run):
+    """Remove one saved hyper stat check from a calculation."""
+    _delete_run(identifier, record, run, "hyper_runs", "Saved hyper stat check not found")
+
+
+def _delete_run(identifier, record, run, bucket, missing):
     with profiles.lock:
         data = profiles.load(identifier)
         baseline = next((row for row in data["history"] if row["id"] == record), None)
-        runs = (baseline or {}).get("swap_runs", [])
+        runs = (baseline or {}).get(bucket, [])
         kept = [row for row in runs if row["id"] != run]
         if len(kept) == len(runs):
-            raise ValueError("Saved item swap not found")
-        baseline["swap_runs"] = kept
+            raise ValueError(missing)
+        baseline[bucket] = kept
         profiles.write(identifier, data)
 
 
@@ -172,7 +181,43 @@ def start_swap_simulation(identifier, request):
                              "Simulating item swap…")
 
 
-def _start_simulation(identifier, result_id, changes, bucket, extra, message):
+def start_hyper_verification(identifier, request):
+    """One full MapleScouter calculation with the suggested hyper stats, saved as a hyper run."""
+    from hyperstats import optimizer
+    from hyperstats import service as hyper
+
+    if not isinstance(request, dict) or set(request) != {"result_id", "settings"} or not isinstance(
+        request["settings"], dict
+    ):
+        raise ValueError("Choose a saved calculation and enter your hyper stats")
+    settings = hyper.stored(request["settings"])
+    data = profiles.load(identifier)
+    record = hyper.record(data, request["result_id"])
+    result = hyper.evaluate(data["class_info"], record, settings)
+    if result["blockers"]:
+        raise ValueError(result["blockers"][0])
+    if result["already_optimized"]:
+        raise ValueError("Already optimized: there's no other allocation to check.")
+    current, suggested = result["current"]["levels"], result["suggested"]["levels"]
+    user = optimizer.apply(data["class_info"], record["input"], current, suggested)
+    changes = {k: v for k, v in user["stat"].items() if v != record["input"]["stat"][k]}
+    extra = {
+        "settings": settings,
+        "current": result["current"],
+        "suggested": result["suggested"],
+        "local_fd_percent": result["fd_percent"],
+    }
+
+    def fetch(cancelled):
+        calculated = client.damage(user, cancelled).get("calculatedData")
+        client.validate_score(calculated)
+        return calculated
+
+    return _start_simulation(identifier, request["result_id"], changes, "hyper_runs", extra,
+                             "Checking hyper stats with MapleScouter…", fetch)
+
+
+def _start_simulation(identifier, result_id, changes, bucket, extra, message, fetch=None):
     global _cancelled, _job
     from scouter import simulator
 
@@ -184,7 +229,7 @@ def _start_simulation(identifier, result_id, changes, bucket, extra, message):
         if record is None or "input" not in record:
             raise ValueError("Choose an existing saved calculation")
         baseline = {k: copy.deepcopy(record[k]) for k in ("id", "input", "damage")}
-        payload = simulator.body(baseline["input"], changes)
+        payload = None if fetch else simulator.body(baseline["input"], changes)
         _cancelled = threading.Event()
         _job = {
             "active": True,
@@ -196,18 +241,19 @@ def _start_simulation(identifier, result_id, changes, bucket, extra, message):
         }
         threading.Thread(
             target=_run_simulation,
-            args=(identifier, baseline, changes, payload, _cancelled, bucket, extra),
+            args=(identifier, baseline, changes, payload, _cancelled, bucket, extra, fetch),
             daemon=True,
             name="ScouterSimulator",
         ).start()
         return state()
 
 
-def _run_simulation(identifier, baseline, changes, payload, cancelled, bucket="simulations", extra=None):
+def _run_simulation(identifier, baseline, changes, payload, cancelled, bucket="simulations", extra=None,
+                    fetch=None):
     from scouter import simulator
 
     try:
-        calculated = client.simulate(payload, cancelled)
+        calculated = fetch(cancelled) if fetch else client.simulate(payload, cancelled)
         result = {
             "id": uuid.uuid4().hex,
             "created": profiles.now(),
