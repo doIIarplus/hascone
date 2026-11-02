@@ -689,6 +689,11 @@ input[type="checkbox"][role="switch"]:disabled { opacity: .4; cursor: not-allowe
 @media(max-width:950px){.sc-swap-layout{grid-template-columns:minmax(0,1fr);}}
 
 /* Hyper stats tab */
+.hexa-resource-card {padding:16px 18px;margin-bottom:16px;}
+.hexa-resource-controls {display:flex;align-items:end;gap:12px;flex-wrap:wrap;}
+.hexa-resource-controls label {display:grid;gap:6px;font-size:12px;}
+.hexa-resource-card .sub {margin-bottom:0;}
+
 .sc-hyper-options {display:flex;gap:16px 28px;align-items:start;flex-wrap:wrap;margin-top:18px;}
 .sc-hyper-options > label {display:grid;gap:6px;font-size:11px;color:var(--text-muted);}
 .sc-hyper-options small {font-size:10px;}

@@ -151,6 +151,67 @@ def _run(identifier, user, digest, cancelled):
             _job["active"] = False
 
 
+def start_hexa_order(identifier, request):
+    """Select a saved resource route, or calculate it once for this baseline."""
+    from scouter.hexa_order import RESOURCES, saved_order, validate_resource
+
+    global _cancelled, _job
+    if (not isinstance(request, dict) or not {"result_id", "resource"} <= set(request)
+            or set(request) - {"result_id", "resource", "refresh"}):
+        raise ValueError("Choose a saved calculation and HEXA resource")
+    resource = validate_resource(request["resource"])
+    if type(request.get("refresh", False)) is not bool:
+        raise ValueError("HEXA route refresh must be true or false")
+    with _lock, profiles.lock:
+        if _job["active"]:
+            raise ValueError("A Scouter calculation is already running")
+        data = profiles.load(identifier)
+        record = next((row for row in data["history"] if row["id"] == request["result_id"]), None)
+        if record is None:
+            raise ValueError("Choose an existing saved calculation")
+        cached = None if request.get("refresh", False) else saved_order(record, resource)
+        if cached is None and not (record.get("input") and record.get("damage", {}).get("calculatedData")):
+            raise ValueError("Calculate Scouter again; the saved inputs or damage result are unavailable")
+        data["hexa_resource"] = resource
+        profiles.write(identifier, data)
+        _job = {
+            "active": cached is None, "status": "calculating" if cached is None else "complete",
+            "kind": "hexa_order", "profile": identifier, "baseline_id": record["id"], "resource": resource,
+            "message": f"Calculating {RESOURCES[resource]} HEXA route…" if cached is None else "Loaded the saved HEXA route.",
+        }
+        if cached is not None:
+            return state()
+        baseline = {key: copy.deepcopy(record[key]) for key in ("id", "input", "damage")}
+        _cancelled = threading.Event()
+        threading.Thread(
+            target=_run_hexa_order, args=(identifier, baseline, resource, _cancelled),
+            daemon=True, name="ScouterHexaOrder",
+        ).start()
+        return state()
+
+
+def _run_hexa_order(identifier, baseline, resource, cancelled):
+    try:
+        order = client.hexa_order(baseline["input"], baseline["damage"]["calculatedData"], cancelled, resource)
+        with profiles.lock:
+            if cancelled.is_set():
+                raise ValueError("HEXA route calculation cancelled")
+            data = profiles.load(identifier)
+            record = next((row for row in data["history"] if row["id"] == baseline["id"]), None)
+            if record is None:
+                raise ValueError("The original calculation is no longer available")
+            record.setdefault("hexa_orders", {})[resource] = {"order": order, "created": profiles.now()}
+            profiles.write(identifier, data)
+        with _lock:
+            _job.update(status="complete", message="HEXA route saved.")
+    except Exception as exc:
+        with _lock:
+            _job.update(status="stopped" if cancelled.is_set() else "error", message=str(exc))
+    finally:
+        with _lock:
+            _job["active"] = False
+
+
 def start_simulation(identifier, request):
     from scouter import simulator
 

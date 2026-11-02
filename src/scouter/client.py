@@ -10,6 +10,7 @@ from urllib.parse import quote
 import requests
 
 from scouter import browser, settings
+from scouter.hexa_order import validate_resource
 
 SITE = "https://maplescouter.com"
 API = "https://api.maplescouter.com"
@@ -111,7 +112,8 @@ def public_headers(cancelled):
     raise ValueError("MapleScouter client configuration changed; the integration needs an update")
 
 
-def optimizer_body(user, result):
+def optimizer_body(user, result, resource="fragments"):
+    validate_resource(resource)
     user = copy.deepcopy(user)
     hexa = user["hexa"]
     hexa.update(
@@ -129,7 +131,7 @@ def optimizer_body(user, result):
     return {
         "myHexa": hexa,
         "specEff": result["specEfficiency"],
-        "sole": False,
+        "sole": resource == "sol_erda",
         "merType": result.get("mercedesBuildType", 0),
         "start": True,
         "cycle": "3",
@@ -198,6 +200,23 @@ def validate_score(result):
         raise ValueError("MapleScouter did not return a supported HEXA score for these inputs")
 
 
+def _hexa_order(user, result, headers, cancelled, resource):
+    order = _post(
+        "/api/calc/hexa-order?class=" + quote(user["stat"]["myClass"]),
+        optimizer_body(user, result, resource), headers, cancelled,
+    )
+    if not isinstance(order.get("class_hexa"), list):
+        raise ValueError("MapleScouter did not return an upgrade order")
+    return order
+
+
+def hexa_order(user, result, cancelled, resource):
+    """Fetch only the requested route, reusing the saved damage calculation."""
+    validate_resource(resource)
+    with _lock:
+        return _hexa_order(user, result, public_headers(cancelled), cancelled, resource)
+
+
 def calculate(user, cancelled, progress):
     with _lock:
         headers = public_headers(cancelled)
@@ -209,14 +228,7 @@ def calculate(user, cancelled, progress):
         progress("Calculating HEXA upgrade order…")
         # Preserve a successful score even if the second endpoint fails.
         try:
-            order = _post(
-                "/api/calc/hexa-order?class=" + quote(user["stat"]["myClass"]),
-                optimizer_body(user, result),
-                headers,
-                cancelled,
-            )
-            if not isinstance(order.get("class_hexa"), list):
-                raise ValueError("MapleScouter did not return an upgrade order")
+            order = _hexa_order(user, result, headers, cancelled, "fragments")
             error = None
         except (ValueError, KeyError, TypeError) as exc:
             order, error = None, str(exc)

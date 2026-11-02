@@ -92,7 +92,7 @@ def section_preferences():
 
 @app.get("/api/health")
 def health():
-    return jsonify(application="hascone", version="1.2.17")
+    return jsonify(application="hascone", version="1.2.18")
 
 
 @app.route("/api/characters", methods=["GET", "POST"])
@@ -412,6 +412,11 @@ def calculate(identifier):
 @app.post("/api/scouter/characters/<identifier>/simulate")
 def simulate(identifier):
     return jsonify(service.start_simulation(identifier, request.json))
+
+
+@app.post("/api/scouter/characters/<identifier>/hexa-order")
+def hexa_order(identifier):
+    return jsonify(service.start_hexa_order(identifier, request.json))
 
 
 @app.get("/api/scouter/characters/<identifier>/swap/catalog")

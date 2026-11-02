@@ -7,7 +7,7 @@ export function watchScouterCompletion(openResult){
  let opened=sessionStorage.getItem(key),checking=false,opening=false;
  async function accept(state){
   if(opening||state.active||state.status!=='complete'||!state.profile||!state.result_id||
-     ['connection','simulation','suggestions'].includes(state.kind))return;
+     ['connection','simulation','suggestions','hexa_order'].includes(state.kind))return;
   const identity=JSON.stringify([state.profile,state.result_id]);
   if(identity===opened)return;
   opening=true;

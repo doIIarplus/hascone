@@ -1,5 +1,20 @@
 const english = value => typeof value==='string' && /^[\x20-\x7E]+$/.test(value) ? value : '';
 
+export const hexaResources={fragments:'Fragments',sol_erda:'Sol Erda'};
+
+export function resourceOrder(record,resource){
+  return record?.hexa_orders?.[resource]?.order||(resource==='fragments'?record?.order:null);
+}
+
+export function resourceEfficiency(row,resource){
+  const efficiency=Number(row[7]);
+  if(row[7]==null||!Number.isFinite(efficiency))return null;
+  if(resource!=='sol_erda')return efficiency;
+  // Scouter returns FD per 30 fragments even when the route optimizes Sol Erda.
+  const sol=Number(row[3]),fragments=Number(row[4]);
+  return sol>0&&Number.isFinite(sol)&&fragments>0&&Number.isFinite(fragments)?efficiency*fragments/30/sol:null;
+}
+
 export function coreLabel(key='') {
   const stat=/^hexaStat(\d+)$/.exec(key);
   if(stat)return `HEXA Stat ${['','I','II','III'][Number(stat[1])]||stat[1]}`;

@@ -263,6 +263,7 @@ def snapshot(identifier):
     values = effective(data)
     from starforce.cost import options
 
+    data["hexa_resource"] = "sol_erda" if data.get("hexa_resource") == "sol_erda" else "fragments"
     data["starforce_options"] = options(data.get("starforce_options"))
     data["values"] = values
     data["defaults"] = defaults(data["class_info"])

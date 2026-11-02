@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SDK_VERSION = '1.0.4191.47'
-VERSION = '1.2.17'
+VERSION = '1.2.18'
 
 def _ensure_webview2_sdk(cache):
     sdk = cache/'webview2-sdk'/'sdk'

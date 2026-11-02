@@ -35,7 +35,7 @@ test('completed calculation is found on initial load; other job types and failur
  const context=await setup(t,state),opened=[];
  const stop=context.watch(async(...args)=>opened.push(args));await flush();
  assert.deepEqual(opened,[['character','finished-while-reloading']]);
- for(const kind of ['connection','simulation','suggestions']){
+ for(const kind of ['connection','simulation','suggestions','hexa_order']){
   Object.assign(state,{kind,result_id:kind});await context.poll();
  }
  delete state.kind;state.status='error';await context.poll();
