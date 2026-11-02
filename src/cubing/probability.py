@@ -22,7 +22,7 @@ LIMITS = {
     "Boss Damage": 3,
     "Item Drop Rate %": 3,
 }
-STAT_CATEGORIES = {"STR %", "DEX %", "INT %", "LUK %", "All Stats %", "ATT %", "MATT %", "Max HP %"}
+STAT_CATEGORIES = {"STR %", "DEX %", "INT %", "LUK %", "All Stats %", "ATT %", "MATT %", "Max HP %", "Damage %"}
 FAMILIES = {
     **{s: {s + " %": 1, "All Stats %": 1} for s in ["STR", "DEX", "INT", "LUK"]},
     "HP": {"Max HP %": 1},
@@ -31,6 +31,7 @@ FAMILIES = {
     "ATT": {"ATT %": 1},
     "MATT": {"MATT %": 1},
     "BOSS": {"Boss Damage": 1},
+    "DAMAGE": {"Damage %": 1},
     "IED": {"Ignore Enemy Defense %": 1},
     "CRIT_DAMAGE": {"Critical Damage %": 1},
     "COOLDOWN": {"Skill Cooldown Reduction": 1},
@@ -52,6 +53,7 @@ def family(metric, spec):
         return {
             metric.removesuffix("_EQ") + " %": 1,
             "Boss Damage": 1 / spec["attack_score"]["boss_per_attack"],
+            "Damage %": 1 / spec["attack_score"]["boss_per_attack"],
         }
     if metric == "MAIN_EQ":
         score = spec["score"]
@@ -130,7 +132,7 @@ def _rule_notes(spec):
         )
     if any(m in ("ATT_EQ", "MATT_EQ") for m in metrics):
         notes.append(
-            "Attack equivalent uses your configured Boss Damage ratio; IED is separate. This is not a CP prediction."
+            "Attack equivalent values Damage and Boss Damage equally using your configured Boss Damage ratio; IED is separate. This is not a CP prediction."
         )
     return notes
 

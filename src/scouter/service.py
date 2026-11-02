@@ -354,10 +354,10 @@ def ensure_suggestions(identifier):
         if not any(item.get("name") for item in gear.get("equipment",{}).values()):
             return {"active":False,"status":"needs_equipment","message":"Scan equipped gear to unlock upgrade recommendations."}
         sf = options(data.get("starforce_options"))
-        key = profiles.fingerprint([digest,suggestions.signature(gear),sf,5])
+        key = profiles.fingerprint([digest,suggestions.signature(gear),sf,6])
         saved = data.get("suggestions") or {}
         if (saved.get("fingerprint")==digest and saved.get("gear_fingerprint")==suggestions.signature(gear)
-            and saved.get("starforce_options")==sf and saved.get("model_version")==5):
+            and saved.get("starforce_options")==sf and saved.get("model_version")==6):
             return {"active":False,"status":"complete","message":"Upgrade recommendations are up to date."}
         if _job["active"]:
             return {**state(),"status":"busy"}

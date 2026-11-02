@@ -14,6 +14,7 @@ LABELS = {
     "MATT": "MATT %",
     "MAGIC ATT": "MATT %",
     "MAGIC ATTACK": "MATT %",
+    "DAMAGE": "Damage %",
     "BOSS DAMAGE": "Boss Damage",
     "DAMAGE TO BOSS MONSTERS": "Boss Damage",
     "IGNORE ENEMY DEFENSE": "Ignore Enemy Defense %",
@@ -50,7 +51,7 @@ def parse_line(text):
     # Known irrelevant lines (including clipped utility descriptions) cannot
     # contribute to any supported target. Unknown or broken relevant text is an error.
     junk = (
-        r"(?:MAX MP|DEF|DEFENSE|CRITICAL CHANCE|CRITICAL RATE|DAMAGE|SPEED|JUMP|"
+        r"(?:MAX MP|DEF|DEFENSE|CRITICAL CHANCE|CRITICAL RATE|SPEED|JUMP|"
         r"SKILL MP COST|HP RECOVERY ITEMS|MP RECOVERY ITEMS|MESO GUARD|DECENT |"
         r"CHANCE TO|WHEN HIT|WHEN ATTACKING|INCREASE INVINCIBILITY|INVINCIBILITY)\b.*"
     )

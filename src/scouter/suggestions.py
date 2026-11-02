@@ -36,6 +36,7 @@ VALUE_METRICS = [
     "ATT",
     "MATT",
     "BOSS",
+    "DAMAGE",
     "CRIT_DAMAGE",
     "COOLDOWN",
     "DROP",
@@ -71,6 +72,7 @@ def manual_potential(pot, basis, info, attack):
     weights.update({cat: pot[main] * w for cat, w in cubes.family("MAIN_EQ", {"score": basis["score"]}).items()})
     weights[attack + " %"] = pot[attack + " %"]
     weights["Boss Damage"] = pot[attack + " %"] / basis["attack"]["boss_per_attack"]
+    weights["Damage %"] = weights["Boss Damage"]
     return weights
 
 
@@ -110,6 +112,7 @@ def coefficients(record, info):
             attack + " %": value("atkPereff1"),
             "Boss Damage": value("dmgeff1"),
             "Critical Damage %": value("cridmgeff1"),
+            "Damage %": value("dmgeff1"),
         }
     )
     return flat, potential, value("igreff1_380"), attack
@@ -409,7 +412,7 @@ def build(data, gear, checkpoint=lambda: None, progress=lambda _: None, fetch_co
     rows.sort(key=lambda r: (-r["fd_per_billion"], r["expected_mesos"], r["slot"], r["method"]))
     return {
         "created": profiles.now(),
-        "model_version": 5,
+        "model_version": 6,
         "starforce_options": starforce_options(data.get("starforce_options")),
         "cooldown_cache": cooldown_cache,
         "baseline_id": record["id"],

@@ -53,14 +53,14 @@ export function createSuggestions(root, {onGenerate, onOptions=async()=>{}, scop
     const result=profile.suggestions;
     button.title='Recompute after equipment or event settings change. Recommendations also refresh in the background.';
     const ready=!dirty&&profile.history.some(r=>r.fingerprint===profile.fingerprint);
-    const oldModel=result&&result.model_version!==5;
+    const oldModel=result&&result.model_version!==6;
     const stale=result&&(oldModel||JSON.stringify(sfOptions(result))!==JSON.stringify(sfOptions(profile))||dirty||result.fingerprint!==profile.fingerprint||result.gear_fingerprint!==profile.gear_fingerprint);
     if(!result) {
       body.innerHTML=`<div class="card empty">${!ready?'Calculate Scouter with your current inputs first.':!profile.gear_fingerprint?'Scan this character’s equipment in Equipment first.':'Compare your saved flames, potentials and stars to find the best estimated FD gains per meso.'}<p class="sub">Use the same equipment preset for your equipment scans and Scouter calculation.</p></div>`;
       return;
     }
     const rows=selectSuggestionRows(result.rows,filter,scope);
-    body.innerHTML=`${stale?`<p class="sc-warning">Saved comparison · ${!ready?'inputs changed. Calculate Scouter again, then compare upgrades.':oldModel?'Star Force strategies and flame examples updated. Compare upgrades again to refresh.':'equipment, targets or Star Force options changed. Compare upgrades again to refresh.'}</p>`:''}
+    body.innerHTML=`${stale?`<p class="sc-warning">Saved comparison · ${!ready?'inputs changed. Calculate Scouter again, then compare upgrades.':oldModel?'Damage potential scoring updated. Compare upgrades again to refresh.':'equipment, targets or Star Force options changed. Compare upgrades again to refresh.'}</p>`:''}
       <div class="card sc-suggest-intro"><strong>Estimated gains · 380 DEF</strong><p class="sub">${esc(result.model)}</p><p class="sub">${esc(result.basis)}</p>
         <details><summary class="sub">Data used · ${esc(date(result.created))}</summary><p class="sub">Scouter: ${esc(date(result.baseline_created))}<br>Equipment: ${esc(date(result.equipment_scanned))}<br>Potentials: ${esc(date(result.potential_scanned))}</p></details></div>
       <div class="sc-suggest-toolbar"><label for="${prefix}-suggest-filter">Show</label><select class="input" id="${prefix}-suggest-filter">${filters.map(([value,label])=>`<option value="${value}" ${value===filter?'selected':''}>${label}</option>`).join('')}</select><span class="sub">${rows.length} of ${result.rows.filter(r=>!scope||r.kind===scope).length} options &middot; highest FD / meso first</span></div>

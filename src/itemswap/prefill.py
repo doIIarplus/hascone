@@ -1,7 +1,5 @@
 """Turn a scanned equipment slot into an editable Item swap configuration."""
 
-import re
-
 from cubing.lines import parse_line
 from flaming.stats import ReadError
 from itemswap import catalog
@@ -9,8 +7,6 @@ from itemswap.contribution import stack, stat_field, uses_magic
 
 FLAME_NAMES = {"STR": "str", "DEX": "dex", "INT": "int", "LUK": "luk", "Attack Power": "att", "Magic Attack": "matt"}
 ROLE_PERCENT = {"mainStat": "mainStatPer", "subStat": "subStatPer", "ssubStat": "ssubStatPer"}
-# parse_line files "Damage +9%" under junk; it counts here (folded into boss damage).
-DAMAGE = re.compile(r"\s*DAMAGE\s*:?\s*\+?\s*(\d+(?:\.\d+)?)\s*%\s*", re.I)
 
 
 def _total(values, key, amount):
@@ -23,10 +19,6 @@ def potential(lines, class_info):
     values, unknown = {}, []
     magic = uses_magic(class_info)
     for line in lines or []:
-        damage = DAMAGE.fullmatch(line or "")
-        if damage:
-            _total(values, "damage", float(damage[1]))
-            continue
         try:
             label, amount = parse_line(line)
         except ReadError:
@@ -43,6 +35,8 @@ def potential(lines, class_info):
             _total(values, "atkPer", amount)
         elif label == "Boss Damage":
             _total(values, "bossDmg", amount)
+        elif label == "Damage %":
+            _total(values, "damage", amount)
         elif label == "Ignore Enemy Defense %":
             _total(values, "ignoreGuard", amount)
         elif label == "Critical Damage %":

@@ -291,7 +291,7 @@ def test_starforce_profile_options_preserve_input_revision(saved, monkeypatch):
     monkeypatch.setattr(s, "flame_suggestion", unavailable)
     monkeypatch.setattr(s, "cube_suggestions", unavailable)
     built = s.build(loaded, gear)
-    assert built["model_version"] == 5
+    assert built["model_version"] == 6
     assert built["starforce_options"]["discount"] is True
     assert {r["kind"] for r in built["rows"]} == {"starforce"}
     assert {r["target_stars"] for r in built["rows"]} == {24}
@@ -369,6 +369,8 @@ def test_potential_upgrade_weights_follow_the_scouter_toggle(saved,monkeypatch):
     assert seen[1][info['main']+' %']==pytest.approx(main)
     assert seen[1]['All Stats %']==pytest.approx(main*score['all_stat_weight'])
     assert seen[1]['Boss Damage']==pytest.approx(seen[0][attack+' %']/cube_profiles.attack_score(gear['class'])['boss_per_attack'])
+    assert seen[1]['Damage %']==seen[1]['Boss Damage']
+    assert seen[0]['Damage %']==seen[0]['Boss Damage']
     assert seen[1]['Critical Damage %']==seen[0]['Critical Damage %']
     assert manual_result['gear_fingerprint']!=scouter_result['gear_fingerprint']
 

@@ -33,7 +33,7 @@ def _parse_potential_lines(potential):
 
 def _formula_text(wse, role, weights, attack):
     if wse:
-        return f"{role['att']}% + Boss Damage% ÷ {attack['boss_per_attack']}; IED is separate."
+        return f"{role['att']}% + (Damage% + Boss Damage%) ÷ {attack['boss_per_attack']}; IED is separate."
     if "stat_weights" in weights:
         parts = " + ".join(f"{stat}% x {weight:.4f}" for stat, weight in weights["stat_weights"].items())
         return parts + f" + All Stat% x {weights['all_stat_weight']:.4f}."

@@ -24,12 +24,24 @@ def test_background_comparison_only_once_per_revision(saved,monkeypatch):
 
 def test_background_reuses_current_result(saved,monkeypatch):
     data,gear=saved
-    data["suggestions"]={"fingerprint":data["history"][0]["fingerprint"],"gear_fingerprint":suggestions.signature(gear),"starforce_options":options(None),"model_version":5}
+    data["suggestions"]={"fingerprint":data["history"][0]["fingerprint"],"gear_fingerprint":suggestions.signature(gear),"starforce_options":options(None),"model_version":6}
     profiles.write(ID,data)
     start=Mock()
     monkeypatch.setattr(service,"start_suggestions",start)
     assert service.ensure_suggestions(ID)["status"]=="complete"
     start.assert_not_called()
+
+
+def test_background_refreshes_comparisons_from_before_damage_fix(saved,monkeypatch):
+    data,gear=saved
+    data["suggestions"]={"fingerprint":data["history"][0]["fingerprint"],"gear_fingerprint":suggestions.signature(gear),"starforce_options":options(None),"model_version":5}
+    profiles.write(ID,data)
+    monkeypatch.setattr(service,"_job",{"active":False})
+    monkeypatch.setattr(service,"_suggestion_attempts",{})
+    start=Mock(return_value={"active":True,"status":"calculating"})
+    monkeypatch.setattr(service,"start_suggestions",start)
+    assert service.ensure_suggestions(ID)["active"]
+    start.assert_called_once_with(ID)
 
 
 def test_background_requires_current_scouter_result(saved,monkeypatch):
