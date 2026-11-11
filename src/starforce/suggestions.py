@@ -11,7 +11,7 @@ def suggestions(slot, item, weights, gear, settings=None):
     current, cap = reading.get("stars"), reading.get("max_stars")
     if type(current) is not int or type(cap) is not int or not 0 <= current <= cap <= 30:
         raise ValueError("Invalid scanned Star Force count; scan again.")
-    cap = min(cap, meta["cap"])
+    cap = stats.star_limit(slot, item, meta)
     if current >= cap:
         raise ValueError("This item is already at its star limit.")
     if gear["class"] == "Demon Avenger":
@@ -52,15 +52,10 @@ def suggestions(slot, item, weights, gear, settings=None):
     chain_target = current + steps
     for row in rows:
         row.update(steps=steps, chain_target=chain_target)
-        if wanted is not None and wanted > current + 1:
-            row["notes"].append(f"Step {row['step']} of {steps} toward your {wanted}★ target.")
         if clamped is not None:
-            row["clamped_from"] = clamped
             row["notes"].append(f"Your {clamped}★ target is above this item's {cap}★ limit; ranked up to {cap}★.")
         if stopped is not None:
             row["notes"].append(f"Stops at {stopped}★: the next star has no positive modeled FD gain.")
-        if row["raw_fd_per_billion"] > row["fd_per_billion"]:
-            row["notes"].append("Ranked no higher than the previous step, which must be done first.")
     return rows
 
 
@@ -85,13 +80,14 @@ def _step_rows(meta, cfg, modes, strategies, start, target, delta, gain, previou
             "current_stars": start,
             "target_stars": target,
             "step": prior["step"] + 1 if prior else 1,
-            "requires": f"{prior['current_stars']}→{prior['target_stars']}" if prior else None,
             "stat_gains": delta,
             **expected,
             "custom_plan": custom,
             "expected_fd": gain,
             "raw_fd_per_billion": raw,
             "fd_per_billion": min(raw, prior["fd_per_billion"]) if prior else raw,
+            # Held to the previous step's score; the page explains this beside the step.
+            "capped": bool(prior) and raw > prior["fd_per_billion"],
             # Steps tied by the cap sort by their first step's cost, so they stay together and in order.
             "rank_mesos": prior["rank_mesos"]
             if prior and raw >= prior["fd_per_billion"]

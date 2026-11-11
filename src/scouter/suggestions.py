@@ -26,7 +26,7 @@ from starforce.suggestions import suggestions as starforce_suggestions
 from utils.payload_data import read_payload_json
 
 # Stamped on saved recommendations; bump it whenever the ranking math changes so saved results recompute.
-MODEL_VERSION = 7
+MODEL_VERSION = 8
 
 PROTECTED = {"Critical Damage %", "Skill Cooldown Reduction", "Item Drop Rate %", "Meso Amount %"}
 VALUE_METRICS = [

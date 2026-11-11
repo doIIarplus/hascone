@@ -110,7 +110,7 @@ def test_target_validation():
 def test_no_target_or_reached_target_ranks_only_the_next_star():
     plain = suggestions("hat", HAT, ALL, HAT_GEAR)
     assert [(r["current_stars"], r["target_stars"], r["step"], r["steps"]) for r in plain] == [(19, 20, 1, 1)] * 2
-    assert all(r["requires"] is None and r["fd_per_billion"] == r["raw_fd_per_billion"] for r in plain)
+    assert all(not r["capped"] and r["fd_per_billion"] == r["raw_fd_per_billion"] for r in plain)
     for reached in (19, 12):
         assert suggestions("hat", {**HAT, "starforce_target": reached}, ALL, HAT_GEAR) == plain
 
@@ -120,7 +120,6 @@ def test_target_ranks_every_star_and_steps_add_up_to_the_whole_climb():
     for strategy in ("mesos", "booms"):
         chain = [r for r in rows if r["strategy"] == strategy]
         assert [(r["current_stars"], r["target_stars"], r["step"]) for r in chain] == [(19, 20, 1), (20, 21, 2), (21, 22, 3)]
-        assert [r["requires"] for r in chain] == [None, "19→20", "20→21"]
         assert all(r["steps"] == 3 and r["chain_target"] == 22 for r in chain)
         whole = cost.optimize(150, 19, 22, objective=strategy)
         for key in ("expected_mesos", "expected_rolls", "expected_booms"):
@@ -140,8 +139,7 @@ def test_capped_step_keeps_its_predecessors_score_and_cost_rank():
         assert second["raw_fd_per_billion"] > first["fd_per_billion"]
         assert second["fd_per_billion"] == first["fd_per_billion"]
         assert second["rank_mesos"] == first["rank_mesos"] == first["expected_mesos"]
-        assert any(n.startswith("Ranked no higher") for n in second["notes"])
-        assert not any(n.startswith("Ranked no higher") for n in first["notes"])
+        assert second["capped"] and not first["capped"]
 
 
 def test_target_above_the_items_limit_is_clamped():
@@ -149,7 +147,7 @@ def test_target_above_the_items_limit_is_clamped():
             "starforce": {"status": "scanned", "stars": 18, "max_stars": 20}, "starforce_target": 25}
     rows = suggestions("hat", item, ALL, {"class": "Shadower", "equipment": {"hat": item}})
     assert sorted({r["target_stars"] for r in rows}) == [19, 20]
-    assert all(r["clamped_from"] == 25 and r["chain_target"] == 20 for r in rows)
+    assert all(r["chain_target"] == 20 and any(n.startswith("Your 25★ target is above") for n in r["notes"]) for r in rows)
 
 
 def test_chain_stops_at_a_star_with_no_modeled_gain():
@@ -176,20 +174,11 @@ def test_target_route_saves_and_clears(client):
     assert post(client, f"/api/characters/{ID}/equipment/top/starforce-target", {"target": 22}).status_code == 400
 
 
-def test_target_route_lowers_a_target_above_the_items_limit(client):
+def test_target_route_keeps_a_target_above_the_items_limit(client):
+    # Ranking stops at the limit, so the typed target survives a later item with a higher limit.
     path = f"/api/characters/{ID}/equipment/hat/starforce-target"
     p = characters.load(ID)
-    # Scanned limit: 20 stars.
     p["equipment"]["hat"] = {"name": "Hat", "starforce": {"status": "scanned", "stars": 17, "max_stars": 20}}
     characters.write(p)
     assert post(client, path, {"target": 25}).status_code == 200
-    assert characters.load(ID)["equipment"]["hat"]["starforce_target"] == 20
-    # Level limit: a level 130 item stops at 20 stars even when the scan reads 30.
-    p = characters.load(ID)
-    p["equipment"]["hat"] = {"name": "Royal Dunwitch Hat", "required_level": 130,
-                             "starforce": {"status": "scanned", "stars": 17, "max_stars": 30}}
-    characters.write(p)
-    assert post(client, path, {"target": 28}).status_code == 200
-    assert characters.load(ID)["equipment"]["hat"]["starforce_target"] == 20
-    assert post(client, path, {"target": 19}).status_code == 200
-    assert characters.load(ID)["equipment"]["hat"]["starforce_target"] == 19
+    assert characters.load(ID)["equipment"]["hat"]["starforce_target"] == 25

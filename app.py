@@ -299,40 +299,31 @@ def item_starforce_modes(identifier, slot):
     from starforce.cost import item_modes
 
     modes = item_modes((request.get_json(silent=True) or {}).get("modes"))
-    with characters.lock:
-        data = characters.load(identifier)
-        item = data["equipment"].get(slot)
-        if slot not in LAYOUT["slots"] or not isinstance(item, dict):
-            raise ValueError("Scan this item first")
-        if modes:
-            item["starforce_modes"] = modes
-        else:
-            item.pop("starforce_modes", None)
-        characters.write(data)
-    return character(identifier)
+    return _set_item_setting(identifier, slot, "starforce_modes", modes)
 
 
 @app.post("/api/characters/<identifier>/equipment/<slot>/starforce-target")
 def item_starforce_target(identifier, slot):
     """Rank every star up to this item's target, or clear it to rank only the next star.
 
-    A target above the item's star limit is saved as that limit."""
+    A target above the item's star limit is kept as typed; ranking stops at the limit."""
     from starforce.cost import item_target
-    from starforce.stats import star_limit
 
     target = item_target((request.get_json(silent=True) or {}).get("target"))
+    return _set_item_setting(identifier, slot, "starforce_target", target)
+
+
+def _set_item_setting(identifier, slot, key, value):
+    """Save a player setting on this slot's scanned item, or clear it when VALUE is empty."""
     with characters.lock:
         data = characters.load(identifier)
         item = data["equipment"].get(slot)
         if slot not in LAYOUT["slots"] or not isinstance(item, dict):
             raise ValueError("Scan this item first")
-        limit = star_limit(slot, item)
-        if target is not None and limit is not None:
-            target = min(target, limit)
-        if target is None:
-            item.pop("starforce_target", None)
+        if value:
+            item[key] = value
         else:
-            item["starforce_target"] = target
+            item.pop(key, None)
         characters.write(data)
     return character(identifier)
 

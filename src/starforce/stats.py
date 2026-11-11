@@ -62,16 +62,16 @@ def metadata(slot, item):
     }
 
 
-def star_limit(slot, item):
+def star_limit(slot, item, meta=None):
     """The most stars ITEM can reach: its scanned limit and its level's limit, whichever is lower.
 
-    None when neither is known."""
+    Pass META when it is already loaded. None when neither limit is known."""
     limits = []
     scanned = (item.get("starforce") or {}).get("max_stars")
     if type(scanned) is int:
         limits.append(scanned)
     try:
-        limits.append(metadata(slot, item)["cap"])
+        limits.append((meta or metadata(slot, item))["cap"])
     except ValueError:
         pass
     return min(limits, default=None)
