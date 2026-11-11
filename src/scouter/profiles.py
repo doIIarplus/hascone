@@ -274,10 +274,12 @@ def snapshot(identifier):
     data["history"] = [{k: v for k, v in with_boss_cuts(r).items() if k != "input"} for r in data["history"]]
     data["fingerprint"] = fingerprint(values)
     from flaming import characters
+    from scouter.suggestions import MODEL_VERSION, signature
 
+    # The page compares saved recommendations against this to flag an outdated model.
+    data["suggestions_model_version"] = MODEL_VERSION
     try:
         gear = characters.load(identifier)
-        from scouter.suggestions import signature
 
         data["gear_fingerprint"] = signature(gear)
     except (OSError, ValueError, KeyError, TypeError):

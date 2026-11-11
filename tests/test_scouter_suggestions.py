@@ -291,7 +291,7 @@ def test_starforce_profile_options_preserve_input_revision(saved, monkeypatch):
     monkeypatch.setattr(s, "flame_suggestion", unavailable)
     monkeypatch.setattr(s, "cube_suggestions", unavailable)
     built = s.build(loaded, gear)
-    assert built["model_version"] == 6
+    assert built["model_version"] == s.MODEL_VERSION
     assert built["starforce_options"]["discount"] is True
     assert {r["kind"] for r in built["rows"]} == {"starforce"}
     assert {r["target_stars"] for r in built["rows"]} == {24}
@@ -413,3 +413,24 @@ def test_zero_secondary_is_listed_as_mirroring_the_weapon():
     )
     assert rows == []
     assert [(r["kind"], r["reason"]) for r in skipped] == [("cube", zero.MIRROR_NOTE), ("starforce", zero.MIRROR_NOTE)]
+
+
+def test_target_steps_stay_in_order_with_other_items_between(saved, monkeypatch):
+    data, gear = saved
+    gear["equipment"]["face"] = {"name": "Face", "starforce": {"status": "scanned"}}
+    gear["equipment"]["eye"]["starforce"] = {"status": "scanned"}
+
+    def row(slot, start, step, score, mesos, rank=None):
+        return {"method": "Star Force", "kind": "starforce", "strategy": "mesos", "current_stars": start,
+                "target_stars": start + 1, "step": step, "fd_per_billion": score, "raw_fd_per_billion": score,
+                "expected_mesos": mesos, "rank_mesos": rank if rank is not None else mesos}
+
+    face = [row("face", 19, 1, 5.0, 900), row("face", 20, 2, 3.0, 2_000),
+            # Capped at its predecessor's score; ties sort by the predecessor's cost.
+            row("face", 21, 3, 3.0, 100, rank=2_000)]
+    eye = [row("eye", 23, 1, 4.0, 50), row("eye", 0, 1, 3.0, 1_000)]
+    monkeypatch.setattr(s, "starforce_suggestions", lambda slot, *a: face if slot == "face" else eye[:1] if slot == "eye" else [])
+    monkeypatch.setattr(s, "flame_suggestion", lambda *a: (_ for _ in ()).throw(ValueError("none")))
+    monkeypatch.setattr(s, "cube_suggestions", lambda *a: (_ for _ in ()).throw(ValueError("none")))
+    rows = s.build(data, gear)["rows"]
+    assert [(r["slot"], r["current_stars"]) for r in rows] == [("face", 19), ("eye", 23), ("face", 20), ("face", 21)]

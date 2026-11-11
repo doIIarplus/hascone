@@ -65,6 +65,8 @@ def _add_starforce_row(result, detail, common, slot, item, options_config):
 
     if slot.split("_")[0] in sf_stats.EXCLUDED_SLOTS or reading.get("status") == "not_applicable":
         return
+    # The most stars this item can reach, so the target field can cap what is typed.
+    detail["starforce_limit"] = sf_stats.star_limit(slot, item)
     try:
         if reading.get("status") != "scanned":
             raise ValueError("Hover this item to scan its stars first.")

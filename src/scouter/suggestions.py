@@ -25,6 +25,9 @@ from starforce.cost import options as starforce_options
 from starforce.suggestions import suggestions as starforce_suggestions
 from utils.payload_data import read_payload_json
 
+# Stamped on saved recommendations; bump it whenever the ranking math changes so saved results recompute.
+MODEL_VERSION = 7
+
 PROTECTED = {"Critical Damage %", "Skill Cooldown Reduction", "Item Drop Rate %", "Meso Amount %"}
 VALUE_METRICS = [
     "STR",
@@ -409,10 +412,20 @@ def build(data, gear, checkpoint=lambda: None, progress=lambda _: None, fetch_co
         )
         rows.extend(slot_rows)
         skipped.extend(slot_skipped)
-    rows.sort(key=lambda r: (-r["fd_per_billion"], r["expected_mesos"], r["slot"], r["method"]))
+    # Star Force steps toward a target share a capped score with the step before them;
+    # rank_mesos and step keep such a run together and in star order.
+    rows.sort(
+        key=lambda r: (
+            -r["fd_per_billion"],
+            r.get("rank_mesos", r["expected_mesos"]),
+            r["slot"],
+            r.get("step", 1),
+            r["method"],
+        )
+    )
     return {
         "created": profiles.now(),
-        "model_version": 6,
+        "model_version": MODEL_VERSION,
         "starforce_options": starforce_options(data.get("starforce_options")),
         "cooldown_cache": cooldown_cache,
         "baseline_id": record["id"],
@@ -425,5 +438,5 @@ def build(data, gear, checkpoint=lambda: None, progress=lambda _: None, fetch_co
         "rows": rows,
         "skipped": skipped,
         "model": "Expected incremental FD at 380 DEF, using Scouter’s stat efficiencies and cooldown score curves. Gains are estimates, not exact full-build simulations.",
-        "basis": "Flames/cubes: expected cost and average FD of qualifying rolls. Star Force: expected tap cost and FD at the selected star target, including recovery costs. Use the same preset for scans and Scouter.",
+        "basis": "Flames/cubes: expected cost and average FD of qualifying rolls. Star Force: expected tap cost and FD of each star up to the item's target (or the next star), including recovery costs; a step never ranks above the one before it. Use the same preset for scans and Scouter.",
     }

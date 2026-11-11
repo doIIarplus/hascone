@@ -40,7 +40,7 @@ def test_slot_kinds_leave_out_only_skipped_kinds():
 
 
 def test_skip_settings_survive_rescan_and_replacement(client):
-    settings = {"skip_upgrades": ["flame"], "starforce_modes": {str(s): 1 for s in range(15, 22)}}
+    settings = {"skip_upgrades": ["flame"], "starforce_modes": {str(s): 1 for s in range(15, 22)}, "starforce_target": 22}
     save(characters.load(ID), grid(frame("grid")), icons(frame("grid"), grid(frame("grid"))))
     result = hover(frame("hat"), replay, "hat")
     save(characters.load(ID), result, icons(frame("hat"), result))
@@ -78,7 +78,7 @@ def test_flame_order_drops_skipped_flame_but_costs_keep_it(client):
 
 @pytest.mark.parametrize("return_scan", ["equipment", "hover"])
 def test_slot_settings_survive_empty_grid_scans(client, return_scan):
-    settings = {"skip_upgrades": ["flame", "cube"], "starforce_modes": {str(s): 1 for s in range(15, 22)}}
+    settings = {"skip_upgrades": ["flame", "cube"], "starforce_modes": {str(s): 1 for s in range(15, 22)}, "starforce_target": 22}
     profile = characters.load(ID)
     profile["equipment"] = {
         "hat": {"name": "Old Hat", "icon_hash": "old", "occupied": True, **settings},
@@ -106,6 +106,7 @@ def test_slot_settings_survive_empty_grid_scans(client, return_scan):
     assert post(client, f"/api/characters/{ID}/equipment/hat/skip-upgrades", {"skip": []}).status_code == 200
     profile = characters.load(ID)
     profile["equipment"]["hat"].pop("starforce_modes")
+    profile["equipment"]["hat"].pop("starforce_target")
     characters.write(profile)
     save(profile, empty_hat, {})
     assert characters.load(ID)["equipment_slot_settings"] == {}

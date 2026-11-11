@@ -58,6 +58,15 @@ def item_modes(value):
     return {str(star): value[str(star)] for star in MODE_STARS}
 
 
+def item_target(value):
+    """An item's target stars (1★–30★), or None to rank only the next star."""
+    if value is None:
+        return None
+    if type(value) is not int or not 1 <= value <= 30:
+        raise ValueError("Target stars must be a whole number from 1 to 30")
+    return value
+
+
 def mode_summary(modes):
     """Item modes as runs of stars, e.g. "15–16★ Safeguard, 17–19★ Mode 1, 20–21★ Mode 4"."""
     runs = []

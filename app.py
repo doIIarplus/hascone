@@ -312,6 +312,31 @@ def item_starforce_modes(identifier, slot):
     return character(identifier)
 
 
+@app.post("/api/characters/<identifier>/equipment/<slot>/starforce-target")
+def item_starforce_target(identifier, slot):
+    """Rank every star up to this item's target, or clear it to rank only the next star.
+
+    A target above the item's star limit is saved as that limit."""
+    from starforce.cost import item_target
+    from starforce.stats import star_limit
+
+    target = item_target((request.get_json(silent=True) or {}).get("target"))
+    with characters.lock:
+        data = characters.load(identifier)
+        item = data["equipment"].get(slot)
+        if slot not in LAYOUT["slots"] or not isinstance(item, dict):
+            raise ValueError("Scan this item first")
+        limit = star_limit(slot, item)
+        if target is not None and limit is not None:
+            target = min(target, limit)
+        if target is None:
+            item.pop("starforce_target", None)
+        else:
+            item["starforce_target"] = target
+        characters.write(data)
+    return character(identifier)
+
+
 @app.post("/api/characters/<identifier>/equipment/<slot>/skip-upgrades")
 def item_skip_upgrades(identifier, slot):
     """Leave flame, cube or starforce upgrades for this slot out of the recommendations."""

@@ -62,6 +62,21 @@ def metadata(slot, item):
     }
 
 
+def star_limit(slot, item):
+    """The most stars ITEM can reach: its scanned limit and its level's limit, whichever is lower.
+
+    None when neither is known."""
+    limits = []
+    scanned = (item.get("starforce") or {}).get("max_stars")
+    if type(scanned) is int:
+        limits.append(scanned)
+    try:
+        limits.append(metadata(slot, item)["cap"])
+    except ValueError:
+        pass
+    return min(limits, default=None)
+
+
 def _stat_and_hp_gain(meta, data, band, current, target):
     result = {}
     stat = sum(band["stat_per_star"][current + 1 : target + 1])

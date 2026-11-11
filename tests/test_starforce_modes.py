@@ -92,3 +92,104 @@ def test_modes_route_saves_and_clears(client):
     assert post(client, path, {"modes": None}).status_code == 200
     assert "starforce_modes" not in characters.load(ID)["equipment"]["hat"]
     assert post(client, f"/api/characters/{ID}/equipment/top/starforce-modes", {"modes": SAFE}).status_code == 400
+
+
+HAT = {"name": "Royal Dunwitch Hat", "required_level": 150, "starforce": {"status": "scanned", "stars": 19, "max_stars": 30}}
+HAT_GEAR = {"class": "Shadower", "equipment": {"hat": HAT}}
+ALL = {"LUK": 1, "DEX": 1, "STR": 1, "INT": 1, "Attack Power": 1, "Magic Attack": 1, "Max HP": 1}
+
+
+def test_target_validation():
+    assert cost.item_target(None) is None
+    assert cost.item_target(22) == 22
+    for bad in (0, 31, 21.0, True, "22"):
+        with pytest.raises(ValueError):
+            cost.item_target(bad)
+
+
+def test_no_target_or_reached_target_ranks_only_the_next_star():
+    plain = suggestions("hat", HAT, ALL, HAT_GEAR)
+    assert [(r["current_stars"], r["target_stars"], r["step"], r["steps"]) for r in plain] == [(19, 20, 1, 1)] * 2
+    assert all(r["requires"] is None and r["fd_per_billion"] == r["raw_fd_per_billion"] for r in plain)
+    for reached in (19, 12):
+        assert suggestions("hat", {**HAT, "starforce_target": reached}, ALL, HAT_GEAR) == plain
+
+
+def test_target_ranks_every_star_and_steps_add_up_to_the_whole_climb():
+    rows = suggestions("hat", {**HAT, "starforce_target": 22}, ALL, HAT_GEAR)
+    for strategy in ("mesos", "booms"):
+        chain = [r for r in rows if r["strategy"] == strategy]
+        assert [(r["current_stars"], r["target_stars"], r["step"]) for r in chain] == [(19, 20, 1), (20, 21, 2), (21, 22, 3)]
+        assert [r["requires"] for r in chain] == [None, "19→20", "20→21"]
+        assert all(r["steps"] == 3 and r["chain_target"] == 22 for r in chain)
+        whole = cost.optimize(150, 19, 22, objective=strategy)
+        for key in ("expected_mesos", "expected_rolls", "expected_booms"):
+            assert sum(r[key] for r in chain) == pytest.approx(whole[key])
+        # A later star never outranks the one it depends on.
+        scores = [r["fd_per_billion"] for r in chain]
+        assert scores == sorted(scores, reverse=True)
+        assert all(r["fd_per_billion"] <= r["raw_fd_per_billion"] for r in chain)
+        assert chain[0]["fd_per_billion"] == chain[0]["raw_fd_per_billion"]
+
+
+def test_capped_step_keeps_its_predecessors_score_and_cost_rank():
+    # Valuing only attack, 20→21 is cheaper per FD than 19→20, yet it must be done after it.
+    rows = suggestions("hat", {**HAT, "starforce_target": 21}, {"Attack Power": 1}, HAT_GEAR)
+    for strategy in ("mesos", "booms"):
+        first, second = [r for r in rows if r["strategy"] == strategy]
+        assert second["raw_fd_per_billion"] > first["fd_per_billion"]
+        assert second["fd_per_billion"] == first["fd_per_billion"]
+        assert second["rank_mesos"] == first["rank_mesos"] == first["expected_mesos"]
+        assert any(n.startswith("Ranked no higher") for n in second["notes"])
+        assert not any(n.startswith("Ranked no higher") for n in first["notes"])
+
+
+def test_target_above_the_items_limit_is_clamped():
+    item = {"name": "Royal Dunwitch Hat", "required_level": 130,
+            "starforce": {"status": "scanned", "stars": 18, "max_stars": 20}, "starforce_target": 25}
+    rows = suggestions("hat", item, ALL, {"class": "Shadower", "equipment": {"hat": item}})
+    assert sorted({r["target_stars"] for r in rows}) == [19, 20]
+    assert all(r["clamped_from"] == 25 and r["chain_target"] == 20 for r in rows)
+
+
+def test_chain_stops_at_a_star_with_no_modeled_gain():
+    item = {**HAT, "starforce": {**HAT["starforce"], "stars": 21}, "starforce_target": 24}
+    rows = suggestions("hat", item, {"LUK": 1}, HAT_GEAR)
+    assert {(r["current_stars"], r["target_stars"]) for r in rows} == {(21, 22)}
+    assert all(r["steps"] == 1 and any(n.startswith("Stops at 22★") for n in r["notes"]) for r in rows)
+    with pytest.raises(ValueError, match="next star"):
+        suggestions("hat", {**item, "starforce": {**HAT["starforce"], "stars": 22}}, {"LUK": 1}, HAT_GEAR)
+
+
+def test_target_route_saves_and_clears(client):
+    p = characters.load(ID)
+    p["equipment"]["hat"] = {"name": "Hat", "starforce": {"status": "scanned", "stars": 17, "max_stars": 30}}
+    characters.write(p)
+    path = f"/api/characters/{ID}/equipment/hat/starforce-target"
+    assert post(client, path, {"target": 22}).status_code == 200
+    assert characters.load(ID)["equipment"]["hat"]["starforce_target"] == 22
+    for bad in (0, 31, "22", 21.5):
+        assert post(client, path, {"target": bad}).status_code == 400
+    assert characters.load(ID)["equipment"]["hat"]["starforce_target"] == 22
+    assert post(client, path, {"target": None}).status_code == 200
+    assert "starforce_target" not in characters.load(ID)["equipment"]["hat"]
+    assert post(client, f"/api/characters/{ID}/equipment/top/starforce-target", {"target": 22}).status_code == 400
+
+
+def test_target_route_lowers_a_target_above_the_items_limit(client):
+    path = f"/api/characters/{ID}/equipment/hat/starforce-target"
+    p = characters.load(ID)
+    # Scanned limit: 20 stars.
+    p["equipment"]["hat"] = {"name": "Hat", "starforce": {"status": "scanned", "stars": 17, "max_stars": 20}}
+    characters.write(p)
+    assert post(client, path, {"target": 25}).status_code == 200
+    assert characters.load(ID)["equipment"]["hat"]["starforce_target"] == 20
+    # Level limit: a level 130 item stops at 20 stars even when the scan reads 30.
+    p = characters.load(ID)
+    p["equipment"]["hat"] = {"name": "Royal Dunwitch Hat", "required_level": 130,
+                             "starforce": {"status": "scanned", "stars": 17, "max_stars": 30}}
+    characters.write(p)
+    assert post(client, path, {"target": 28}).status_code == 200
+    assert characters.load(ID)["equipment"]["hat"]["starforce_target"] == 20
+    assert post(client, path, {"target": 19}).status_code == 200
+    assert characters.load(ID)["equipment"]["hat"]["starforce_target"] == 19

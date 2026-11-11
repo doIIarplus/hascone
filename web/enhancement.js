@@ -123,6 +123,18 @@ export function mountEnhancement(root,{profile,page,slot,onSelect}) {
    panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.onclick=()=>onSelect(b.dataset.enhancementSlot));
   }else panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.classList.toggle('selected',b.dataset.enhancementSlot===slot));
  }
+ // Per-item target stars: blank ranks only the next star; a number ranks every star up to it.
+ function bindTarget(){
+  const input=root.querySelector('#sf-target');if(!input)return;
+  input.onchange=async()=>{
+   const status=root.querySelector('#sf-target-status'),raw=input.value.trim(),value=raw===''?null:Number(raw);
+   // A number field reports text it cannot parse as '', which must not clear the saved target.
+   if(input.validity.badInput||value!==null&&!(Number.isInteger(value)&&value>=1&&value<=30)){status.textContent='Enter a whole number from 1 to 30, or leave it blank.';return;}
+   input.disabled=true;status.textContent='Saving…';
+   try{const fresh=await api.post(`/api/characters/${profile.id}/equipment/${encodeURIComponent(slot)}/starforce-target`,{target:value});Object.assign(profile,fresh);await refresh();}
+   catch(e){status.textContent=e.message;input.disabled=false;}
+  };
+ }
  // Per-item Star Force modes, one per attempt: sliders and range presets save on the item, then costs refresh.
  function bindModes(table,saved){
   const own=root.querySelector('#sf-own-modes');if(!own)return;
@@ -171,8 +183,12 @@ export function mountEnhancement(root,{profile,page,slot,onSelect}) {
    return `<div class="sf-mode-row"><span class="sf-mode-attempt">${r.star} → ${r.star+1}</span><div class="sf-mode-slider"><input class="sf-range" type="range" min="0" max="3" step="1" value="${index}" data-mode-star="${r.star}" aria-label="Strategy for ${r.star} stars" aria-valuetext="${modeName(c.mode)}"><div class="sf-mode-stops">${r.choices.map((choice,i)=>`<button type="button" data-stop="${i}" class="${i===index?'is-on':''}" style="--i:${i}" tabindex="-1">${modeName(choice.mode)}</button>`).join('')}</div></div><span class="sf-mode-num" data-success>${chance(c.success)}</span><span class="sf-mode-num is-boom ${c.boom?'':'is-safe'}" data-boom>${chance(c.boom)}</span><span class="sf-mode-num" data-cost>${cost(c.cost)}</span></div>`;
   };
   const modeControls=gear.starforce?.status==='scanned'&&!item.mirror&&table.length?`<section class="sf-item-modes"><h3>Enhancement modes for this item</h3><label class="score-toggle"><input type="checkbox" role="switch" id="sf-own-modes" ${modes?'checked':''}> Use my own modes</label><div class="sf-mode-fields" ${modes?'':'hidden'}><div class="sf-presets"><span><strong>Quick presets</strong><small>Apply a strategy to a range of stars</small></span>${presetSelect('low')}${presetSelect('high')}</div><div class="sf-modes-table"><div class="sf-mode-row is-head"><span>Attempt</span><span>Strategy</span><span>Success</span><span>Boom</span><span>Cost</span></div>${table.map(modeRow).join('')}</div><p class="sub">Safeguard (15–17★) and Mode 4 (18–21★) prevent destruction. Success, boom and cost are per attempt, with your event settings.</p></div><p class="sub" id="sf-modes-status">${modes?'The upgrade order and costs for this item use these modes.':'Off: each star uses whichever mode is cheapest, and the upgrade order also shows a fewest-booms plan.'}</p></section>`:'';
-  root.querySelector('#enhancement-selected').innerHTML=(current?`<section><h3>Current Star Force cost</h3><div class="enhancement-totals">${totalValue('0 to '+current.stars+' stars',current.expected_mesos,1)}</div><p class="sub">${number(current.expected_booms)} expected booms &middot; Level ${current.level}</p><p class="sub">${basisText}</p></section>`:`<p class="sub">${esc(item.mirror||item.starforce_error||'Hover this item to scan its stars.')}</p>`)+modeControls+skipControls();
-  bindModes(table,modes);bindSkips();
+  const sf=gear.starforce||{},target=gear.starforce_target,limit=item.starforce_limit??sf.max_stars;
+  const targetHint=target==null?'Blank: the upgrade order ranks only the next star.':target<=sf.stars?`Reached: ${sf.stars}★ already meets your ${target}★ target, so only the next star is ranked.`:limit!=null&&target>limit?`Above this item's ${limit}★ limit; steps are ranked up to ${limit}★.`:`The upgrade order ranks every star from ${sf.stars}★ to ${target}★.`;
+  const targetField=sf.status==='scanned'&&!item.mirror?`<div class="sf-item-target"><span>Target stars</span><label><input class="input" type="number" id="sf-target" min="1" max="${limit??30}" step="1" inputmode="numeric" value="${target??''}" aria-label="Target stars" aria-describedby="sf-target-status">&#9733;</label></div>`:'';
+  const targetStatus=targetField?`<p class="sub" id="sf-target-status">${esc(targetHint)}</p>`:'';
+  root.querySelector('#enhancement-selected').innerHTML=(current?`<section><h3>Current Star Force cost</h3><div class="enhancement-totals">${totalValue('0 to '+current.stars+' stars',current.expected_mesos,1)}${targetField}</div><p class="sub">${number(current.expected_booms)} expected booms &middot; Level ${current.level}</p>${targetStatus}<p class="sub">${basisText}</p></section>`:`<p class="sub">${esc(item.mirror||item.starforce_error||'Hover this item to scan its stars.')}</p>${targetField}${targetStatus}`)+modeControls+skipControls();
+  bindTarget();bindModes(table,modes);bindSkips();
   if(!selectionOnly){
    panels.innerHTML=`<section class="analysis-panel"><h2>Current Star Force costs</h2><p class="sub">Cost to reach scanned stars &middot; Lowest cost first.</p><div class="enhancement-grid">${rows.map(r=>`<div class="enhancement-step"><button class="enhancement-item ${slot===r.slot?'selected':''}" data-enhancement-slot="${esc(r.slot)}">${art(r)}<span class="enhancement-name">${esc(r.name)}</span><strong>${r.stars}&#9733;</strong><strong class="enhancement-price">${cost(r.expected_mesos)}</strong><span class="sub">${number(r.expected_booms)} expected booms</span></button></div>`).join('')||'<p class="sub">Scan Star Force equipment to see costs.</p>'}</div>${unpriced('starforce')}<details><summary>How costs are calculated</summary><p class="sub">${basis}</p><p class="sub">Uses the discount and boom-reduction options above. These are modeled costs.</p></details></section>`;
    panels.querySelectorAll('[data-enhancement-slot]').forEach(b=>b.onclick=()=>onSelect(b.dataset.enhancementSlot));

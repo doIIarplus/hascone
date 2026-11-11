@@ -216,7 +216,7 @@ body{height:100vh;min-height:0;display:flex;flex-direction:column;overflow:hidde
 .gear-cost { margin-top:10px; padding-top:8px; border-top:1px solid #ffffff20; }
 .gear-cost .fl-help { margin:6px 0 0; font-size:11px; }
 .roster-card[draggable=true]{cursor:grab}.roster-card.dragging{opacity:.45;cursor:grabbing;outline:2px dashed var(--accent)}
-.sf-item-modes{margin-top:16px}.sf-mode-fields{margin-top:12px}.sf-mode-fields>.sub{margin:8px 0 0}
+.sf-item-target .input{width:4.5em;margin-right:4px}.sf-item-target label{display:flex;align-items:center}.sf-item-modes{margin-top:16px}.sf-mode-fields{margin-top:12px}.sf-mode-fields>.sub{margin:8px 0 0}
 /* Per-attempt modes: range presets, then a slider per attempt with its odds and cost. */
 .sf-presets{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 16px;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--surface-2)}
 .sf-presets>span{display:flex;flex-direction:column;margin-right:auto}.sf-presets small{color:var(--text-muted);font-size:11px}

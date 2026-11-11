@@ -24,7 +24,7 @@ def test_background_comparison_only_once_per_revision(saved,monkeypatch):
 
 def test_background_reuses_current_result(saved,monkeypatch):
     data,gear=saved
-    data["suggestions"]={"fingerprint":data["history"][0]["fingerprint"],"gear_fingerprint":suggestions.signature(gear),"starforce_options":options(None),"model_version":6}
+    data["suggestions"]={"fingerprint":data["history"][0]["fingerprint"],"gear_fingerprint":suggestions.signature(gear),"starforce_options":options(None),"model_version":suggestions.MODEL_VERSION}
     profiles.write(ID,data)
     start=Mock()
     monkeypatch.setattr(service,"start_suggestions",start)
