@@ -8,7 +8,7 @@ import {mountHome} from './home.js';
 import {mountProgression} from './progression.js';
 import {mountPotentialWeights} from './potential_weights.js';
 import {api} from './api.js';
-import {escapeHtml as esc,toast} from './ui.js';
+import {escapeHtml as esc,toast,capNumbersWhileTyping} from './ui.js';
 import {mountScouter} from './pages/scouter.js';
 import {watchScouterCompletion} from './scouter_completion.js';
 import {mountHexa} from './pages/hexa.js';
@@ -23,6 +23,8 @@ import {createGearTooltip} from './components/gear_tooltip.js';
 import {mountFlameWeights} from './flame_weights.js';
 import {refreshButton} from './portrait.js';
 import {equipGrid} from './components/equip_grid.js';
+// Capped whole-number fields never show a value above their max.
+capNumbersWhileTyping();
 let renderEpoch=0;
 const view=document.querySelector('#view');
 let page='home',dispose=null,slot='hat',selected=localStorage.getItem('hascone.character');
