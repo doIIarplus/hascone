@@ -126,7 +126,7 @@ export async function mountScouter(view,{resultId=null}={}) {
     await save();const state=await api.post(`${endpoint()}/suggestions`,{});
     lastSuggestions=state.active;suggestions.setBusy(state.active);status(state.message);
     if(!state.active)await load();
-  }),onOptions:async options=>{
+  }),section:'scouter',onOptions:async options=>{
     await action(async()=>{await save();await api.post(`${endpoint()}/starforce-options`,options);await load();});
   }});
 

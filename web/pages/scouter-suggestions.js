@@ -25,10 +25,16 @@ function flameDetails(row) {
   return `<section class="sc-flame-outcomes"><h3>Example improving flames</h3><p class="sub">${money(row.expected_mesos)} buys the first modeled FD improvement on average. It is not the cost to hit any specific example. The +${number(row.expected_fd,4)}% shown above averages all qualifying results.</p><div class="sc-flame-examples">${row.flame_examples.map(example=>`<div><strong>${esc(example.label)}</strong><div class="sc-flame-gain">+${number(example.fd_gain,4)}% FD</div>${example.stats.map(stat=>`<div class="sub">${esc(stat)}</div>`).join('')}</div>`).join('')}</div></section>`;
 }
 
-export function createSuggestions(root, {onGenerate, onOptions=async()=>{}, scope=null, layout='list',showOptions=true}) {
-  let profile, dirty=false, busy=false, disposed=false, filter='best', savingOptions=false;
+// SECTION names the page this panel sits on, so each page and layout keeps its own Show choice.
+export function createSuggestions(root, {onGenerate, onOptions=async()=>{}, scope=null, layout='list',showOptions=true,section=scope||'all'}) {
+  const allowed=layout==='cards'?(scope==='cube'?['best','all','Bright','Glowing']:['best','best-booms','all']):filters.map(([value])=>value);
+  const filterKey=`hascone.suggestFilter.${section}.${layout}`;
+  let profile, dirty=false, busy=false, disposed=false, filter=storedFilter(), savingOptions=false;
   const urls=new Map();
   const prefix=layout==='cards'?'upgrade':'sc';
+  function storedFilter() {
+    try {const saved=localStorage.getItem(filterKey);return allowed.includes(saved)?saved:'best';} catch {return 'best';}
+  }
   root.dataset.collapsible='recommendations-'+layout;
   if(layout==='cards')root.classList.add('analysis-panel','upgrade-cards-panel');
   root.innerHTML=`<div class="sc-section-title"><div><h2>${scope==='cube'?(layout==='cards'?'Potential upgrade order':'Potential gains by FD / meso'):scope==='starforce'?(layout==='cards'?'Star Force upgrade order':'Star Force gains by FD / meso'):scope==='flame'?'Flame gains by FD / meso':'Upgrade recommendations'}</h2><p class="sub">More damage for your mesos · ranked by estimated FD per 1B</p></div><button class="btn btn-primary" id="${prefix}-suggest">Compare upgrades</button></div>${scope==='cube'?'<p class="sub sc-scouter-basis"><strong>Follows your potential weight setting</strong> (Scouter or manual, above). This order ranks all positive FD gains per meso, including tiny gains; open Details to see qualifying rolls.</p>':''}<fieldset class="card sc-starforce-options" ${!showOptions||(scope&&scope!=='starforce')?'hidden':''}><legend>Star Force</legend>${[['mode_15_17','15–17★',[[1,'Mode 1'],[2,'Mode 2'],[3,'Mode 3'],['safeguard','Safeguard · no destruction']]],['mode_18_21','18–21★',[[1,'Mode 1'],[2,'Mode 2'],[3,'Mode 3'],[4,'Mode 4 · no destruction']]]].map(([key,label,choices])=>`<label title="Custom plan used for comparison inside each Star Force recommendation">${label}<select class="input" data-sf-option="${key}">${choices.map(([value,name])=>`<option value="${value}">${name}</option>`).join('')}</select></label>`).join('')}${[['discount','30% meso discount','Discounts the entire mode fee; excludes the Safeguard surcharge at 15–17★.'],['boom_reduction','30% destruction reduction','Applies to all modes through 21★.']].map(([key,label,hint])=>`<label title="${hint}"><input type="checkbox" role="switch" data-sf-option="${key}"> ${label}</label>`).join('')}<span class="sub sc-starforce-hint">Ranking compares all modes for least mesos and fewest booms. Select a custom plan above to compare in the details. 22★+ uses standard rates.</span></fieldset><div id="${prefix}-suggestion-body"></div>`;
@@ -86,10 +92,9 @@ export function createSuggestions(root, {onGenerate, onOptions=async()=>{}, scop
         details.innerHTML='<summary class="sub">Calculation details</summary>'+intro.innerHTML;
         intro.replaceWith(details);
       }
-      const allowed=scope==='cube'?['best','all','Bright','Glowing']:['best','best-booms','all'];
       body.querySelectorAll(`#${prefix}-suggest-filter option`).forEach(option=>{if(!allowed.includes(option.value))option.remove();});
     }
-    body.querySelector(`#${prefix}-suggest-filter`).onchange=e=>{filter=e.target.value;render();body.querySelector(`#${prefix}-suggest-filter`).focus({preventScroll:true});};
+    body.querySelector(`#${prefix}-suggest-filter`).onchange=e=>{filter=e.target.value;try{localStorage.setItem(filterKey,filter);}catch{}render();body.querySelector(`#${prefix}-suggest-filter`).focus({preventScroll:true});};
     const id=profile.character.id;
     for(const img of body.querySelectorAll('[data-equip]')) {
       const path=`/api/characters/${encodeURIComponent(id)}/equipment/${encodeURIComponent(img.dataset.equip)}/icon?v=${encodeURIComponent(profile.gear_fingerprint||result.gear_fingerprint||'')}`;
