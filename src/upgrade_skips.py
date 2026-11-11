@@ -3,7 +3,7 @@
 KINDS = ("flame", "cube", "starforce")
 
 # Settings the player made on a slot; scans must carry them over to a rescanned or replaced item.
-PRESERVED = ("skip_upgrades", "starforce_modes")
+PRESERVED = ("skip_upgrades", "starforce_modes", "starforce_target")
 
 
 def normalize(value):

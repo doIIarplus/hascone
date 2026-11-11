@@ -10,6 +10,7 @@ export function mountProgression(view,character,page,onOptionsChanged=async()=>{
  const scope=({potential:'cube',starforce:'starforce',flame:'flame'})[page];
  const handlers={
   scope,
+  section:page,
   onGenerate:async()=>{try{await api.post(endpoint+'/suggestions',{});signature='';await refresh();}catch(e){help.textContent=e.message;}},
   onOptions:async value=>{await api.post(endpoint+'/starforce-options',value);await onOptionsChanged();signature='';await refresh();}
  };

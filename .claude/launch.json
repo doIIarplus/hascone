@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "hascone-dev",
+      "runtimeExecutable": ".venv/Scripts/python.exe",
+      "runtimeArgs": ["app.py", "--desktop"],
+      "env": {"HASCONE_PORT": "5077"},
+      "port": 5077,
+      "url": "http://127.0.0.1:5077"
+    }
+  ]
+}
