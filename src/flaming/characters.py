@@ -140,8 +140,8 @@ def add(name):
 def _ranking(name):
     """The one public ranking row for this exact character name."""
     response = requests.get(
-        "https://www.nexon.com/api/maplestory/no-auth/ranking/v2/na",
-        params={"type": "overall", "id": "weekly", "character_name": name},
+        "https://www.nexon.com/api/maplestory/ranking/v1/no-auth/na/overall",
+        params={"id": "weekly", "character_name": name},
         timeout=(10, 20),
     )
     response.raise_for_status()
