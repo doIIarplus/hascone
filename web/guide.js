@@ -2,7 +2,7 @@ import {api} from './api.js';
 import {escapeHtml as esc,toast} from './ui.js';
 
 function recoveryHint(message){
- if(/VI skill|VI list|SHINE|Erda Link/i.test(message))return 'Open Skills → VI (Erda Link), scroll to the requested end, and move the cursor off the skill rows. If the list changed, restart the SHINE scan from the top.';
+ if(/VI skill|VI list|SHINE|Erda Link/i.test(message))return 'Open Skills → VI, scroll to the requested end, and move the cursor off the skill rows. If the list changed, restart the SHINE scan from the top.';
  if(/fresh screenshot|capture timeout|capture.*closed/i.test(message))return 'Restore the game window and keep it open. If frames still do not arrive, restart Hascone to recreate capture.';
  if(/capture.*not.*start|Graphics Capture/i.test(message))return 'Keep MapleStory restored, select its main window, and retry. Include this message and Hascone-data/logs/native.log when reporting the issue.';
  if(/2560|1920|1366|resolution/i.test(message))return 'In MapleStory options, choose 2560 x 1440 with Default Ratio (Filter Applied), or 1920 x 1080 or 1366 x 768 with Ideal Ratio, then refresh the window list.';

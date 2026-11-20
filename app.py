@@ -730,7 +730,7 @@ def modes(identifier, *, recommended_only=True):
             "mode": f"shine:{info['slug']}:{position}",
             "label": "Erda Link skills · " + position,
             "instruction": "Scroll the VI skill list all the way to the " + position
-            + ". Open Skills → VI (Erda Link), move the cursor off the skill rows, and leave the full list visible. "
+            + ". Open Skills → VI, move the cursor off the skill rows, and leave the full list visible. "
             + ("After capture, scroll to the bottom for the next step." if position == "top"
                else "If the whole list fits without scrolling, leave it as it is."),
         } for position in ("top", "bottom")]

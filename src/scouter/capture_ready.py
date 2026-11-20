@@ -10,14 +10,14 @@ from scouter.vision import _overview_crops, anchor, applied_anchor, origin, veri
 def regions(frame, mode, point, info):
     validate_frame(frame)
     if mode.startswith("shine:"):
-        from scouter.shine_scan import panel
+        from scouter.shine_scan import VIEW_BOTTOM, VIEW_TOP, WIDTH, panel
         _, slug, position = mode.split(":")
         if slug != info["slug"]:
             raise ReadError("Select the matching SHINE character before scanning.")
         x, y, _, _ = panel(frame, position)
-        if point is not None and x <= point[0] < x + 284 and y + 40 <= point[1] < y + 277:
+        if point is not None and x <= point[0] < x + WIDTH and y + VIEW_TOP <= point[1] < y + VIEW_BOTTOM:
             raise ReadError("Move the cursor off the VI skill rows so their names and levels are visible.")
-        return [frame[y:y + 277, x:x + 297]]
+        return [frame[y:y + VIEW_BOTTOM, x:x + WIDTH]]
     if mode == "overview":
         ox, oy = origin(frame)
         sx, sy = anchor(frame, "stats_panel")

@@ -31,7 +31,7 @@ def normalize_scan(image, mode):
     if image.shape[:2] != (1440, 2560):
         return image, 1
     if mode.startswith("shine:"):
-        path = "images/window/scouter/erda_banner.png"
+        path = "images/window/scouter/vi_header.png"
     elif mode == "equipment" or mode.startswith("hover:"):
         path = "images/window/equipment/windows_title.png"
     elif mode == "weapon":
