@@ -34,6 +34,9 @@ def normalize_scan(image, mode):
         path = "images/window/scouter/vi_header.png"
     elif mode == "equipment" or mode.startswith("hover:"):
         path = "images/window/equipment/windows_title.png"
+    elif mode == "quanah":
+        # Inventory hovers have no Equipment window; every item tooltip has this label.
+        path = "images/window/equipment/required_level.png"
     elif mode == "weapon":
         path = "images/window/equipment/currently_equipped.png"
     elif mode == "links":

@@ -9,7 +9,7 @@ from flaming.stats import ReadError
 from utils.payload_data import read_payload_bytes
 
 
-def level_anchor(frame):
+def _level_scores(frame):
     # Threshold the translucent background away, retaining the native glyphs.
     def mask(image):
         return (image.min(axis=2) > 105).astype(np.uint8) * 255
@@ -25,7 +25,24 @@ def level_anchor(frame):
         if anchor is None:
             raise ReadError("Could not decode the Required Level reference image")
         results.append(cv2.matchTemplate(mask(frame), mask(anchor), cv2.TM_CCOEFF_NORMED))
-    result = np.maximum.reduce(results)
+    return np.maximum.reduce(results), anchor
+
+
+def level_anchors(frame, threshold=0.95, limit=4):
+    """Every visible Required Level label, best first: [(x, y)]. A comparison shows two."""
+    scores, _ = _level_scores(frame)
+    found = []
+    while len(found) < limit:
+        _, quality, _, (x, y) = cv2.minMaxLoc(scores)
+        if quality < threshold:
+            break
+        found.append((x, y))
+        scores[max(0, y - 3) : y + 4, max(0, x - 3) : x + 4] = 0
+    return found
+
+
+def level_anchor(frame):
+    result, anchor = _level_scores(frame)
     _, quality, _, (x, y) = cv2.minMaxLoc(result)
     if quality < 0.95:
         raise ReadError("Required Level tooltip label is not visible")
