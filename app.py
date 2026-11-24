@@ -213,6 +213,188 @@ def bossing_delete_drop(identifier):
     return jsonify(_bossing())
 
 
+# Quanah: the seasonal event-equipment set solver. One global list, no character.
+QUANAH_QUEUE = "quanah"
+
+
+@app.get("/api/quanah")
+def quanah():
+    from quanah import store
+
+    return jsonify(store.payload())
+
+
+@app.put("/api/quanah/settings")
+def quanah_settings():
+    from quanah import store
+
+    body = request.get_json(silent=True) or {}
+    store.configure(class_key=body.get("class"), build=body.get("build"))
+    return jsonify(store.payload())
+
+
+@app.post("/api/quanah/items")
+def quanah_add_item():
+    from quanah import store
+
+    body = request.get_json(silent=True) or {}
+    store.add_item(body.get("slot"), body.get("lines"))
+    return jsonify(store.payload())
+
+
+@app.put("/api/quanah/items/<identifier>")
+def quanah_update_item(identifier):
+    from quanah import store
+
+    body = request.get_json(silent=True) or {}
+    store.update_item(identifier, body.get("slot"), body.get("lines"))
+    return jsonify(store.payload())
+
+
+@app.delete("/api/quanah/items/<identifier>")
+def quanah_delete_item(identifier):
+    from quanah import store
+
+    store.delete_item(identifier)
+    return jsonify(store.payload())
+
+
+@app.delete("/api/quanah/items")
+def quanah_clear_items():
+    from quanah import store
+
+    store.clear_items()
+    return jsonify(store.payload())
+
+
+@app.post("/api/quanah/scan")
+def quanah_scan():
+    """Watch the game and capture every event item hovered, until /api/scan/cancel."""
+    global generation, preview, job
+    import hover_queue
+    import ocr_worker
+    from quanah import store
+
+    body = request.get_json(silent=True) or {}
+    if not store.read()["class"]:
+        raise ValueError("Choose your class first")
+    if not isinstance(body.get("window"), int) or isinstance(body.get("window"), bool):
+        raise ValueError("Choose the game window")
+    with job_lock:
+        if job.get("active"):
+            raise ValueError("A capture is already running")
+        generation += 1
+        token = generation
+        preview = None
+        hover_queue.reset(QUANAH_QUEUE)
+        job = {"active": True, "status": "watching", "mode": "quanah", "captured": 0,
+               "message": "Hover an event item in your inventory or Equipment."}
+        scan_executor.submit(_quanah_perform, {"mode": "quanah", "window": body["window"]}, token)
+        state = dict(job)
+    ocr_worker.warm()
+    return jsonify(state)
+
+
+def _quanah_perform(body, token):
+    global job
+    import scan_worker
+
+    try:
+        with scan_worker.session():
+            _quanah_watch(body, token)
+    except Exception as exc:
+        with job_lock:
+            if token == generation and job.get("active"):
+                job = {"active": False, "status": "error", "message": str(exc)}
+        raise
+
+
+QUANAH_FAILED = Path("logs/quanah-failed")
+
+
+def _keep_failed_capture(frame):
+    """Save a capture that could not be read, keeping the 20 newest, so it can be diagnosed."""
+    from utils.image_files import encode_png
+
+    QUANAH_FAILED.mkdir(parents=True, exist_ok=True)
+    path = QUANAH_FAILED / f"{time.strftime('%Y%m%d-%H%M%S')}-{time.time_ns() % 1_000_000_000:09d}.png"
+    path.write_bytes(encode_png(frame))
+    for old in sorted(QUANAH_FAILED.glob("*.png"))[:-20]:
+        old.unlink(missing_ok=True)
+    return path
+
+
+def _save_quanah_piece(frame, anchor):
+    from ocr_worker import read
+    from quanah import store
+
+    from quanah.lines import SKIPPED
+
+    try:
+        piece = read(frame, "quanah:%d:%d" % anchor)
+    except Exception as exc:
+        # Another item (a shoulder, a medal) is expected, not a failure worth keeping.
+        if not str(exc).startswith(SKIPPED):
+            try:
+                _keep_failed_capture(frame)
+            except Exception:
+                pass  # The reading failed either way; only the copy for diagnosis is lost.
+        raise
+    store.add_item(piece["slot"], piece["lines"], raw=piece["raw"], name=piece["name"],
+                   item_class=piece["item_class"], source="scan")
+
+
+def _quanah_watch(body, token):
+    global job
+    import hover_queue
+    import scan_worker
+
+    previous, captured = None, 0
+
+    def update(message):
+        global job
+        with job_lock:
+            if token != generation:
+                return False
+            job = {"active": True, "status": "watching", "mode": "quanah", "captured": captured, "message": message}
+            return True
+
+    while True:
+        with job_lock:
+            if token != generation:
+                return
+        try:
+            frame, mark, anchor = scan_worker.call("quanah_step", body, previous)
+        except (ImportError, AttributeError, TypeError) as exc:
+            with job_lock:
+                if token == generation:
+                    job = {"active": False, "status": "error", "fatal": True, "message": str(exc)}
+            return
+        except Exception as exc:
+            if not update(str(exc)):
+                return
+            time.sleep(0.12)
+            continue
+        if frame is None:
+            # Nothing hovered: the same item may be captured again next time.
+            previous = None
+            if not update("Captured " + str(captured) + ". Hover the next item." if captured
+                          else "Hover an event item in your inventory or Equipment."):
+                return
+            time.sleep(0.12)
+            continue
+        previous = mark
+        captured += 1
+        with job_lock:
+            if token != generation:
+                return
+            hover_queue.submit_task(QUANAH_QUEUE, f"piece-{token}-{captured}",
+                                    lambda frame=frame, anchor=anchor: _save_quanah_piece(frame, anchor))
+        if not update(f"Captured {captured}. Reading in the background; hover the next item."):
+            return
+        time.sleep(0.12)
+
+
 @app.get("/api/characters/<identifier>/equipment/<slot>/icon")
 def icon(identifier, slot):
     characters.load(identifier)

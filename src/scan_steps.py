@@ -44,6 +44,33 @@ def hover_step(body):
     return slot, second, {slot: hover_icon(second)}
 
 
+def quanah_step(body, previous=None):
+    """Look once for a finished event-item tooltip: (frame, signature, Required Level position).
+
+    Two frames must show the same tooltip, so it is not mid-draw; a tooltip
+    matching PREVIOUS (the last capture) is skipped while it stays hovered.
+    Returns (None, None, None) when no tooltip is visible, so hovering the same item
+    again after moving away captures it again (and the page flags the duplicate).
+    """
+    from flaming.item_tooltip import level_anchors
+    from flaming.stats import ReadError
+    from quanah.vision import anchor_of, locate, same_tooltip, signature
+
+    first, scale = _frame(body)
+    if not level_anchors(first):
+        return None, None, None
+    box = locate(first, _pointer(body, scale))
+    mark = signature(first, box)
+    if same_tooltip(mark, previous):
+        raise ReadError("Captured. Hover the next item.")
+    second, scale = _frame(body)
+    again = locate(second, _pointer(body, scale))
+    if not same_tooltip(mark, signature(second, again)):
+        raise ReadError("Waiting for the tooltip to finish drawing.")
+    # The OCR step has no cursor; it reads the tooltip chosen here.
+    return second, mark, anchor_of(again)
+
+
 def character_step(body, info):
     """Two matching frames of a character panel: (frame, HEXA matrix or None)."""
     from scouter import capture_ready

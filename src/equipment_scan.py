@@ -108,6 +108,15 @@ def tooltip_bounds(frame, allow_clipped_footer=False, near=None):
     x = ax - 155
     if x < 0 or x + 323 > frame.shape[1] or ay < 105:
         raise ReadError("Keep the item name, stars and full tooltip width on screen.")
+    return x, ay, tooltip_bottom(frame, x, ay, allow_clipped_footer)
+
+
+def tooltip_bottom(frame, x, ay, allow_clipped_footer=False):
+    """The y just below the tooltip starting at X, searching from AY + 65.
+
+    AY is where a "Currently Equipped" label sits (72 px above Required Level),
+    whether or not this tooltip shows one.
+    """
     strip = frame[ay + 65 :, x + 20 : x + 300].astype(int)
     if strip.shape[1] != 280:
         raise ReadError("Move the full tooltip on screen.")
@@ -125,9 +134,9 @@ def tooltip_bounds(frame, allow_clipped_footer=False, near=None):
         candidates = _verified_bottom_candidates(frame, x, ay, soft.mean(axis=1), coverage_min=.94, corner_min=.85)
     if not len(candidates):
         if allow_clipped_footer and frame.shape[:2] == (768, 1366):
-            return x, ay, frame.shape[0]
+            return frame.shape[0]
         raise ReadError("Show the entire item tooltip, including its bottom edge.")
-    return x, ay, ay + 65 + int(candidates[0]) + 3
+    return ay + 65 + int(candidates[0]) + 3
 
 
 def hover_target(frame, pointer, slots):
@@ -167,12 +176,40 @@ def mono(image):
     return cv2.cvtColor((image.max(axis=2) > 155).astype(np.uint8) * 255, cv2.COLOR_GRAY2BGR)
 
 
-def row_regions(frame, x, top, bottom):
-    area = frame[top:bottom, x + 15 : x + 310]
-    mask = area.max(axis=2) > 155
-    ys = np.flatnonzero(mask.sum(axis=1) >= 3)
+# Tooltip text spans these columns from the tooltip's left edge; rows are 6 to 19 px tall.
+TEXT_LEFT, TEXT_RIGHT = 15, 310
+ROW_MIN, ROW_MAX = 6, 19
+
+
+def row_crop(frame, x, row):
+    """A text row of the tooltip at X, as the reader sees it."""
+    a, b = row
+    return mono(frame[a:b, x + TEXT_LEFT : x + TEXT_RIGHT])
+
+
+def row_regions(frame, x, top, bottom, split=False):
+    """Text rows as (top, bottom). Blocks taller than a row are dropped, or with SPLIT,
+    cut at their emptiest row: the mouse cursor on a tooltip's edge joins neighbouring
+    rows (e.g. the stars and the name) into one such block."""
+    counts = (frame[top:bottom, x + TEXT_LEFT : x + TEXT_RIGHT].max(axis=2) > 155).sum(axis=1)
+    ys = np.flatnonzero(counts >= 3)
     groups = [g for g in np.split(ys, np.flatnonzero(np.diff(ys) > 2) + 1) if len(g)]
-    return [(top + int(g[0]) - 2, top + int(g[-1]) + 3) for g in groups if 6 <= g[-1] - g[0] + 1 <= 19]
+    rows = []
+
+    def add(first, last):
+        height = last - first + 1
+        if ROW_MIN <= height <= ROW_MAX:
+            rows.append((top + first - 2, top + last + 3))
+        elif split and height > ROW_MAX:
+            inner = np.arange(first + ROW_MIN, last - ROW_MIN + 1)
+            cut = int(inner[np.argmin(counts[inner])])
+            add(first, cut - 1)
+            add(cut + 1, last)
+
+    for group in groups:
+        add(int(group[0]), int(group[-1]))
+    # With SPLIT, also keep the padded top inside the frame; without it, rows are exactly as before.
+    return [(max(0, a), b) for a, b in rows] if split else rows
 
 
 def capabilities(slot, name, potential, stats, text):
@@ -236,7 +273,7 @@ def _scan_stat_rows(frame, x, reader, rows, readings, result):
                 return tuple(map(int, re.findall(r"\d+", found[1])))
 
             (text, confidence), accepted = verify(
-                reader, mono(frame[a:b, x + 15:x + 310]), (text, confidence), level_values,
+                reader, row_crop(frame, x, (a, b)), (text, confidence), level_values,
             )
             if not accepted:
                 raise ReadError("Required level is unclear; scan again")
@@ -408,7 +445,7 @@ def hover(frame, reader, slot=None):
     clipped_footer = bottom == frame.shape[0]
     name_row = mono(frame[ay - 70 : ay - 48, x + 15 : x + 310])
     rows = row_regions(frame, x, ay + 53, bottom - (4 if clipped_footer else 12))
-    crops = [name_row] + [mono(frame[a:b, x + 15 : x + 310]) for a, b in rows]
+    crops = [name_row] + [row_crop(frame, x, row) for row in rows]
     readings = reader(crops)
     name, confidence = _resolve_item_name(reader, frame, x, ay, name_row, *readings[0])
     result = {"kind": "hover", "item": name.strip(), "source": "equipped_tooltip", "errors": []}

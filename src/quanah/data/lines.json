@@ -1,0 +1,43 @@
+{
+  "slots": [
+    {"key": "hat", "name": "Hat", "keywords": ["Hat"]},
+    {"key": "top", "name": "Top", "keywords": ["Top", "Overall"]},
+    {"key": "bottom", "name": "Bottom", "keywords": ["Bottom", "Pants"]},
+    {"key": "cape", "name": "Cape", "keywords": ["Cape"]},
+    {"key": "gloves", "name": "Gloves", "keywords": ["Gloves", "Glove"]},
+    {"key": "shoes", "name": "Shoes", "keywords": ["Shoes", "Shoe"]}
+  ],
+  "classes": [
+    {"key": "warrior", "name": "Warrior"},
+    {"key": "magician", "name": "Magician"},
+    {"key": "bowman", "name": "Bowman"},
+    {"key": "thief", "name": "Thief"},
+    {"key": "pirate", "name": "Pirate"}
+  ],
+  "lines": [
+    {"key": "dl", "name": "Dimensional Leap", "text": "Dimensional Leap Lv. +1"},
+    {"key": "wh", "name": "White Hole", "text": "White Hole Lv. +1"},
+    {"key": "reg", "name": "Registry", "text": "[Hologram] Registry Lv. +1"},
+    {"key": "atk", "name": "ATK", "text": "[Hologram] Attack Power & Magic ATT Enhancement Skill Lv. +1"},
+    {"key": "crit", "name": "Crit DMG", "text": "Critical Damage Enhancement Skill Lv. +1"},
+    {"key": "dmg", "name": "DMG", "text": "[Hologram] Damage Enhancement Skill Lv. +1"},
+    {"key": "warrior", "name": "Warrior", "text": "[Hologram] Warrior Attack Skill Lv. +1", "job": true},
+    {"key": "magician", "name": "Magician", "text": "[Hologram] Magician Attack Skill Lv. +1", "job": true},
+    {"key": "bowman", "name": "Bowman", "text": "[Hologram] Bowman Attack Skill Lv. +1", "job": true},
+    {"key": "thief", "name": "Thief", "text": "[Hologram] Thief Attack Skill Lv. +1", "job": true},
+    {"key": "pirate", "name": "Pirate", "text": "[Hologram] Pirate Attack Skill Lv. +1", "job": true}
+  ],
+  "builds": [
+    {"key": "skill", "name": "Skill",
+     "targets": {"dl": 3, "wh": 3, "reg": 3, "atk": 3, "warrior": 1, "magician": 1, "bowman": 1, "thief": 1, "pirate": 1, "crit": 1}},
+    {"key": "gandi", "name": "GanDi",
+     "targets": {"dl": 3, "wh": 3, "reg": 3, "atk": 3, "crit": 3},
+     "jobs": {"count": 3, "default": ["magician", "thief", "bowman"]}},
+    {"key": "eu", "name": "EU",
+     "targets": {"dl": 3, "wh": 3, "reg": 3, "atk": 3, "crit": 3, "dmg": 3}},
+    {"key": "custom", "name": "Custom", "targets": {}}
+  ],
+  "goal": 18,
+  "max_per_line": 3,
+  "max_lines": 3
+}

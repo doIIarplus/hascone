@@ -13,6 +13,7 @@ import {mountScouter} from './pages/scouter.js';
 import {watchScouterCompletion} from './scouter_completion.js';
 import {mountHexa} from './pages/hexa.js';
 import {mountBossing} from './pages/bossing.js';
+import {mountQuanah} from './pages/quanah.js';
 import {mountUpdates} from './updates.js';
 import {openGuide,openEquipmentGuide} from './guide.js';
 import {mountEnhancement,flameIcon} from './enhancement.js';
@@ -38,10 +39,17 @@ async function render(){
  const all=await api.get('/api/characters');
  if(epoch!==renderEpoch)return;
  if(!all.profiles.some(p=>p.id===selected))selected=all.default_character;
- roster.update(all.profiles,selected);
+ roster.update(all.profiles,selected,page==='quanah'?'quanah':null);
  document.querySelector('#character').innerHTML=all.profiles.map(p=>`<option value="${p.id}" ${p.id===selected?'selected':''}>${esc(p.name)} &middot; ${esc(p.class)}</option>`).join('');
  document.querySelector('#character').disabled=!all.profiles.length;
  document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('btn-primary',b.dataset.page===page));
+ // Quanah is seasonal and character-agnostic, so it opens even with no characters.
+ if(page==='quanah'){
+  const host=document.createElement('div');view.replaceChildren(host);
+  const cleanup=await mountQuanah(host);
+  if(epoch!==renderEpoch)cleanup();else dispose=cleanup;
+  return;
+ }
  if(!selected){view.innerHTML='<section class="empty"><h1>Your characters, clearly measured.</h1><p class="sub">Scan flames, potentials and character stats. Compare gains with Scouter.</p><p>Add your first character to begin.</p><button class="btn btn-primary" id="first-add">+ Add character</button></section>';document.querySelector('#first-add').onclick=()=>document.querySelector('#add-dialog').showModal();return;}
  localStorage.setItem('hascone.scouter.character',selected);
  if(page==='home'){const host=document.createElement('div');view.replaceChildren(host);await mountHome(host,id=>navigate('equipment',id),async()=>{await render();if(selected)localStorage.setItem('hascone.character',selected);else{localStorage.removeItem('hascone.character');localStorage.removeItem('hascone.scouter.character');}});return;}
@@ -115,7 +123,9 @@ async function navigate(nextPage,nextCharacter=selected,resultId=null){
  view.beforeLeave=null;selected=nextCharacter;page=nextPage;scouterResult=resultId;localStorage.setItem('hascone.character',selected);await render();pageScroller().scrollTo({top:0,behavior:'instant'});
 }
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>navigate(b.dataset.page).catch(toast));
-document.querySelector('#character').onchange=e=>navigate(page==='home'?'equipment':page,e.target.value).catch(toast);
+// Characters open their own pages; Home and seasonal pages fall back to Equipment.
+const characterPage=()=>['home','quanah'].includes(page)?'equipment':page;
+document.querySelector('#character').onchange=e=>navigate(characterPage(),e.target.value).catch(toast);
 document.querySelector('#home').onclick=()=>navigate('home').catch(toast);
 const settingsMenu=document.querySelector('#settings-menu');
 window.addEventListener('blur',()=>{settingsMenu.open=false;});
@@ -128,7 +138,7 @@ document.querySelector('#add-cancel').onclick=()=>document.querySelector('#add-d
 document.querySelector('#add-form').onsubmit=async e=>{e.preventDefault();const b=document.querySelector('#add-submit');b.disabled=true;document.querySelector('#add-error').textContent='Looking up character…';try{const p=await api.post('/api/characters',{name:document.querySelector('#new-name').value});page='equipment';selected=p.id;localStorage.setItem('hascone.character',selected);document.querySelector('#add-dialog').close();await render();await openEquipmentGuide(selected,render);}catch(e){document.querySelector('#add-error').textContent=e.message;}finally{b.disabled=false;}};
 window.addEventListener('scouter-guide',async e=>{try{page='scouter';await render();await openGuide(e.detail,await api.get('/api/characters/'+e.detail+'/steps'),render);}catch(e){toast(e.message);}});
 window.addEventListener('character-selected',e=>{selected=e.detail;localStorage.setItem('hascone.character',selected);});
-const roster=mountRoster(id=>navigate(page==='home'?'equipment':page,id));
+const roster=mountRoster(id=>navigate(characterPage(),id),()=>navigate('quanah'));
 render().then(()=>watchScouterCompletion(async(character,resultId)=>{
  if(page==='scouter'&&selected===character&&dispose?.showResult){
   return dispose.showResult(resultId);

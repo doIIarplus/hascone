@@ -38,6 +38,11 @@ def read(image, mode):
         return grid(image)
     with lock:
         reader = _recognizer()
+        if mode == 'quanah' or mode.startswith('quanah:'):
+            from quanah.vision import read_piece
+            # "quanah:X:Y" names the tooltip chosen at capture time.
+            anchor = tuple(int(v) for v in mode.split(':')[1:]) or None
+            return read_piece(image, reader, anchor)
         if mode.startswith('hover:'):
             from equipment_scan import hover
             return hover(image, reader, mode.split(':')[1])
