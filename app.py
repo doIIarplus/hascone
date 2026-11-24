@@ -327,7 +327,6 @@ def _keep_failed_capture(frame):
 def _save_quanah_piece(frame, anchor):
     from ocr_worker import read
     from quanah import store
-
     from quanah.lines import SKIPPED
 
     try:

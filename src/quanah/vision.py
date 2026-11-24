@@ -15,7 +15,14 @@ import re
 
 import numpy as np
 
-from equipment_scan import TEXT_LEFT, TEXT_RIGHT, _find_currently_equipped, row_crop, row_regions, tooltip_bottom
+from equipment_scan import (
+    TEXT_LEFT,
+    TEXT_RIGHT,
+    _find_currently_equipped,
+    row_crop,
+    row_regions,
+    tooltip_bottom,
+)
 from flaming.item_tooltip import level_anchors
 from flaming.stats import ReadError
 from ocr_confidence import AGREEMENT_CONFIDENCE, AUTO_CONFIDENCE, verify
