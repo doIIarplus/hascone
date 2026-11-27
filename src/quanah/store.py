@@ -1,7 +1,8 @@
 """The saved Quanah class, build and event pieces, plus the solved best set.
 
 One global list, independent of Hascone's characters. Pieces of another class
-are kept, flagged as unwearable and left out of the solver.
+are kept and flagged as unwearable; the solver still uses them, as pieces whose
+lines must be orbed onto an on-class piece of the same slot.
 """
 
 import json
@@ -20,10 +21,10 @@ lock = threading.RLock()
 
 
 def _default():
-    gandi = next(b for b in solver.catalog()["builds"] if b["key"] == "gandi")
+    hybrid = next(b for b in solver.catalog()["builds"] if b["key"] == "hybrid")
     return {
         "class": None,
-        "build": {"preset": "skill", "job_mode": "custom", "jobs": list(gandi["jobs"]["default"]), "targets": {}},
+        "build": {"preset": "skill", "job_mode": "custom", "jobs": list(hybrid["jobs"]["default"]), "targets": {}},
         "items": [],
     }
 
@@ -35,9 +36,9 @@ def read():
             saved = json.loads(PATH.read_text(encoding="utf-8"))
             data["class"] = saved.get("class")
             data["build"].update(saved.get("build") or {})
-            # The Skill build was first saved as "original".
-            if data["build"].get("preset") == "original":
-                data["build"]["preset"] = "skill"
+            # Builds first saved under older names.
+            renamed = {"original": "skill", "gandi": "hybrid"}
+            data["build"]["preset"] = renamed.get(data["build"].get("preset"), data["build"].get("preset"))
             # So the page shows, and later changes validate, the same targets the solver uses.
             data["build"]["targets"] = solver.trim_targets(data["build"].get("targets"))
             data["items"] = saved.get("items") or []
@@ -142,6 +143,13 @@ def add_item(slot, lines, *, raw=None, name=None, item_class=None, source="manua
         return item
 
 
+def _piece(data, identifier):
+    item = next((i for i in data["items"] if i["id"] == identifier), None)
+    if item is None:
+        raise ValueError("That piece is already gone")
+    return item
+
+
 def update_item(identifier, slot, lines):
     """Correct a piece's slot and lines by hand. A scanned piece keeps what was read, marked edited."""
     if slot not in solver.slot_keys():
@@ -149,22 +157,50 @@ def update_item(identifier, slot, lines):
     lines = validate_lines(lines)
     with lock:
         data = read()
-        item = next((i for i in data["items"] if i["id"] == identifier), None)
-        if item is None:
-            raise ValueError("That piece is already gone")
+        item = _piece(data, identifier)
         if (item["slot"], item["lines"]) != (slot, lines):
+            # A piece moved to another slot is no longer that slot's preferred or worn piece.
+            if item["slot"] != slot:
+                for flag in ONE_PER_SLOT:
+                    item.pop(flag, None)
             item.update(slot=slot, lines=lines, edited=datetime.now(UTC).isoformat())
             _write(data)
+        return item
+
+
+# "preferred" locks a piece into the best set and "worn" is what the player wears now, which
+# the other pieces' lines would be orbed onto: one piece per slot each. "disabled" leaves a
+# piece out of every combo.
+ONE_PER_SLOT = ("preferred", "worn")
+MARKS = (*ONE_PER_SLOT, "disabled")
+
+
+def mark_item(identifier, flag, on):
+    """Give a piece FLAG (taking a one-per-slot mark from the slot's other pieces), or clear it."""
+    if flag not in MARKS:
+        raise ValueError("Unknown mark")
+    if not isinstance(on, bool):
+        raise ValueError(f"{flag.capitalize()} must be true or false")
+    with lock:
+        data = read()
+        item = _piece(data, identifier)
+        item.pop(flag, None)
+        if flag in ONE_PER_SLOT:
+            for other in data["items"]:
+                if other["slot"] == item["slot"]:
+                    other.pop(flag, None)
+        if on:
+            item[flag] = True
+            # A disabled piece can't be locked into the set, and starring a piece uses it again.
+            item.pop({"disabled": "preferred", "preferred": "disabled"}.get(flag), None)
+        _write(data)
         return item
 
 
 def delete_item(identifier):
     with lock:
         data = read()
-        kept = [item for item in data["items"] if item["id"] != identifier]
-        if len(kept) == len(data["items"]):
-            raise ValueError("That piece is already gone")
-        data["items"] = kept
+        data["items"].remove(_piece(data, identifier))
         _write(data)
 
 
@@ -187,13 +223,19 @@ def payload():
     """Everything the page needs: catalog, settings, flagged pieces and the best set."""
     data = read()
     dupes = duplicates(data["items"])
-    items = [{**item, "duplicate": item["id"] in dupes,
-              "wearable": bool(data["class"]) and item.get("item_class") == data["class"]}
-             for item in data["items"]]
+    worn = {item["slot"] for item in data["items"] if item.get("worn")}
+    items = []
+    for item in data["items"]:
+        wearable = bool(data["class"]) and item.get("item_class") == data["class"]
+        # Using a piece costs an orb (a transfer) when its lines must move onto another piece:
+        # the piece worn in that slot, or, with none marked worn, any piece of your class.
+        transfer = not item.get("worn") if item["slot"] in worn else not wearable
+        items.append({**item, "duplicate": item["id"] in dupes, "wearable": wearable, "transfer": transfer,
+                      **{flag: bool(item.get(flag)) for flag in MARKS}})
     solution = None
     if data["class"]:
         targets, jobs = solver.resolve_build(data["build"])
-        solution = solver.solve([i for i in items if i["wearable"]], targets, jobs)
+        solution = solver.solve([i for i in items if not i["disabled"]], targets, jobs)
         solution["targets"] = targets
         solution["jobs"] = {"count": jobs[0], "keys": list(jobs[1])} if jobs else None
     return {"catalog": solver.catalog(), "class": data["class"], "build": data["build"],

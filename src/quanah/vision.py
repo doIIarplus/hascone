@@ -12,15 +12,19 @@ joined until the line ends in "Lv. +N" or a stat value.
 """
 
 import re
+from functools import cache
 
+import cv2
 import numpy as np
 
 from equipment_scan import (
     TEXT_LEFT,
     TEXT_RIGHT,
     _find_currently_equipped,
+    _glyph_mask,
     row_crop,
     row_regions,
+    template,
     tooltip_bottom,
 )
 from flaming.item_tooltip import level_anchors
@@ -45,16 +49,48 @@ STAT_END = re.compile(r"\+\s*\d+(?:\.\d+)?\s*%?\s*(?:\([^)]*\))?\s*$")
 SKILL_START = re.compile(r"^\[?\s*Hologram|Lv\.?\s*\+\s*\d", re.I)
 
 
+LABEL_PIECES, LABEL_PIECES_NEEDED, LABEL_SLACK = 4, 2, 6
+
+
+@cache
+def _label_pieces():
+    """The "Currently Equipped" glyph mask cut into equal-width pieces, with each piece's x offset."""
+    ref = _glyph_mask(template("currently_equipped"))
+    width = ref.shape[1] // LABEL_PIECES
+    return [(i * width, ref[:, i * width : (i + 1) * width]) for i in range(LABEL_PIECES)]
+
+
 def _is_equipped(frame, x, y):
-    quality, _, _ = _find_currently_equipped(frame, near=(x + EQUIPPED_DX, y - EQUIPPED_DY))
-    return quality >= 0.95
+    """Whether the tooltip with Required Level at (X, Y) shows "Currently Equipped".
+
+    In an inventory hover the cursor often rests on the comparison tooltip and can
+    cover part of the label, so the label also counts when enough of its pieces
+    are found in place.
+    """
+    lx, ly = x + EQUIPPED_DX, y - EQUIPPED_DY
+    quality, _, _ = _find_currently_equipped(frame, near=(lx, ly))
+    if quality >= 0.95:
+        return True
+    found = 0
+    for dx, piece in _label_pieces():
+        top, left = max(0, ly - LABEL_SLACK), max(0, lx + dx - LABEL_SLACK)
+        area = frame[top : ly + piece.shape[0] + LABEL_SLACK, left : lx + dx + piece.shape[1] + LABEL_SLACK]
+        if area.shape[0] < piece.shape[0] or area.shape[1] < piece.shape[1]:
+            continue
+        scores = cv2.matchTemplate(_glyph_mask(area), piece, cv2.TM_CCOEFF_NORMED)
+        found += float(np.nan_to_num(scores).max()) >= 0.95
+    return found >= LABEL_PIECES_NEEDED
 
 
-def locate(frame, pointer=None, anchor=None):
+def locate(frame, anchor=None):
     """The hovered piece's tooltip as (x, name search top, Required Level y, bottom), from one frame; no OCR.
 
     ANCHOR, the Required Level position chosen when the frame was captured (see
-    anchor_of), reads that same tooltip later, when the cursor is no longer known.
+    anchor_of), reads that same tooltip later.
+
+    Tooltips are told apart only by the "Currently Equipped" label, never by the
+    cursor: in an inventory hover the game often draws the comparison tooltip
+    under the cursor, so the nearest tooltip is usually the wrong one.
 
     The bottom edge is used when found. A tooltip pushed against the bottom of
     the screen may not show it; the skill lines end well above it, so the
@@ -63,19 +99,20 @@ def locate(frame, pointer=None, anchor=None):
     anchors = level_anchors(frame)
     if not anchors:
         raise ReadError("Hover an event item.")
-    hovered = [a for a in anchors if not _is_equipped(frame, *a)]
     if anchor is not None:
         if tuple(anchor) not in anchors:
             raise ReadError("Hover one item at a time.")
         lx, ly = anchor
-    elif len(hovered) == 1:
-        lx, ly = hovered[0]
-    elif not hovered and len(anchors) == 1:
-        lx, ly = anchors[0]  # An Equipment-window hover shows only the equipped item.
-    elif pointer is not None:
-        lx, ly = min(hovered or anchors, key=lambda a: (a[0] - pointer[0]) ** 2 + (a[1] - pointer[1]) ** 2)
     else:
-        raise ReadError("Hover one item at a time.")
+        hovered = [a for a in anchors if not _is_equipped(frame, *a)]
+        if len(hovered) == 1:
+            lx, ly = hovered[0]
+        elif not hovered and len(anchors) == 1:
+            lx, ly = anchors[0]  # An Equipment-window hover shows only the equipped item.
+        elif len(hovered) > 1:
+            raise ReadError("Move the cursor off the tooltips.")
+        else:
+            raise ReadError("Hover one item at a time.")
     x = lx - LEFT
     # Rows are read up to TEXT_RIGHT; the last few pixels are only the border.
     if x < 0 or x + TEXT_RIGHT > frame.shape[1]:

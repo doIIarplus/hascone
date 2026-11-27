@@ -46,18 +46,95 @@ def test_duplicates_ignore_line_order_but_not_slot():
     assert flags == {a: True, b: True, c: False, d: False}
 
 
-def test_other_class_pieces_are_flagged_and_left_out():
+def test_other_class_pieces_are_flagged_and_used_as_transfers():
     store.configure("warrior")
     mine = store.add_item("hat", ["dl", "wh", "reg"], item_class="warrior", source="scan")["id"]
     theirs = store.add_item("top", ["dl", "wh", "reg"], item_class="bowman", source="scan")["id"]
     data = store.payload()
     wearable = {i["id"]: i["wearable"] for i in data["items"]}
     assert wearable == {mine: True, theirs: False}
-    assert data["solution"]["picks"]["hat"] == mine and data["solution"]["picks"]["top"] is None
-    # Switching class flips which pieces count.
+    # The bowman top's lines can be orbed onto a warrior top, so it still counts.
+    assert data["solution"]["picks"]["hat"] == mine and data["solution"]["picks"]["top"] == theirs
+    # Switching class flips which piece needs the transfer.
     store.configure("bowman")
-    assert store.payload()["solution"]["picks"] == {"hat": None, "top": theirs, "bottom": None,
-                                                    "gloves": None, "shoes": None, "cape": None}
+    solution = store.payload()["solution"]
+    assert solution["picks"]["hat"] == mine and solution["picks"]["top"] == theirs
+
+
+def test_one_preferred_piece_per_slot_locks_the_set():
+    store.configure("warrior")
+    best = store.add_item("hat", ["dl", "wh", "reg"])["id"]
+    liked = store.add_item("hat", ["dl"])["id"]
+    other = store.add_item("hat", ["wh"])["id"]
+    assert store.payload()["solution"]["picks"]["hat"] == best
+    store.mark_item(liked, "preferred", True)
+    store.mark_item(other, "preferred", True)
+    data = store.payload()
+    assert {i["id"]: i["preferred"] for i in data["items"]} == {best: False, liked: False, other: True}
+    assert data["solution"]["picks"]["hat"] == other
+    store.mark_item(other, "preferred", False)
+    assert store.payload()["solution"]["picks"]["hat"] == best
+    with pytest.raises(ValueError, match="true or false"):
+        store.mark_item(best, "preferred", "yes")
+    with pytest.raises(ValueError, match="already gone"):
+        store.mark_item("nope", "preferred", True)
+
+
+def test_worn_piece_sets_the_orb_cost_of_its_slot():
+    store.configure("warrior")
+    worn = store.add_item("hat", ["dl"])["id"]
+    mine = store.add_item("hat", ["wh"])["id"]
+    store.configure(build={"preset": "custom", "targets": {"dl": 1}})
+    costs = lambda: {i["id"]: i["transfer"] for i in store.payload()["items"]}  # noqa: E731
+    assert costs() == {worn: False, mine: False}
+    store.mark_item(worn, "worn", True)
+    assert costs() == {worn: False, mine: True}
+    with pytest.raises(ValueError, match="Unknown mark"):
+        store.mark_item(worn, "loved", True)
+
+
+def test_disabled_pieces_are_left_out_of_every_combo():
+    store.configure("warrior")
+    best = store.add_item("hat", ["dl", "wh", "reg"])["id"]
+    other = store.add_item("hat", ["dl"])["id"]
+    store.configure(build={"preset": "custom", "targets": {"dl": 1, "wh": 1, "reg": 1}})
+    store.mark_item(best, "disabled", True)
+    store.mark_item(other, "disabled", True)
+    data = store.payload()
+    # Any number of pieces in a slot can be disabled; they stay listed.
+    assert {i["id"]: i["disabled"] for i in data["items"]} == {best: True, other: True}
+    assert data["solution"]["picks"]["hat"] is None
+    store.mark_item(best, "disabled", False)
+    assert store.payload()["solution"]["picks"]["hat"] == best
+
+
+def test_disabling_a_starred_piece_unstars_it_and_starring_enables_it():
+    store.configure("warrior")
+    piece = store.add_item("hat", ["dl"])["id"]
+    store.mark_item(piece, "preferred", True)
+    store.mark_item(piece, "disabled", True)
+    assert {k: store.read()["items"][0].get(k) for k in ("preferred", "disabled")} == {"preferred": None,
+                                                                                      "disabled": True}
+    store.mark_item(piece, "preferred", True)
+    assert {k: store.read()["items"][0].get(k) for k in ("preferred", "disabled")} == {"preferred": True,
+                                                                                      "disabled": None}
+
+
+def test_the_gandi_build_is_read_back_as_hybrid():
+    store.PATH.parent.mkdir(parents=True, exist_ok=True)
+    store.PATH.write_text('{"class": "thief", "build": {"preset": "gandi", "job_mode": "any"}, "items": []}',
+                          encoding="utf-8")
+    assert store.read()["build"]["preset"] == "hybrid"
+
+
+def test_moving_a_preferred_piece_drops_the_preference():
+    store.configure("warrior")
+    liked = store.add_item("hat", ["dl"])["id"]
+    store.mark_item(liked, "preferred", True)
+    store.update_item(liked, "hat", ["wh"])
+    assert store.read()["items"][0]["preferred"] is True
+    store.update_item(liked, "top", ["wh"])
+    assert "preferred" not in store.read()["items"][0]
 
 
 def test_build_validation():
@@ -80,6 +157,11 @@ def test_api_round_trip(client):
     data = post(client, "/api/quanah/items", {"slot": "hat", "lines": ["dl", "wh", "dmg"]}).json
     assert data["solution"]["score"] == 3
     piece = data["items"][0]["id"]
+    assert put(client, f"/api/quanah/items/{piece}/preferred", {"preferred": True}).json["items"][0]["preferred"]
+    assert put(client, f"/api/quanah/items/{piece}/preferred", {}).status_code == 400
+    assert put(client, f"/api/quanah/items/{piece}/worn", {"worn": True}).json["items"][0]["worn"]
+    assert put(client, f"/api/quanah/items/{piece}/disabled", {"disabled": True}).json["solution"]["score"] == 0
+    assert put(client, f"/api/quanah/items/{piece}/loved", {"loved": True}).status_code == 400
     assert delete(client, f"/api/quanah/items/{piece}").json["items"] == []
     assert delete(client, f"/api/quanah/items/{piece}").status_code == 400
     post(client, "/api/quanah/items", {"slot": "cape", "lines": ["crit"]})

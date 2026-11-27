@@ -29,7 +29,7 @@ def comparison():
     x, ay, bottom = tooltip_bounds(image, allow_clipped_footer=True)
     tooltip = image[ay - 75 : bottom, x : x + 323].copy()
     # Blank "Currently Equipped" in the copy; the hovered item shows no label.
-    tooltip[70:95, 100:220] = tooltip[100:125, 250:280].mean(axis=(0, 1))
+    tooltip[70:95, 100:315] = tooltip[100:125, 250:280].mean(axis=(0, 1))
     left = x - 400
     image[ay - 75 : bottom, left : left + 323] = tooltip
     return image, left, x
@@ -45,25 +45,44 @@ def test_locate_matches_the_equipment_tooltip_bounds():
 def test_locate_picks_the_hovered_tooltip_over_the_comparison():
     image, hovered, equipped = comparison()
     assert vision.locate(image)[0] == hovered
-    # The pointer does not override which tooltip is the comparison.
-    assert vision.locate(image, pointer=(equipped + 150, 500))[0] == hovered
+
+
+def with_cursor(image, at):
+    """IMAGE with the hand cursor from top_comparison.png drawn with its tip at AT."""
+    hand = frame("quanah/top_comparison.png")[305:335, 455:478]
+    x, y = at
+    image = image.copy()
+    image[y - 5 : y + 25, x - 5 : x + 18] = hand
+    return image
+
+
+@pytest.mark.parametrize("cursor", [(490, 165), (530, 165), (560, 168), (600, 165), (630, 170)])
+def test_cursor_over_currently_equipped_still_picks_the_hovered_tooltip(cursor):
+    # The inventory sits right of the tooltips here, so the game draws the comparison
+    # tooltip under the cursor, which can rest on its "Currently Equipped" label.
+    image = with_cursor(frame("quanah/top_comparison.png"), cursor)
+    assert vision.locate(image)[0] == 21 - vision.LEFT
 
 
 def two_unlabelled():
-    """Two tooltips, neither marked "Currently Equipped": only the cursor tells them apart."""
+    """Two tooltips, neither marked "Currently Equipped"."""
     image, left, right = comparison()
     x, ay, bottom = tooltip_bounds(frame(), allow_clipped_footer=True)
-    image[ay - 5 : ay + 20, right + 100 : right + 220] = image[ay + 25 : ay + 50, right + 250 : right + 280].mean(axis=(0, 1))
+    image[ay - 5 : ay + 20, right + 100 : right + 315] = image[ay + 25 : ay + 50, right + 250 : right + 280].mean(axis=(0, 1))
     return image, left, right
 
 
-def test_the_captured_tooltip_is_read_without_the_cursor():
-    image, left, right = two_unlabelled()
-    with pytest.raises(ReadError, match="one item at a time"):
+def test_two_unlabelled_tooltips_are_not_guessed_between():
+    # The cursor is no guide: it usually rests on the comparison tooltip.
+    image, _, _ = two_unlabelled()
+    with pytest.raises(ReadError, match="cursor off the tooltips"):
         vision.locate(image)
-    captured = vision.locate(image, pointer=(right + 150, 500))
-    assert captured[0] == right
-    # The OCR step gets the capture's position instead of the cursor, and reads that same tooltip.
+
+
+def test_the_captured_tooltip_is_read_from_its_position():
+    image, hovered, _ = comparison()
+    captured = vision.locate(image)
+    # The OCR step gets the capture's position and reads that same tooltip.
     assert vision.locate(image, anchor=vision.anchor_of(captured)) == captured
     with pytest.raises(ReadError, match="one item at a time"):
         vision.locate(image, anchor=(5, 5))
