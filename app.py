@@ -251,6 +251,16 @@ def quanah_update_item(identifier):
     return jsonify(store.payload())
 
 
+# FLAG is one of quanah.store.MARKS; anything else is refused there.
+@app.put("/api/quanah/items/<identifier>/<flag>")
+def quanah_mark_item(identifier, flag):
+    from quanah import store
+
+    body = request.get_json(silent=True) or {}
+    store.mark_item(identifier, flag, body.get(flag))
+    return jsonify(store.payload())
+
+
 @app.delete("/api/quanah/items/<identifier>")
 def quanah_delete_item(identifier):
     from quanah import store

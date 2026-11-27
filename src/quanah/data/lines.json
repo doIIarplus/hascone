@@ -30,7 +30,7 @@
   "builds": [
     {"key": "skill", "name": "Skill",
      "targets": {"dl": 3, "wh": 3, "reg": 3, "atk": 3, "warrior": 1, "magician": 1, "bowman": 1, "thief": 1, "pirate": 1, "crit": 1}},
-    {"key": "gandi", "name": "GanDi",
+    {"key": "hybrid", "name": "Hybrid",
      "targets": {"dl": 3, "wh": 3, "reg": 3, "atk": 3, "crit": 3},
      "jobs": {"count": 3, "default": ["magician", "thief", "bowman"]}},
     {"key": "eu", "name": "EU",

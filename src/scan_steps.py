@@ -56,18 +56,18 @@ def quanah_step(body, previous=None):
     from flaming.stats import ReadError
     from quanah.vision import anchor_of, locate, same_tooltip, signature
 
-    first, scale = _frame(body)
+    first, _ = _frame(body)
     if not level_anchors(first):
         return None, None, None
-    box = locate(first, _pointer(body, scale))
+    box = locate(first)
     mark = signature(first, box)
     if same_tooltip(mark, previous):
         raise ReadError("Captured. Hover the next item.")
-    second, scale = _frame(body)
-    again = locate(second, _pointer(body, scale))
+    second, _ = _frame(body)
+    again = locate(second)
     if not same_tooltip(mark, signature(second, again)):
         raise ReadError("Waiting for the tooltip to finish drawing.")
-    # The OCR step has no cursor; it reads the tooltip chosen here.
+    # The OCR step reads the tooltip chosen here, by its Required Level position.
     return second, mark, anchor_of(again)
 
 

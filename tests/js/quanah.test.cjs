@@ -18,27 +18,35 @@ function model(extra={}){
  return {catalog,class:'warrior',build:{preset:'eu',job_mode:'custom',jobs:[],targets:{}},items,solution,...extra};
 }
 
-test('gear lists duplicates, unwearable pieces and the picked piece, escaping text',async()=>{
+test('gear lists duplicates, other-class pieces and the picked piece, escaping text',async()=>{
  const {renderGear}=await import('../../web/pages/quanah.js');
  const html=renderGear(model());
  assert.equal((html.match(/>Duplicate</g)||[]).length,2);
- assert.match(html,/Can't wear · Bowman/);
+ assert.match(html,/title="This piece is for Bowman\. Orb its lines onto a Warrior top to use them\.">Bowman</);
+ assert.doesNotMatch(html,/Orb ·|Scanned|Manual/);
  assert.match(html,/q-piece is-picked/);
  assert.match(html,/&lt;x&gt;/);
  assert.match(html,/No bottom yet/);
  assert.doesNotMatch(html,/<x>|undefined|null/);
 });
 
-test('pieces sit hat/cape, top/gloves, bottom/shoes, unnumbered, each with edit and delete',async()=>{
+test('pieces sit hat/cape, top/gloves, bottom/shoes, unnumbered, each with a ... menu',async()=>{
  const {renderGear}=await import('../../web/pages/quanah.js');
  const html=renderGear(model(),'c');
  const order=[...html.matchAll(/<h3>([^<]+)<\/h3>/g)].map(m=>m[1]);
  assert.deepEqual(order,['Hat','Cape','Top','Gloves','Bottom','Shoes']);
  assert.doesNotMatch(html,/#\d/);
- assert.equal((html.match(/data-act="edit"/g)||[]).length,3);
- assert.match(html,/q-piece [^"]*is-unwearable is-editing"/);
+ assert.equal((html.match(/data-act="menu"/g)||[]).length,3);
+ assert.doesNotMatch(html,/data-act="(edit|delete)"/);
+ assert.match(html,/q-piece [^"]*is-editing"/);
  assert.match(html,/title="Read as:\nDimensional Leap Lv\. \+1"/);
- assert.match(html,/aria-label="Edit Hat: Dimensional Leap, White Hole, DMG"/);
+ assert.match(html,/aria-label="More for Hat: Dimensional Leap, White Hole, DMG"/);
+ // The open menu holds edit and delete for that piece only.
+ const open=renderGear(model(),null,0,'a');
+ assert.match(open,/data-id="a" aria-haspopup="menu" aria-expanded="true"/);
+ assert.match(open,/role="menu"><button role="menuitem" data-act="edit" data-id="a" aria-label="Edit Hat: Dimensional Leap, White Hole, DMG">/);
+ assert.match(open,/data-act="delete" data-id="a"/);
+ assert.equal((open.match(/role="menu"/g)||[]).length,1);
 });
 
 test('best set shows the score, what is still missing and struck-through waste',async()=>{
@@ -52,7 +60,104 @@ test('best set shows the score, what is still missing and struck-through waste',
  assert.match(html,/Struck-through/);
 });
 
-test('GanDi job rule shows as one requirement of any 3 jobs',async()=>{
+test('best set tags a picked piece of another class and counts the orbs needed',async()=>{
+ const {renderBest}=await import('../../web/pages/quanah.js');
+ const m=model();
+ m.items[2]={...m.items[2],transfer:true};
+ m.solution={...m.solution,orbs:1,picks:{...m.solution.picks,top:'c'},used:{...m.solution.used,top:[true,false]}};
+ const html=renderBest(m);
+ assert.match(html,/>Bowman</);
+ assert.match(html,/<strong>1 orb<\/strong> <span class="sub">needed: Top</);
+ assert.doesNotMatch(renderBest(model()),/needed:/);
+});
+
+test('each piece has a disable toggle, and a disabled piece is dimmed',async()=>{
+ const {renderGear}=await import('../../web/pages/quanah.js');
+ const m=model();
+ m.items[0]={...m.items[0],disabled:true};
+ const html=renderGear(m);
+ assert.equal((html.match(/data-act="disabled"/g)||[]).length,3);
+ assert.match(html,/q-piece [^"]*is-disabled/);
+ assert.match(html,/aria-label="Enable Hat: Dimensional Leap/);
+});
+
+test('a worn slot notes the orb on one-drop hints and its disabled worn piece in the set',async()=>{
+ const {renderBest}=await import('../../web/pages/quanah.js');
+ const m=model();
+ m.items[0]={...m.items[0],worn:true,disabled:true};
+ m.solution={...m.solution,picks:{...m.solution.picks,hat:null},used:{...m.solution.used,hat:[]},hunt:[{slot:'hat',need:['dl']},{slot:'top',need:['wh']}]};
+ const html=renderBest(m);
+ assert.match(html,/Keep wearing yours \(disabled\)/);
+ assert.equal((html.match(/\+ 1 orb/g)||[]).length,1);
+ assert.match(html,/<strong>Hat<\/strong><span class="q-chip q-dl ">Dimensional Leap<\/span><span class="sub"/);
+});
+
+test('combo arrows wrap round both ways',async()=>{
+ const {stepCombo}=await import('../../web/pages/quanah.js');
+ assert.equal(stepCombo(0,-1,3),2);
+ assert.equal(stepCombo(2,1,3),0);
+ assert.equal(stepCombo(1,1,3),2);
+});
+
+test('mark toggles flip the piece\'s current mark',async()=>{
+ const {markRequest}=await import('../../web/pages/quanah.js');
+ assert.deepEqual(markRequest('prefer',{id:'a b',preferred:true}),['/api/quanah/items/a%20b/preferred',{preferred:false}]);
+ assert.deepEqual(markRequest('worn',{id:'a'}),['/api/quanah/items/a/worn',{worn:true}]);
+ assert.deepEqual(markRequest('disabled',{id:'a',disabled:false}),['/api/quanah/items/a/disabled',{disabled:true}]);
+});
+
+test('an on-class pick that needs an orb is tagged Orb; an off-class one shows its class',async()=>{
+ const {renderBest}=await import('../../web/pages/quanah.js');
+ const m=model();
+ m.items[0]={...m.items[0],transfer:true};
+ m.items[2]={...m.items[2],transfer:true};
+ m.solution={...m.solution,picks:{...m.solution.picks,top:'c'},used:{...m.solution.used,top:[true,false]}};
+ const html=renderBest(m);
+ assert.equal((html.match(/>Orb</g)||[]).length,1);
+ assert.match(html,/>Bowman</);
+});
+
+test('each piece has a wearing toggle',async()=>{
+ const {renderGear}=await import('../../web/pages/quanah.js');
+ const m=model();
+ m.items[1]={...m.items[1],worn:true};
+ const html=renderGear(m);
+ assert.equal((html.match(/data-act="worn"/g)||[]).length,3);
+ assert.match(html,/q-worn is-on" data-act="worn" data-id="b" aria-pressed="true" aria-label="Not wearing Hat/);
+});
+
+test('each piece has a prefer star, and a preferred pick is tagged in the best set',async()=>{
+ const {renderGear,renderBest}=await import('../../web/pages/quanah.js');
+ const m=model();
+ m.items[0]={...m.items[0],preferred:true};
+ const html=renderGear(m);
+ assert.equal((html.match(/data-act="prefer"/g)||[]).length,3);
+ assert.equal((html.match(/aria-pressed="true"/g)||[]).length,1);
+ assert.match(html,/aria-label="Stop preferring Hat: Dimensional Leap/);
+ assert.match(renderBest(m),/>Preferred</);
+ assert.doesNotMatch(renderBest(model()),/>Preferred</);
+});
+
+test('several winning combos get arrows, and the shown combo drives both lists',async()=>{
+ const {renderBest,renderGear}=await import('../../web/pages/quanah.js');
+ const m=model();
+ const empty={top:[],bottom:[],gloves:[],shoes:[],cape:[]};
+ const nulls={top:null,bottom:null,gloves:null,shoes:null,cape:null};
+ m.solution={...m.solution,score:3,goal:3,ways:2,targets:{dl:1,wh:1,dmg:1},
+  combos:[{picks:{hat:'a',...nulls},used:{hat:[true,true,true],...empty}},{picks:{hat:'b',...nulls},used:{hat:[true,true,true],...empty}}]};
+ let html=renderBest(m,1);
+ assert.match(html,/Combo 2 of 2</);
+ assert.equal((html.match(/data-act="combo"/g)||[]).length,2);
+ assert.match(html,/q-chip q-dmg[^"]*">DMG<\/span><span class="q-chip q-dl/);
+ const gear=renderGear(m,null,1);
+ assert.match(gear,/q-piece is-picked[^>]*><span class="q-lines"><span class="q-chip q-dmg/);
+ m.solution.ways=150;
+ assert.match(renderBest(m,0),/Combo 1 of 2\+/);
+ m.solution.combos=m.solution.combos.slice(0,1);
+ assert.doesNotMatch(renderBest(m),/data-act="combo"/);
+});
+
+test('Hybrid job rule shows as one requirement of any 3 jobs',async()=>{
  const {requirementRows}=await import('../../web/pages/quanah.js');
  const m=model();
  m.solution={...m.solution,targets:{dl:3},counts:{dl:3,magician:1,thief:1,bowman:0},jobs:{count:3,keys:['magician','thief','bowman']}};
