@@ -1,5 +1,6 @@
 import {api} from '../api.js';
 import {escapeHtml as esc,toast} from '../ui.js';
+import {mountMissions} from './quanah-missions.js';
 
 // Quanah: farm event pieces, scan or add them, and see the best 18-line set for a build.
 const QUEUE='quanah';
@@ -104,12 +105,11 @@ export function renderGear(model,editing=null,combo=0,menu=null){
  }).join('');
 }
 
-export async function mountQuanah(root){
+async function mountSolver(root){
  // EDITING is the id of a saved piece loaded into the hand-entry panel, or null when adding.
  // COMBO is the winning combo on show; any change to the pieces or build starts again at the first.
  let model,disposed=false,slot='hat',pending=[],confirmClear=false,editing=null,combo=0,menu=null;
  let scanning=false,windows=[],selectedWindow=null,timer=0,known=new Set(),scanState=null,queue=null;
- root.className='quanah-page';
  root.innerHTML='<p role="status"><span class="scan-spinner" aria-hidden="true"></span> Loading Quanah...</p>';
  const alive=()=>!disposed&&root.isConnected;
  async function save(request){
@@ -194,11 +194,10 @@ export async function mountQuanah(root){
   // Keep keyboard focus on the same control across redraws.
   const sig=el=>JSON.stringify(el.dataset),active=document.activeElement;
   const focus=active&&root.contains(active)&&active.dataset.act?sig(active):null;
-  const head=`<div class="page-head"><h1>Quanah</h1><p class="sub">Seasonal event equipment. Find the one-per-slot set that completes your build's 18 skill lines.</p></div>`;
-  if(!model.class){root.innerHTML=head+classPicker();return;}
+  if(!model.class){root.innerHTML=classPicker();return;}
   if(editing&&!model.items.some(i=>i.id===editing))stopEdit();
   const total=model.items.length,dupes=model.items.filter(i=>i.duplicate).length,offclass=model.items.filter(i=>!i.wearable).length;
-  root.innerHTML=`${head}<div class="q-layout"><div class="q-main">${buildPanel()}${scanPanel()}${addPanel()}
+  root.innerHTML=`<div class="q-layout"><div class="q-main">${buildPanel()}${scanPanel()}${addPanel()}
    <section class="card q-gear"><header><h2>Your pieces <span class="sub">(${total})</span></h2>${total?`<button class="btn ${confirmClear?'btn-danger':''}" data-act="clear">${confirmClear?'Click again to delete every piece':'Delete all'}</button>`:''}</header>
     ${dupes||offclass?`<p class="sub">${[dupes&&plural(dupes,'duplicate'),offclass&&`${offclass} for another class`].filter(Boolean).join(' · ')}. Fix a misread or delete a piece from its &hellip; menu.</p>`:''}
     <div class="q-gear-slots">${renderGear(model,editing,combo,menu)}</div></section></div>
@@ -293,4 +292,32 @@ export async function mountQuanah(root){
   // Leaving the page stops watching the game; captured pieces keep reading in the background.
   if(scanning)api.post('/api/scan/cancel',{release:true}).catch(()=>{});
  };
+}
+
+// Two views: the set solver and the Dimensional mission tracker. Both stay mounted, so a scan
+// keeps running while you tick off missions.
+const VIEWS={solver:'Set solver',missions:'Dimensional missions'};
+const SUBTITLE={solver:"Seasonal event equipment. Find the one-per-slot set that completes your build's 18 skill lines.",
+ missions:'Check off Dimensional missions. Reaching a level, floor, boss difficulty or star force completes every one before it.'};
+export async function mountQuanah(root){
+ let view='solver';
+ try{view=VIEWS[localStorage.getItem('hascone.quanah.view')]?localStorage.getItem('hascone.quanah.view'):'solver';}catch{}
+ root.className='quanah-page';
+ root.innerHTML=`<div class="page-head"><h1>Quanah</h1><p class="sub" data-subtitle></p></div>
+  <nav class="fl-subtabs" role="tablist" aria-label="Quanah view">${Object.entries(VIEWS).map(([key,label])=>`<button class="btn" role="tab" id="q-tab-${key}" aria-controls="q-panel-${key}" data-view="${key}">${label}</button>`).join('')}</nav>
+  ${Object.keys(VIEWS).map(key=>`<div id="q-panel-${key}" role="tabpanel" aria-labelledby="q-tab-${key}"></div>`).join('')}`;
+ const cleanups={},panel=key=>root.querySelector('#q-panel-'+key);
+ async function show(key){
+  view=key;
+  try{localStorage.setItem('hascone.quanah.view',key);}catch{}
+  root.querySelector('[data-subtitle]').textContent=SUBTITLE[key];
+  for(const k of Object.keys(VIEWS)){panel(k).hidden=k!==key;root.querySelector('#q-tab-'+k).setAttribute('aria-selected',String(k===key));}
+  // Kept as a promise from the start, so a tab clicked again while loading isn't mounted twice.
+  // A mount that fails is forgotten, so clicking the tab again retries it.
+  cleanups[key]??=(key==='solver'?mountSolver:mountMissions)(panel(key)).catch(error=>{delete cleanups[key];throw error;});
+  await cleanups[key];
+ }
+ root.querySelector('[role="tablist"]').addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b&&b.dataset.view!==view)show(b.dataset.view).catch(error=>toast(error.message));});
+ await show(view);
+ return ()=>{for(const mounting of Object.values(cleanups))mounting.then(cleanup=>cleanup?.(),()=>{});};
 }
