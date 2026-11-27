@@ -1,0 +1,719 @@
+{
+ "_note": "Dimensional missions. Each chain is ordered: reaching a mission completes every one before it.",
+ "grades": [
+  {
+   "grade": 1,
+   "points": 0
+  },
+  {
+   "grade": 2,
+   "points": 5000
+  },
+  {
+   "grade": 3,
+   "points": 10000
+  },
+  {
+   "grade": 4,
+   "points": 17500
+  },
+  {
+   "grade": 5,
+   "points": 25000
+  }
+ ],
+ "groups": [
+  {
+   "key": "inspector",
+   "name": "Inspector Level",
+   "type": "round",
+   "chains": [
+    {
+     "key": "level",
+     "name": "Inspector level",
+     "missions": [
+      {
+       "id": "level-5",
+       "label": "Lv. 5",
+       "points": 50
+      },
+      {
+       "id": "level-10",
+       "label": "Lv. 10",
+       "points": 50
+      },
+      {
+       "id": "level-15",
+       "label": "Lv. 15",
+       "points": 100
+      },
+      {
+       "id": "level-20",
+       "label": "Lv. 20",
+       "points": 200
+      },
+      {
+       "id": "level-25",
+       "label": "Lv. 25",
+       "points": 300
+      },
+      {
+       "id": "level-30",
+       "label": "Lv. 30",
+       "points": 400
+      },
+      {
+       "id": "level-35",
+       "label": "Lv. 35",
+       "points": 500
+      },
+      {
+       "id": "level-40",
+       "label": "Lv. 40",
+       "points": 600
+      },
+      {
+       "id": "level-45",
+       "label": "Lv. 45",
+       "points": 700
+      },
+      {
+       "id": "level-50",
+       "label": "Lv. 50",
+       "points": 800
+      },
+      {
+       "id": "level-55",
+       "label": "Lv. 55",
+       "points": 1000
+      },
+      {
+       "id": "level-60",
+       "label": "Lv. 60",
+       "points": 1200
+      },
+      {
+       "id": "level-65",
+       "label": "Lv. 65",
+       "points": 1400
+      },
+      {
+       "id": "level-70",
+       "label": "Lv. 70",
+       "points": 1600
+      },
+      {
+       "id": "level-75",
+       "label": "Lv. 75",
+       "points": 1800
+      },
+      {
+       "id": "level-80",
+       "label": "Lv. 80",
+       "points": 2000
+      },
+      {
+       "id": "level-85",
+       "label": "Lv. 85",
+       "points": 2000
+      },
+      {
+       "id": "level-90",
+       "label": "Lv. 90",
+       "points": 2000
+      },
+      {
+       "id": "level-95",
+       "label": "Lv. 95",
+       "points": 2000
+      },
+      {
+       "id": "level-100",
+       "label": "Lv. 100",
+       "points": 2000
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "battlesim",
+   "name": "Infinite Dungeon: Battlesim",
+   "type": "round",
+   "chains": [
+    {
+     "key": "floor",
+     "name": "Battlesim floor",
+     "missions": [
+      {
+       "id": "floor-5",
+       "label": "Floor 5",
+       "points": 100
+      },
+      {
+       "id": "floor-10",
+       "label": "Floor 10",
+       "points": 200
+      },
+      {
+       "id": "floor-15",
+       "label": "Floor 15",
+       "points": 300
+      },
+      {
+       "id": "floor-20",
+       "label": "Floor 20",
+       "points": 400
+      },
+      {
+       "id": "floor-25",
+       "label": "Floor 25",
+       "points": 500
+      },
+      {
+       "id": "floor-30",
+       "label": "Floor 30",
+       "points": 600
+      },
+      {
+       "id": "floor-35",
+       "label": "Floor 35",
+       "points": 700
+      },
+      {
+       "id": "floor-40",
+       "label": "Floor 40",
+       "points": 800
+      },
+      {
+       "id": "floor-45",
+       "label": "Floor 45",
+       "points": 900
+      },
+      {
+       "id": "floor-50",
+       "label": "Floor 50",
+       "points": 1000
+      },
+      {
+       "id": "floor-55",
+       "label": "Floor 55",
+       "points": 1100
+      },
+      {
+       "id": "floor-60",
+       "label": "Floor 60",
+       "points": 1200
+      },
+      {
+       "id": "floor-65",
+       "label": "Floor 65",
+       "points": 1300
+      },
+      {
+       "id": "floor-70",
+       "label": "Floor 70",
+       "points": 1400
+      },
+      {
+       "id": "floor-75",
+       "label": "Floor 75",
+       "points": 1500
+      },
+      {
+       "id": "floor-80",
+       "label": "Floor 80",
+       "points": 1600
+      },
+      {
+       "id": "floor-85",
+       "label": "Floor 85",
+       "points": 1700
+      },
+      {
+       "id": "floor-90",
+       "label": "Floor 90",
+       "points": 1800
+      },
+      {
+       "id": "floor-95",
+       "label": "Floor 95",
+       "points": 1900
+      },
+      {
+       "id": "floor-100",
+       "label": "Floor 100",
+       "points": 2000
+      },
+      {
+       "id": "floor-105",
+       "label": "Floor 105",
+       "points": 2000
+      },
+      {
+       "id": "floor-110",
+       "label": "Floor 110",
+       "points": 2000
+      },
+      {
+       "id": "floor-115",
+       "label": "Floor 115",
+       "points": 2000
+      },
+      {
+       "id": "floor-120",
+       "label": "Floor 120",
+       "points": 2000
+      },
+      {
+       "id": "floor-125",
+       "label": "Floor 125",
+       "points": 2000
+      },
+      {
+       "id": "floor-130",
+       "label": "Floor 130",
+       "points": 2000
+      },
+      {
+       "id": "floor-135",
+       "label": "Floor 135",
+       "points": 2000
+      },
+      {
+       "id": "floor-140",
+       "label": "Floor 140",
+       "points": 2000
+      },
+      {
+       "id": "floor-145",
+       "label": "Floor 145",
+       "points": 2000
+      },
+      {
+       "id": "floor-150",
+       "label": "Floor 150",
+       "points": 2000
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "bosses",
+   "name": "Bosses",
+   "type": "permanent",
+   "chains": [
+    {
+     "key": "lotus",
+     "name": "Lotus",
+     "missions": [
+      {
+       "id": "boss-lotus-normal",
+       "label": "Normal",
+       "points": 50
+      },
+      {
+       "id": "boss-lotus-hard",
+       "label": "Hard",
+       "points": 250
+      },
+      {
+       "id": "boss-lotus-extreme",
+       "label": "Extreme",
+       "points": 1300
+      }
+     ]
+    },
+    {
+     "key": "damien",
+     "name": "Damien",
+     "missions": [
+      {
+       "id": "boss-damien-normal",
+       "label": "Normal",
+       "points": 50
+      },
+      {
+       "id": "boss-damien-hard",
+       "label": "Hard",
+       "points": 250
+      }
+     ]
+    },
+    {
+     "key": "guardian-angel-slime",
+     "name": "Guardian Angel Slime",
+     "missions": [
+      {
+       "id": "boss-guardian-angel-slime-normal",
+       "label": "Normal",
+       "points": 100
+      },
+      {
+       "id": "boss-guardian-angel-slime-chaos",
+       "label": "Chaos",
+       "points": 400
+      }
+     ]
+    },
+    {
+     "key": "lucid",
+     "name": "Lucid",
+     "missions": [
+      {
+       "id": "boss-lucid-easy",
+       "label": "Easy",
+       "points": 100
+      },
+      {
+       "id": "boss-lucid-normal",
+       "label": "Normal",
+       "points": 150
+      },
+      {
+       "id": "boss-lucid-hard",
+       "label": "Hard",
+       "points": 300
+      }
+     ]
+    },
+    {
+     "key": "will",
+     "name": "Will",
+     "missions": [
+      {
+       "id": "boss-will-easy",
+       "label": "Easy",
+       "points": 150
+      },
+      {
+       "id": "boss-will-normal",
+       "label": "Normal",
+       "points": 200
+      },
+      {
+       "id": "boss-will-hard",
+       "label": "Hard",
+       "points": 400
+      }
+     ]
+    },
+    {
+     "key": "gloom",
+     "name": "Gloom",
+     "missions": [
+      {
+       "id": "boss-gloom-normal",
+       "label": "Normal",
+       "points": 200
+      },
+      {
+       "id": "boss-gloom-chaos",
+       "label": "Chaos",
+       "points": 400
+      }
+     ]
+    },
+    {
+     "key": "darknell",
+     "name": "Darknell",
+     "missions": [
+      {
+       "id": "boss-darknell-normal",
+       "label": "Normal",
+       "points": 200
+      },
+      {
+       "id": "boss-darknell-hard",
+       "label": "Hard",
+       "points": 500
+      }
+     ]
+    },
+    {
+     "key": "verus-hilla",
+     "name": "Verus Hilla",
+     "missions": [
+      {
+       "id": "boss-verus-hilla-normal",
+       "label": "Normal",
+       "points": 300
+      },
+      {
+       "id": "boss-verus-hilla-hard",
+       "label": "Hard",
+       "points": 500
+      }
+     ]
+    },
+    {
+     "key": "chosen-seren",
+     "name": "Chosen Seren",
+     "missions": [
+      {
+       "id": "boss-chosen-seren-normal",
+       "label": "Normal",
+       "points": 600
+      },
+      {
+       "id": "boss-chosen-seren-hard",
+       "label": "Hard",
+       "points": 800
+      },
+      {
+       "id": "boss-chosen-seren-extreme",
+       "label": "Extreme",
+       "points": 2000
+      }
+     ]
+    },
+    {
+     "key": "kalos-the-guardian",
+     "name": "Kalos the Guardian",
+     "missions": [
+      {
+       "id": "boss-kalos-the-guardian-easy",
+       "label": "Easy",
+       "points": 800
+      },
+      {
+       "id": "boss-kalos-the-guardian-normal",
+       "label": "Normal",
+       "points": 1000
+      },
+      {
+       "id": "boss-kalos-the-guardian-chaos",
+       "label": "Chaos",
+       "points": 2000
+      },
+      {
+       "id": "boss-kalos-the-guardian-extreme",
+       "label": "Extreme",
+       "points": 2000
+      }
+     ]
+    },
+    {
+     "key": "first-adversary",
+     "name": "First Adversary",
+     "missions": [
+      {
+       "id": "boss-first-adversary-easy",
+       "label": "Easy",
+       "points": 800
+      },
+      {
+       "id": "boss-first-adversary-normal",
+       "label": "Normal",
+       "points": 1000
+      },
+      {
+       "id": "boss-first-adversary-hard",
+       "label": "Hard",
+       "points": 2000
+      },
+      {
+       "id": "boss-first-adversary-extreme",
+       "label": "Extreme",
+       "points": 2000
+      }
+     ]
+    },
+    {
+     "key": "kaling",
+     "name": "Kaling",
+     "missions": [
+      {
+       "id": "boss-kaling-easy",
+       "label": "Easy",
+       "points": 1000
+      },
+      {
+       "id": "boss-kaling-normal",
+       "label": "Normal",
+       "points": 1600
+      },
+      {
+       "id": "boss-kaling-hard",
+       "label": "Hard",
+       "points": 2000
+      }
+     ]
+    },
+    {
+     "key": "malefic-star",
+     "name": "Malefic Star",
+     "missions": [
+      {
+       "id": "boss-malefic-star-normal",
+       "label": "Normal",
+       "points": 1300
+      },
+      {
+       "id": "boss-malefic-star-hard",
+       "label": "Hard",
+       "points": 2000
+      }
+     ]
+    },
+    {
+     "key": "limbo",
+     "name": "Limbo",
+     "missions": [
+      {
+       "id": "boss-limbo-normal",
+       "label": "Normal",
+       "points": 2000
+      },
+      {
+       "id": "boss-limbo-hard",
+       "label": "Hard",
+       "points": 2000
+      }
+     ]
+    },
+    {
+     "key": "baldrix",
+     "name": "Baldrix",
+     "missions": [
+      {
+       "id": "boss-baldrix-normal",
+       "label": "Normal",
+       "points": 2000
+      },
+      {
+       "id": "boss-baldrix-hard",
+       "label": "Hard",
+       "points": 2000
+      }
+     ]
+    },
+    {
+     "key": "jupiter",
+     "name": "Jupiter",
+     "missions": [
+      {
+       "id": "boss-jupiter-normal",
+       "label": "Normal",
+       "points": 2000
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "key": "starforce",
+   "name": "Star Force",
+   "type": "permanent",
+   "chains": [
+    {
+     "key": "starforce",
+     "name": "Star Force",
+     "missions": [
+      {
+       "id": "sf-5",
+       "label": "5★",
+       "points": 50
+      },
+      {
+       "id": "sf-8",
+       "label": "8★",
+       "points": 50
+      },
+      {
+       "id": "sf-10",
+       "label": "10★",
+       "points": 100
+      },
+      {
+       "id": "sf-12",
+       "label": "12★",
+       "points": 100
+      },
+      {
+       "id": "sf-15",
+       "label": "15★",
+       "points": 150
+      },
+      {
+       "id": "sf-16",
+       "label": "16★",
+       "points": 150
+      },
+      {
+       "id": "sf-17",
+       "label": "17★",
+       "points": 150
+      },
+      {
+       "id": "sf-18",
+       "label": "18★",
+       "points": 200
+      },
+      {
+       "id": "sf-19",
+       "label": "19★",
+       "points": 200
+      },
+      {
+       "id": "sf-20",
+       "label": "20★",
+       "points": 300
+      },
+      {
+       "id": "sf-21",
+       "label": "21★",
+       "points": 400
+      },
+      {
+       "id": "sf-22",
+       "label": "22★",
+       "points": 600
+      },
+      {
+       "id": "sf-23",
+       "label": "23★",
+       "points": 900
+      },
+      {
+       "id": "sf-24",
+       "label": "24★",
+       "points": 1200
+      },
+      {
+       "id": "sf-25",
+       "label": "25★",
+       "points": 1200
+      },
+      {
+       "id": "sf-26",
+       "label": "26★",
+       "points": 1200
+      },
+      {
+       "id": "sf-27",
+       "label": "27★",
+       "points": 1500
+      },
+      {
+       "id": "sf-28",
+       "label": "28★",
+       "points": 1800
+      },
+      {
+       "id": "sf-29",
+       "label": "29★",
+       "points": 2000
+      },
+      {
+       "id": "sf-30",
+       "label": "30★",
+       "points": 2000
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

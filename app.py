@@ -277,6 +277,29 @@ def quanah_clear_items():
     return jsonify(store.payload())
 
 
+# Dimensional missions: checkmarks whose completion cascades along each chain.
+@app.get("/api/quanah/missions")
+def quanah_missions():
+    from quanah import missions
+
+    return jsonify(missions.payload())
+
+
+@app.put("/api/quanah/missions/<identifier>")
+def quanah_set_mission(identifier):
+    from quanah import missions
+
+    body = request.get_json(silent=True) or {}
+    return jsonify(missions.set_done(identifier, body.get("done")))
+
+
+@app.delete("/api/quanah/missions/round")
+def quanah_reset_round_missions():
+    from quanah import missions
+
+    return jsonify(missions.reset_round())
+
+
 @app.post("/api/quanah/scan")
 def quanah_scan():
     """Watch the game and capture every event item hovered, until /api/scan/cancel."""

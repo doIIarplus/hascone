@@ -393,3 +393,23 @@ body{height:100vh;min-height:0;display:flex;flex-direction:column;overflow:hidde
 .q-hunt p{margin:6px 0 0}
 @media(max-width:1000px){.q-layout{grid-template-columns:1fr}.q-side{position:static}}
 @media(max-width:640px){.q-gear-slots{grid-template-columns:1fr}}
+/* Quanah: Dimensional missions. */
+.qm-summary{display:grid;grid-template-columns:minmax(180px,240px) minmax(0,1fr) auto;align-items:center;gap:16px 24px}
+.qm-grade{display:grid;gap:4px}.qm-grade strong{font-size:40px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.qm-bar{height:6px;border-radius:3px;background:var(--surface-3);overflow:hidden}.qm-bar i{display:block;height:100%;background:var(--accent)}
+.qm-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:0}
+.qm-stats dt{font-size:12px;color:var(--text-muted)}.qm-stats dd{margin:2px 0 0;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}.qm-stats small{font-size:13px;font-weight:400;color:var(--text-muted)}
+.qm-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px;align-items:start}
+.qm-group h2{display:flex;align-items:center;gap:8px}
+.q-pill.qm-round{background:var(--warn-dim);color:var(--warn)}.q-pill.qm-permanent{background:var(--ok-dim);color:var(--ok)}
+.qm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(124px,1fr));gap:6px}
+.qm-check{display:flex;align-items:center;gap:6px;padding:5px 8px;border:1px solid var(--border);border-radius:8px;font-size:12px;cursor:pointer;user-select:none}
+.qm-check:hover{border-color:var(--accent)}.qm-check input{margin:0;accent-color:var(--accent)}
+.qm-check span{white-space:nowrap}.qm-check small{margin-left:auto;padding-left:4px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.qm-check.is-done{border-color:var(--accent);background:var(--accent-dim)}
+.qm-rows{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.qm-rows li{display:grid;grid-template-columns:150px minmax(0,1fr);align-items:center;gap:8px}.qm-name{font-size:13px}
+.qm-diffs{display:flex;flex-wrap:wrap;gap:6px}.qm-diffs .qm-check{min-width:110px}
+.qm-reset-dialog{width:min(460px,90vw)}.qm-reset-confirm{color:var(--danger);border-color:var(--danger)}
+@media(max-width:1100px){.qm-groups{grid-template-columns:1fr}}
+@media(max-width:760px){.qm-summary{grid-template-columns:1fr}.qm-rows li{grid-template-columns:1fr}}
