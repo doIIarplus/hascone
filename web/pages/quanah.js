@@ -108,7 +108,9 @@ export function renderGear(model,editing=null,combo=0,menu=null){
 async function mountSolver(root){
  // EDITING is the id of a saved piece loaded into the hand-entry panel, or null when adding.
  // COMBO is the winning combo on show; any change to the pieces or build starts again at the first.
- let model,disposed=false,slot='hat',pending=[],confirmClear=false,editing=null,combo=0,menu=null;
+ let model,disposed=false,slot='hat',pending=[],confirmClear=false,editing=null,combo=0,menu=null,pieceClass=null;
+ // The class a hand-entered piece is saved with: the one picked, else your own.
+ const shownClass=()=>pieceClass||model.class;
  let scanning=false,windows=[],selectedWindow=null,timer=0,known=new Set(),scanState=null,queue=null;
  root.innerHTML='<p role="status"><span class="scan-spinner" aria-hidden="true"></span> Loading Quanah...</p>';
  const alive=()=>!disposed&&root.isConnected;
@@ -165,8 +167,12 @@ async function mountSolver(root){
   const slots=catalog.slots.map(s=>`<button class="btn ${slot===s.key?'btn-primary':''}" data-act="slot" data-slot="${s.key}" aria-pressed="${slot===s.key}">${esc(s.name)} <small>${model.items.filter(i=>i.slot===s.key).length}</small></button>`).join('');
   const picked=Array.from({length:max},(_,i)=>pending[i]?chip(catalog,pending[i]):`<span class="q-chip is-empty">line ${i+1}</span>`).join('');
   const piece=editing&&model.items.find(i=>i.id===editing);
+  // A piece saved without a class (older data) shows a blank choice rather than your class.
+  const unknown=piece&&!piece.item_class&&!pieceClass;
   const read=piece?.raw?.length?`<p class="sub q-read">Scanner read: ${piece.raw.map(esc).join(' · ')}</p>`:'';
-  return `<section class="card q-add ${editing?'is-editing':''}"><header><h2>${editing?'Edit piece':'Add a piece by hand'}</h2></header>${read}<div class="q-toggle">${slots}</div><div class="q-line-buttons">${buttons}</div>
+  return `<section class="card q-add ${editing?'is-editing':''}"><header><h2>${editing?'Edit piece':'Add a piece by hand'}</h2></header>${read}<div class="q-toggle">${slots}</div>
+   <label class="q-class-select">Class <select class="input" data-act="piece-class">${unknown?'<option value="" selected disabled>Unknown</option>':''}${catalog.classes.map(c=>`<option value="${c.key}" ${!unknown&&shownClass()===c.key?'selected':''}>${esc(c.name)}</option>`).join('')}</select></label>
+   <div class="q-line-buttons">${buttons}</div>
    <div class="q-pending"><span class="eyebrow">${editing?'Editing':'New'} ${esc(slotName(catalog,slot))}</span>${picked}
     ${pending.length?'<button class="btn" data-act="undo">Undo line</button>':''}
     ${editing?`<button class="btn" data-act="cancel-edit">Cancel</button><button class="btn btn-primary" data-act="save-edit" ${pending.length?'':'disabled'}>Save changes</button>`
@@ -182,12 +188,12 @@ async function mountSolver(root){
  }
  function startEdit(id){
   const item=model.items.find(i=>i.id===id);if(!item)return;
-  editing=id;slot=item.slot;pending=[...item.lines];draw();
+  editing=id;slot=item.slot;pending=[...item.lines];pieceClass=item.item_class;draw();
   const panel=root.querySelector('.q-add');
   panel?.scrollIntoView({block:'nearest',behavior:'smooth'});
   panel?.querySelector('[data-act="save-edit"]')?.focus({preventScroll:true});
  }
- function stopEdit(){editing=null;pending=[];}
+ function stopEdit(){editing=null;pending=[];pieceClass=null;}
 
  function draw(){
   if(!alive())return;
@@ -256,10 +262,10 @@ async function mountSolver(root){
   else if(act==='slot'){slot=b.dataset.slot;if(!editing)pending=[];draw();}
   else if(act==='line'){pending.push(b.dataset.key);draw();}
   else if(act==='undo'){pending.pop();draw();}
-  else if(act==='add'){const lines=pending;pending=[];save(api.post('/api/quanah/items',{slot,lines}));}
+  else if(act==='add'){const lines=pending,item_class=shownClass();pending=[];pieceClass=null;save(api.post('/api/quanah/items',{slot,lines,item_class}));}
   else if(act==='edit')startEdit(b.dataset.id);
   else if(act==='cancel-edit'){stopEdit();draw();}
-  else if(act==='save-edit'){const id=editing,lines=pending;stopEdit();save(api.put('/api/quanah/items/'+encodeURIComponent(id),{slot,lines}));}
+  else if(act==='save-edit'){const id=editing,lines=pending,item_class=pieceClass;stopEdit();save(api.put('/api/quanah/items/'+encodeURIComponent(id),{slot,lines,item_class}));}
   else if(act==='combo'){combo=stepCombo(combo,Number(b.dataset.step),model.solution.combos.length);draw();}
   else if(act in MARK){const item=model.items.find(i=>i.id===b.dataset.id);if(item)save(api.put(...markRequest(act,item)));}
   else if(act==='delete')save(api.delete('/api/quanah/items/'+encodeURIComponent(b.dataset.id)));
@@ -274,6 +280,7 @@ async function mountSolver(root){
  });
  root.addEventListener('change',e=>{
   const act=e.target.dataset.act;
+  if(act==='piece-class'){pieceClass=e.target.value||null;return;}
   if(act==='class-select')save(api.put('/api/quanah/settings',{class:e.target.value}));
   else if(act==='window')selectedWindow=Number(e.target.value);
  });

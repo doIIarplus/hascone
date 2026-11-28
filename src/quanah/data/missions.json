@@ -606,6 +606,7 @@
    "key": "starforce",
    "name": "Star Force",
    "type": "permanent",
+   "optional_cascade": true,
    "chains": [
     {
      "key": "starforce",

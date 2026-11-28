@@ -61,6 +61,22 @@ def test_other_class_pieces_are_flagged_and_used_as_transfers():
     assert solution["picks"]["hat"] == mine and solution["picks"]["top"] == theirs
 
 
+def test_a_hand_entered_piece_can_be_given_another_class_and_edited_later(client):
+    store.configure(class_key="warrior")
+    api = post(client, "/api/quanah/items", {"slot": "hat", "lines": ["dl"], "item_class": "bowman"}).get_json()
+    piece = next(i for i in api["items"] if i["slot"] == "hat")
+    assert piece["item_class"] == "bowman" and not piece["wearable"]
+    # Left out, it defaults to the selected class.
+    api = post(client, "/api/quanah/items", {"slot": "top", "lines": ["dl"]}).get_json()
+    assert next(i for i in api["items"] if i["slot"] == "top")["item_class"] == "warrior"
+    api = put(client, "/api/quanah/items/" + piece["id"], {"slot": "hat", "lines": ["dl"], "item_class": "warrior"}).get_json()
+    assert next(i for i in api["items"] if i["id"] == piece["id"])["wearable"]
+    with pytest.raises(ValueError):
+        store.add_item("hat", ["dl"], item_class="nope")
+    with pytest.raises(ValueError):
+        store.update_item(piece["id"], "hat", ["dl"], "nope")
+
+
 def test_one_preferred_piece_per_slot_locks_the_set():
     store.configure("warrior")
     best = store.add_item("hat", ["dl", "wh", "reg"])["id"]
