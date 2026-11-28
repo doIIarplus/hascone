@@ -3,8 +3,9 @@
 One global list, like the Quanah pieces. Missions sit in ordered chains (inspector
 levels, Battlesim floors, each boss's difficulties, star force levels): completing a
 mission completes every one before it in its chain, and undoing one undoes every
-one after it, so a chain never has gaps. Round missions reset when the character
-dies; permanent missions are kept.
+one after it, so a chain never has gaps. Star force is the exception: an item can be
+tapped straight from 23 to 24, so its group is marked optional_cascade and the caller chooses.
+Round missions reset when the character dies; permanent missions are kept.
 """
 
 import json
@@ -33,13 +34,13 @@ def catalog():
 
 @lru_cache(maxsize=1)
 def _index():
-    """Each mission id -> (group type, its chain's ids in order, its place in the chain)."""
+    """Each mission id -> (group type, its chain's ids in order, its place in it, cascade optional)."""
     index = {}
     for group in catalog()["groups"]:
         for chain in group["chains"]:
             ids = [m["id"] for m in chain["missions"]]
             for place, identifier in enumerate(ids):
-                index[identifier] = (group["type"], ids, place)
+                index[identifier] = (group["type"], ids, place, bool(group.get("optional_cascade")))
     return index
 
 
@@ -80,19 +81,23 @@ def _write(done):
             os.unlink(name)
 
 
-def cascade(done, identifier, complete):
-    """DONE (a set of ids) after marking IDENTIFIER complete or not, cascading along its chain."""
+def mark(done, identifier, complete, cascade=True):
+    """DONE (a set of ids) after marking IDENTIFIER complete or not, cascading along its chain.
+
+    CASCADE=False touches only that mission, but only where the group's cascade is optional."""
     if identifier not in _index():
         raise ValueError("Unknown mission")
-    _, ids, place = _index()[identifier]
+    _, ids, place, optional = _index()[identifier]
+    if not cascade and optional:
+        return set(done) | {identifier} if complete else set(done) - {identifier}
     return set(done) | set(ids[: place + 1]) if complete else set(done) - set(ids[place:])
 
 
-def set_done(identifier, complete):
-    if not isinstance(complete, bool):
-        raise ValueError("done must be true or false")
+def set_done(identifier, complete, cascade=True):
+    if not isinstance(complete, bool) or not isinstance(cascade, bool):
+        raise ValueError("done and cascade must be true or false")
     with lock:
-        done = cascade(read(), identifier, complete)
+        done = mark(read(), identifier, complete, cascade)
         _write([i for i in _index() if i in done])
         return payload()
 

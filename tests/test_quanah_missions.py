@@ -45,6 +45,17 @@ def test_completing_a_mission_completes_its_chain_up_to_it():
     assert [i for i in done if i.startswith("floor-")] == ["floor-5", "floor-10", "floor-15"]
 
 
+def test_star_force_can_skip_the_cascade_but_other_chains_cannot():
+    assert missions.set_done("sf-17", True, False)["done"] == ["sf-17"]
+    assert missions.set_done("sf-10", True, False)["done"] == ["sf-10", "sf-17"]
+    # Undoing one without the cascade leaves the later ones.
+    assert missions.set_done("sf-10", False, False)["done"] == ["sf-17"]
+    # Bosses and levels always cascade.
+    assert missions.set_done("level-10", True, False)["done"][:2] == ["level-5", "level-10"]
+    with pytest.raises(ValueError):
+        missions.set_done("sf-5", True, "no")
+
+
 def test_undoing_a_mission_undoes_every_later_one_in_its_chain():
     missions.set_done("level-50", True)
     missions.set_done("sf-22", True)

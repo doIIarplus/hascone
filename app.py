@@ -238,7 +238,7 @@ def quanah_add_item():
     from quanah import store
 
     body = request.get_json(silent=True) or {}
-    store.add_item(body.get("slot"), body.get("lines"))
+    store.add_item(body.get("slot"), body.get("lines"), item_class=body.get("item_class"))
     return jsonify(store.payload())
 
 
@@ -247,7 +247,7 @@ def quanah_update_item(identifier):
     from quanah import store
 
     body = request.get_json(silent=True) or {}
-    store.update_item(identifier, body.get("slot"), body.get("lines"))
+    store.update_item(identifier, body.get("slot"), body.get("lines"), body.get("item_class"))
     return jsonify(store.payload())
 
 
@@ -290,7 +290,7 @@ def quanah_set_mission(identifier):
     from quanah import missions
 
     body = request.get_json(silent=True) or {}
-    return jsonify(missions.set_done(identifier, body.get("done")))
+    return jsonify(missions.set_done(identifier, body.get("done"), body.get("cascade", True)))
 
 
 @app.delete("/api/quanah/missions/round")

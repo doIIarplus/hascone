@@ -117,12 +117,16 @@ def validate_lines(lines):
     return list(lines)
 
 
+def _check_class(item_class):
+    if item_class is not None and item_class not in _class_keys():
+        raise ValueError("Unknown item class")
+
+
 def add_item(slot, lines, *, raw=None, name=None, item_class=None, source="manual"):
     if slot not in solver.slot_keys():
         raise ValueError("Choose a slot")
     lines = validate_lines(lines)
-    if item_class is not None and item_class not in _class_keys():
-        raise ValueError("Unknown item class")
+    _check_class(item_class)
     with lock:
         data = read()
         if not data["class"]:
@@ -150,20 +154,22 @@ def _piece(data, identifier):
     return item
 
 
-def update_item(identifier, slot, lines):
-    """Correct a piece's slot and lines by hand. A scanned piece keeps what was read, marked edited."""
+def update_item(identifier, slot, lines, item_class=None):
+    """Correct a piece's slot, lines and class by hand. A scanned piece keeps what was read, marked edited."""
     if slot not in solver.slot_keys():
         raise ValueError("Choose a slot")
     lines = validate_lines(lines)
+    _check_class(item_class)
     with lock:
         data = read()
         item = _piece(data, identifier)
-        if (item["slot"], item["lines"]) != (slot, lines):
+        item_class = item_class or item.get("item_class")
+        if (item["slot"], item["lines"], item.get("item_class")) != (slot, lines, item_class):
             # A piece moved to another slot is no longer that slot's preferred or worn piece.
             if item["slot"] != slot:
                 for flag in ONE_PER_SLOT:
                     item.pop(flag, None)
-            item.update(slot=slot, lines=lines, edited=datetime.now(UTC).isoformat())
+            item.update(slot=slot, lines=lines, item_class=item_class, edited=datetime.now(UTC).isoformat())
             _write(data)
         return item
 
